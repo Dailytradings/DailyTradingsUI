@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-xl-3 col-lg-6 col-12" *ngFor="let sitePrediction of this.siteList">
+    <div class="card" (click)="ClickCard(sitePrediction)" (dblclick)="SetCardActive(sitePrediction)" [ngStyle]="{'background-color': !sitePrediction.site.isActive ? 'darkgray' : '#fff'}">
+      <div class="card-content">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-8">
+              <h5 class="mb-1 danger">{{sitePrediction.site.siteName}}</h5>
+            </div>
+            <div class="col-sm-4">
+              <a href="{{sitePrediction.site.url}}" target="blank">
+                <img src="{{sitePrediction.site.logoUrl}}" width="90" height="30">
+              </a>
+            </div>
+          </div>
+          <div class="row"
+            style="text-align: center; border-bottom: solid 1px gray; border-top: solid 1px gray; margin-top: 2%;">
+            <div class="col-12">
+              <span>Consensus Estimates</span>
+            </div>
+          </div>
+          <div class="row" style="text-align: center; font-weight: 900; margin-top:3%;">
+            <div class="col-6">
+              <span>EPS</span>
+            </div>
+            <div class="col-6">
+              <span>{{sitePrediction.prediction.consensusEPS}} {{sitePrediction.prediction.consensusEPS ? '' : '--'}}</span>
+            </div>
+          </div>
+          <div class="row" style="text-align: center; font-weight: 900;">
+            <div class="col-6">
+              <span>Revenue</span>
+            </div>
+            <div class="col-6">
+              <span>{{sitePrediction.prediction.consensusRevenue | number}} {{sitePrediction.prediction.consensusRevenue ? 'M' : '--'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="this.selectedPrediction">
+      <app-prediction-modal #modal [selectedPrediction]="this.modalObject"></app-prediction-modal>
+    </div>
+  </div>

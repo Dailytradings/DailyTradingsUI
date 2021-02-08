@@ -1,0 +1,225 @@
+<div class="col-sm-12" *ngIf="this.symbol">
+    <div class="card card-outline-success box-shadow-0 text-left" style="background-color: white;">
+        <div class="card-content">
+            <div class="card-body">
+
+
+                <div class="row">
+
+                    <div class="col col-sm-1" style="margin-right: -3%; padding-left: 1.5%; padding-top:1.2%">
+                        <div class="row">
+                            <div class="col col-sm-12" style="margin-bottom:25%">
+                                <span *ngIf="!symbol.isMonitoring" name="button">
+                                    <i class="ft-eye font-large-3" title="Watchlist'e Ekle" style="cursor: pointer;"
+                                        (click)="addToWatchList()"></i>
+                                </span>
+                                <span *ngIf="symbol.isMonitoring" name="buttonRev">
+                                    <i class="ft-eye-off font-large-3" title="Watchlist'den Çıkar"
+                                        style="cursor: pointer;" (click)="removeFromWatchList()"></i>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <i class="ft-bell font-large-3" title="Alert Oluştur" style="cursor: pointer;"
+                                    (click)="showAlertModal()"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div id="symbol-info-widget"
+                            class="tv-category-header tv-category-header--transparent tv-symbol-info-widget">
+                            <div class="tv-category-header__content tv-symbol-info-widget__content js-widget-content">
+                                <a class="tv-category-header__title-line tv-symbol-info-widget__title-line tv-symbol-info-widget__link js-symbol-info-link"
+                                    [href]="getRedirectUrl(this.symbol.ticker)" target="_blank">
+
+                                    <img class="tv-circle-logo tv-circle-logo--large tv-category-header__icon"
+                                        src="{{this.symbol.logoUrl}}" alt="">
+
+
+                                    <div class="tv-category-header__title">
+
+                                        <h1>
+
+                                            <div class="tv-symbol-header tv-symbol-header--mobile-adaptive">
+                                                <div
+                                                    class="tv-symbol-header__first-line tv-symbol-info-widget__first-line">
+                                                    {{this.symbol.companyName}}</div>
+                                                <div class="tv-symbol-header__second-line"
+                                                    style="display: flex !important; margin-top:1%">
+                                                    <span class="tv-symbol-header__second-line"
+                                                        data-selected-provider-id="ice" data-exchanges="[]"
+                                                        data-short-name="{{this.symbol.ticker}}">
+                                                        <span
+                                                            class="tv-symbol-header__second-line--text">{{this.symbol.ticker}}</span><span
+                                                            class="tv-symbol-header__exchange-container"><img
+                                                                class="tv-circle-logo tv-circle-logo--small tv-symbol-header__exchange-logo"
+                                                                src="https://s3-symbol-logo.tradingview.com/country/US.svg"
+                                                                alt=""><span class="tv-symbol-header__exchange">
+                                                                {{this.symbol.exchange}}</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </h1>
+                                    </div> `
+                                </a>
+                                <div class="tv-category-header__price-line js-header-symbol-quotes quote-ticker-inited"
+                                    data-type="stock" data-symbol="{{this.symbol.exchange}}:{{this.symbol.ticker}}">
+                                    <div class="tv-category-header__main-price js-scroll-container">
+                                        <div
+                                            class="tv-scroll-wrap tv-scroll-wrap--horizontal js-scroll-scrollable-element">
+                                            <div class="tv-category-header__main-price-content">
+
+                                                <div class="tv-symbol-price-quote js-last-price-block">
+                                                    <div
+                                                        class="tv-symbol-price-quote__row js-last-price-block-value-row">
+                                                        <div class="tv-symbol-price-quote__value js-symbol-last">
+                                                            <span>{{this.symbol.price ? (this.symbol.price | number) :
+                                                                '0.00' }}</span>
+                                                        </div>
+                                                        <div class="tv-symbol-price-quote__supply">
+                                                            <div class="tv-symbol-price-quote__data-mode tv-data-mode tv-data-mode--size_large js-data-mode tv-data-mode--no-realtime tv-data-mode--delayed tv-data-mode--delayed--no-realtime apply-common-tooltip"
+                                                                title="Quotes are delayed by 15 min">D</div>
+                                                            <div
+                                                                class="tv-symbol-price-quote__currency js-symbol-currency">
+                                                                USD</div>
+                                                        </div>
+                                                        <div
+                                                            class="js-symbol-change-direction tv-symbol-price-quote__change tv-symbol-price-quote__change--{{this.symbol.change && this.symbol.change > 0 ? 'growing': 'falling'}}">
+                                                            <span
+                                                                class="js-symbol-change tv-symbol-price-quote__change-value">{{this.symbol.change
+                                                                ? (this.symbol.change > 0 ? '+' : '') +
+                                                                (this.symbol.change | number) : '0.00' }}</span>
+                                                            <span
+                                                                class="js-symbol-change-pt tv-symbol-price-quote__change-value">({{this.symbol.changePercentage
+                                                                ? (this.symbol.changePercentage > 0 ? '+' : '') +
+                                                                (this.symbol.changePercentage | number) : '0.00'
+                                                                }}%)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tv-symbol-price-quote__sub-line">
+                                                        <span
+                                                            class="js-last-price-block-title">{{this.symbol.marketStatus}}</span>
+                                                        <span
+                                                            class="js-symbol-lp-time">({{this.symbol.marketDateText}})</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="tv-category-header__rtc-price-group-fundamentals js-rtc-price-group js-scroll-container tv-category-header__rtc-price-group-fundamentals--with-rtc">
+                                        <div
+                                            class="tv-scroll-wrap tv-scroll-wrap--horizontal js-scroll-scrollable-element">
+                                            <div class="tv-category-header__rtc-price-group-fundamentals-content">
+
+                                                <div
+                                                    class="tv-symbol-price-quote tv-category-header__rtc-price js-rtc-price-block">
+                                                    <div
+                                                        class="tv-symbol-price-quote__row tv-symbol-price-quote__row--small">
+                                                        <div
+                                                            class="tv-symbol-price-quote__value tv-symbol-price-quote__value--small js-symbol-ext-hrs-close">
+                                                            {{this.symbol.extendedPrice ? '+'+
+                                                            (this.symbol.extendedPrice | number) : '0.00' }}</div>
+                                                        <div
+                                                            class="js-symbol-ext-hrs-change-direction tv-symbol-price-quote__change tv-symbol-price-quote__change--{{this.symbol.extendedChange && this.symbol.extendedChange > 0 ? 'growing': 'falling'}}">
+                                                            <span
+                                                                class="js-symbol-ext-hrs-change tv-symbol-price-quote__change-value">{{this.symbol.extendedChange
+                                                                ? (this.symbol.extendedChange > 0 ? '+' : '') +
+                                                                (this.symbol.extendedChange | number) : '0.00' }}</span>
+                                                            <span
+                                                                class="js-symbol-ext-hrs-change-pt tv-symbol-price-quote__change-value">({{this.symbol.extendedChangePercentage
+                                                                ? (this.symbol.extendedChangePercentage > 0 ? '+' : '')
+                                                                + (this.symbol.extendedChangePercentage | number) :
+                                                                '0.00' }}%)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tv-symbol-price-quote__sub-line">
+                                                        <span
+                                                            class="js-rtc-price-block-title tv-symbol-price-quote__market-stat tv-symbol-price-quote__market-stat--pre">{{this.symbol.extendedStatus}}</span>
+                                                        <span
+                                                            class="js-symbol-rtc-time">({{this.symbol.extendedDateText}})</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tv-category-header__fundamentals js-header-fundamentals">
+                                        <div class="tv-fundamental-block tv-category-header__fundamentals-block apply-common-tooltip common-tooltip-html js-fund-container"
+                                            title="{{this.symbol.upcomingEarningsDateText}}" style="width: auto;">
+                                            <div
+                                                class="tv-fundamental-block__value tv-fundamental-block__value--sentence-cased js-symbol-next-earning tv-fundamental-block__value--highlighted">
+                                                {{this.symbol.upcomingEarnings}}</div>
+                                            <div class="tv-fundamental-block__title">Upcoming Earnings</div>
+                                        </div>
+                                        <div class="tv-fundamental-block tv-category-header__fundamentals-block apply-common-tooltip js-fund-container"
+                                            title="Earnings per Share" style="width: auto;">
+                                            <div class="tv-fundamental-block__value js-symbol-eps">{{this.symbol.eps ?
+                                                (this.symbol.eps | number) : '--' }}</div>
+                                            <div class="tv-fundamental-block__title">EPS</div>
+                                        </div>
+                                        <div class="tv-fundamental-block tv-category-header__fundamentals-block apply-common-tooltip js-fund-container"
+                                            title="Market Capital" style="width: auto;">
+                                            <div class="tv-fundamental-block__value js-symbol-market-cap">
+                                                {{this.symbol.marketCapital ? (this.symbol.marketCapital | number) + 'M'
+                                                : '--' }}</div>
+                                            <div class="tv-fundamental-block__title">Market Cap</div>
+                                        </div>
+                                        <div class="tv-fundamental-block tv-category-header__fundamentals-block apply-common-tooltip js-fund-container"
+                                            title="Dividends Yield" style="width: auto;">
+                                            <div class="tv-fundamental-block__value js-symbol-dividends">
+                                                {{this.symbol.dividendYield ? (this.symbol.dividendYield | number) + '%'
+                                                : '--' }}</div>
+                                            <div class="tv-fundamental-block__title">Div Yield</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center; border:1px solid gray; border-radius:5px; padding-top:1%">
+                        <h5 style="margin:0px;">Ownerships</h5>
+                     <div class="row" style="width: 100%;">
+                        <div style="width: 200px; height: 200px;">
+                            <ngx-charts-pie-chart style="padding: 0px; margin: 0px;" [scheme]="pieChartColorScheme"
+                                [results]="pieChartSingle" [legend]="pieChartShowLegend"
+                                [explodeSlices]="pieChart1ExplodeSlices" [labels]="pieChartShowLabels"
+                                [doughnut]="pieChart1Doughnut" [gradient]="pieChartGradient">
+                            </ngx-charts-pie-chart>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-2" style="padding-left: 1.5%;">
+                        <div class="card card-inverse bg-danger text-center">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="row d-flex">
+                                        <div class="col align-self-center">
+                                            <h4 class="card-title mb-3">Alert</h4>
+                                            <p class="card-text">Option Strategies Detected</p>
+                                            <hr>
+                                            <p class="card-text">Earnings</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.symbol">
+        <app-alert-modal #modal [selectedSymbol]="this.symbol"></app-alert-modal>
+    </div>

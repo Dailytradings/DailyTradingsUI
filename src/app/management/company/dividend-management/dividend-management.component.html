@@ -1,0 +1,470 @@
+<div class="row">
+    <!-- <app-datatables></app-datatables> -->
+
+    <!-- Row Details  Datatables -->
+    <div class="col-sm-8">
+        <section id="ngx-datatable-row-details" *ngIf="rows">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Dividend List</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+
+                                <!-- ngx-datatable-row-details -->
+                                <!-- ngx-datatable-filter -->
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label for="ngx-filter-rf">Ara:
+                                                <input id="ngx-filter-rf"
+                                                    class="form-control form-control-sm d-inline-block width-300"
+                                                    type="text" placeholder="Ex Date Bilgisine Göre Ara..."
+                                                    (keyup)="filterUpdate($event)" />
+                                            </label>
+                                        </div>
+
+                                        <div class="col-sm-8"></div>
+                                        <div class="col-sm-2"><a class="btn btn-success btn-sm"
+                                                (click)="selectEdit('new')">New Record</a></div>
+                                    </div>
+                                </fieldset>
+                                <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
+                                    [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
+                                    [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
+                                    [reorderable]="true" [sorts]="[{prop: 'dividendDateText', dir: 'desc'}]"
+                                    style="text-align: center;">
+
+                                    <ngx-datatable-column name="Ex Dividend Date" prop="exDate" [width]="25">
+                                        <ng-template let-value="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ value ? value : "-" }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Payment Date" prop="paymentDate" [width]="25">
+                                        <ng-template let-value="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ value ? value : "-" }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Dividend" prop="dividend" [width]="50">
+                                        <ng-template let-dividend="value" ngx-datatable-cell-template>
+                                            <div style="text-align: center;">
+                                                {{ dividend != null ? (dividend | number) : '--' }}
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Yield" prop="yield" [width]="75">
+                                        <ng-template let-yield="value" ngx-datatable-cell-template>
+                                            <div style="text-align: center;">
+                                                {{ yield != null ? (yield | number) + ' %' : '--' }}
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Frequency" prop="frequency" [width]="75">
+                                        <ng-template let-frequency="value" ngx-datatable-cell-template>
+                                            <div style="text-align: center;">
+                                                <div class="badge badge-pill"
+                                                    [ngClass]="{'bg-light-success': frequency == 'Monthly','bg-light-info': frequency == 'Quarterly', 'bg-light-danger': frequency == 'Semi-Annual', 'bg-light-warning': frequency == 'Annual', 'bg-light-primary': frequency == 'Trailing Twelve Months'}">
+                                                    {{ frequency? frequency : "Nötr" }}
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="" [width]="5">
+                                        <ng-template let-dividend="row" ngx-datatable-cell-template>
+                                            <div style="text-align: center;">
+                                                <div
+                                                    class="badge badge-pill {{ !this.selectedDividend || dividend.id != this.selectedDividend.id ? 'bg-light-success' : 'bg-light-warning' }}">
+                                                    <i class="ft-edit font-medium-3" (click)="SelectDividend(dividend)">
+                                                    </i>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+
+                                </ngx-datatable>
+                                <!-- ngx-datatable-row-details -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <div class="col-sm-4" *ngIf="rows">
+
+        <section *ngIf="!this.selectedDividend">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color: #efdeff;">
+                            <h4 class="card-title"></h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body" style="background-color: #efdeff;">
+                                <div class="row" style="text-align: center;">
+                                    <div class="col-sm-12">
+                                        <h5 style="margin-bottom:3%;">Select a Dividend To Show Edit Panel</h5>
+                                        <i class="ft-lock font-medium-3" style="font-weight: 900;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <section *ngIf="this.selectedDividend">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color: #efdeff;">
+                            <h4 class="card-title"></h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body" style="background-color: #efdeff;">
+                                <div class="row" style="text-align: center;">
+                                    <div class="col-sm-12">
+                                        <h4>Select a Field To Edit</h4>
+                                    </div>
+                                </div>
+                                <div class="row" style="border-radius:5px; border:solid 1px black; padding:1%">
+                                    <div class="col-sm-8">
+                                        <span *ngIf="this.selectedDividend"> Selected Dividend =
+                                            <b>{{ '{ ' + selectedDividend.exDate + ' }' }}</b> (Ex Date)
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-4" style="float: right;">
+                                        <i class="ft-delete font-medium-5 pull-right" style="color:red; cursor:pointer"
+                                            (click)="removeSelectedDividend()"></i>
+                                    </div>
+
+                                </div>
+                                <br>
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <div class="card" (click)="selectEdit('dividend')"
+                                            [ngStyle]="{'background-color': selectedEdit == 'dividend' ? 'darkgray' : '#fff'}">
+                                            <div class="card-content">
+                                                <div class="card-body">
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="text-align: center;">
+                                                            <span style="cursor: default;">
+                                                                <b>Dividend</b>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="card" (click)="selectEdit('yield')"
+                                            [ngStyle]="{'background-color': selectedEdit == 'yield' ? 'darkgray' : '#fff'}">
+                                            <div class="card-content">
+                                                <div class="card-body">
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="text-align: center;">
+                                                            <span style="cursor: default;">
+                                                                <b>Yield</b>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="card" (click)="selectEdit('dividendDate')"
+                                            [ngStyle]="{'background-color': selectedEdit == 'dividendDate' ? 'darkgray' : '#fff'}">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="text-align: center;">
+                                                            <span style="cursor: default;">
+                                                                <b>Dividend Date</b>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="card" (click)="selectEdit('paymentDate')"
+                                            [ngStyle]="{'background-color': selectedEdit == 'payment' ? 'darkgray' : '#fff'}">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="text-align: center;">
+                                                            <span style="cursor: default;">
+                                                                <b>Payment Date</b>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="card" (click)="selectEdit('frequency')"
+                                            [ngStyle]="{'background-color': selectedEdit == 'frequency' ? 'darkgray' : '#fff'}">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="text-align: center;">
+                                                            <span style="cursor: default;">
+                                                                <b>Frequency</b>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="card" (click)="selectEdit('setNext')"
+                                            [ngStyle]="{'background-color': selectedEdit == 'setNext' ? 'darkgray' : '#fff'}">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="text-align: center;">
+                                                            <span style="cursor: default;">
+                                                                <b>Set Next Dividend Ex Date</b>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section
+            *ngIf="(this.selectedDividend && this.selectedEdit && this.selectedEdit != 'setNext') || this.selectedEdit == 'new'">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color: #efdeff;">
+                            <h4 class="card-title"></h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body" style="background-color: #efdeff;">
+                                <div class="row">
+
+
+
+                                    <div class="col-sm-12" *ngIf="selectedEdit == 'new' ">
+                                        <section id="newDividend">
+                                            <h4>New Dividends : </h4>
+                                            <form [formGroup]="this.newForm">
+                                                <div class="form-group">
+                                                    <input type="number" formControlName="dividend"
+                                                        class="form-control mb-2" placeholder="Dividend" step="0.01"
+                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.dividend.invalid, 'is-valid': this.newFormSubmitted && !nf.dividend.invalid }"
+                                                        required style="background:white">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" formControlName="yield"
+                                                        class="form-control mb-2" placeholder="Yield" step="0.01"
+                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.yield.invalid, 'is-valid': this.newFormSubmitted && !nf.yield.invalid }"
+                                                        required style="background:white">
+                                                    <div *ngIf="this.newFormSubmitted && (nf.yield.errors?.required)"
+                                                        class="help-block mt-1 text-danger"> <i
+                                                            class="ft-alert-circle align-middle"></i> Forecast Eps is
+                                                        required</div>
+                                                </div>
+                                            </form>
+                                            <div class="input-group">
+                                                <input class="form-control" readonly
+                                                    placeholder="Choose a Dividend Date"
+                                                    name="pickerDateForNewDividendDate"
+                                                    [(ngModel)]="this.keyDateForNewDividendDate" ngbDatepicker
+                                                    #pickerDateForNewDividendDate="ngbDatepicker"
+                                                    style="height:25px; cursor: pointer;"
+                                                    (click)="pickerDateForNewDividendDate.toggle()">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"
+                                                        (click)="pickerDateForNewDividendDate.toggle()"
+                                                        style="height:25px;">
+                                                        <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <input class="form-control" readonly placeholder="Choose a Payment Date"
+                                                    name="pickerDateForNewPaymentDate"
+                                                    [(ngModel)]="this.keyDateForNewPaymentDate" ngbDatepicker
+                                                    #pickerDateForNewPaymentDate="ngbDatepicker"
+                                                    style="height:25px; cursor: pointer;"
+                                                    (click)="pickerDateForNewPaymentDate.toggle()">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"
+                                                        (click)="pickerDateForNewPaymentDate.toggle()"
+                                                        style="height:25px;">
+                                                        <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                <button class="btn btn-primary ml-sm-1"
+                                                    (click)="onSubmit()">Save</button>
+                                            </div>
+                                        </section>
+                                    </div>
+
+
+
+
+                                    <div class="col-sm-12" *ngIf="selectedEdit == 'dividend' ">
+                                        <section id="reDividend">
+                                            <h4>Change Dividend : </h4>
+                                            <form [formGroup]="this.dividendForm">
+                                                <div class="form-group">
+                                                    <input type="number" formControlName="dividend"
+                                                        class="form-control mb-2" placeholder="Dividend" step="0.01"
+                                                        [ngClass]="{ 'is-invalid': this.dividendFormSubmitted && df.dividend.invalid, 'is-valid': this.dividendFormSubmitted && !df.dividend.invalid }"
+                                                        required style="background:white">
+                                                    <div *ngIf="this.dividendFormSubmitted && (df.dividend.errors?.required)"
+                                                        class="help-block mt-1 text-danger"> <i
+                                                            class="ft-alert-circle align-middle"></i> Dividend is
+                                                        required</div>
+                                                </div>
+                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                    <button class="btn btn-primary ml-sm-1"
+                                                        (click)="onSubmit()">Save</button>
+                                                </div>
+                                            </form>
+                                        </section>
+                                    </div>
+
+                                    <div class="col-sm-12" *ngIf="selectedEdit == 'yield' ">
+                                        <section id="reYield">
+                                            <h4>Change Yield : </h4>
+                                            <form [formGroup]="this.yieldForm">
+                                                <div class="form-group">
+                                                    <input type="number" formControlName="yield"
+                                                        class="form-control mb-2" placeholder="Yield (%)" step="0.01"
+                                                        [ngClass]="{ 'is-invalid': this.yieldFormSubmitted && yf.yield.invalid, 'is-valid': this.yieldFormSubmitted && !yf.yield.invalid }"
+                                                        required style="background:white">
+                                                    <div *ngIf="this.yieldFormSubmitted && (yf.yield.errors?.required)"
+                                                        class="help-block mt-1 text-danger"> <i
+                                                            class="ft-alert-circle align-middle"></i> Yield is
+                                                        required</div>
+                                                </div>
+                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                    <button class="btn btn-primary ml-sm-1"
+                                                        (click)="onSubmit()">Save</button>
+                                                </div>
+                                            </form>
+                                        </section>
+                                    </div>
+
+                                    <div class="col-sm-12" *ngIf="selectedEdit == 'dividendDate' ">
+                                        <h4>Change Dividend Date :</h4>
+                                        <div class="input-group">
+                                            <input class="form-control" readonly placeholder="Choose a date"
+                                                name="pickerDateForDividendDate"
+                                                [(ngModel)]="this.keyDateForDividendDate" ngbDatepicker
+                                                #pickerDateForDividendDate="ngbDatepicker"
+                                                style="height:25px; cursor: pointer;"
+                                                (click)="pickerDateForDividendDate.toggle()">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"
+                                                    (click)="pickerDateForDividendDate.toggle()" style="height:25px;">
+                                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                            <button class="btn btn-primary ml-sm-1" (click)="onSubmit()">Save</button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-12" *ngIf="selectedEdit == 'paymentDate' ">
+                                        <h4>Change Payment Date :</h4>
+                                        <div class="input-group">
+                                            <input class="form-control" readonly placeholder="Choose a date"
+                                                name="pickerDateForPaymentDate" [(ngModel)]="this.keyDateForPaymentDate"
+                                                ngbDatepicker #pickerDateForPaymentDate="ngbDatepicker"
+                                                style="height:25px; cursor: pointer;"
+                                                (click)="pickerDateForPaymentDate.toggle()">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"
+                                                    (click)="pickerDateForPaymentDate.toggle()" style="height:25px;">
+                                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                            <button class="btn btn-primary ml-sm-1" (click)="onSubmit()">Save</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12" *ngIf="selectedEdit == 'frequency' ">
+                                        <h4>Change Frequency Type :</h4>
+                                        <div class="form-group">
+                                            <select #ddlSelectionAll class="form-control"
+                                                [(ngModel)]="this.selectedDividend.frequencyTypeId" name="selectionRole"
+                                                style="background: white;">
+                                                <option *ngFor=" let x of this.frequencyTypeList" [value]="x.id">
+                                                    {{x.typeName}}</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Row Details  Datatables -->
+
+
+
+</div>

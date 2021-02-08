@@ -1,0 +1,56 @@
+<!-- 
+  table starts -->
+<section id="ng-tables" *ngIf="this.headerData">
+    <div class="row text-left">
+      <div class="col-12">
+        <div class="content-header">{{ title }}</div>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <form>
+                <div class="form-group form-inline">
+                  Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="this.tableDataService.searchTerm" />
+                  <span class="ml-3" *ngIf="this.tableDataService.loading$ | async">Loading...</span>
+                </div>
+  
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th *ngFor="let objArrayElement of this.headerData" scope="col" sortable="{{objArrayElement}}" (sort)="onSort($event)">{{objArrayElement}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of this.dataList$ | async">
+                        <td *ngFor="let objValueElement of generateValueArray(data)">
+                          <ngb-highlight [result]="objValueElement" [term]="this.tableDataService.searchTerm"></ngb-highlight>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+                <div class="d-flex justify-content-between p-2">
+                  <ngb-pagination [collectionSize]="total$ | async" [(page)]="this.tableDataService.page" [pageSize]="this.tableDataService.pageSize">
+                  </ngb-pagination>
+  
+                  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="this.tableDataService.pageSize">
+                    <option [ngValue]="4">4 items per page</option>
+                    <option [ngValue]="6">6 items per page</option>
+                    <option [ngValue]="8">8 items per page</option>
+                  </select>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--table ends-->
+  

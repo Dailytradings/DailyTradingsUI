@@ -1,0 +1,149 @@
+<div class="row">
+    <div class="col-2">
+        <h2>{{'earnings' | translate}} :</h2>
+    </div>
+    <div class="col-10" *ngIf="nextEarnings">
+        <div class="row">
+            <div class="col-md-2 col-sm-4">
+                <div class="col-12">
+                    <span>{{'next_earnings_date' | translate}}</span>
+                </div>
+                <div class="col-12">
+                    <span>{{'period' | translate}}</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="col-12">
+                    <span
+                        title="{{(!nextEarnings.forecastRevenue && !nextEarnings.forecastEps) ? 'Created By Kadir' : !nextEarnings.isFinvizVerificated ? 'Created By Investing' : 'Created By Finviz'}} {{nextEarnings.modifiedTime == null ? 'Created Time : '+nextEarnings.createdDate : 'Modified Time : ' + nextEarnings.modifiedTime}}">:
+                        {{nextEarnings.reportDate}}({{nextEarnings.earningsDateStatusType.typeName}})</span>
+                </div>
+                <div class="col-12">
+                    <span>: {{nextEarnings.fiscalEndDate}} </span>
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-2">
+                <div class="col-12">
+                    <span>{{'eps' | translate}}</span>
+                </div>
+                <div class="col-12">
+                    <span>{{'revenue' | translate}}</span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4">
+                <div class="col-12">
+                    <span>: {{nextEarnings.forecastEps}} {{nextEarnings.forecastEps ? '' : '--'}}</span>
+                </div>
+                <div class="col-12">
+                    <span>: {{nextEarnings.forecastRevenue | number}}
+                        {{nextEarnings.forecastRevenue ? 'M' : '--'}}</span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4">
+                <div class="col-12">
+                    <span>Reliability Score :</span>
+                </div>
+                <div class="col-12">
+                    <span>Grade :</span>
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-2">
+                <div class="col-12">
+                    <span>{{this.keystats.reliabilityScore | number}} {{this.keystats.reliabilityScore ? '' : '--'}}</span>
+                </div>
+                <div class="col-12">
+                    <span>{{this.keystats.grade }} {{this.keystats.grade ? '' : '--'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row" *ngIf="this.nextEarnings">
+    <app-other-predictions [nextEarnings]="this.nextEarnings" [symbol]="this.symbol"></app-other-predictions>
+    <br>
+</div>
+<div *ngIf="this.earningsList && this.earningsList.length > 0; else earningsNotFound">
+    <app-earnings-table [dataList]="this.earningsList" (dataEmitter)="getDataFromEmitter($event)"
+        (reportDateSelectionEmitter)="getReportDateSelectionFromEmitter($event)"></app-earnings-table>
+</div>
+<ng-template #earningsNotFound>
+    <div class="center50">
+        Malesef Herhangi Bir Earnings Kaydı Bulunamadı
+    </div>
+</ng-template>
+
+<br>
+<hr *ngIf="this.symbol && this.selectedEarnings">
+<div class="row" *ngIf="this.symbol && this.selectedEarnings">
+    <form style="font-size: small;">
+        <div class="row">
+            <div class="col-6">
+                <label for="pickerReportDate">{{'report_date' | translate}}</label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" readonly placeholder="Choose a date" name="pickerReportDate"
+                            [(ngModel)]="this.reportDateVariable" ngbDatepicker #pickerReportDate="ngbDatepicker">
+                        <div class="input-group-append">
+                            <div class="input-group-text" (click)="pickerReportDate.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="pickerFiscalEndDate">{{'fiscal_end_date' | translate}}</label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" readonly placeholder="Choose a date" name="pickerFiscalEndDate"
+                            [(ngModel)]="this.fiscalEndDateVariable" ngbDatepicker #pickerFiscalDate="ngbDatepicker">
+                        <div class="input-group-append">
+                            <div class="input-group-text" (click)="pickerFiscalEndDate.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="TotalRevenue">Total Revenue:</label>
+                    <input #TotalRevenue [(ngModel)]="selectedEarnings.totalRevenue" type="number" class="form-control"
+                        name="TotalRevenue" placeholder="Total Revenue">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="ForecastRevenue">Forecast Revenue:</label>
+                    <input #ForecastRevenue [(ngModel)]="selectedEarnings.forecastRevenue" type="number"
+                        class="form-control" name="ForecastRevenue" placeholder="Forecast Revenue">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="EPS">EPS:</label>
+                    <input #EPS [(ngModel)]="selectedEarnings.eps" type="number" class="form-control" name="EPS"
+                        placeholder="EPS">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="ForecastEPS">Forecast EPS:</label>
+                    <input #ForecastEPS [(ngModel)]="selectedEarnings.forecastEps" type="number" class="form-control"
+                        name="ForecastEPS" placeholder="Forecast EPS">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="SaveChanges()">Save Changes</button>
+    </form>
+</div>
+<hr *ngIf="this.symbol">
+<div>
+    <app-historical-analysis [symbol]="this.symbol" [keyDateForAnalysis]="this.selectedReportDate">
+    </app-historical-analysis>
+</div>

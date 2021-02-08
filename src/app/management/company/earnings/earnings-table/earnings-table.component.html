@@ -1,0 +1,89 @@
+<!--Extended Table starts-->
+<section id="extended">
+    <div class="row" style="text-align: center;">
+        <div style="margin: 0 auto; display: inline-block;">
+            <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <tr>
+                        <th colspan="1" style="border: black solid 1px; border-bottom: none; padding:0px;">Period</th>
+                        <th colspan="2" style="border: black solid 1px; padding:0px;">EPS</th>
+                        <th colspan="2" style="border: black solid 1px; padding:0px;">Revenue</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Price</th>
+                        <th colspan="1" style="border: black solid 1px; border-bottom: none; padding:0px; padding-right: 5px; padding-left: 5px;">Actions</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Calculations</th>
+                    </tr>
+                    <tr>
+                        <th style="border-left: black solid 1px; border-bottom: black solid 1px;"></th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Forecast</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Actual</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Forecast</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Actual</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Effect</th>
+                        <th style="border-right: black solid 1px; border-bottom: black solid 1px;"></th>
+                        <th style="border: black solid 1px; border-bottom: black solid 1px;">ReliabilityScore</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of this.dataList" style="border:solid 3px black" [ngStyle]="{'background-color': this.selectedData === data ? '#40C057':'transparent'}">
+                        <td style="border: black solid 1px; padding: 0px; padding:0px;">
+                            <div class="row" style="margin:0px;">
+                                <div class="col-md-12" style="border-bottom: black solid 1px;">{{data.year}} - Q{{data.quarter}}</div>
+                                <div class="col-md-12" style="border-bottom: black solid 1px; cursor:pointer" (click)="clickedReportDate(data.earningsDateText)" [ngStyle]="{'background-color': this.selectedReportDate === data.earningsDateText ? '#40C057':'transparent','color':this.selectedReportDate === data.earningsDateText ? 'white' : 'black' }"><b>{{data.earningsDateText}}</b></div>
+                                <div class="col-md-12">{{data.announceType}}</div> <!--data.earningsStatusType.typeName -->
+                            </div>
+                        </td>
+                        <td style="border-bottom: black solid 1px; border-right: black solid 1px; padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-12">{{data.forecastEps ? (data.forecastEps | number) : ''}}<span *ngIf="data.forecastEps == null">--</span></div>
+                            </div>
+                        </td>
+                        <td style="border-bottom: black solid 1px; border-right: black solid 1px; padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-12"><span [ngStyle]="{'color': data.eps >= data.forecastEps ? (this.selectedData === data ? 'white' : '#40C057') :'tomato'}"><b>{{data.eps ? (data.eps | number) : ''}} <span *ngIf="!data.eps">--</span></b></span></div>
+                            </div>
+                        </td>
+                        <td style="border-bottom: black solid 1px; border-right: black solid 1px; padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-12">{{data.forecastRevenue ? (data.forecastRevenue | number) : ''}} <span>{{data.forecastRevenue ? 'M' : '--'}}</span></div>
+                            </div>
+                        </td>
+                        <td style="border-bottom: black solid 1px; border-right: black solid 1px; padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-12"><span [ngStyle]="{'color': data.revenue >= data.forecastRevenue ? (this.selectedData === data ? 'white' : '#40C057') :'tomato'}"><b>{{data.revenue ? (data.revenue | number) : ''}}<span>{{data.revenue ? 'M' : '--'}}</span></b></span></div>
+                            </div>
+                        </td>
+                        <td style="border-bottom: black solid 1px; border-right: black solid 1px; padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-12"><span [ngStyle]="{'color': data.effect >= 0 ? (this.selectedData === data ? 'white' : '#40C057') :'tomato'}"><b>{{data.effect}}</b>{{data.effect != null ? '%' : '--'}} </span></div>
+                            </div>
+                        </td>
+                        <td style="border-right: black solid 1px; border-bottom: black solid 1px; padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-12">
+                                    <a href="javascript:;" (click)="select(data)" class="success p-0">
+                                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="border-right: black solid 1px; border-bottom: black solid 1px; padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-12"><span *ngIf="data.reliabilityScore != null">{{ data.reliabilityScore }}</span><span *ngIf="data.reliabilityScore == null">--</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--Extended Table Ends-->
+

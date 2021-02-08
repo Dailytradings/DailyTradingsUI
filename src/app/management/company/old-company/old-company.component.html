@@ -1,0 +1,51 @@
+<div class="center90" style="margin-top:1%; border: 1px solid black; border-radius: 50px;  padding:3%">
+    <div class="center50" *ngIf="!symbol && !waiting">Please Select A Symbol</div>
+    <div class="center50" *ngIf="!symbol && waiting">Company Bilgileri Alınıyor. Lütfen Bekleyin...</div>
+    <form *ngIf="symbol" style="font-size: small;">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="txtCompanyName">CompanyName:</label>
+                <input #txtCompanyName [(ngModel)]="this.symbol.company.companyName" type="text" class="form-control"
+                    name="companyName" placeholder="Enter Company Name">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="ddlSelection">Primary Exchange:</label>
+                <select #ddlSelection class="form-control" [(ngModel)]="this.symbol.company.primaryExchange.id"
+                    name="selection">
+                    <option [value]="null">N/A</option>
+                    <option *ngFor=" let x of this.exchanges" [value]="x.id">{{x.exchangeName}}</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="SaveChanges()">Save Changes</button>
+    </form>
+</div>
+
+
+<div *ngIf="symbol">
+    <div id="symbol" class="center90" style="margin-top:1%; border: 1px solid black; border-radius: 50px; padding:3%">
+        <h2>{{'symbol' | translate}} :</h2>
+        <hr>
+        <app-symbol [symbol]="this.symbol" [exchanges]="this.exchanges">
+        </app-symbol>
+    </div>
+    <div id="keystats" class="center90" style="margin-top:1%; border: 1px solid black; border-radius: 50px; padding:3%">
+        <h2>{{'keystats' | translate}} :</h2>
+        <hr>
+        <app-keystats [symbol]="this.symbol"></app-keystats>
+    </div>
+    <div id="income" class="center90" style="margin-top:1%; border: 1px solid black; border-radius: 50px; padding:3%">
+        <h2>{{'income' | translate}} :</h2>
+        <hr>
+        <app-income [symbol]="this.symbol"></app-income>
+    </div>
+    <div id="earnings" class="center90" style="margin-top:1%; border: 1px solid black; border-radius: 50px; padding:3%">
+        <app-earnings [symbol]="this.symbol"></app-earnings>
+    </div>
+    <div id="competitorComparison" class="center90" style="margin-top:1%; border: 1px solid black; border-radius: 50px; padding:3%">
+        <h2>{{'competitorComparison' | translate}} :</h2>
+        <hr>
+        <app-competitor-comparison [symbol]="this.symbol"></app-competitor-comparison>
+    </div>
+</div>
+

@@ -1,0 +1,77 @@
+<section id="ngx-datatable-row-details" *ngIf="rows">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Alert List <a *ngIf="showAlertCenterButton" class="close" (click)="navigateToAlerts()"
+                            title="Alarm Merkezini Aç"><i class="ft-bell"></i></a></h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+
+                        <!-- ngx-datatable-row-details -->
+                        <!-- ngx-datatable-filter -->
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label for="ngx-filter-ref">Ara:
+                                        <input class="form-control form-control-sm d-inline-block width-200" type="text"
+                                            placeholder="Symbol Koduna Göre Ara..." (keyup)="filterUpdate($event)" />
+                                    </label>
+                                </div>
+                                <div class="col-sm-10"></div>
+                            </div>
+                        </fieldset>
+                        <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force"
+                            [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="30" [rows]="rows"
+                            [sortType]="'multi'" [reorderable]="true">
+                            <ngx-datatable-column name="Ticker" prop="ticker" [width]="100">
+                                <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+                                    <div class="d-flex align-items-center">
+                                        <div *ngIf="row.logoUrl; else customAvatar">
+                                            <img class="rounded-circle mr-1" src="{{row.logoUrl}}" (error)="updateUrl(row)" height="32"
+                                                width="32">
+                                        </div>
+                                        <ng-template #customAvatar>
+                                            <div class="avatar mr-1 ml-0"
+                                                [ngClass]="{'bg-primary': row.status == '1', 'bg-success':row.status == '2', 'bg-danger':row.status == '3' , 'bg-warning':row.status == '4', 'bg-info':row.status == '5'}  ">
+                                                <div class="avatar-content">{{ name | shortName }}</div>
+                                            </div>
+                                        </ng-template>
+                                        <div class="cell-line-height">
+                                            <a [href]="getRedirectUrl(name)" target="blank">
+                                                <p class="font-medium-1 line-height-1 mb-0">{{ name }}</p>
+                                                <span class="text-muted font-small-2">
+                                                    {{ row.companyName }}
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Alert Type" prop="alertType" [width]="50">
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Value" prop="alertValue" [width]="25">
+                                <ng-template let-val="value" ngx-datatable-cell-template>
+                                    <span>{{val ? val + '%' : '-'}}</span>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Create Time" prop="createTime" [width]="50">
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Actions" prop="id" [width]="25">
+                                <ng-template let-alertId="value" ngx-datatable-cell-template>
+                                    <div>
+                                        <i class="ft-eye-off font-large-1" title="Alert Sil" style="cursor: pointer;"
+                                            (click)="removeFromAlertList(alertId)"></i>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                        </ngx-datatable>
+                        <!-- ngx-datatable-row-details -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

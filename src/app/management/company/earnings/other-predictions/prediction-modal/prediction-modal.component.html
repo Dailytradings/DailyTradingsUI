@@ -1,0 +1,56 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <a href="{{selectedPrediction.site.url}}" target="blank" style="margin-left: 42%;">
+            <img src="{{selectedPrediction.site.logoUrl}}" width="90" height="30">
+        </a>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="col-8">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="EPS">EPS:</label>
+                            <input #EPS [(ngModel)]="this.selectedPrediction.prediction.consensusEPS" type="number" [disabled]="!this.activeEps"
+                                class="form-control" name="EPS" placeholder="EPS" step="0.01">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="Revenue">Revenue :</label>
+                            <input #Revenue [(ngModel)]="this.selectedPrediction.prediction.consensusRevenue" [disabled]="!this.activeRevenue"
+                                type="number" class="form-control" name="Revenue" placeholder="Revenue">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1" style="margin-top: 6%;">
+                    <div class="row">
+                        <label></label>
+                         <div class="form-group custom-control-inline mb-1 mb-xl-0">
+                            <ui-switch class="switchery" name="selectionEPS" [(ngModel)]="this.activeEps" [disabled]="!this.activePanel" size="small"></ui-switch>
+                        </div>
+                    </div>
+                    <div class="row" style="position:absolute; bottom:15%">
+                        <label></label>
+                        <div class="form-group custom-control-inline mb-1 mb-xl-0">
+                            <ui-switch class="switchery" name="selectionRevenue" [(ngModel)]="this.activeRevenue" [disabled]="!this.activePanel" size="small"></ui-switch>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2" style="padding-top: 6.5%;">
+                    <div class="form-group" style="margin-top: 50%;">
+                        <div class="switchery-primary d-flex align-items-center">
+                            <ui-switch class="switchery" name="selectionPanel" [(ngModel)]="this.activePanel" size="large"></ui-switch>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save')">Save</button>
+    </div>
+</ng-template>

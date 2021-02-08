@@ -1,0 +1,122 @@
+<div class="row">
+    <div class="col-sm-12" *ngIf="this.observableList">
+        <ng-select [multiple]="true" [(ngModel)]="searchCompetitor" (change)="selectCompetitor($event)" (keyup)="Search($event)"> 
+            <ng-option *ngFor="let competitor of this.observableList | async" [value]="competitor" [hidden]="competitor.isActive">
+                {{competitor.competitorTicker}} - {{competitor.companyName}}</ng-option>
+        </ng-select>
+    </div>
+</div>
+<br>
+
+<form>
+
+    <div class="form-row" *ngIf="selectedCompetitors.length > 0">
+        <div class="col-sm-6 col-md-4">
+            <label>Competitors :</label>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <label>Competitor Weight</label>
+        </div>
+        <div class="col-sm-2 col-md-1">
+            <label style="margin-left: 18%;">Verified</label>
+        </div>
+        <div class="col-sm-2 col-md-1">
+            <label>Verified By</label>
+        </div>
+        <div class="col-sm-4 col-md-2">
+            <label>Verified Time</label>
+        </div>
+        <div class="col-sm-2 col-md-1">
+            <label>ReliabilityScore</label>
+        </div>
+        <div class="col-sm-2 col-md-1">
+            <label></label>
+        </div>
+    </div>
+    <div *ngFor="let competitor of this.selectedCompetitors" style="margin-top: 5px; ">
+        <div class="form-row">
+            <div class="col-sm-6 col-md-4">
+                <span name="Competitors{{competitor.competitorTicker}}" class="form-control">
+                    {{competitor.competitorTicker }} - {{competitor.companyName}}
+                </span>
+            </div>
+            <div class="col-sm-6 col-md-2">
+                <input [(ngModel)]="competitor.weight" type="number" class="form-control"
+                    name="{{competitor.competitorTicker}}Weight" placeholder="Competitor Weight">
+            </div>
+            <div class="col-sm-2 col-md-1">
+                <div class="custom-control custom-checkbox" style="margin-top: 5%; margin-left:40%">
+                    <input type="checkbox" [checked]="competitor.isValid"
+                        (change)="competitor.isValid = !competitor.isValid" class="custom-control-input"
+                        name="{{competitor.competitorTicker}}Check"
+                        id="{{competitor.competitorTicker}}Check">
+                    <label class="custom-control-label"
+                        for="{{competitor.competitorTicker}}Check"><span></span></label>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-1">
+                <span name="CompetitorsModBy{{competitor.competitorTicker}}" class="form-control">
+                    {{competitor.modifiedBy ? competitor.modifiedBy.fullName : 'N/A' }}
+                </span>
+            </div>
+            <div class="col-sm-6 col-md-2">
+                <span name="CompetitorsModDate{{competitor.competitorTicker}}" class="form-control">
+                    {{competitor.modifiedTime ? competitor.modifiedTime : 'N/A' }}
+                </span>
+            </div>
+            <div class="col-sm-2 col-md-1">
+                <span name="CompetitorsRelScore{{competitor.competitorTicker}}" class="form-control">
+                    {{competitor.reliabilityScore ? competitor.reliabilityScore : 'N/A' }}
+                </span>
+            </div>
+            <div class="col-sm-2 col-md-1" style="text-align: center;">
+                <button class="btn btn-danger" name="CompetitorRemove{{competitor.competitorTicker}}" (click)="Remove(competitor.id, competitor.competitorTicker)">sil</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Geçici SearchCompetitor için -->
+    <div *ngIf="this.searchCompetitor && this.searchCompetitor.length > 0">
+        <div *ngFor="let competitor of this.searchCompetitor" style="margin-top: 5px; ">
+            <div class="form-row">
+                <div class="col-sm-6 col-md-4">
+                    <span name="Competitors{{competitor.competitorTicker}}2" class="form-control">
+                        {{competitor.competitorTicker }} - {{competitor.companyName}}
+                    </span>
+                </div>
+                <div class="col-sm-6 col-md-2">
+                    <input [(ngModel)]="competitor.weight" type="number" class="form-control"
+                        name="{{competitor.competitorTicker}}2" placeholder="Competitor Weight">
+                </div>
+                <div class="col-sm-4 col-md-1">
+                    <div class="custom-control custom-checkbox" style="margin-top: 5%; margin-left:40%">
+                        <input type="checkbox" [checked]="competitor.isValid"
+                            (change)="competitor.isValid = !competitor.isValid" class="custom-control-input"
+                            name="{{competitor.competitorTicker}}Check2"
+                            id="{{competitor.competitorTicker}}Check2">
+                        <label class="custom-control-label"
+                            for="{{competitor.competitorTicker}}Check2"><span></span></label>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-1">
+                    <span name="CompetitorsModBy{{competitor.competitorTicker}}2" class="form-control">
+                        {{competitor.modifiedByFullName ? competitor.modifiedByFullName : 'N/A' }}
+                    </span>
+                </div>
+                <div class="col-sm-4 col-md-2">
+                    <span name="CompetitorsModDate{{competitor.competitorTicker}}2" class="form-control">
+                        {{competitor.modifiedTime ? competitor.modifiedTime : 'N/A' }}
+                    </span>
+                </div>
+                <div class="col-sm-2 col-md-1">
+                    <span name="CompetitorsRelScore{{competitor.competitorTicker}}2" class="form-control">
+                        {{competitor.reliabilityScore ? competitor.reliabilityScore : 'N/A' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary" (click)="SaveChanges()">Save Changes</button>
+</form>

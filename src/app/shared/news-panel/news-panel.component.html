@@ -1,0 +1,44 @@
+<!-- <div class="row">
+  <div class="col-sm-4" *ngFor="let news of newsList">
+    <div class="card card-outline-success box-shadow-0 text-left" style="background-color: white;"
+      title="Expire Date : {{news.expireDate}}">
+      <div class="card-content">
+        <div class="card-body" style="height:120px;">
+          <div class="row d-flex">
+            <div class="col-sm-10 align-self-center">
+              <p class="card-text" style="color: black; cursor:default" title="{{news.newsContent}}">
+                {{news.newsContentSuffix}}</p>
+            </div>
+            <div class="col-sm-2 align-self-center">
+              <img
+                src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+                (error)="updateUrl(news)" width="75" class="float-sm-right mt-sm-1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div class="row">
+  <div class="col-sm-4" *ngFor="let news of newsList">
+    <div class="card card-inverse bg-success text-center" title="Expire Date : {{news.expireDate}}">
+      <div class="card-content">
+        <div class="card-img overlap">
+          <img
+            src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+            (error)="updateUrl(news)" width="75" height="75">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{news.newsTitle}}</h4>
+          <p class="card-text" style="color: black; cursor:default" title="{{news.newsContent}}">
+            {{news.newsContentSuffix}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

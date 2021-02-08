@@ -1,0 +1,394 @@
+<div class="center40">
+    <label for="pickerKeyDateForAnalysis">Fiscal Year Start Date</label>
+    <div class="row form-group">
+        <div class="col-sm-8">
+            <div class="input-group">
+                <input class="form-control" readonly placeholder="Choose a date" name="pickerKeyDateForAnalysis"
+                    [(ngModel)]="keyDateForAnalysis" ngbDatepicker #pickerKeyDateForAnalysis="ngbDatepicker">
+                <div class="input-group-append">
+                    <div class="input-group-text" (click)="pickerKeyDateForAnalysis.toggle()">
+                        <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <button type="submit" class="form-control btn btn-primary" (click)="Changed()">Get</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <hr *ngIf="this.historicalAnalysis != null && this.historicalAnalysis.estimatedEps != null">
+    <div class="row" *ngIf="this.historicalAnalysis != null && this.historicalAnalysis.estimatedEps != null">
+        <div style="margin: 0 auto; display: inline-block;">
+            <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"></th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Change In Period</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Public Shares %</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Public Shares Effect</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Previous Actual EPS</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Calculated EPS</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="border: black solid 1px; padding: 5px; cursor: pointer;" title="Last Date : {{this.historicalAnalysis.earningsLastDate + ' 16:30'}}
+3 Month Previous Date : {{this.historicalAnalysis.earningsPreviousThreeMonthDate + ' 16:30'}}">
+                            Calculation</th>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.earningsThreeMonthChange ? this.historicalAnalysis.earningsThreeMonthChange  + '%' : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.publicPercentage ? this.historicalAnalysis.publicPercentage  + '%' : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.publicEffectedEps ? this.historicalAnalysis.publicEffectedEps : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.earningsEps ? this.historicalAnalysis.earningsEps : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.estimatedEps ? this.historicalAnalysis.estimatedEps : 'N/A' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <hr *ngIf="this.historicalAnalysis != null && this.historicalAnalysis.estimatedRevenue != null">
+    <div class="row" *ngIf="this.historicalAnalysis != null && this.historicalAnalysis.estimatedRevenue != null">
+        <div style="margin: 0 auto; display: inline-block;">
+            <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"></th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Change In Period</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Public Shares %</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Public Shares Effect</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Previous Actual Revenue</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;">Calculated Revenue</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="border: black solid 1px; padding: 5px; cursor: pointer;"
+                            title="Last Date : {{this.historicalAnalysis.earningsLastDate + ' 16:30'}}
+3 Month Previous Date : {{this.historicalAnalysis.earningsPreviousThreeMonthDate + ' 16:30'}}
+                            
+Last Open : {{this.historicalAnalysis.earningsLastOpen ? this.historicalAnalysis.earningsLastOpen : 'N/A' }}
+3 Month Previous Date Open : {{this.historicalAnalysis.earningsPreviousThreeMonthOpen ? this.historicalAnalysis.earningsPreviousThreeMonthOpen : 'N/A' }}">
+                            Calculation</th>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.earningsThreeMonthChange ? this.historicalAnalysis.earningsThreeMonthChange  + '%' : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.publicPercentage ? this.historicalAnalysis.publicPercentage  + '%' : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.publicEffectedRevenue ? this.historicalAnalysis.publicEffectedRevenue : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.earningsRevenue ? this.historicalAnalysis.earningsRevenue : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.estimatedRevenue ? this.historicalAnalysis.estimatedRevenue : 'N/A' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <hr *ngIf="this.historicalAnalysis != null">
+    <div class="row" *ngIf="this.historicalAnalysis != null">
+        <div style="margin: 0 auto; display: inline-block;">
+            <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"></th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.fourDayPreviousDate + ' 23:00'}}">-4d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.threeDayPreviousDate + ' 23:00'}}">-3d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.twoDayPreviousDate + ' 23:00'}}">-2d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayPreviousDate + ' 23:00'}}">-1d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayPreviousDate + ' 19:00'}}">-4h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayPreviousDate + ' 22:00'}}">-1h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayPreviousDate + ' 22:45'}}">-15m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayPreviousDate + ' 22:55'}}">-5m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayPreviousDate + ' 22:59'}}">-1m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default; background-color: yellowgreen;"
+                        title="{{'Key Date : ' + this.historicalAnalysis.keyDate}}">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.keyDate}}">Nightly Change</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.keyDate + ' 16:31'}}">1m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.keyDate + ' 16:35'}}">5m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.keyDate + ' 16:45'}}">15m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.keyDate + ' 17:30'}}">1h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.keyDate + ' 20:30'}}">4h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayFutureDate + ' 23:00'}}">1d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.twoDayFutureDate + ' 23:00'}}">2d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.threeDayFutureDate + ' 23:00'}}">3d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.fourDayFutureDate + ' 23:00'}}">4d</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="border: black solid 1px; padding: 5px;">Change</th>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFourDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFourDayChange ?  this.historicalAnalysis.previousFourDayChange  + '%': 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousThreeDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousThreeDayChange ?  this.historicalAnalysis.previousThreeDayChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousTwoDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousTwoDayChange ?  this.historicalAnalysis.previousTwoDayChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousOneDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousOneDayChange ?  this.historicalAnalysis.previousOneDayChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFourHourChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFourHourChange ? this.historicalAnalysis.previousFourHourChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousOneHourChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.previousOneHourChange ? this.historicalAnalysis.previousOneHourChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFifteenMinChange ? this.historicalAnalysis.previousFifteenMinChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFiveMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFiveMinChange ? this.historicalAnalysis.previousFiveMinChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.previousOneMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousOneMinChange ? this.historicalAnalysis.previousOneMinChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;"
+                            title="{{'Key Date : ' + this.historicalAnalysis.keyDate}}"> </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span style="cursor:default;"
+                                title="{{this.historicalAnalysis.comparedDateToKeyDate + ' 23:00  --- ' + this.historicalAnalysis.keyDate + ' 16:30' }}">
+                                <span
+                                    [ngStyle]="{'color': this.historicalAnalysis.keyChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.keyChange ? this.historicalAnalysis.keyChange  + '%' : 'N/A' }}
+                                </span>
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.oneMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.oneMinChange ? this.historicalAnalysis.oneMinChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.fiveMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.fiveMinChange ? this.historicalAnalysis.fiveMinChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.fifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.fifteenMinChange ?  this.historicalAnalysis.fifteenMinChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.oneHourChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.oneHourChange ?this.historicalAnalysis.oneHourChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.fourHourChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.fourHourChange ? this.historicalAnalysis.fourHourChange  + '%': 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.oneDayChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.oneDayChange ?  this.historicalAnalysis.oneDayChange  + '%'  : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.twoDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.twoDayChange ?  this.historicalAnalysis.twoDayChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.threeDayChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.threeDayChange ? this.historicalAnalysis.threeDayChange  + '%': 'N/A' }}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            <span
+                                [ngStyle]="{'color': this.historicalAnalysis.fourDayChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.fourDayChange ? this.historicalAnalysis.fourDayChange  + '%' : 'N/A' }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="border: black solid 1px; padding: 5px;">Open</th>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFourDayOpen ? this.historicalAnalysis.previousFourDayOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousThreeDayOpen ? this.historicalAnalysis.previousThreeDayOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousTwoDayOpen ? this.historicalAnalysis.previousTwoDayOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousOneDayOpen ? this.historicalAnalysis.previousOneDayOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFourHourOpen ? this.historicalAnalysis.previousFourHourOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousOneHourOpen ? this.historicalAnalysis.previousOneHourOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFifteenMinOpen ? this.historicalAnalysis.previousFifteenMinOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFiveMinOpen ? this.historicalAnalysis.previousFiveMinOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousOneMinOpen ? this.historicalAnalysis.previousOneMinOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;"
+                            title="{{'Key Date : ' + this.historicalAnalysis.keyDate}}"> </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.keyOpen ? this.historicalAnalysis.keyOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.oneMinOpen ? this.historicalAnalysis.oneMinOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fiveMinOpen ? this.historicalAnalysis.fiveMinOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fifteenMinOpen ? this.historicalAnalysis.fifteenMinOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.oneHourOpen ? this.historicalAnalysis.oneHourOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fourHourOpen ? this.historicalAnalysis.fourHourOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.oneDayOpen ? this.historicalAnalysis.oneDayOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.twoDayOpen ? this.historicalAnalysis.twoDayOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.threeDayOpen ? this.historicalAnalysis.threeDayOpen : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fourDayOpen ? this.historicalAnalysis.fourDayOpen : 'N/A' }}
+                        </td>
+                    </tr>
+                    <!--
+
+  <tr>
+                        <th style="border: black solid 1px; padding: 5px;">Close</th>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFourDayClose ? this.historicalAnalysis.previousFourDayClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousThreeDayClose ? this.historicalAnalysis.previousThreeDayClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousTwoDayClose ? this.historicalAnalysis.previousTwoDayClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousOneDayClose ? this.historicalAnalysis.previousOneDayClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFourHourClose ? this.historicalAnalysis.previousFourHourClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousOneHourClose ? this.historicalAnalysis.previousOneHourClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFifteenMinClose ? this.historicalAnalysis.previousFifteenMinClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousFiveMinClose ? this.historicalAnalysis.previousFiveMinClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.previousOneMinClose ? this.historicalAnalysis.previousOneMinClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;" title="{{'Key Date : ' + this.historicalAnalysis.keyDate}}"> </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.keyClose ? this.historicalAnalysis.keyClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.oneMinClose ? this.historicalAnalysis.oneMinClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fiveMinClose ? this.historicalAnalysis.fiveMinClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fifteenMinClose ? this.historicalAnalysis.fifteenMinClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.oneHourClose ? this.historicalAnalysis.oneHourClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fourHourClose ? this.historicalAnalysis.fourHourClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.oneDayClose ? this.historicalAnalysis.oneDayClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.twoDayClose ? this.historicalAnalysis.twoDayClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.threeDayClose ? this.historicalAnalysis.threeDayClose : 'N/A' }}
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;">
+                            {{this.historicalAnalysis.fourDayClose ? this.historicalAnalysis.fourDayClose : 'N/A' }}
+                        </td>
+                    </tr>
+
+                   -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

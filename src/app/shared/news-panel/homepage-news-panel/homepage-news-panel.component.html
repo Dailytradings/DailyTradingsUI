@@ -1,0 +1,19 @@
+
+<div class="row">
+    <div class="col-sm-3" *ngFor="let news of newsList">
+      <div class="card card-inverse bg-success text-center" title="Expire Date : {{news.expireDate}}">
+        <div class="card-content">
+          <div class="card-img overlap">
+            <img
+              src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+              (error)="updateUrl(news)" width="75" height="75">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title" title="{{news.newsTitle}}">{{news.newsTitleSuffix}}</h4>
+            <p class="card-text" style="color: black; cursor:default" title="{{news.newsContent}}">
+              {{news.newsContentSuffix}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

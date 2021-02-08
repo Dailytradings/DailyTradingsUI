@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+.center40 {
+    width: 40%;
+    margin-left: 35%;
+}
+.center30 {
+    width: 30%;
+    margin-left: 35%;
+}
+.center50 {
+    width: 50%;
+    margin-left: 40%;
+}
+.center90 {
+    width: 90%;
+    margin: 0 auto;
+}
+.center100 {
+    width: 100%;
+    margin-left: 30%;
+}
+
+.datatable-header-cell-label {
+    font-weight: 650;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.padding-left-22 {
+    padding-left: 22%;
+}
+

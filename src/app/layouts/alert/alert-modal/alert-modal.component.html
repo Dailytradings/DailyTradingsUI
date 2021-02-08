@@ -1,0 +1,69 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4>{{selectedSymbol.ticker}} - Alert Oluştur</h4>
+        <hr>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="AlertType">Alert Type :</label>
+                    <select class="form-control" #AlertType name="AlertType" [(ngModel)]="selectedAlertTypeId" (change)="onAlertTypeChange()">
+                        <option value="null">Alarm Tipi Seçin</option>
+                        <option *ngFor="let types of alertTypeList" [value]="types.id">{{types.typeName}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="numericValueEnabled">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="AlertValue">Alert Value {{valueText ? '(' + valueText +')': ''}}:</label>
+                    <input #AlertValue [(ngModel)]="this.alertValue" type="number" class="form-control" name="AlertValue"
+                        placeholder="Alert Value" step="0.01">
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="textValueEnabled">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="AlertValue">Alert Value :</label>
+                    <input #AlertValue [(ngModel)]="this.alertValue" type="text" class="form-control" name="AlertValue"
+                        placeholder="Alert Value">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox" style="margin-top: 1.5%;">
+                        <input #RepeatAvailable [checked]="this.isRepeatable"
+                            (change)="this.isRepeatable = !this.isRepeatable" type="checkbox" id="RepeatAvailable"
+                            class="custom-control-input" name="RepeatAvailable">
+                        <label style="font-size: medium;" class="custom-control-label"
+                            for="RepeatAvailable">Repeatable</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="this.notifyOneDayAgoEnabled">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox" style="margin-top: 1.5%;">
+                        <input #NotifyOneDayAgo [checked]="this.isNotifyOneDayAgo"
+                            (change)="this.isNotifyOneDayAgo = !this.isNotifyOneDayAgo" type="checkbox"
+                            id="NotifyOneDayAgo" class="custom-control-input" name="NotifyOneDayAgo">
+                        <label style="font-size: medium;" class="custom-control-label" for="NotifyOneDayAgo">Notify 1
+                            Day Ago</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save')">Save</button>
+    </div>
+</ng-template>

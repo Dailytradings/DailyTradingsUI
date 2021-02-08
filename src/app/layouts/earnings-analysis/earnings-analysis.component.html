@@ -1,0 +1,442 @@
+<div class="row" *ngIf="!this.symbol">
+    <div class="col-12">
+        <div class="card center30">
+            <div class="card-header" style="background-color: #efdeff;">
+                <h4 class="card-title"></h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body" style="background-color: #efdeff;">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-sm-12">
+                            <h4><b>Select a Symbol</b></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="this.symbol">
+    <div class="col-sm-12">
+        <section id="bg-variants">
+            <div class="row match-height">
+                <div class="col-md-10 col-12">
+                    <div class="card card-inverse bg-success text-center">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row d-flex">
+                                    <div class="col align-self-center col-sm-2" style="border-right: black 1px solid;">
+                                        <div class="row align-self-center">
+                                            <div class="col col-sm-4 align-self-center" style="padding-right: 0px;">
+                                                <div class="row">
+                                                    <div class="col col-sm-12 align-self-center"
+                                                        style="margin-bottom:15%">
+                                                        <span *ngIf="!symbol.isMonitoring" name="button">
+                                                            <i class="ft-eye font-large-1" title="Watchlist'e Ekle"
+                                                                style="cursor: pointer;" (click)="addToWatchList()"></i>
+                                                        </span>
+                                                        <span *ngIf="symbol.isMonitoring" name="buttonRev">
+                                                            <i class="ft-eye-off font-large-1"
+                                                                title="Watchlist'den Çıkar" style="cursor: pointer;"
+                                                                (click)="removeFromWatchList()"></i>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-sm-12 align-self-center">
+                                                        <i class="ft-bell font-large-1" title="Alert Oluştur"
+                                                            style="cursor: pointer;" (click)="showAlertModal()"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col align-self-center col-sm-8">
+                                                <img src="{{symbol.logoUrl}}" title="{{symbol.ticker}}" width="80">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col align-self-center  col-sm-1">
+                                    </div>
+                                    <div class="col align-self-center  col-sm-2">
+                                        <h4 class="card-title mb-2">Previous Open</h4>
+                                        <p class="card-text">23.5 $</p>
+                                        <br>
+                                    </div>
+                                    <div class="col align-self-center  col-sm-2">
+                                        <h4 class="card-title mb-2">Earnings Date</h4>
+                                        <p class="card-text">22 Aug (AMC)</p>
+                                        <br>
+
+                                    </div>
+                                    <div class="col align-self-center  col-sm-2">
+                                        <h4 class="card-title mb-2">Market Price</h4>
+                                        <p class="card-text">Open</p>
+                                        <p class="card-text">$1,26 (%6,78)</p>
+                                    </div>
+                                    <div class="col align-self-center  col-sm-2">
+                                        <h4 class="card-title mb-2">Pre Market Price</h4>
+                                        <p class="card-text">Open</p>
+                                        <p class="card-text">$1,26 (%6,78)</p>
+                                    </div>
+                                </div>
+                                <div style="background-color: black; margin-top: 1.5%; cursor: default;"
+                                    class="align-self-center"><strong>Earnings</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-12">
+                    <div class="card card-inverse bg-danger text-center">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row d-flex">
+                                    <div class="col align-self-center">
+                                        <h4 class="card-title mb-3">Alert</h4>
+                                        <p class="card-text">Option Strategies Detected</p>
+                                        <hr>
+                                        <p class="card-text">Earnings</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+
+
+</div>
+<div class="row" *ngIf="this.symbol">
+    <div class="col-sm-12">
+        <div class="center30">
+            <h4> Lütfen Karşılaştırmak istediğiniz Çeyreği seçin</h4>
+        </div>
+        <div class="center50" *ngIf="symbol">
+            <div class="form-group col-sm-4" style="padding-left: 1%;">
+                <select #ddlSelectionAll class="form-control" [(ngModel)]="this.selectetionValue" name="selectionAll"
+                    (change)="changeEarnings($event)">
+                    <option [value]="null">N/A</option>
+                    <option *ngFor=" let x of this.earningsList" [value]="x.id">Q{{x.quarter}}, {{x.earningsDateText}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="this.selectedEarnings">
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-2">
+        <div class="card card-outline-success box-shadow-0 text-left" style="background-color: white;">
+            <div class="card-content">
+                <div class="card-body" style="height:150px;">
+                    <div class="row d-flex">
+                        <div class="col-sm-12 align-self-center" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>
+                                        Earnings Date
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>
+                                        {{this.selectedEarnings.earningsDateText}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="card card-outline-success box-shadow-0 text-left" style="background-color: white;">
+            <div class="card-content">
+                <div class="card-body" style="height:150px;">
+                    <div class="row d-flex">
+                        <div class="col-sm-12 align-self-center" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>
+                                        Revisions
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <span>{{'eps_ups' | translate}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>{{'eps_downs' | translate}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <span>{{this.selectedEarnings.revisionUp ? this.selectedEarnings.revisionUp : '--'}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>{{this.selectedEarnings.revisionDown ? this.selectedEarnings.revisionDown : '--'}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="card card-outline-success box-shadow-0" style="background-color: white;">
+            <div class="card-content">
+                <div class="card-body" style="height:150px;">
+                    <div class="row d-flex">
+                        <div class="col-sm-12 align-self-center" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>
+                                        Forecast
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <span>{{'eps' | translate}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>{{'revenue' | translate}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <span>{{selectedEarnings.forecastEps ? selectedEarnings.forecastEps : '--'}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>{{selectedEarnings.forecastRevenue ? (selectedEarnings.forecastRevenue | number) + 'M' : '--'}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-2">
+        <div class="card card-outline-success box-shadow-0" style="background-color: white;">
+            <div class="card-content">
+                <div class="card-body" style="height:150px;">
+                    <div class="row d-flex">
+                        <div class="col-sm-12 align-self-center" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>
+                                        Actual
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <span>{{'eps' | translate}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>{{'revenue' | translate}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <span>{{selectedEarnings.eps ? selectedEarnings.eps : '--'}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>{{selectedEarnings.revenue ? (selectedEarnings.revenue | number) + 'M' : '--'}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br>
+
+<div class="row" *ngIf="this.selectedEarnings">
+    <div class="col-sm-12">
+        <section id="ngx-datatable-row-details" *ngIf="rows">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Competitors List</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+
+                                <!-- ngx-datatable-row-details -->
+                                <!-- ngx-datatable-filter -->
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label for="ngx-filter-rf">Ara:
+                                                <input id="ngx-filter-rf"
+                                                    class="form-control form-control-sm d-inline-block width-200"
+                                                    type="text" placeholder="Symbol Adına Göre Ara..."
+                                                    (keyup)="filterUpdate($event)" />
+                                            </label>
+                                        </div>
+
+                                        <div class="col-sm-10"></div>
+                                    </div>
+                                </fieldset>
+                                <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
+                                    [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
+                                    [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
+                                    [reorderable]="true" style="text-align: center;">
+
+                                    <ngx-datatable-column name="Ticker" prop="ticker" [width]="200" headerClass="left-align" [cellClass]="left-align">
+                                        <ng-template let-row="row" let-name="value" ngx-datatable-cell-template >
+                                            <div class="d-flex align-items-center" style="text-align: left;">
+                                                <div *ngIf="row.logoUrl; else customAvatar">
+                                                    <img class="rounded-circle mr-1" src="{{row.logoUrl}}" (error)="updateUrl(row)" height="32"
+                                                        width="32">
+                                                </div>
+                                                <ng-template #customAvatar>
+                                                    <div class="avatar mr-1 ml-0"
+                                                        [ngClass]="{'bg-primary': row.status == '1', 'bg-success':row.status == '2', 'bg-danger':row.status == '3' , 'bg-warning':row.status == '4', 'bg-info':row.status == '5'}  ">
+                                                        <div class="avatar-content">{{ name | shortName }}</div>
+                                                    </div>
+                                                </ng-template>
+                                                <div class="cell-line-height">
+                                                    <a [href]="getRedirectUrl(name)" target="blank">
+                                                        <p class="font-medium-1 line-height-1 mb-0">{{ name }}</p>
+                                                        <span class="text-muted font-small-2">
+                                                            {{ row.companyName }}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Market" prop="exchangeName" [width]="5">
+                                        <ng-template let-exchange="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ exchange ? exchange : '--' }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Market Capital" prop="marketCapital" [width]="10">
+                                        <ng-template let-marketCapital="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ marketCapital ? (marketCapital | number) + "$" : '--' }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Earnings Date" prop="nextEarningsDate" [width]="10">
+                                        <ng-template let-date="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ date ? (date | date) : '--' }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Calculated EPS" prop="calculatedEps" [width]="5">
+                                        <ng-template let-eps="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ eps ? (eps |number) : '--' }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Calculated Revenue" prop="calculatedRevenue"
+                                        [width]="10">
+                                        <ng-template let-revenue="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ revenue ? (revenue |number) : '--' }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Reliability Score" prop="reliabilityScore" [width]="25">
+                                        <ng-template let-score="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ score ? (score | number) : '--' }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Over All Reliability Score"
+                                        prop="overAllReliabilityScore" [width]="25">
+                                        <ng-template let-score="value" ngx-datatable-cell-template>
+                                            <div class="row">
+                                                <div class="col-sm-12" style="text-align: center;">
+                                                    <span>
+                                                        {{ score ? (score | number) : '--' }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                </ngx-datatable>
+                                <!-- ngx-datatable-row-details -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="this.symbol">
+    <app-alert-modal #modal [selectedSymbol]="this.symbol"></app-alert-modal>
+</div>

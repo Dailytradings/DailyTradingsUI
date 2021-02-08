@@ -1,0 +1,174 @@
+<form *ngIf="symbol" style="font-size: small;">
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label for="Ticker">Symbol Ticker:</label>
+            <input #Ticker [(ngModel)]="this.symbol.ticker" type="text" class="form-control" name="ticker"
+                placeholder="Enter Ticker">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Weight">Weight:</label>
+            <input #Weight [(ngModel)]="this.symbol.weight" type="number" class="form-control" name="weight" min="0"
+                max="100" placeholder="Weight Number"
+                onkeyup="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="PreviousClose">Previous Close:</label>
+            <input #PreviousClose [(ngModel)]="this.symbol.previousClose" type="number" class="form-control"
+                name="PreviousClose" min="0" step="0.01" placeholder="Previous Close Value"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="TodayOpen">Today Open:</label>
+            <input #TodayOpen [(ngModel)]="this.symbol.todayOpen" type="number" class="form-control" name="TodayOpen"
+                min="0" step="0.01" placeholder="Today Open Value" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="High">High:</label>
+            <input #High [(ngModel)]="this.symbol.high" type="number" class="form-control" name="High" min="0"
+                step="0.01" placeholder="High" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Low">Low:</label>
+            <input #Low [(ngModel)]="this.symbol.low" type="number" class="form-control" name="Low" min="0" step="0.01"
+                placeholder="Low" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Volume">Volume:</label>
+            <input #Volume [(ngModel)]="this.symbol.volume" type="number" class="form-control" name="Volume" min="0"
+                step="0.01" placeholder="Volume" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="LatestVolume">Latest Volume:</label>
+            <input #LatestVolume [(ngModel)]="this.symbol.latestVolume" type="number" class="form-control"
+                name="LatestVolume" min="0" step="0.01" placeholder="Latest Volume"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="LiveStocksPrice">Live Stock Price:</label>
+            <input #LiveStocksPrice [(ngModel)]="this.symbol.liveStocksPrice" type="number" class="form-control"
+                name="LiveStocksPrice" min="0" step="0.01" placeholder="Live Stocks Price"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Change">Change:</label>
+            <input #Change [(ngModel)]="this.symbol.change" type="number" class="form-control" name="Change" min="0"
+                step="0.01" placeholder="Change" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="ChangePercent">Change Percent:</label>
+            <input #ChangePercent [(ngModel)]="this.symbol.changePercent" type="number" class="form-control"
+                name="ChangePercent" min="0" step="0.01" placeholder="Change Percent"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="InsiderPercentage">Insider Percentage:</label>
+            <input #InsiderPercentage [(ngModel)]="this.symbol.insiderPercentage" type="number" class="form-control"
+                name="InsiderPercentage" min="0" step="0.01" placeholder="Insider Percentage"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="InstitutionalPercentage">Institutional Percentage:</label>
+            <input #InstitutionalPercentage [(ngModel)]="this.symbol.institutionalPercentage" type="number"
+                class="form-control" name="InstitutionalPercentage" min="0" step="0.01"
+                placeholder="Institutional Percentage" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="InstitutionalFloatPercentage">Institutional Float Percentage:</label>
+            <input #InstitutionalFloatPercentage [(ngModel)]="this.symbol.institutionalFloatPercentage" type="number"
+                class="form-control" name="InstitutionalFloatPercentage" min="0" step="0.01"
+                placeholder="Institutional Float Percentage" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="PublicPercentage">Public Percentage:</label>
+            <input #PublicPercentage [(ngModel)]="this.symbol.publicPercentage" type="number" class="form-control"
+                name="PublicPercentage" min="0" step="0.01" placeholder="Public Percentage"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="pickerFiscalYearStarDate">Fiscal Year Start Date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" readonly placeholder="Choose a date" name="pickerFiscalYearStarDate"
+                        [(ngModel)]="this.fiscalYearStartDateVariable" ngbDatepicker #pickerFiscalYearStarDate="ngbDatepicker">
+                    <div class="input-group-append">
+                        <div class="input-group-text" (click)="pickerFiscalYearStarDate.toggle()">
+                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <label for="pickerFiscalEndDate">FY{{(this.symbol.fiscalYear + '').substring(2,4)}} End Date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" readonly placeholder="Choose a date" name="pickerFiscalEndDate"
+                        [(ngModel)]="this.fiscalEndDateVariable" ngbDatepicker #pickerFiscalEndDate="ngbDatepicker">
+                    <div class="input-group-append">
+                        <div class="input-group-text" (click)="pickerFiscalEndDate.toggle()">
+                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="FiscalQ">Fiscal Q:</label>
+            <input #FiscalQ [(ngModel)]="this.symbol.fiscalQ" type="number" class="form-control" name="FiscalQ" min="0"
+                placeholder="Fiscal Q" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="FiscalYear">Fiscal Year:</label>
+            <input #FiscalYear [(ngModel)]="this.symbol.fiscalYear" type="number" class="form-control" name="Year"
+                min="0" placeholder="Fiscal Year" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="MarketCapital">Market Capital:</label>
+            <input #MarketCapital [(ngModel)]="this.symbol.marketCapital" type="number" class="form-control"
+                name="MarketCapital" min="0" placeholder="Market Capital" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3"></div>
+        <div class="form-group col-sm-3">
+            <label for="NumberOfEstimates">Number Of Estimates:</label>
+            <input #NumberOfEstimates [(ngModel)]="this.symbol.numberOfEstimates" type="number" class="form-control"
+                name="NumberOfEstimates" min="0" placeholder="Number Of Estimates"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label for="ddlSelection">Exchange:</label>
+            <select #ddlSelection class="form-control" [(ngModel)]="this.symbol.exchange.id" name="selection">
+                <option [value]="null" selected>N/A</option>
+                <option *ngFor=" let x of this.exchanges" [value]="x.id">{{x.exchangeDescription}}</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-6">
+            <br>
+            <div class="custom-control custom-checkbox" style="margin-top: 1.5%;">
+                <input #ExtendedAvailable 
+                [checked]="this.symbol.extendedAvailable" 
+                (change) = "this.symbol.extendedAvailable = !this.symbol.extendedAvailable"
+                type="checkbox"
+                id="ExtendedAvailable"
+                class="custom-control-input" name="ExtendedAvailable">
+                <label style="font-size: medium;" class="custom-control-label" for="ExtendedAvailable">Extended
+                    Available</label>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="SaveChanges()">Save Changes</button>
+</form>

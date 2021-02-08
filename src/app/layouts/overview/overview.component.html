@@ -1,0 +1,104 @@
+<div *ngIf="this.symbol">
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <app-overview-panel [symbol]="this.symbol"></app-overview-panel>
+        </div>
+    </div>
+    <!-- Background variants section start -->
+
+
+
+    <div class="row" style="padding-left: 1%; padding-right: 1%;">
+
+        <div class="col-sm-2">
+            <div class="card" (click)="selectEdit('opportunities')"
+                [ngStyle]="{'background-color': selectedEdit == 'opportunities' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+                <div class="card-content">
+                    <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;">
+                                <span>
+                                    <b>Opportunities</b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="card" (click)="selectEdit('earnings')"
+                [ngStyle]="{'background-color': selectedEdit == 'earnings' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+                <div class="card-content">
+                    <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
+
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;">
+                                <span>
+                                    <b>Earnings</b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="card" (click)="selectEdit('dividend')"
+                [ngStyle]="{'background-color': selectedEdit == 'dividend' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+                <div class="card-content">
+                    <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
+
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;">
+                                <span>
+                                    <b>Dividend</b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="card" (click)="selectEdit('competitors')"
+                [ngStyle]="{'background-color': selectedEdit == 'competitors' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+                <div class="card-content">
+                    <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;">
+                                <span>
+                                    <b>Competitors</b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="this.symbol">
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'opportunities'">
+            <app-opportunities-list [symbol]="this.symbol"></app-opportunities-list>
+        </div>
+
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'competitors'">
+            <app-competitor-list [symbol]="this.symbol"></app-competitor-list>
+        </div>
+
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'earnings'">
+            <app-earnings-list [symbol]="this.symbol"></app-earnings-list>
+        </div>
+
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'dividend'">
+            <app-dividend-list [symbol]="this.symbol"></app-dividend-list>
+        </div>
+    </div>
+  </div>

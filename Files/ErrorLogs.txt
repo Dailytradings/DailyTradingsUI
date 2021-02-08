@@ -1,0 +1,106 @@
+﻿LRCX Symbolünde 2020-08-26 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+TRP Symbolünde 2020-08-21 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+CPRT Symbolünde 2020-08-12 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+CPRT Symbolünde 2020-07-16 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+CARR Symbolünde 2020-07-12 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+BRK.A Symbolünde 2018-09-21 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+An error occurred while updating the entries. See the inner exception for details.
+Violation of PRIMARY KEY constraint 'PK_Historical_1'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 2020-09-24, 14:00:00, 6cdbe82f-a050-448d-a0b6-490a2b208e4f).
+The statement has been terminated.
+Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+NET Symbolünde 2020-10-20 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (1646de6b-637d-4a8b-ba3e-045ec8a5a43b, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-10-12, 21:56:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (7de712bc-34ad-4921-8bb5-1d98fac0c016, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-10-01, 21:16:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (f2ff6bb4-f34e-4904-8b41-cd7c67de5f46, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-10-01, 20:12:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (3e75edc8-24ae-42ba-9280-196a33842268, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-09-11, 20:56:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (c1d244a6-d2b7-4ce2-b5e2-dc58a04e3d78, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-09-11, 22:33:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (a1dccde0-7145-4238-9fc4-275d2ec191f0, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-09-10, 17:03:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (bd6653f4-0dea-4975-b3ff-1f3637ea346a, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-10-05, 20:58:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (bac7d46a-c04b-4f82-ac3a-d8a39e2a12e4, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-10-12, 19:50:00).
+The statement has been terminated.
+Violation of PRIMARY KEY constraint 'PK_Historical'. Cannot insert duplicate key in object 'dbo.Historical'. The duplicate key value is (3e75edc8-24ae-42ba-9280-196a33842268, cd5d85ee-b1c1-41bb-be9e-dce245d734e9, 9257928c-7129-4130-8c8f-db4dcc900d21, 2020-09-10, 16:30:00).
+The statement has been terminated.
+A Symbolünde 2020-10-27 Tarihinde Gerçekleşen Hata :  Collection was modified; enumeration operation may not execute.
+A Symbolünde 2020-10-27 Tarihinde Gerçekleşen Hata :  Collection was modified; enumeration operation may not execute.
+A Symbolünde 2020-10-27 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+AAP Symbolünde 2020-10-27 Tarihinde Gerçekleşen Hata :  Object reference not set to an instance of an object.
+A Symbolünde 2020-10-27 Tarihinde Gerçekleşen Hata :  Input string was not in a correct format.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Data is Null. This method or property cannot be called on Null values.
+Data is Null. This method or property cannot be called on Null values.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.

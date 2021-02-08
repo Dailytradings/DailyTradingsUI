@@ -1,0 +1,72 @@
+<br *ngIf="this.symbolList"/>
+<div class="center50" *ngIf="this.symbolList">
+    <h3>Realtime Observing Data</h3>
+    <div class="form-group col-sm-4" style="padding-left: 1%;">
+        <select #ddlSelectionAll class="form-control" [(ngModel)]="this.selectedSymbol" name="selectionAll"
+            (change)="selectRealTimeData($event)">
+            <option [value]="null">N/A</option>
+            <option *ngFor=" let x of this.symbolList" [value]="x.id">{{x.ticker}}</option>
+        </select>
+    </div>
+</div>
+
+
+<!--Extended Table starts-->
+<section id="extended" *ngIf="this.realtimeDataList">
+    <div class="row" style="text-align: center;">
+        <div style="margin: 0 auto; display: inline-block;">
+            <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <tr>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;">Date</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;">Period</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;">Symbol</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;">Previous Close</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;">Price</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;"> Change</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;"> Market</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;"> Status</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;">Adr</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;">Previous Close</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px; ">Price</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px; ">Change</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;"> Market</th>
+                        <th colspan="1" style="border: black solid 1px; padding:0px;"> Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of this.realtimeDataList" style="border:solid 3px black"  [ngStyle]="{'background-color': data.thereIsAlarm ? '#40C057':'transparent'}">
+                        <td style="border: solid 1px black;"> {{data.createdTime}}</td>
+                        <td style="border: solid 1px black;"> {{data.time}}</td>
+                        <td style="border: solid 1px black;"> {{data.symbolTicker}}</td>
+                        <td style="border: solid 1px black;"> {{data.open}}</td>
+                        <td style="border: solid 1px black;"> {{data.price}}</td>
+                        <td style="border: solid 1px black;"> {{data.changePercentage}}%</td>
+                        <td style="border: solid 1px black;"> {{data.market}}</td>
+                        <td style="border: solid 1px black;"> {{data.status}}</td>
+                        <td style="border: solid 1px black;">
+                            {{(data.observerList && data.observerList.length > 0) ? data.observerList[0].observerTicker : ''}}
+                        </td>
+                        <td style="border: solid 1px black;">
+                            {{(data.observerList && data.observerList.length > 0) ? data.observerList[0].open : ''}}
+                        </td>
+                        <td style="border: solid 1px black;">
+                            {{(data.observerList && data.observerList.length > 0) ? data.observerList[0].price : ''}}
+                        </td>
+                        <td style="border: solid 1px black;">
+                            {{(data.observerList && data.observerList.length > 0) ? data.observerList[0].changePercentage + '%' : ''}}
+                        </td>
+                        <td style="border: solid 1px black;">
+                            {{(data.observerList && data.observerList.length > 0) ? data.observerList[0].market : ''}}
+                        </td>
+                        <td style="border: solid 1px black;">
+                            {{(data.observerList && data.observerList.length > 0) ? data.observerList[0].status : ''}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--Extended Table Ends-->

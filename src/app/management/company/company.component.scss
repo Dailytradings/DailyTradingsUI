@@ -1,0 +1,18 @@
+.header{
+    position: fixed;
+    top: 12%;
+    left: 0px;
+    width: 100%;
+    z-index: 2;
+    background: #252830;
+    height: 70px; 
+  } 
+
+  .mb-0 > a {
+    display: inline-block;
+    width: 100%;
+    padding:0.75rem 1.25rem;
+  }
+  .card-header {
+    padding:0;
+  }

@@ -1,0 +1,108 @@
+<!--Extended Table starts-->
+<section id="extended">
+    <div class="row" style="text-align: center;">
+        <div style="margin: 0 auto; display: inline-block;">
+            <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <tr>
+                        <th colspan="10" style="border: black solid 1px; border-bottom: none;">Historical Dividends</th>
+                    </tr>
+                    <tr>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Ex Dividend Date</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Payment Date</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Amount</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Yield</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Frequency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of this.dataList"
+                        [ngStyle]="{'background-color': this.selectedData === data ? '#40C057':'transparent'}">
+                        <td style="padding:5px; border-left: black solid 1px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{data.exDate}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{data.paymentDate}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{data.amount}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{data.divYield ? data.divYield + '%' : '--'}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{data.dividendDateFrequencyType.typeName}}</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<!--Extended Table starts-->
+<section id="extended">
+    <div class="row" style="text-align: center;" *ngIf="nextDividend">
+        <div style="margin: 0 auto; display: inline-block;">
+            <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <tr>
+                        <th colspan="10" style="border: black solid 1px; border-bottom: none;">Future Dividends</th>
+                    </tr>
+                    <tr>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Ex Dividend Date</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Payment Date</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Amount</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Yield</th>
+                        <th style="border: black solid 1px; padding:0px; padding-right: 5px; padding-left: 5px;">Frequency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:5px; border-left: black solid 1px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{nextDividend.exDate}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{nextDividend.paymentDate}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{nextDividend.amount}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{nextDividend.divYield ? nextDividend.divYield + '%' : '--'}}</div>
+                            </div>
+                        </td>
+                         <td style="padding:5px; border-bottom: black solid 1px; border-right: black solid 1px;">
+                            <div class="row">
+                                <div class="col-md-12">{{nextDividend.dividendDateFrequencyType.typeName}}</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="text-align: center;" *ngIf="!nextDividend">
+        <div class="center90">
+            <h4>Gelecek Dividend Bilgisi Bulunmamaktadır.</h4>
+        </div>
+    </div>
+    </section>

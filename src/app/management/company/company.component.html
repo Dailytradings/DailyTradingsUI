@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card center30">
+            <div class="card-header" style="background-color: #efdeff;">
+                <h4 class="card-title"></h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body" style="background-color: #efdeff;">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-sm-12">
+                            <h4  [ngStyle]="{'color': this.symbolTicker ? '#40C057' : 'black'}"><b>{{this.symbolTicker ? 'Now You Can Select a Category' : 'Select a Symbol'}} To Edit</b></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="background-color: #efdeff; padding:1%">
+
+    <div class="col-sm-3">
+        <div class="card" (click)="selectEdit('earnings')"
+            [ngStyle]="{'background-color': selectedEdit == 'earnings' ? 'darkgray' : '#fff', 'cursor': this.symbolTicker ? 'pointer' : 'not-allowed'}">
+            <div class="card-content">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: center;">
+                            <span>
+                                <b>Earnings</b>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="card" (click)="selectEdit('dividend')"
+        [ngStyle]="{'background-color': selectedEdit == 'dividend' ? 'darkgray' : '#fff', 'cursor': this.symbolTicker ? 'pointer' : 'not-allowed'}">
+            <div class="card-content">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: center;">
+                            <span>
+                                <b>Dividend</b>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="card" (click)="selectEdit('otherPredictions')"
+            [ngStyle]="{'background-color': selectedEdit == 'otherPredictions' ? 'darkgray' : '#fff', 'cursor': this.symbolTicker ? 'pointer' : 'not-allowed'}">
+            <div class="card-content">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: center;">
+                            <span>
+                                <b>Other Predictions</b>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="card" (click)="selectEdit('competitors')"
+        [ngStyle]="{'background-color': selectedEdit == 'competitors' ? 'darkgray' : '#fff', 'cursor': this.symbolTicker ? 'pointer' : 'not-allowed'}">
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: center;">
+                            <span>
+                                <b>Competitors</b>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

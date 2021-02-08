@@ -1,0 +1,204 @@
+<form *ngIf="symbol && keystats" style="font-size: small;">
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Week52Low">Week 52 Low:</label>
+            <input #Week52Low [(ngModel)]="keystats.Week52low" type="number" class="form-control" name="Week52Low"
+                min="0" step="0.01" placeholder="Week 52 Low" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Week52High">Week 52 High:</label>
+            <input #Week52High [(ngModel)]="keystats.week52high" type="number" class="form-control" name="Week52High"
+                min="0" step="0.01" placeholder="Week 52 High" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Week52Change">Week 52 Change:</label>
+            <input #Week52Change [(ngModel)]="keystats.week52change" type="number" class="form-control"
+                name="Week52Change" step="0.01" placeholder="Week52Change">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Sharesoutstanding">Shares outstanding:</label>
+            <input #Sharesoutstanding [(ngModel)]="keystats.sharesoutstanding" type="number" class="form-control"
+                name="Sharesoutstanding" min="0" step="0.01" placeholder="Shares outstanding"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3"></div>
+        <div class="form-group col-sm-3">
+            <label for="floatValue">Float:</label>
+            <input #floatValue [(ngModel)]="keystats.floatValue" type="number" class="form-control" name="floatValue"
+                min="0" step="0.01" placeholder="Float" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Avg10volume">Avg 10 Volume:</label>
+            <input #Avg10volume [(ngModel)]="keystats.avg10volume" type="number" class="form-control" name="Avg10volume"
+                min="0" step="0.01" placeholder="Avg 10 Volume" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Avg30volume">Avg 30 Volume:</label>
+            <input #Avg30volume [(ngModel)]="keystats.avg30volume" type="number" class="form-control" name="Avg30volume"
+                min="0" step="0.01" placeholder="Avg 30 Volume" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Day200movingavg">Day 200 Moving Avg:</label>
+            <input #Day200movingavg [(ngModel)]="keystats.day200movingavg" type="number" class="form-control"
+                name="Day200movingavg" min="0" step="0.01" placeholder="Day 200 Moving Avg"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Day50movingavg">Day 50 Moving Avg:</label>
+            <input #Day200movingavg [(ngModel)]="keystats.day50movingavg" type="number" class="form-control"
+                name="Day50movingavg" min="0" step="0.01" placeholder="Day 50 Moving Avg"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Employees">Employees:</label>
+            <input #Employees [(ngModel)]="keystats.employees" type="number" class="form-control" name="Employees"
+                min="0" step="0.01" placeholder="Employees" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Ttmeps">Ttm Eps:</label>
+            <input #Ttmeps [(ngModel)]="keystats.ttmeps" type="number" class="form-control" name="Ttmeps" min="0"
+                step="0.01" placeholder="Ttm Eps" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Ttmdividendrate">Ttm Dividend Rate:</label>
+            <input #Ttmdividendrate [(ngModel)]="keystats.ttmdividendrate" type="number" class="form-control"
+                name="Ttmdividendrate" min="0" placeholder="Ttm Dividend Rate"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Dividendyield">Dividend Yield:</label>
+            <input #Dividendyield [(ngModel)]="keystats.dividendyield" type="number" class="form-control"
+                name="Dividendyield" min="0" step="0.01" placeholder="Dividend Yield"
+                onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="pickerNextDividendDate">Next Dividend Date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Choose a date" name="pickerNextDividendDate"
+                        [(ngModel)]="this.pickerNextDividendDateVariable" ngbDatepicker
+                        #pickerNextDividendDate="ngbDatepicker">
+                    <div class="input-group-append">
+                        <div class="input-group-text" (click)="pickerNextDividendDate.toggle()">
+                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <label for="pickerExDividendDate">Ex Dividend Date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Choose a date" name="pickerExDividendDate"
+                        [(ngModel)]="this.pickerExDividendDateVariable" ngbDatepicker
+                        #pickerExDividendDate="ngbDatepicker">
+                    <div class="input-group-append">
+                        <div class="input-group-text" (click)="pickerExDividendDate.toggle()">
+                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <label for="pickerNextEarningsDate">Next Earnings Date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Choose a date" name="pickerNextEarningsDate"
+                        [(ngModel)]="this.pickerNextEarningsDateVariable" ngbDatepicker
+                        #pickerNextEarningsDate="ngbDatepicker">
+                    <div class="input-group-append">
+                        <div class="input-group-text" (click)="pickerNextEarningsDate.toggle()">
+                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="PeRatio">Pe Ratio:</label>
+            <input #PeRatio [(ngModel)]="keystats.peRatio" type="number" class="form-control" name="PeRatio" min="0"
+                step="0.01" placeholder="Pe Ratio" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Beta">Beta:</label>
+            <input #Beta [(ngModel)]="keystats.beta" type="number" class="form-control" name="Beta" min="0" step="0.01"
+                placeholder="Beta" onkeyup="if(this.value < 0) this.value = 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="MaxChangePercent">Max Change Percent:</label>
+            <input #MaxChangePercent [(ngModel)]="keystats.maxChangePercent" type="number" class="form-control"
+                name="MaxChangePercent" step="0.01" placeholder="Max Change Percent">
+        </div>
+
+        <div class="form-group col-sm-3">
+            <label for="Ytdchangepercent">Ytd Change Percent:</label>
+            <input #Ytdchangepercent [(ngModel)]="keystats.ytdchangepercent" type="number" class="form-control"
+                name="Ytdchangepercent" step="0.01" placeholder="Ytd Change Percent">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Year5changepercent">Year 5 Change Percent:</label>
+            <input #Year5changepercent [(ngModel)]="keystats.year5changepercent" type="number" class="form-control"
+                name="Year5changepercent" step="0.01" placeholder="Year 5 Change Percent">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Year2changepercent">Year 2 Change Percent:</label>
+            <input #Year2changepercent [(ngModel)]="keystats.year2changepercent" type="number" class="form-control"
+                name="Year2changepercent" step="0.01" placeholder="Year 2 Change Percent">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Year1changepercent">Year 1 Change Percent:</label>
+            <input #Year1changepercent [(ngModel)]="keystats.year1changepercent" type="number" class="form-control"
+                name="Year1changepercent" step="0.01" placeholder="Year 1 Change Percent">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Month6changepercent">Month 6 Change Percent:</label>
+            <input #Month6changepercent [(ngModel)]="keystats.month6changepercent" type="number" class="form-control"
+                name="Month6changepercent" step="0.01" placeholder="Month 6 Change Percent">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Month3changepercent">Month 3 Change Percent:</label>
+            <input #Month3changepercent [(ngModel)]="keystats.month3changepercent" type="number" class="form-control"
+                name="Month3changepercent" step="0.01" placeholder="Month 3 Change Percent">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Month1changepercent">Month 1 Change Percent:</label>
+            <input #Month1changepercent [(ngModel)]="keystats.month1changepercent" type="number" class="form-control"
+                name="Month1changepercent" step="0.01" placeholder="Month 1 Change Percent">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="Day30changepercent">Day 30 Change Percent:</label>
+            <input #Day30changepercent [(ngModel)]="keystats.day30changepercent" type="number" class="form-control"
+                name="Day30changepercent" step="0.01" placeholder="Day 30 Change Percent">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="Day5changepercent">Day 5 Change Percent:</label>
+            <input #Day5changepercent [(ngModel)]="keystats.day5changepercent" type="number" class="form-control"
+                name="Day5changepercent" step="0.01" placeholder="Day 5 Change Percent">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="SaveChanges()">Save Changes</button>
+</form>

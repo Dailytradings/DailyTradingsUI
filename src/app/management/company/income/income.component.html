@@ -1,0 +1,150 @@
+<div class="row" style="padding-right:5%; padding-left:5%" *ngIf="this.symbol && (annualIncome || incomeList)">
+    <div class="col col-sm-3">
+        <div class="row">
+            <div class="col col-sm-12" style="padding-left: 1%;">
+                <button class="btn" style="border: 1px black solid; width: 100%;" *ngIf="annualIncome"
+                    (click)="selectIncome(annualIncome);" [class.btn-primary]="selectedIncome==annualIncome"
+                    [class.btn-light]="selectedIncome!=annualIncome">Annual</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="incomeList" class="col col-sm-9">
+        <div class="row">
+            <div class="col col-sm-3" style="padding-left: 1%;" *ngFor="let income of incomeList">
+                <button class="btn" style="border: 1px black solid; width: 100%;" (click)="selectIncome(income);;"
+                    [class.btn-primary]="selectedIncome==income"
+                    [class.btn-light]="selectedIncome!=income">{{income.fiscalDate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<hr *ngIf="this.symbol && (annualIncome || (incomeList && incomeList.length > 0))">
+<div *ngIf="!selectedIncome">
+    <div class="center50" *ngIf="this.symbol && (annualIncome || (incomeList && incomeList.length > 0)); else incomeNotFound">Lütfen Bir Income
+        Seçin</div>
+    <ng-template #incomeNotFound>
+        <div class="center50">
+            Malesef Herhangi Bir Income Kaydı Bulunamadı
+        </div>
+    </ng-template>
+</div>
+<form *ngIf="symbol && selectedIncome" style="font-size: small;">
+    <div class="row">
+        <div class="col-6">
+            <label for="pickerReportDate">Report Date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" readonly placeholder="Choose a date" name="pickerReportDate"
+                        [(ngModel)]="this.reportDateVariable" ngbDatepicker #pickerReportDate="ngbDatepicker">
+                    <div class="input-group-append">
+                        <div class="input-group-text" (click)="pickerReportDate.toggle()">
+                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <label for="pickerFiscalDate">{{selectedIncome.isAnnual ? "Fiscal End Date" : "Quarter End Date"}}</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" readonly placeholder="Choose a date" name="pickerFiscalDate"
+                        [(ngModel)]="this.fiscalDateVariable" ngbDatepicker #pickerFiscalDate="ngbDatepicker">
+                    <div class="input-group-append">
+                        <div class="input-group-text" (click)="pickerFiscalDate.toggle()">
+                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Currency">Currency:</label>
+        <input #Currency disabled [(ngModel)]="selectedIncome.currency" type="text" class="form-control" name="Currency"
+            placeholder="Enter Currency">
+    </div>
+    <div class="form-group">
+        <label for="TotalRevenue">Total Revenue:</label>
+        <input #TotalRevenue [(ngModel)]="selectedIncome.totalRevenue" type="number" class="form-control"
+            name="TotalRevenue" placeholder="Total Revenue">
+    </div>
+    <div class="form-group">
+        <label for="CostOfRevenue">Cost Of Revenue:</label>
+        <input #CostOfRevenue [(ngModel)]="selectedIncome.costOfRevenue" type="number" class="form-control"
+            name="CostOfRevenue" placeholder="Cost Of Revenue">
+    </div>
+    <div class="form-group">
+        <label for="GrossProfit">Gross Profit:</label>
+        <input #GrossProfit [(ngModel)]="selectedIncome.grossProfit" type="number" class="form-control"
+            name="GrossProfit" placeholder="Gross Profit">
+    </div>
+    <div class="form-group">
+        <label for="ResearchAndDevelopment">Research And Development:</label>
+        <input #ResearchAndDevelopment [(ngModel)]="selectedIncome.researchAndDevelopment" type="number"
+            class="form-control" name="ResearchAndDevelopment" placeholder="Research And Development">
+    </div>
+    <div class="form-group">
+        <label for="SellingGeneralAndAdmin">Selling General And Admin:</label>
+        <input #SellingGeneralAndAdmin [(ngModel)]="selectedIncome.sellingGeneralAndAdmin" type="number"
+            class="form-control" name="SellingGeneralAndAdmin" placeholder="Selling General And Admin">
+    </div>
+    <div class="form-group">
+        <label for="OperatingExpense">Operating Expense:</label>
+        <input #OperatingExpense [(ngModel)]="selectedIncome.operatingExpense" type="number" class="form-control"
+            name="OperatingExpense" placeholder="Operating Expense">
+    </div>
+    <div class="form-group">
+        <label for="OperatingIncome">Operating Income:</label>
+        <input #OperatingIncome [(ngModel)]="selectedIncome.operatingIncome" type="number" class="form-control"
+            name="OperatingIncome" placeholder="Operating Income">
+    </div>
+    <div class="form-group">
+        <label for="OperatingIncomeExpenseNet">Operating Income Expense Net:</label>
+        <input #OperatingIncomeExpenseNet [(ngModel)]="selectedIncome.operatingIncomeExpenseNet" type="number"
+            class="form-control" name="OperatingIncomeExpenseNet" placeholder="Operating Income Expense Net">
+    </div>
+    <div class="form-group">
+        <label for="Ebit">Ebit:</label>
+        <input #Ebit [(ngModel)]="selectedIncome.ebit" type="number" class="form-control" name="Ebit"
+            placeholder="Ebit">
+    </div>
+    <div class="form-group">
+        <label for="InterestIncome">Interest Income:</label>
+        <input #InterestIncome [(ngModel)]="selectedIncome.interestIncome" type="number" class="form-control"
+            name="InterestIncome" placeholder="Interest Income">
+    </div>
+    <div class="form-group">
+        <label for="PretaxIncome">Pretax Income:</label>
+        <input #PretaxIncome [(ngModel)]="selectedIncome.pretaxIncome" type="number" class="form-control"
+            name="PretaxIncome" placeholder="Pretax Income">
+    </div>
+    <div class="form-group">
+        <label for="IncomeTax">Income Tax:</label>
+        <input #IncomeTax [(ngModel)]="selectedIncome.incomeTax" type="number" class="form-control" name="IncomeTax"
+            placeholder="Income Tax">
+    </div>
+    <div class="form-group">
+        <label for="MinorityInterest">Minority Interest:</label>
+        <input #MinorityInterest [(ngModel)]="selectedIncome.minorityInterest" type="number" class="form-control"
+            name="MinorityInterest" placeholder="Minority Interest">
+    </div>
+    <div class="form-group">
+        <label for="NetIncome">Net Income:</label>
+        <input #NetIncome [(ngModel)]="selectedIncome.netIncome" type="number" class="form-control" name="NetIncome"
+            placeholder="Net Income">
+    </div>
+    <div class="form-group">
+        <label for="NetIncomeBasic">Net Income Basic:</label>
+        <input #NetIncomeBasic [(ngModel)]="selectedIncome.netIncomeBasic" type="number" class="form-control"
+            name="NetIncomeBasic" placeholder="Net Income Basic">
+    </div>
+    <div class="form-group">
+        <div class="custom-control custom-checkbox">
+            <input #isAnnual [(ngModel)]="selectedIncome.isAnnual" type="checkbox" class="custom-control-input"
+                name="isAnnual">
+            <label style="font-size: medium;" class="custom-control-label" for="isAnnual">Annual Data</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="SaveChanges()">Save Changes</button>
+</form>

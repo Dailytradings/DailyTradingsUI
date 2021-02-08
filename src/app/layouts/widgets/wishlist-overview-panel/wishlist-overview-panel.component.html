@@ -1,0 +1,86 @@
+<div class="card card-outline-success box-shadow-0 text-left" style="background-color: white; margin:0px; margin-bottom: 1%;">
+    <div class="card-content">
+        <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+
+
+            <div id="symbol-info-widget"
+                class="tv-category-header tv-category-header--transparent tv-symbol-info-widget" *ngIf="this.symbol">
+                <div class="tv-category-header__content tv-symbol-info-widget__content js-widget-content">
+                    <a class="tv-category-header__title-line tv-symbol-info-widget__title-line tv-symbol-info-widget__link js-symbol-info-link"
+                        [href]="getRedirectUrl(this.symbol.ticker)" target="_blank">
+
+                        <img class="tv-circle-logo tv-circle-logo--large tv-category-header__icon"
+                            src="{{this.symbol.logoUrl}}" alt="">
+
+
+                        <div class="tv-category-header__title">
+
+                            <h1>
+
+                                <div class="tv-symbol-header tv-symbol-header--mobile-adaptive">
+                                    <div class="tv-symbol-header__first-line tv-symbol-info-widget__first-line">
+                                        {{this.symbol.companyName}}</div>
+                                    <div class="tv-symbol-header__second-line"
+                                        style="display: flex !important; margin-top:1%">
+                                        <span class="tv-symbol-header__second-line" data-selected-provider-id="ice"
+                                            data-exchanges="[]" data-short-name="{{this.symbol.ticker}}">
+                                            <span
+                                                class="tv-symbol-header__second-line--text">{{this.symbol.ticker}}</span><span
+                                                class="tv-symbol-header__exchange-container"><img
+                                                    class="tv-circle-logo tv-circle-logo--small tv-symbol-header__exchange-logo"
+                                                    src="https://s3-symbol-logo.tradingview.com/country/US.svg"
+                                                    alt=""><span class="tv-symbol-header__exchange">
+                                                    {{this.symbol.exchange}}</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </h1>
+                        </div> `
+                    </a>
+                    <div class="tv-category-header__price-line js-header-symbol-quotes quote-ticker-inited"
+                        data-type="stock" data-symbol="{{this.symbol.exchange}}:{{this.symbol.ticker}}">
+                        <div class="tv-category-header__main-price js-scroll-container" style="margin-top:0px;">
+                            <div class="tv-scroll-wrap tv-scroll-wrap--horizontal js-scroll-scrollable-element">
+                                <div class="tv-category-header__main-price-content">
+
+                                    <div class="tv-symbol-price-quote js-last-price-block">
+                                        <div class="tv-symbol-price-quote__row js-last-price-block-value-row">
+                                            <div class="tv-symbol-price-quote__value js-symbol-last">
+                                                <span>{{this.symbol.price ? (this.symbol.price | number) : '0.00'
+                                                    }}</span>
+                                            </div>
+                                            <div class="tv-symbol-price-quote__supply">
+                                                <div class="tv-symbol-price-quote__data-mode tv-data-mode tv-data-mode--size_large js-data-mode tv-data-mode--no-realtime tv-data-mode--delayed tv-data-mode--delayed--no-realtime apply-common-tooltip"
+                                                    title="Quotes are delayed by 15 min">D</div>
+                                                <div class="tv-symbol-price-quote__currency js-symbol-currency">
+                                                    USD</div>
+                                            </div>
+                                            <div
+                                                class="js-symbol-change-direction tv-symbol-price-quote__change tv-symbol-price-quote__change--{{this.symbol.change && this.symbol.change > 0 ? 'growing': 'falling'}}">
+                                                <span
+                                                    class="js-symbol-change tv-symbol-price-quote__change-value">{{this.symbol.change
+                                                    ? (this.symbol.change > 0 ? '+' : '') + (this.symbol.change |
+                                                    number) : '0.00' }}</span>
+                                                <span
+                                                    class="js-symbol-change-pt tv-symbol-price-quote__change-value">({{this.symbol.changePercentage
+                                                    ? (this.symbol.changePercentage > 0 ? '+' : '') +
+                                                    (this.symbol.changePercentage | number) : '0.00' }}%)</span>
+                                            </div>
+                                        </div>
+                                        <div class="tv-symbol-price-quote__sub-line">
+                                            <span class="js-last-price-block-title">{{this.symbol.marketStatus}}</span>
+                                            <span class="js-symbol-lp-time">({{this.symbol.marketDateText}})</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+<div class="center100">
+    <h4> Lütfen Karşılaştırmak istediğiniz Çeyreği seçin</h4>
+</div>
+<div class="center50" *ngIf="symbol">
+    <div class="form-group col-sm-4" style="padding-left: 1%;">
+        <select #ddlSelectionAll class="form-control" [(ngModel)]="this.selectetionValue" name="selectionAll"
+            (change)="changeEarnings($event)">
+            <option [value]="null">N/A</option>
+            <option *ngFor=" let x of this.earningsList" [value]="x.id">Q{{x.quarter}}, {{x.earningsDateText}}</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="this.selectedEarnings">
+    <div class="col-1"></div>
+    <div class="col-2" style="text-align: center; border: solid 1px black;">
+        <h5 style="margin-top: 3%;"><b>{{this.symbol.ticker}}</b></h5>
+        <h5>{{this.symbol.company.companyName}}</h5>
+    </div>
+    <div class="col-1" style="text-align: center; border: solid 1px black; padding:0px;">
+        <img src="{{this.symbol.logoUrl}}" style="width:120px; height:80px">
+    </div>
+    <div class="col-2" style="text-align: center; border: solid 1px black; margin-right: 0.5%;">
+        <h6 style="margin-top: 5%;">Next Earnings Date</h6>
+        <h6>{{this.selectedEarnings.reportDate}}</h6>
+    </div>
+    <div class="col-1" style="padding-left: 0px;padding-right: 0px; margin-right:0.5%">
+        <table style="font-size: medium; width: 100%; text-align: center; ">
+            <tr style=" border: solid 1px black;">
+                <th colspan="3">Revisions</th>
+            </tr>
+            <tr>
+                <td style=" border: solid 1px black;">
+                    <span>{{'eps_ups' | translate}}</span>
+                </td>
+                <td style="border: solid 1px black;">
+                    <span>{{this.selectedEarnings.revisionUp}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style=" border: solid 1px black;">
+                    <span>{{'eps_downs' | translate}}</span>
+                </td>
+                <td style="border: solid 1px black;">
+                    <span>{{this.selectedEarnings.revisionDown}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-2" style="padding-left: 0px;">
+        <table style="font-size: medium; width: 100%; text-align: center; ">
+            <tr style=" border: solid 1px black;">
+                <th colspan="3">Forecast</th>
+            </tr>
+            <tr>
+                <td style=" border: solid 1px black;">
+                    <span>{{'eps' | translate}}</span>
+                </td>
+                <td style="border: solid 1px black;">
+                    <span>{{selectedEarnings.forecastEps}} {{selectedEarnings.forecastEps ? '' : '--'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style=" border: solid 1px black;">
+                    <span>{{'revenue' | translate}}</span>
+                </td>
+                <td style="border: solid 1px black;">
+                    <span>{{selectedEarnings.forecastRevenue | number}}
+                        {{selectedEarnings.forecastRevenue ? 'M' : '--'}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-2" style="padding-left: 0px;">
+        <table style="font-size: medium; width: 100%; text-align: center; ">
+            <tr style=" border: solid 1px black;">
+                <th colspan="3">Actual</th>
+            </tr>
+            <tr>
+                <td style=" border: solid 1px black;">
+                    <span>{{'eps' | translate}}</span>
+                </td>
+                <td style="border: solid 1px black;">
+                    <span>{{selectedEarnings.eps}} {{selectedEarnings.eps ? '' : '--'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style=" border: solid 1px black;">
+                    <span>{{'revenue' | translate}}</span>
+                </td>
+                <td style="border: solid 1px black;">
+                    <span>{{selectedEarnings.revenue | number}}
+                        {{selectedEarnings.revenue ? 'M' : '--'}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br>
+<div class="row" *ngIf="this.competitorComparison && this.competitorComparison.length > 0">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10" style="padding: 0px;">
+        <div style="margin: 0 auto; display: inline-block; width:100%">
+            <table class="table text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <tr>
+                        <th style="border: black solid 1px;">competitor</th>
+                        <th style="border: black solid 1px;">market</th>
+                        <th style="border: black solid 1px;">marketCapital</th>
+                        <th style="border: black solid 1px;">releaseDate</th>
+                        <th style="border: black solid 1px;">calculatedEps</th>
+                        <th style="border: black solid 1px;">calculatedRevenue</th>
+                        <th style="border: black solid 1px;">reliabilityScore</th>
+                        <th style="border: black solid 1px;">overall_reliabilityScore</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let comparison of this.competitorComparison">
+                        <td style="border: black solid 1px;">
+                            {{comparison.competitorCompanyName}} <b>({{comparison.competitorTicker}})</b>
+                        </td>
+                        <td style="border: black solid 1px;">
+                            {{comparison.competitorExchangeName}}
+                        </td>
+                        <td style="border: black solid 1px;">
+                            {{comparison.competitorMarketCapital | number}}
+                        </td>
+                        <td style="border: black solid 1px;">
+                            {{comparison.competitorNextEarningsDate}}
+                        </td>
+                        <td style="border: black solid 1px;">
+                            <span
+                                [ngStyle]="{'color': comparison.calculatedEps ? (comparison.calculatedEps > selectedEarnings.forecastEps ? 'green' : 'tomato') : black}">
+                                {{comparison.calculatedEps}}
+                                {{comparison.calculatedEps ? '' : '--'}}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px;">
+                            <span
+                                [ngStyle]="{'color': comparison.calculatedRevenue ? (comparison.calculatedRevenue > selectedEarnings.forecastRevenue ? 'green' : 'tomato') : black}">
+                                {{comparison.calculatedRevenue | number}}
+                                {{comparison.calculatedRevenue ? 'M' : '--'}}
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px;">
+                            <span> {{comparison.reliabilityScore | number}}</span>
+                        </td>
+                        <td style="border: black solid 1px;">
+                            <span> {{comparison.overAllReliabilityScore | number}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="center100" *ngIf="!this.earningsList">
+    <span>Şuanda Karşılaştırma yapılacak bir next earnings bulunamadı.</span>
+</div>

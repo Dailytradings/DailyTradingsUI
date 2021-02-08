@@ -1,0 +1,267 @@
+<!-- Row Details  Datatables -->
+<section id="ngx-datatable-row-details" *ngIf="rows">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Earnings Opportunities</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+
+                        <!-- ngx-datatable-row-details -->
+                        <!-- ngx-datatable-filter -->
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <div class="{{this.demo ? 'col-sm-3' : 'col-sm-2'}}">
+                                    <label for="ngx-filter-ref">Ara:
+                                        <input id="ngx-filter-ref"
+                                            class="form-control form-control-sm d-inline-block width-200" type="text"
+                                            placeholder="Symbol Koduna Göre Ara..." (keyup)="filterUpdate($event)" />
+                                    </label>
+                                </div>
+
+                                <div class="switch-toggle switch-3 switch-candy col-sm-2" style="height: 25px;">
+                                    <input id="on" name="state-d" type="radio" checked="">
+                                    <label for="on" (click)="filterAnnounce('BMO')" onclick="">BMO</label>
+
+                                    <input id="na" name="state-d" type="radio" checked="checked">
+                                    <label for="na" (click)="filterAnnounce('ALL')" onclick="">All</label>
+
+                                    <input id="off" name="state-d" type="radio">
+                                    <label for="off" (click)="filterAnnounce('AMC')" onclick="">AMC</label>
+
+                                    <a></a>
+                                </div>
+
+                                <div class="col-sm-1"></div>
+
+                                <div class="switch-toggle switch-3 switch-candy col-sm-2" style="height: 25px;"
+                                    *ngIf="!this.demo">
+                                    <input id="opportunity" name="state-e" type="radio" checked="">
+                                    <label for="opportunity" (click)="filterDataSet('earnings opportunity')"
+                                        onclick="">Opportunities</label>
+
+                                    <input id="earnings" name="state-e" type="radio" checked="checked">
+                                    <label for="earnings" (click)="filterDataSet('earnings')"
+                                        onclick="">Earnings</label>
+
+                                    <a></a>
+                                </div>
+
+                                <div class="col-sm-2" *ngIf="!this.demo">
+                                    <div class="input-group">
+                                        <input class="form-control" readonly placeholder="Choose a date"
+                                            name="pickerKeyDateForOpportunities" [(ngModel)]="keyDateForOpportunities"
+                                            ngbDatepicker #pickerKeyDateForOpportunities="ngbDatepicker"
+                                            style="height:25px; cursor: pointer;"
+                                            (click)="pickerKeyDateForOpportunities.toggle()"
+                                            (ngModelChange)="getHotStockOpportunitiesWithDate()">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"
+                                                (click)="pickerKeyDateForOpportunities.toggle()" style="height:25px;">
+                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" *ngIf="this.demo"></div>
+                                <div class="{{this.demo ? 'col-sm-4' : 'col-sm-3'}}">
+                                    <div class="btn-group" role="group" style="width:100%">
+                                        <button type="button" (click)="changeTimeRange('Today')"
+                                            [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'Today', 'btn-outline-secondary' : this.selectedTimeRange !== 'Today'}"
+                                            style="padding: 0px; padding-left: 5px; padding-right: 5px;">Today</button>
+                                        <button type="button" (click)="changeTimeRange('Tomorrow')"
+                                            [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'Tomorrow', 'btn-outline-secondary' : this.selectedTimeRange !== 'Tomorrow'}"
+                                            style="padding: 0px; padding-left: 5px; padding-right: 5px;">Tomorrow</button>
+                                        <button type="button" (click)="changeTimeRange('ThisWeek')"
+                                            [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'ThisWeek', 'btn-outline-secondary' : this.selectedTimeRange !== 'ThisWeek'}"
+                                            style="padding: 0px; padding-left: 5px; padding-right: 5px;">This
+                                            Week</button>
+                                        <button type="button" (click)="changeTimeRange('NextWeek')"
+                                            [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'NextWeek', 'btn-outline-secondary' : this.selectedTimeRange !== 'NextWeek'}"
+                                            style="padding: 0px; padding-left: 5px; padding-right: 5px;">Next
+                                            Week</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force"
+                            [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10" [rows]="rows"
+                            [sortType]="'multi'" [reorderable]="true" [sorts]="[{prop: 'dateText', dir: 'asc'}]">
+                            <!-- Row Detail Template -->
+                            <ngx-datatable-row-detail [rowHeight]="90">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                                    <div class="ml-5 my-1">
+                                        <div class="row" style="position:fixed; width: 100%; ">
+                                            <div class="col-sm-8">
+                                                <div class="row"
+                                                    style="padding-top: 5px; padding-bottom: 5px; overflow-x: auto; display: block;">
+                                                    <div class="col-sm-3"
+                                                        style="border: 1px solid black; margin-right: 1%; display: inline-block;"
+                                                        *ngFor="let otherPrediction of row.otherPredictions">
+                                                        <div class="row">
+                                                            <div class="col-sm-7" style="padding-left:5px;">
+                                                                <div><strong> {{ otherPrediction.item1 }} </strong>
+                                                                </div>
+                                                                <div>
+                                                                    {{ otherPrediction.item2 != null ?
+                                                                    (otherPrediction.item2 | number) : 'N/A' }}
+                                                                    -
+                                                                    {{ otherPrediction.item3 != null ?
+                                                                    (otherPrediction.item3 | number) : 'N/A' }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5"
+                                                                style="padding: 0px; padding-right: 5px;">
+                                                                <img src="{{otherPrediction.item4}}"
+                                                                    alt="{{otherPrediction.item1}}" width="100"
+                                                                    height="40">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <div class="col-sm-3" style="padding-top:1.5%">
+                                                        <strong>Peer Analysis :</strong>
+                                                    </div>
+                                                    <div class="col-sm-9 peerResult">
+                                                        <div>
+                                                            <strong> EPS : </strong>
+                                                            <i *ngIf="row.isPeerAvarageEpsSaysIncrease"
+                                                                class="ft-trending-up"
+                                                                style="color: yellowgreen; font-weight: 900; font-size: large;"
+                                                                title="Forecast : {{row.forecastEps}} &#10; Avarage : {{row.peerAvarageEps}}"></i>
+                                                            <i *ngIf="!row.isPeerAvarageEpsSaysIncrease"
+                                                                class="ft-trending-down"
+                                                                style="color: tomato; font-weight: 900; font-size: large;"
+                                                                title="Forecast : {{row.forecastEps}} &#10; Avarage : {{row.peerAvarageEps}}"></i>
+                                                        </div>
+                                                        <div> <strong> Revenue : </strong>
+                                                            <i *ngIf="row.isPeerAvarageRevenueSaysIncrease"
+                                                                class="ft-trending-up"
+                                                                style="color: yellowgreen; font-weight: 900; font-size: large;"
+                                                                title="Forecast : {{row.forecastRevenue}} &#10; Avarage : {{row.peerAvarageRevenue}}"></i>
+                                                            <i *ngIf="!row.isPeerAvarageRevenueSaysIncrease"
+                                                                class="ft-trending-down"
+                                                                style="color: tomato; font-weight: 900; font-size: large;"
+                                                                title="Forecast : {{row.forecastRevenue}} &#10; Avarage : {{row.peerAvarageRevenue}}"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-row-detail>
+                            <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false"
+                                [draggable]="false" [canAutoResize]="false">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded"
+                                        [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+                                        (click)="rowDetailsToggleExpand(row)">
+                                    </a>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Ticker" prop="ticker" [width]="200">
+                                <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+                                    <div class="d-flex align-items-center">
+                                        <div *ngIf="row.logoUrl; else customAvatar">
+                                            <img class="rounded-circle mr-1" src="{{row.logoUrl}}"
+                                                (error)="updateUrl(row)" height="32" width="32">
+                                        </div>
+                                        <ng-template #customAvatar>
+                                            <div class="avatar mr-1 ml-0"
+                                                [ngClass]="{'bg-primary': row.status == '1', 'bg-success':row.status == '2', 'bg-danger':row.status == '3' , 'bg-warning':row.status == '4', 'bg-info':row.status == '5'}  ">
+                                                <div class="avatar-content">{{ name | shortName }}</div>
+                                            </div>
+                                        </ng-template>
+                                        <div class="cell-line-height">
+                                            <a [href]="getRedirectUrl(name)" target="blank">
+                                                <p class="font-medium-1 line-height-1 mb-0">{{ name }}</p>
+                                                <span class="text-muted font-small-2">
+                                                    {{ row.companyName }}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Date" prop="dateText" [width]="25" headerClass="center-align" [cellClass]="center-align">
+                                <ng-template let-date="value" ngx-datatable-cell-template>
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align: center;">
+                                            <span>
+                                                {{ date ? date : "-" }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Eps" prop="forecastEps" [width]="10" headerClass="center-align" [cellClass]="center-align">
+                                <ng-template let-eps="value" ngx-datatable-cell-template>
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align: center;">
+                                            <span>
+                                                {{ eps != null ? (eps | number) : '--' }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Revenue" prop="forecastRevenue" [width]="10" headerClass="center-align" [cellClass]="center-align">
+                                <ng-template let-revenue="value" ngx-datatable-cell-template>
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align: center;">
+                                            <span>
+                                                {{ revenue != null ? (revenue | number) : '--' }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Reason" prop="reason" [width]="10">
+                                <ng-template let-reason="value" ngx-datatable-cell-template>
+                                    <div class="badge badge-pill"
+                                        [ngClass]="{'bg-light-primary': reason == 'Earnings', 'bg-light-success':reason == 'News', 'bg-light-danger':status == 'InsiderTransaction'}">
+                                        {{ reason ? reason : "Nötr" }}
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Actions" prop="offer" [width]="10">
+                                <ng-template let-offer="value" ngx-datatable-cell-template>
+                                    <div class="badge badge-pill" *ngIf="this.allowedToSee"
+                                        [ngClass]="{'bg-light-success': offer == 'Buy', 'bg-light-danger': offer == 'Sell'}">
+                                        {{ offer? offer : "Nötr" }}
+                                    </div>
+                                    <div *ngIf="!this.allowedToSee">
+                                        <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="A. N. C" title="Avarage Nightly Change" prop="avarageNightlyChange" [width]="10" headerClass="center-align" cellClass="center-align">
+                                <ng-template let-change="value" ngx-datatable-cell-template>
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align: center;">
+                                            <span *ngIf="this.allowedToSee">
+                                                {{ change ? (change | number) : '--' }}
+                                            </span>
+                                            
+                                            <span *ngIf="!this.allowedToSee">
+                                                <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                        </ngx-datatable>
+                        <!-- ngx-datatable-row-details -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
