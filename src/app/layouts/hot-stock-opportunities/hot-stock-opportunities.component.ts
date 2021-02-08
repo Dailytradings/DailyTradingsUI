@@ -15,6 +15,7 @@ import { ContentService } from './../../shared/services/content.service'
   styleUrls: ['./hot-stock-opportunities.component.scss', '/assets/sass/libs/datatables.scss'],
   encapsulation: ViewEncapsulation.None
 })
+// 
 export class HotStockOpportunitiesComponent implements OnInit {
 
   @Input() dataCount = 250;

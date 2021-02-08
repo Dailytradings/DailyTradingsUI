@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "https://localhost:44398",
+  baseUrl: "http://daytradings.academytech.com/api",
   baseFrontendUrl: "http://localhost:4200",
   notFoundLogoUrl: "../../../../assets/img/ico/image-not-found.png",
   // baseUrl: "http://daytradings.academytech.com/api"
