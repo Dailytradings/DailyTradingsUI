@@ -37,3 +37,13 @@
     padding-left: 22%;
 }
 
+
+@font-face {
+    font-family: exo;
+    src: url(assets/fonts/exo/Exo-VariableFont_wght.ttf);
+  }
+
+
+*{
+    font-family: exo;
+}

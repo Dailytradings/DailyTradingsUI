@@ -34,6 +34,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   public isCollapsed = true;
   layoutSub: Subscription;
   configSub: Subscription;
+  displayOverlayMenu = false; // Vertical Side menu for screenSize < 1200
+  
   languageList = [
     { key: 'tr', name: 'turkish', flagUrl: './assets/img/flags/tr.png' },
     { key: 'en', name: 'english', flagUrl: './assets/img/flags/us.png' },
