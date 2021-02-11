@@ -12,7 +12,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "dragula",
               "firebase/app",
               "@mattlewis92/dom-autoscroller",
               "angular-calendar/date-adapters/date-fns",
@@ -24,7 +23,7 @@
               "chart.js"
             ],
             "aot": true,
-            "outputPath": "../../../../../inetpub/wwwroot",
+            "outputPath": "dist/matngular/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -35,7 +34,7 @@
               "src/web.config"
             ],
             "styles": [
-              "node_modules/sweetalert2/dist/sweetalert2.min.css",
+              "./node_modules/sweetalert2/dist/sweetalert2.min.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
               "src/assets/css/wizard.css",
@@ -45,7 +44,6 @@
               "src/assets/css/animate.min.css",
               "node_modules/nouislider/distribute/nouislider.min.css",
               "node_modules/angular-calendar/scss/angular-calendar.scss",
-              "node_modules/dragula/dist/dragula.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/@swimlane/ngx-datatable/index.css",
               "node_modules/@swimlane/ngx-datatable/themes/bootstrap.css",
@@ -123,7 +121,6 @@
               "src/assets/css/hopscotch.css",
               "node_modules/nouislider/distribute/nouislider.min.css",
               "node_modules/angular-calendar/scss/angular-calendar.scss",
-              "node_modules/dragula/dist/dragula.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/@swimlane/ngx-datatable/index.css",
               "node_modules/@swimlane/ngx-datatable/assets/icons.css",
@@ -142,11 +139,61 @@
           "options": {
             "tsConfig": [
               "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "src/tsconfig.spec.json",
+              "src/tsconfig.server.json"
             ],
             "exclude": [
               "**/node_modules/**/*"
             ]
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/matngular/server",
+            "main": "server.ts",
+            "tsConfig": "src/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "matngular:build",
+            "serverTarget": "matngular:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "matngular:build:production",
+              "serverTarget": "matngular:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "matngular:build:production",
+            "serverTarget": "matngular:server:production",
+            "routes": [
+              "/",
+              "home",
+              "stock/home"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

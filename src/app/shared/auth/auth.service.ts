@@ -1,16 +1,17 @@
 import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { environment } from 'environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AlertObject } from '../data/alertData';
 import { NotificationService } from '../services/notification.service';
 import { BroadcastingService } from '../services/broadcasting.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class AuthService {
 
-  constructor(public router: Router, public http: HttpClient, public notificationService: NotificationService, public broadcastingService: BroadcastingService) {
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object,public router: Router, public http: HttpClient, public notificationService: NotificationService, public broadcastingService: BroadcastingService) {
 
   }
 
@@ -207,6 +208,7 @@ export class AuthService {
   }
 
   isPageAuthorized(keyword) {
+   if(isPlatformBrowser(this._platformId)) {
     let user = this.getUser();
     if (user != undefined) {
       console.log('permissions : ', user.pagePermission);
@@ -217,6 +219,7 @@ export class AuthService {
       }
     }
     return true;
+   }
   }
 
   isSawAuthorized(keyword) {

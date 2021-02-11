@@ -1,12 +1,10 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { environment } from '../../../../environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ContentService } from './../../../shared/services/content.service'
 import { AuthService } from '../../../shared/auth/auth.service';
+import { ContentService } from './../../../shared/services/content.service';
 
 @Component({
   selector: 'app-analyst-ratings-opportunities-list',
@@ -89,7 +87,12 @@ export class AnalystRatingsOpportunitiesListComponent implements OnInit {
      *
      * @param {HttpClient} http
      */
-    constructor(private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService) { }
+    isBrowser = false;
+    constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService) { 
+      if (isPlatformBrowser(_platformId)) {
+        this.isBrowser = true;
+      }
+    }
   
     changeTimeRange(timeRange) {
       this.selectedTimeRange = timeRange;

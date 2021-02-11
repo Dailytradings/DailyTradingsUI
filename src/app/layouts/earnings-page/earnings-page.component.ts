@@ -1,13 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from 'app/shared/auth/auth.service';
-import { DatatableData } from 'app/Template/data-tables/data/datatables.data';
-import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ContentService } from './../../shared/services/content.service'
+import { ContentService } from './../../shared/services/content.service';
 
 @Component({
   selector: 'app-earnings-page',

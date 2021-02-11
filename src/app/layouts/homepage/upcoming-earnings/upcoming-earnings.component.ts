@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ContentService } from 'app/shared/services/content.service';
 import { environment } from 'environments/environment';
 
@@ -11,14 +12,16 @@ export class UpcomingEarningsComponent implements OnInit {
 
   upcomingEarningsList;
 
-  constructor(private contentService: ContentService, private cdRef: ChangeDetectorRef) { }
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.contentService.getUpcomingEarningsList().subscribe(res => {
-      if (res)
-        this.upcomingEarningsList = res;
-      this.cdRef.detectChanges();
-    });
+    if (isPlatformBrowser(this._platformId)) {
+      this.contentService.getUpcomingEarningsList().subscribe(res => {
+        if (res)
+          this.upcomingEarningsList = res;
+        this.cdRef.detectChanges();
+      });
+    }
   }
 
   getRedirectUrl(ticker) {

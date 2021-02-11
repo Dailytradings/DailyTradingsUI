@@ -1,13 +1,10 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { AuthService } from 'app/shared/auth/auth.service';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
-import { DatatableData } from 'app/Template/data-tables/data/datatables.data';
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ContentService } from './../../../shared/services/content.service';
 
 @Component({
@@ -25,7 +22,7 @@ export class EarningsOpportunitiesListComponent implements OnInit {
   public contentHeader: object;
 
   // row data
-  public rows;
+  public rows = [];
   today: Date = new Date();
   keyDateForOpportunities = { day: this.today.getDate(), month: this.today.getUTCMonth() + 1, year: this.today.getUTCFullYear() };
   selectedTimeRange = 'Today';
@@ -126,8 +123,12 @@ export class EarningsOpportunitiesListComponent implements OnInit {
    *
    * @param {HttpClient} http
    */
-  constructor(private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService, private broadcastingService: BroadcastingService) {
-    this.broadcastingService.logOutObservable.subscribe(() => this.checkDataVisibilityPermission());
+  isBrowser = false;
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService, private broadcastingService: BroadcastingService) {
+    if (isPlatformBrowser(_platformId)) {
+      this.isBrowser = true;
+      this.broadcastingService.logOutObservable.subscribe(() => this.checkDataVisibilityPermission());
+    }
   }
 
   checkDataVisibilityPermission() {
@@ -167,14 +168,14 @@ export class EarningsOpportunitiesListComponent implements OnInit {
    * On init
    */
   ngOnInit() {
-    this.checkDataVisibilityPermission();
-    
-    this.contentService.getHotStockOpportunities("",this.selectedTimeRange,this.dataCount).subscribe(x => {
-      this.rows = x;
-      this.tempData = x;
-      this.cdRef.detectChanges();
-    });
-
+    if (isPlatformBrowser(this._platformId)) {
+      this.checkDataVisibilityPermission();
+      this.contentService.getHotStockOpportunities("", this.selectedTimeRange, this.dataCount).subscribe(x => {
+        this.rows = x;
+        this.tempData = x;
+        this.cdRef.detectChanges();
+      });
+    }
     // content header
     this.contentHeader = {
       headerTitle: 'Datatables',

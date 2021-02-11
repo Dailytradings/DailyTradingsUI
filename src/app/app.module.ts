@@ -11,7 +11,6 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { StoreModule } from "@ngrx/store";
-import { DragulaService } from "ng2-dragula";
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import {
@@ -22,7 +21,6 @@ import {
 
 import { AppRoutingModule } from "./app-routing.module";
 import { SharedModule } from "./shared/shared.module";
-import * as fromApp from './Template/store/app.reducer';
 import { AppComponent } from "./app.component";
 
 import { AuthService } from "./shared/auth/auth.service";
@@ -60,10 +58,9 @@ export function createTranslateLoader(http: HttpClient) {
         
   declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     FormsModule,
-    StoreModule.forRoot(fromApp.appReducer),
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
@@ -88,7 +85,6 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     AuthService,
     AuthGuard,
-    DragulaService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

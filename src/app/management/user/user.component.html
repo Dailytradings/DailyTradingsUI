@@ -32,7 +32,7 @@
                                 <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
                                     [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
                                     [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
-                                    [reorderable]="true" [sorts]="[{prop: 'userTypeName', dir: 'asc'}]">
+                                    [reorderable]="true" [sorts]="[{prop: 'userTypeName', dir: 'asc'}]" *ngIf="isBrowser">
 
                                     <ngx-datatable-column name="Username" prop="userName" [width]="25">
                                     </ngx-datatable-column>

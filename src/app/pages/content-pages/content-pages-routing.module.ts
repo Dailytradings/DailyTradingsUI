@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { ComingSoonPageComponent } from "./coming-soon/coming-soon-page.component";
 import { ErrorPageComponent } from "./error/error-page.component";
 import { ForgotPasswordPageComponent } from "./forgot-password/forgot-password-page.component";
@@ -10,6 +9,7 @@ import { MaintenancePageComponent } from "./maintenance/maintenance-page.compone
 import { RePasswordComponent } from './re-password/re-password.component';
 import { RegisterPageComponent } from "./register/register-page.component";
 import { VerifyComponent } from "./verify/verify.component";
+
 
 
 const routes: Routes = [

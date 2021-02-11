@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from "@angular/router";
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from 'app/shared/auth/auth.service';
 import { SignalRService } from 'app/shared/services/signalr.service';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -25,13 +26,14 @@ export class LoginPageComponent {
     rememberMe: new FormControl(true)
   });
 
-
-  constructor(private router: Router, 
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router,
     private authService: AuthService,
     private signalRService: SignalRService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute) {
-    localStorage.removeItem("user");
+    if (isPlatformBrowser(this._platformId)) {
+      localStorage.removeItem("user");
+    }
   }
 
   get lf() {
@@ -64,13 +66,13 @@ export class LoginPageComponent {
                   .subscribe((propRes) => {
                     this.spinner.hide();
                     if (propRes) {
-                      localStorage.setItem("user", JSON.stringify({ user: user, pagePermission: pageRes,propPermission: propRes }));
+                      localStorage.setItem("user", JSON.stringify({ user: user, pagePermission: pageRes, propPermission: propRes }));
                       this.signalRService.Login(user.id);
                       this.router.navigate(['/stock/home']);
                     }
                   });
-                }
-              });
+              }
+            });
         }
       },
         (err) => {

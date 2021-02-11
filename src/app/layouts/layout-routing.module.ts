@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'app/shared/auth/auth-guard.service';
-import { HotStockOpportunitiesComponent } from './hot-stock-opportunities/hot-stock-opportunities.component'
-import { InsiderTradesComponent } from './insider-trades/insider-trades.component';
-import { ObservableOpportunitieseComponent } from './observable-opportunities/observable-opportunities.component';
-import { PremarketAnalysisComponent } from './premarket-analysis/premarket-analysis.component';
-import { OverviewComponent } from './overview/overview.component';
-
-import { HomepageComponent } from './homepage/homepage.component';
-import { WishlistOverviewComponent } from './wishlist-overview/wishlist-overview.component';
 import { AlertComponent } from './alert/alert.component';
-import { DividendsComponent } from './dividends/dividends.component';
-import { RatingsComponent } from './ratings/ratings.component';
-
-import { EarningsPageComponent } from './earnings-page/earnings-page.component'
-import { DividendPageComponent } from './dividend-page/dividend-page.component';
 import { AnalystRatingsPageComponent } from './analyst-ratings-page/analyst-ratings-page.component';
-import { InsiderTradesPageComponent } from './insider-trades-page/insider-trades-page.component';
-import { OtherPredictionsFromWebsitesComponent } from './other-predictions-from-websites/other-predictions-from-websites.component';
+import { DividendPageComponent } from './dividend-page/dividend-page.component';
+import { DividendsComponent } from './dividends/dividends.component';
 import { EarningsAnalysisComponent } from './earnings-analysis/earnings-analysis.component';
-import { PreviousEarningsEffectsComponent } from './previous-earnings-effects/previous-earnings-effects.component';
-import { PreviousDividendEffectsComponent } from './previous-dividend-effects/previous-dividend-effects.component';
+import { EarningsPageComponent } from './earnings-page/earnings-page.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { HotStockOpportunitiesComponent } from './hot-stock-opportunities/hot-stock-opportunities.component';
+import { InsiderTradesPageComponent } from './insider-trades-page/insider-trades-page.component';
+import { InsiderTradesComponent } from './insider-trades/insider-trades.component';
 import { MostReliableCompetitorsComponent } from './most-reliable-competitors/most-reliable-competitors.component';
+import { ObservableOpportunitieseComponent } from './observable-opportunities/observable-opportunities.component';
+import { OtherPredictionsFromWebsitesComponent } from './other-predictions-from-websites/other-predictions-from-websites.component';
+import { OverviewComponent } from './overview/overview.component';
+import { PremarketAnalysisComponent } from './premarket-analysis/premarket-analysis.component';
+import { PreviousDividendEffectsComponent } from './previous-dividend-effects/previous-dividend-effects.component';
+import { PreviousEarningsEffectsComponent } from './previous-earnings-effects/previous-earnings-effects.component';
+import { RatingsComponent } from './ratings/ratings.component';
+import { WishlistOverviewComponent } from './wishlist-overview/wishlist-overview.component';
+
+
 
 
 const routes: Routes = [
