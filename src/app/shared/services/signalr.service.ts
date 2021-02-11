@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable,PLATFORM_ID } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import { environment } from '../../../environments/environment';
 import { AlertObject } from '../data/alertData';
 import { NotificationService } from '../services/notification.service';
 import { AuthService } from 'app/shared/auth/auth.service';
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,10 @@ export class SignalRService {
   private baseHubConnection: signalR.HubConnection
   private thenableBaseHub: Promise<void>
 
-  constructor( public notificationService: NotificationService, private authService: AuthService) { 
-    this.configureHubConnections();
+  constructor( @Inject(PLATFORM_ID) private _platformId: Object, public notificationService: NotificationService, private authService: AuthService) { 
+    if (isPlatformBrowser(this._platformId)) {
+      this.configureHubConnections();
+    }
   }
 
 

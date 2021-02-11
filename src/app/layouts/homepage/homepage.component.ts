@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContentService } from 'app/shared/services/content.service';
 import * as Chartist from 'chartist';
@@ -52,14 +53,15 @@ donutChart2: Chart = {
 
   mainNews;
 
-  constructor(private router: Router, private contentService: ContentService) { }
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService) { }
 
   ngOnInit(): void {
+   if(isPlatformBrowser(this._platformId)) {
     this.contentService.getBanner().subscribe(res => {
       if (res)
         this.bannerUrl = res;
     });
-
+   }
     this.contentService.getOurEstimatesActivityNews(1).subscribe(res => {
       if (res)
         this.mainNews = res;

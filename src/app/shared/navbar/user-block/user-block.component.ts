@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/shared/auth/auth.service';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
@@ -12,7 +13,7 @@ export class UserBlockComponent implements OnInit {
 
   userData;
   user;
-  constructor(private router: Router, private authService: AuthService, private broadcastingService: BroadcastingService, private cdRef: ChangeDetectorRef) {
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object,private router: Router, private authService: AuthService, private broadcastingService: BroadcastingService, private cdRef: ChangeDetectorRef) {
   }
 
   checkLogging() {
@@ -24,9 +25,11 @@ export class UserBlockComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
-  ngOnInit(): void { 
-    this.checkLogging();
-    this.broadcastingService.logOutObservable.subscribe(() => this.checkLogging());
+  ngOnInit() { 
+    if(isPlatformBrowser(this._platformId)) {
+      this.checkLogging();
+      this.broadcastingService.logOutObservable.subscribe(() => this.checkLogging());
+      }
   }
 
   logOut() {

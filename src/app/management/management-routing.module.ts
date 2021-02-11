@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'app/shared/auth/auth-guard.service';
 import { CompanyComponent } from './company/company.component';
-import { OldCompanyComponent } from './company/old-company/old-company.component';
 import { CompetitorsManagementComponent } from './company/competitors-management/competitors-management.component';
 import { DividendManagementComponent } from './company/dividend-management/dividend-management.component';
 import { EarningsManagementComponent } from './company/earnings-management/earnings-management.component';
+import { OldCompanyComponent } from './company/old-company/old-company.component';
 import { OtherPredictionsManagementComponent } from './company/other-predictions-management/other-predictions-management.component';
 import { UserComponent } from './user/user.component';
 

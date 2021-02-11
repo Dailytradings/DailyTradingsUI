@@ -1,17 +1,15 @@
-import { Component, Output, EventEmitter, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef, Inject, Renderer2, ViewChild, ElementRef, ViewChildren, QueryList, HostListener } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { LayoutService } from '../services/layout.service';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { ConfigService } from '../services/config.service';
-import { DOCUMENT } from '@angular/common';
-import { CustomizerService } from '../services/customizer.service';
-import { SymbolService } from '../services/symbol.service';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Inject, OnDestroy, OnInit, Output, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { LISTITEMS } from '../data/template-search';
 import { Router } from '@angular/router';
-import { BroadcastingService } from '../services/broadcasting.service';
-import { AuthService } from '../auth/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 import { AlertListModalComponent } from 'app/layouts/alert/alert-list-modal/alert-list-modal.component';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { BroadcastingService } from '../services/broadcasting.service';
+import { ConfigService } from '../services/config.service';
+import { LayoutService } from '../services/layout.service';
+import { SymbolService } from '../services/symbol.service';
 
 @Component({
   selector: "app-navbar",
@@ -67,17 +65,19 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   
   @ViewChild('modalList') modalList: AlertListModalComponent;
 
-  constructor(public translate: TranslateService,
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object,
+    public translate: TranslateService,
     private layoutService: LayoutService,
     private router: Router,
     private configService: ConfigService, private cdr: ChangeDetectorRef,
     private symbolService: SymbolService,
     private broadcastingService: BroadcastingService,
     private authService: AuthService) {
-
+      this.config = this.configService.templateConf;
+      if (isPlatformBrowser(this._platformId)) {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de|tr/) ? browserLang : "en");
-    this.config = this.configService.templateConf;
+
     this.innerWidth = window.innerWidth;
 
     this.layoutSub = layoutService.toggleSidebar$.subscribe(
@@ -90,6 +90,10 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.toggleSearchOpenClass(x);
         }, 100);
       });
+    }
+    if (isPlatformServer(this._platformId)) {
+      translate.use("en");
+    }
   }
 
   ngOnInit() {

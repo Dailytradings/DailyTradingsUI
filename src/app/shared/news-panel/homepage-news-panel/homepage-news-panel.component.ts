@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { ContentService } from 'app/shared/services/content.service';
 import { environment } from 'environments/environment';
 
@@ -13,9 +14,11 @@ export class HomepageNewsPanelComponent implements OnInit {
   @Input() type;
   newsList;
 
-  constructor(private contentService: ContentService) { }
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService) { }
 
   ngOnInit(): void {
+   if(isPlatformBrowser(this._platformId)) {
+  }
     if (this.type) {
      switch(this.type) {
         case 'Earnings':
@@ -48,7 +51,7 @@ export class HomepageNewsPanelComponent implements OnInit {
         { newsContentSuffix: "We detected an Insider Trade within AAPL init..." },
         { newsContentSuffix: "AAPL reported that $5,000,000 stocks purchase..." }]
       }
-  }
+}
 
   
   updateUrl(image) {

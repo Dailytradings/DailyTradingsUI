@@ -1,50 +1,49 @@
-import { NgModule } from '@angular/core';
-import { CommonModule, DecimalPipe } from "@angular/common";
-import { RouterModule } from "@angular/router";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
-
+import { CommonModule, DecimalPipe } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AlertListModalComponent } from 'app/layouts/alert/alert-list-modal/alert-list-modal.component';
 import { ClickOutsideModule } from 'ng-click-outside';
-
+import { ChartsModule } from 'ng2-charts';
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import { UiSwitchModule } from 'ngx-ui-switch';
+import { AdPanelComponent } from './ad-panel/ad-panel.component';
 import { AutocompleteModule } from './components/autocomplete/autocomplete.module';
-import { PipeModule } from './pipes/pipe.module';
-
-//COMPONENTS
-import { FooterComponent } from "./footer/footer.component";
-import { NavbarComponent } from "./navbar/navbar.component";
-import { HorizontalMenuComponent } from './horizontal-menu/horizontal-menu.component';
-import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
 import { CustomizerComponent } from './customizer/customizer.component';
-import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
-
+import { SidebarAnchorToggleDirective } from './directives/sidebar-anchor-toggle.directive';
+import { SidebarDropdownDirective } from './directives/sidebar-dropdown.directive';
+import { SidebarLinkDirective } from './directives/sidebar-link.directive';
+import { SidebarDirective } from './directives/sidebar.directive';
 //DIRECTIVES
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
-import { SidebarLinkDirective } from './directives/sidebar-link.directive';
-import { SidebarDropdownDirective } from './directives/sidebar-dropdown.directive';
-import { SidebarAnchorToggleDirective } from './directives/sidebar-anchor-toggle.directive';
-import { SidebarDirective } from './directives/sidebar.directive';
-import { TopMenuDirective } from './directives/topmenu.directive';
-import { TopMenuLinkDirective } from './directives/topmenu-link.directive';
-import { TopMenuDropdownDirective } from './directives/topmenu-dropdown.directive';
 import { TopMenuAnchorToggleDirective } from './directives/topmenu-anchor-toggle.directive';
-import { DynamicTableComponent } from './table/table.component';
-import { UiSwitchModule } from 'ngx-ui-switch';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AlertListModalComponent } from 'app/layouts/alert/alert-list-modal/alert-list-modal.component';
-import { AlertModalComponent } from 'app/layouts/alert/alert-modal/alert-modal.component';
-import { AlertComponent } from 'app/layouts/alert/alert.component';
-import { DataTablesRoutingModule } from 'app/Template/data-tables/data-tables-routing.module';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { AdPanelComponent } from './ad-panel/ad-panel.component';
-import { NewsPanelComponent } from './news-panel/news-panel.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { ChartsModule } from 'ng2-charts';
+import { TopMenuDropdownDirective } from './directives/topmenu-dropdown.directive';
+import { TopMenuLinkDirective } from './directives/topmenu-link.directive';
+import { TopMenuDirective } from './directives/topmenu.directive';
+//COMPONENTS
+import { FooterComponent } from "./footer/footer.component";
+import { HorizontalMenuComponent } from './horizontal-menu/horizontal-menu.component';
+import { NavbarComponent } from "./navbar/navbar.component";
 import { UserBlockComponent } from './navbar/user-block/user-block.component';
 import { HomepageNewsPanelComponent } from './news-panel/homepage-news-panel/homepage-news-panel.component';
+<<<<<<< HEAD
 import { ChartistModule } from 'ng-chartist';
+=======
+import { NewsPanelComponent } from './news-panel/news-panel.component';
+import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
+import { PipeModule } from './pipes/pipe.module';
+import { DynamicTableComponent } from './table/table.component';
+import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
+
+
+
+
+>>>>>>> origin/base
 
 @NgModule({
     exports: [
@@ -63,7 +62,6 @@ import { ChartistModule } from 'ng-chartist';
         DynamicTableComponent,
         DecimalPipe,
         UiSwitchModule,
-        DataTablesRoutingModule,
         NgxDatatableModule,
         AdPanelComponent,
         NewsPanelComponent,
@@ -86,7 +84,6 @@ import { ChartistModule } from 'ng-chartist';
         AutocompleteModule,
         PipeModule,
         UiSwitchModule,
-        DataTablesRoutingModule,
         NgxDatatableModule,
         NgxChartsModule,
         ChartsModule,

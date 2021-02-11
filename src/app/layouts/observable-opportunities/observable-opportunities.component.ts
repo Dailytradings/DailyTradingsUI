@@ -1,12 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbDate, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { AuthService } from 'app/shared/auth/auth.service';
-import { DatatableData } from 'app/Template/data-tables/data/datatables.data';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ContentService } from '../../shared/services/content.service'
+import { ContentService } from '../../shared/services/content.service';
 import { RealtimeTableComponent } from '../hot-stock-opportunities/realtime-table/realtime-table.component';
 
 @Component({

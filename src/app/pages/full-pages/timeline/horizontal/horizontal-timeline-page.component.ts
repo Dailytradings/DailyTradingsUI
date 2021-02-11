@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ContentService } from 'app/shared/services/content.service';
 import { TimelineElement } from './component/timeline-element';
 
@@ -12,7 +13,7 @@ export class HorizontalTimelinePageComponent implements OnInit {
 
      timeline: TimelineElement[];
 
-    constructor(private contentService: ContentService, private cdRef: ChangeDetectorRef) { }
+    constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private cdRef: ChangeDetectorRef) { }
 
     ngOnInit() {
         // this.timeline = [
@@ -29,17 +30,20 @@ export class HorizontalTimelinePageComponent implements OnInit {
         //     { date: new Date(2021, 2, 3), title: 'Event title here', content: this.content },
         // ];
         // console.log(this.timeline);
-        this.contentService.getHolidaysForTimeline().subscribe(res => {
-            if (res){
-                console.log(res);
-                res.forEach(element => {
-                    element.date = new Date(element.date);
-                });
-                this.timeline = res;
-                console.log(this.timeline);
-            }
-            this.cdRef.detectChanges();
-        });
+        if (isPlatformBrowser(this._platformId)) {
+            this.contentService.getHolidaysForTimeline().subscribe(res => {
+                if (res){
+                    console.log(res);
+                    res.forEach(element => {
+                        element.date = new Date(element.date);
+                    });
+                    this.timeline = res;
+                    console.log(this.timeline);
+                }
+                this.cdRef.detectChanges();
+            });
+          }
+      
     }
 
      content = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae

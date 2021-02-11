@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { AuthService } from 'app/shared/auth/auth.service';
@@ -34,17 +35,19 @@ export class UserComponent implements OnInit {
   reEmailForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
   });
-
-  constructor(private authService: AuthService,
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object,
+    private authService: AuthService,
     private cdRef: ChangeDetectorRef,
     private formBuilder: FormBuilder) {
-    authService.isPageAuthorized("Management");
-    this.authService.getAllUserTypes().subscribe(res => {
-      if (res) {
-        this.userTypeList = res;
-        this.getAllUsers();
-      }
-    });
+    if (isPlatformBrowser(this._platformId)) {
+      authService.isPageAuthorized("Management");
+      this.authService.getAllUserTypes().subscribe(res => {
+        if (res) {
+          this.userTypeList = res;
+          this.getAllUsers();
+        }
+      });
+    }
   }
 
   getAllUsers() {
@@ -55,14 +58,14 @@ export class UserComponent implements OnInit {
     });
   }
 
-get ruf() {
-  return this.reUsernameForm.controls;
-}
+  get ruf() {
+    return this.reUsernameForm.controls;
+  }
 
 
-get rfnf() {
-  return this.reFullNameForm.controls;
-}
+  get rfnf() {
+    return this.reFullNameForm.controls;
+  }
   get rpf() {
     return this.rePasswordForm.controls;
   }
@@ -236,20 +239,20 @@ get rfnf() {
           }
         });
         break;
-        case 'fullName':
-          this.reFullNameFormSubmitted = true;
-          if (this.reFullNameForm.invalid) {
-            return;
+      case 'fullName':
+        this.reFullNameFormSubmitted = true;
+        if (this.reFullNameForm.invalid) {
+          return;
+        }
+        let reFullNameItem = { id: this.selectedUser.id, fullName: this.reFullNameForm.value.fullName };
+        this.authService.reFullName(reFullNameItem).subscribe(res => {
+          if (res) {
+            this.selectedEdit = undefined;
+            this.resetForms();
+            this.getAllUsers();
           }
-          let reFullNameItem = { id: this.selectedUser.id, fullName: this.reFullNameForm.value.fullName };
-          this.authService.reFullName(reFullNameItem).subscribe(res => {
-            if (res) {
-              this.selectedEdit = undefined;
-              this.resetForms();
-              this.getAllUsers();
-            }
-          });
-          break;
+        });
+        break;
       case 'password':
         this.rePasswordFormSubmitted = true;
         if (this.rePasswordForm.invalid) {
@@ -277,30 +280,30 @@ get rfnf() {
           }
         });
         break;
-        case 'plan':
-          this.authService.reRankProfile(this.selectedUser.id, this.selectedUser.userTypeId).subscribe(res => {
-            if (res) {
-              {
-                this.authService.updateCacheUser(this.selectedUser, "Management");
-                this.selectedEdit = undefined;
-                this.resetForms();
-                this.getAllUsers();
-              }
+      case 'plan':
+        this.authService.reRankProfile(this.selectedUser.id, this.selectedUser.userTypeId).subscribe(res => {
+          if (res) {
+            {
+              this.authService.updateCacheUser(this.selectedUser, "Management");
+              this.selectedEdit = undefined;
+              this.resetForms();
+              this.getAllUsers();
             }
-          });
-          break;
-          case 'date':
-          let datestring = this.keyDateForExpireDate.day + '-' +this.keyDateForExpireDate.month + '-' +this.keyDateForExpireDate.year;
-            this.authService.reExpireDate(this.selectedUser.id, datestring).subscribe(res => {
-              if (res) {
-                {
-                  this.selectedEdit = undefined;
-                  this.resetForms();
-                  this.getAllUsers();
-                }
-              }
-             });
-            break;
+          }
+        });
+        break;
+      case 'date':
+        let datestring = this.keyDateForExpireDate.day + '-' + this.keyDateForExpireDate.month + '-' + this.keyDateForExpireDate.year;
+        this.authService.reExpireDate(this.selectedUser.id, datestring).subscribe(res => {
+          if (res) {
+            {
+              this.selectedEdit = undefined;
+              this.resetForms();
+              this.getAllUsers();
+            }
+          }
+        });
+        break;
 
     }
   }
