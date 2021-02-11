@@ -29,7 +29,7 @@ export interface Chart {
 })
 export class HomepageComponent implements OnInit {
 
-
+isBrowser;
 
 // Donut Chart 2 Starts
 donutChart2: Chart = {
@@ -57,6 +57,7 @@ donutChart2: Chart = {
 
   ngOnInit(): void {
    if(isPlatformBrowser(this._platformId)) {
+     this.isBrowser = true;
     this.contentService.getBanner().subscribe(res => {
       if (res)
         this.bannerUrl = res;

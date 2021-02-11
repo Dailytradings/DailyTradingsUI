@@ -5,12 +5,8 @@
 
 export const environment = {
   production: false,
-<<<<<<< HEAD
   baseUrl: "http://daytradings.academytech.com/api",
-=======
-  // baseUrl: "https://localhost:44398",
->>>>>>> origin/base
+  //baseUrl: "https://localhost:44398",
   baseFrontendUrl: "http://localhost:4200",
   notFoundLogoUrl: "../../../../assets/img/ico/image-not-found.png",
-  baseUrl: "http://daytradings.academytech.com/api"
 };

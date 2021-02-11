@@ -34,7 +34,7 @@
                                                                             <div id="donut-chart2" class="">
                                                                                 <x-chartist class="height-50" [data]="donutChart2.data" [type]="donutChart2.type" [options]="donutChart2.options" 
                                                                                 [responsiveOptions]="donutChart2.responsiveOptions"
-                                                                                    [events]="donutChart2.events"> 
+                                                                                    [events]="donutChart2.events" *ngIf="this.isBrowser"> 
                                                                                 </x-chartist>
                                                                             </div>
                                                                         </div>

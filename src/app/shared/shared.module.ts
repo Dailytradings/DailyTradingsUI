@@ -31,19 +31,12 @@ import { HorizontalMenuComponent } from './horizontal-menu/horizontal-menu.compo
 import { NavbarComponent } from "./navbar/navbar.component";
 import { UserBlockComponent } from './navbar/user-block/user-block.component';
 import { HomepageNewsPanelComponent } from './news-panel/homepage-news-panel/homepage-news-panel.component';
-<<<<<<< HEAD
 import { ChartistModule } from 'ng-chartist';
-=======
 import { NewsPanelComponent } from './news-panel/news-panel.component';
 import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 import { PipeModule } from './pipes/pipe.module';
 import { DynamicTableComponent } from './table/table.component';
 import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
-
-
-
-
->>>>>>> origin/base
 
 @NgModule({
     exports: [
