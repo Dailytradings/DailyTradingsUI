@@ -1,6 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContentService } from 'app/shared/services/content.service';
+import * as Chartist from 'chartist';
+import { ChartType, ChartEvent } from "ng-chartist";
+
+
+//Declarations
+declare var require: any;
+const data: any = require('../../shared/data/chartist.json');
+
+//Interface
+export interface Chart {
+    type: ChartType;
+    data: Chartist.IChartistData;
+    options?: any;
+    responsiveOptions?: any;
+    events?: ChartEvent;
+}
+
+
+
 
 @Component({
   selector: 'app-homepage',
@@ -8,6 +27,26 @@ import { ContentService } from 'app/shared/services/content.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
+
+
+
+// Donut Chart 2 Starts
+donutChart2: Chart = {
+  type: 'Pie',
+  data: {
+    "series": [
+      90,
+      10
+    ]
+  },
+  options: {
+      donut: true,
+      donutWidth: 5,
+      showLabel: true,
+      labelDirection: 'implode',
+  },
+};
+// Donut Chart 2 Ends
 
   bannerUrl = "../../../assets/img/banner/banner-18.jpg";
 

@@ -1,17 +1,20 @@
-<div class="card card-outline-success box-shadow-0 text-left" style="background-color: white;">
+<div class="card text-left" style="background-color: white; margin-top: 150px;">
     <div class="card-content">
         <div class="card-body">
             <div class="row d-flex">
+                <div class="col-sm-12" style="padding-top: 10px; text-align: center;">
+                    <h5 style="margin:0px;">Upcoming Earnings</h5>
+                </div>
                 <div class="col-sm-12 align-self-center"  *ngFor="let row of upcomingEarningsList">
-                    <div class="card card-outline-success box-shadow-0 text-left" style="background-color: white; margin-bottom: 5px; margin-top: 5px;">
+                    <div class="card text-left" style="background-color: white; margin-bottom: 5px; margin-top: 5px;">
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="row d-flex">
                                     <div class="col-sm-12 align-self-center">
                                         <div class="d-flex align-items-center">
                                             <div *ngIf="row.logoUrl; else customAvatar">
-                                                <img class="rounded-circle mr-1" src="{{row.logoUrl}}" (error)="updateUrl(row)" height="32"
-                                                    width="32">
+                                                <img class="rounded-circle mr-1" src="{{row.logoUrl}}" (error)="updateUrl(row)" height="42"
+                                                    width="42" style="background: #fbfbfb">
                                             </div>
                                             <ng-template #customAvatar>
                                                 <div class="avatar mr-1 ml-0"

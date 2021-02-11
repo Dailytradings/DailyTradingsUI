@@ -1,19 +1,90 @@
 <div class="row"
     style="height: 300px; background-image: url('{{this.bannerUrl}}'); background-size: 100% 100%;">
-    <div class="col-sm-4">
+    <div class="col-sm-3" style="margin-top: 150px;">
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-3"></div> -->
+            <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-12" style="padding-top: 5%;">
-                        <div class="card card-outline-success box-shadow-0 text-left" style="background-color: white;">
+                        <div class="card text-left" style="background-color: white;">
                             <div class="card-content">
                                 <div class="card-body" style="max-height: 430px;">
                                     <div class="row d-flex">
                                         <div class="col-sm-12 align-self-center">
-                                            <p class="card-text" style="color: black; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                {{news.newsContent}}
-                                            </p>
+                                            
+                                            
+                                            <ol class="col-sm-12" style="padding: 0;">
+                                                <li class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
+                                                    <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                                    <div class="col-sm-6 d-flex flex-column" style="padding: 0;">
+                                                        <span>ZG</span>
+                                                        <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
+                                                    </div>
+                                                    <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
+                                                    <span class="col-sm-3 chart" style="padding: 0;">
+                                                        <!--Donut Chart 2 Starts-->
+                                                        <div class="row text-left">
+                                                            <div class="col-sm-12">
+                                                                <div class="card" style="margin: 0; position: relative; display: flex; align-items: center; justify-content: center;">
+                                                                    <span class="chart-count" style="position: absolute; font-size: .8em;">
+                                                                        %90
+                                                                    </span>
+                                                                    <div class="card-content">
+                                                                        <div class="card-body" style="padding: 0;">
+                                                                            <div id="donut-chart2" class="">
+                                                                                <x-chartist class="height-50" [data]="donutChart2.data" [type]="donutChart2.type" [options]="donutChart2.options" 
+                                                                                [responsiveOptions]="donutChart2.responsiveOptions"
+                                                                                    [events]="donutChart2.events"> 
+                                                                                </x-chartist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Donut Chart 2 Ends-->
+                                                    </span>
+                                                </li>
+                                                <p class="card-text" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                    We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
+                                                </p>
+
+
+                                                <li class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
+                                                    <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                                    <div class="col-sm-6 d-flex flex-column" style="padding: 0;">
+                                                        <span>ZG</span>
+                                                        <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
+                                                    </div>
+                                                    <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
+                                                    <span class="col-sm-3 chart" style="padding: 0;">
+                                                        <!--Donut Chart 2 Starts-->
+                                                        <div class="row text-left">
+                                                            <div class="col-sm-12">
+                                                                <div class="card" style="margin: 0; position: relative; display: flex; align-items: center; justify-content: center;">
+                                                                    <span class="chart-count" style="position: absolute; font-size: .8em;">
+                                                                        %90
+                                                                    </span>
+                                                                    <div class="card-content">
+                                                                        <div class="card-body" style="padding: 0;">
+                                                                            <div id="donut-chart2" class="">
+                                                                                <x-chartist class="height-50" [data]="donutChart2.data" [type]="donutChart2.type" [options]="donutChart2.options" 
+                                                                                [responsiveOptions]="donutChart2.responsiveOptions"
+                                                                                    [events]="donutChart2.events"> 
+                                                                                </x-chartist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Donut Chart 2 Ends-->
+                                                    </span>
+                                                </li>
+                                                <p class="card-text" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                    We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
+                                                </p>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
@@ -24,7 +95,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
         <div class="row">
             <!-- <div class="col-sm-2" style="padding-top: 5%;" *ngFor="let number of [0,1,2,3,4]">
                 <div class="card card-outline-success box-shadow-0 text-left" style="background-color: white;">
@@ -50,9 +121,7 @@
 <div class="row">
     <div class="col-sm-3" style="margin-top:10%; padding-right:2%; padding-left:2%;">
         <div class="row">
-            <div class="col-sm-12" style="text-align: center;">
-                <h5 style="margin:0px;text-shadow: 2px 2px #7d7d7d;">Upcoming Earnings</h5>
-            </div>
+            
             <div class="col-sm-12">
                 <app-upcoming-earnings></app-upcoming-earnings>
             </div>
@@ -60,7 +129,7 @@
     </div>
     <div class="col-sm-9">
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-12">
                         <app-earnings-opportunities-list [demo]="true" [dataCount]="'10'"></app-earnings-opportunities-list>
@@ -73,7 +142,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2" style="padding-top: 15%;">
+            <!-- <div class="col-sm-2" style="padding-top: 15%;">
                 <div class="card card-outline-success box-shadow-0 text-left" style="background-color: black;">
                     <div class="card-content">
                         <div class="card-body">
@@ -87,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- <div class="row">
             <div class="col-sm-12">

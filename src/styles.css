@@ -40,7 +40,7 @@
 
 @font-face {
     font-family: exo;
-    src: url(assets/fonts/exo/Exo-VariableFont_wght.ttf);
+    src: url("assets/fonts/exo/Exo-VariableFont_wght.ttf");
   }
 
 

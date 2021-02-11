@@ -44,6 +44,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
 import { UserBlockComponent } from './navbar/user-block/user-block.component';
 import { HomepageNewsPanelComponent } from './news-panel/homepage-news-panel/homepage-news-panel.component';
+import { ChartistModule } from 'ng-chartist';
 
 @NgModule({
     exports: [
@@ -69,6 +70,7 @@ import { HomepageNewsPanelComponent } from './news-panel/homepage-news-panel/hom
         HomepageNewsPanelComponent,
         NgxChartsModule,
         ChartsModule,
+        ChartistModule,
     ],
     imports: [
         RouterModule,
@@ -88,6 +90,7 @@ import { HomepageNewsPanelComponent } from './news-panel/homepage-news-panel/hom
         NgxDatatableModule,
         NgxChartsModule,
         ChartsModule,
+        ChartistModule,
         ],
     declarations: [
         FooterComponent,
