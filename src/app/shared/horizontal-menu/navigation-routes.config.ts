@@ -191,6 +191,7 @@ export const HROUTES: RouteInfo[] = [
   {
     path: '', title: 'Management', icon: 'ft-activity', class: 'dropdown nav-item has-sub', isExternalLink: false, submenu: [
       { path: '/management/oldcompany', title: 'Old Company', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      { path: '/management/general', title: 'General', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/management/company', title: 'Company', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/management/user', title: 'User', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
     ]
