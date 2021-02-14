@@ -82,12 +82,6 @@ export class ContentService {
     );
   }
 
-  getHolidaysForTimeline() {
-    return this.http.get(environment.baseUrl + "/content/GetHolidaysForTimeline").pipe(
-      map((response: any) => this.checkResponse(response))
-    );
-  }
-  
   getMostReliableCompetitorList() {
     return this.http.get(environment.baseUrl + "/content/GetMostReliableCompetitorList").pipe(
       map((response: any) => this.checkResponse(response))
@@ -135,6 +129,62 @@ export class ContentService {
     return this.http.get(environment.baseUrl + "/content/GetAlertTypeList").pipe(
       map((response: any) => this.checkResponse(response))
     );
+  }
+
+  getAllRegions() {
+    return this.http.get(environment.baseUrl + "/content/GetRegionList").pipe(
+      map((response: any) => this.checkResponse(response))
+    );
+  }
+
+  getAllHolidayEffectTypes() {
+    return this.http.get(environment.baseUrl + "/content/GetHolidayEffectTypeList").pipe(
+      map((response: any) => this.checkResponse(response))
+    );
+  }
+
+  getHolidaysForTimeline() {
+    return this.http.get(environment.baseUrl + "/content/GetHolidaysForTimeline").pipe(
+      map((response: any) => this.checkResponse(response))
+    );
+  }
+
+  newHoliday(holiday) {
+    //your code for checking credentials and getting tokens for for signing in user
+    return this.http.post(environment.baseUrl + "/content/NewHoliday", this.createRequest(holiday))
+      .pipe(
+        map((response: any) => this.checkResponse(response, true))
+      );
+  }
+
+  reHolidayName(holiday) {
+    //your code for checking credentials and getting tokens for for signing in user
+    return this.http.post(environment.baseUrl + "/content/ReHolidayName", this.createRequest(holiday))
+      .pipe(
+        map((response: any) => this.checkResponse(response, true))
+      );
+  }
+
+  reHolidayDate(holiday) {
+    //your code for checking credentials and getting tokens for for signing in user
+    return this.http.post(environment.baseUrl + "/content/ReHolidayDate", this.createRequest(holiday))
+      .pipe(
+        map((response: any) => this.checkResponse(response, true))
+      );
+  }
+
+  reHolidayEffect(holiday) {
+    return this.http.post(environment.baseUrl + "/content/ReHolidayEffect", this.createRequest(holiday))
+      .pipe(
+        map((response: any) => this.checkResponse(response, true))
+      );
+  }
+
+  reHolidayRegion(holiday) {
+    return this.http.post(environment.baseUrl + "/content/ReHolidayRegion", this.createRequest(holiday))
+      .pipe(
+        map((response: any) => this.checkResponse(response, true))
+      );
   }
 
   addAlert(data) {

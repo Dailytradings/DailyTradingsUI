@@ -83,42 +83,7 @@
                                             </div>
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="25">
-                                        <ng-template ngx-datatable-header-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-4"></div>
-                                                <div class="col-sm-4" style="padding:0px;"><img
-                                                        src="https://www.whispernumber.com/images/wn.gif"
-                                                        title="Whisper Number Sub" style="width: 50px; height: 20px;">
-                                                </div>
-                                                <div class="col-sm-1" style="padding:0px;padding-top:5px;">
-                                                    <b title="Whisper Number Sub" style="cursor:default;">Sub</b>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span style="float: right;">
-                                                        {{ value.whisperNumberSubEps ? (value.whisperNumberSubEps | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
-                                                    /
-                                                </div>
-
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span>
-                                                        {{ value.whisperNumberSubRevenue ? (value.whisperNumberSubRevenue | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-
-
+                                
                                     <ngx-datatable-column [width]="25">
                                         <ng-template ngx-datatable-header-template>
                                             <div class="row" style="text-align: center;">
@@ -149,40 +114,6 @@
                                             </div>
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="25">
-                                        <ng-template ngx-datatable-header-template>
-                                            <div class="row">
-                                                <div class="col-sm-9" style="padding:0px;"><img
-                                                        src="https://www.earningswhispers.com/images/newewlogo-dg.png"
-                                                        title="Earnings Whisper Sub"
-                                                        style="width: 75px; height: 20px; float:right;"></div>
-                                                <div class="col-sm-1" style="padding-top: 5px; padding-left:5px;">
-                                                    <b title="Earnings Whisper Sub" style="cursor:default;">Sub</b>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span style="float: right;">
-                                                        {{ value.earningsWhisperSubEps ? (value.earningsWhisperSubEps | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
-                                                    /
-                                                </div>
-
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span>
-                                                        {{ value.earningsWhisperSubRevenue ? (value.earningsWhisperSubRevenue | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-
                                     <ngx-datatable-column [width]="25">
                                         <ng-template ngx-datatable-header-template>
                                             <div class="row">
@@ -313,25 +244,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- 
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('Whisper Number Sub')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'Whisper Number Sub' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Whisper Number Sub</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     
                                     <div class="col-sm-6">
                                         <div class="card" (click)="selectEdit('Earnings Whisper')"
@@ -351,25 +263,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('Whisper Number Sub')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'Whisper Number Sub' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Whisper Number Sub</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
+                                  
 
                                     <div class="col-sm-6">
                                         <div class="card" (click)="selectEdit('Seeking Alpha')"
