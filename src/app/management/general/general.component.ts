@@ -16,7 +16,7 @@ export class GeneralComponent implements OnInit {
   selectEdit(data) {
       switch (data) {
         case 'holidays':
-          this.router.navigate(['/management/holidays-management']);
+          this.router.navigate(['/management/holiday-management']);
           break;
       }
   }
