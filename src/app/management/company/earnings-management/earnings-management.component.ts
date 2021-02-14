@@ -1,15 +1,14 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BroadcastingService } from '../../../shared/services/broadcasting.service';
-import { SymbolService } from '../../../shared/services/symbol.service';
 import { Location } from '@angular/common';
-import { AuthService } from '../../../shared/auth/auth.service';
-import { environment } from 'environments/environment';
-import * as moment from 'moment';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertObject } from 'app/shared/data/alertData';
 import { NotificationService } from 'app/shared/services/notification.service';
+import * as moment from 'moment';
+import { AuthService } from '../../../shared/auth/auth.service';
+import { BroadcastingService } from '../../../shared/services/broadcasting.service';
+import { SymbolService } from '../../../shared/services/symbol.service';
 
 @Component({
   selector: 'app-earnings-management',

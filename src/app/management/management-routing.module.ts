@@ -7,6 +7,8 @@ import { DividendManagementComponent } from './company/dividend-management/divid
 import { EarningsManagementComponent } from './company/earnings-management/earnings-management.component';
 import { OldCompanyComponent } from './company/old-company/old-company.component';
 import { OtherPredictionsManagementComponent } from './company/other-predictions-management/other-predictions-management.component';
+import { GeneralComponent } from './general/general.component';
+import { HolidaysManagementComponent } from './general/holidays-management/holidays-management.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -25,6 +27,20 @@ const routes: Routes = [
                 component: CompanyComponent,
                 data: {
                     title: 'Company'
+                }
+            },
+            {
+                path: 'general',
+                component: GeneralComponent,
+                data: {
+                    title: 'General'
+                }
+            },
+            {
+                path: 'holiday-management',
+                component: HolidaysManagementComponent,
+                data: {
+                    title: 'Holidays Management'
                 }
             },
             {

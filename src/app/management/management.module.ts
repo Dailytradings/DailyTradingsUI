@@ -24,6 +24,8 @@ import { OtherPredictionsManagementComponent } from './company/other-predictions
 import { SymbolComponent } from './company/symbol/symbol.component';
 import { ManagementRoutingModule } from './management-routing.module';
 import { UserComponent } from './user/user.component';
+import { GeneralComponent } from './general/general.component';
+import { HolidaysManagementComponent } from './general/holidays-management/holidays-management.component';
 
 
 
@@ -58,7 +60,9 @@ import { UserComponent } from './user/user.component';
         DividendManagementComponent,
         OtherPredictionsManagementComponent,
         CompetitorsManagementComponent,
-        OldCompanyComponent
+        OldCompanyComponent,
+        GeneralComponent,
+        HolidaysManagementComponent
     ],
     providers: [ ],
 })
