@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
+import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
 import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from "ng-chartist";
@@ -12,11 +13,11 @@ const data: any = require('../../shared/data/chartist.json');
 
 //Interface
 export interface Chart {
-    type: ChartType;
-    data: Chartist.IChartistData;
-    options?: any;
-    responsiveOptions?: any;
-    events?: ChartEvent;
+  type: ChartType;
+  data: Chartist.IChartistData;
+  options?: any;
+  responsiveOptions?: any;
+  events?: ChartEvent;
 }
 
 
@@ -29,40 +30,52 @@ export interface Chart {
 })
 export class HomepageComponent implements OnInit {
 
-isBrowser;
+  isBrowser;
 
-// Donut Chart 2 Starts
-donutChart2: Chart = {
-  type: 'Pie',
-  data: {
-    "series": [
-      90,
-      10
-    ]
-  },
-  options: {
+  // Donut Chart 2 Starts
+  donutChart2: Chart = {
+    type: 'Pie',
+    data: {
+      "series": [
+        90,
+        10
+      ]
+    },
+    options: {
       donut: true,
       donutWidth: 5,
       showLabel: true,
       labelDirection: 'implode',
-  },
-};
-// Donut Chart 2 Ends
+    },
+  };
+  // Donut Chart 2 Ends
 
   bannerUrl = "../../../assets/img/banner/banner-18.jpg";
 
   mainNews;
 
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService) { }
+
+  
+
+  detailPanelShow;
+  closeDetailPanel() {
+    this.detailPanelShow = false;
+  }
+
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService) {
+    broadcastingService.selectedNewsId.subscribe(() => {
+      this.detailPanelShow = true;
+    })
+   }
 
   ngOnInit(): void {
-   if(isPlatformBrowser(this._platformId)) {
-     this.isBrowser = true;
-    this.contentService.getBanner().subscribe(res => {
-      if (res)
-        this.bannerUrl = res;
-    });
-   }
+    if (isPlatformBrowser(this._platformId)) {
+      this.isBrowser = true;
+      this.contentService.getBanner().subscribe(res => {
+        if (res)
+          this.bannerUrl = res;
+      });
+    }
     this.contentService.getOurEstimatesActivityNews(1).subscribe(res => {
       if (res)
         this.mainNews = res;
@@ -86,6 +99,7 @@ donutChart2: Chart = {
         break;
     }
   }
+
 
 
 

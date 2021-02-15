@@ -1,0 +1,24 @@
+.news-hover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(1, 1, 1, 0.4);
+    border-radius: 10px;
+}
+.news-hover{
+    i{
+        font-size: 22px;
+        color: #fff;
+    }
+}
+.swiper-slide:hover{
+    cursor: pointer;
+        .news-hover{
+            display: flex;
+        }
+}

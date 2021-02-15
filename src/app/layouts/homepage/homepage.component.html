@@ -1,5 +1,22 @@
-<div class="row"
-    style="height: 300px; background-image: url('{{this.bannerUrl}}'); background-size: 100% 100%;">
+<app-news-detail [hidden]="!this.detailPanelShow" [newsType]="'homepage'" (closeDetailPanel)= "closeDetailPanel()" ></app-news-detail>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row" style="height: 300px; background-image: url('{{this.bannerUrl}}'); background-size: 100% 100%;">
     <div class="col-sm-3">
         <div class="row">
             <!-- <div class="col-sm-3"></div> -->
@@ -10,151 +27,251 @@
                             <div class="card-content">
                                 <div class="card-body" style="height: 495px;">
                                     <div class="row d-flex">
-                                        <div class="col-sm-12 align-self-center d-flex" style="height: 470px; flex-direction: column;">
-                                            <ol class="col-sm-12 matchings-items" style="padding: 0; overflow-y: scroll; padding-right: 10px; max-height: 400px;">
-                                                <li class="col-sm-12 d-flex align-center justify-content-between matchings-item">
-                                                    <div class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
-                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                        <div class="col-sm-12 align-self-center d-flex"
+                                            style="height: 470px; flex-direction: column;">
+                                            <ol class="col-sm-12 matchings-items"
+                                                style="padding: 0; overflow-y: scroll; padding-right: 10px; max-height: 400px;">
+                                                <li
+                                                    class="col-sm-12 d-flex align-center justify-content-between matchings-item">
+                                                    <div class="col-sm-12 d-flex align-center justify-content-between"
+                                                        style="padding: 0;">
+                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt=""
+                                                            class="cal-sm-3"
+                                                            style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
                                                         <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
                                                             <span>ZG</span>
-                                                            <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
+                                                            <span style="font-size: .7em;">Zillow Group Inc. Class
+                                                                A</span>
                                                         </div>
                                                         <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                                        <span class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i>
-                                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                                            <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
+                                                        <span
+                                                            class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container"
+                                                            style="padding: 0; color: green">
+                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute"
+                                                                style="font-size: 7px; left: 0; top: 10px"></i>
+                                                            <i class="ft-trending-up d-flex justify-content-center"
+                                                                style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
+                                                            <i class="ft-circle position-absolute"
+                                                                style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
                                                             <span style="margin-left: 10px;">96</span>
                                                         </span>
                                                     </div>
-                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                        We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
-                                                    </p>
-                                                </li>
-                                                
-
-
-                                                <li class="col-sm-12 d-flex align-center justify-content-between matchings-item">
-                                                    <div class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
-                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
-                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
-                                                            <span>ZG</span>
-                                                            <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
-                                                        </div>
-                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                                        <span class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i>
-                                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                                            <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
-                                                            <span style="margin-left: 10px;">96</span>
-                                                        </span>
-                                                    </div>
-                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                        We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
-                                                    </p>
-                                                </li>
-
-                                                <li class="col-sm-12 d-flex align-center justify-content-between matchings-item">
-                                                    <div class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
-                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
-                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
-                                                            <span>ZG</span>
-                                                            <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
-                                                        </div>
-                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                                        <span class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i>
-                                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                                            <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
-                                                            <span style="margin-left: 10px;">96</span>
-                                                        </span>
-                                                    </div>
-                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                        We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
+                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default"
+                                                        *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                        We estimated exactly that NEU will beat his eps.. Therefore we
+                                                        knew the NEU investors earned towards our %92 successful
+                                                        estimation matching....
                                                     </p>
                                                 </li>
 
 
-                                                <li class="col-sm-12 d-flex align-center justify-content-between matchings-item">
-                                                    <div class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
-                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+
+
+
+
+
+
+                                                <li
+                                                    class="col-sm-12 d-flex align-center justify-content-between matchings-item">
+                                                    <div class="col-sm-12 d-flex align-center justify-content-between"
+                                                        style="padding: 0;">
+                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt=""
+                                                            class="cal-sm-3"
+                                                            style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
                                                         <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
                                                             <span>ZG</span>
-                                                            <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
+                                                            <span style="font-size: .7em;">Zillow Group Inc. Class
+                                                                A</span>
                                                         </div>
                                                         <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                                        <span class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i>
-                                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                                            <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
+                                                        <span
+                                                            class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container"
+                                                            style="padding: 0; color: green">
+                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute"
+                                                                style="font-size: 7px; left: 0; top: 10px"></i>
+                                                            <i class="ft-trending-up d-flex justify-content-center"
+                                                                style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
+                                                            <i class="ft-circle position-absolute"
+                                                                style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
                                                             <span style="margin-left: 10px;">96</span>
                                                         </span>
                                                     </div>
-                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                        We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
-                                                    </p>
-                                                </li>
-                                                <li class="col-sm-12 d-flex align-center justify-content-between matchings-item">
-                                                    <div class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
-                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
-                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
-                                                            <span>ZG</span>
-                                                            <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
-                                                        </div>
-                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                                        <span class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i>
-                                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                                            <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
-                                                            <span style="margin-left: 10px;">96</span>
-                                                        </span>
-                                                    </div>
-                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                        We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
-                                                    </p>
-                                                </li>
-                                                <li class="col-sm-12 d-flex align-center justify-content-between matchings-item">
-                                                    <div class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
-                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
-                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
-                                                            <span>ZG</span>
-                                                            <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
-                                                        </div>
-                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                                        <span class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i>
-                                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                                            <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
-                                                            <span style="margin-left: 10px;">96</span>
-                                                        </span>
-                                                    </div>
-                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                        We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
+                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default"
+                                                        *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                        We estimated exactly that NEU will beat his eps.. Therefore we
+                                                        knew the NEU investors earned towards our %92 successful
+                                                        estimation matching....
                                                     </p>
                                                 </li>
 
-                                                <li class="col-sm-12 d-flex align-center justify-content-between matchings-item">
-                                                    <div class="col-sm-12 d-flex align-center justify-content-between" style="padding: 0;">
-                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" class="cal-sm-3" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                                <li
+                                                    class="col-sm-12 d-flex align-center justify-content-between matchings-item">
+                                                    <div class="col-sm-12 d-flex align-center justify-content-between"
+                                                        style="padding: 0;">
+                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt=""
+                                                            class="cal-sm-3"
+                                                            style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
                                                         <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
                                                             <span>ZG</span>
-                                                            <span style="font-size: .7em;">Zillow Group Inc. Class A</span>
+                                                            <span style="font-size: .7em;">Zillow Group Inc. Class
+                                                                A</span>
                                                         </div>
                                                         <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                                        <span class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i>
-                                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                                            <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
+                                                        <span
+                                                            class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container"
+                                                            style="padding: 0; color: green">
+                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute"
+                                                                style="font-size: 7px; left: 0; top: 10px"></i>
+                                                            <i class="ft-trending-up d-flex justify-content-center"
+                                                                style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
+                                                            <i class="ft-circle position-absolute"
+                                                                style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
                                                             <span style="margin-left: 10px;">96</span>
                                                         </span>
                                                     </div>
-                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default" *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
-                                                        We estimated exactly that NEU will beat his eps.. Therefore we knew the NEU investors earned towards our %92 successful estimation matching....
+                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default"
+                                                        *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                        We estimated exactly that NEU will beat his eps.. Therefore we
+                                                        knew the NEU investors earned towards our %92 successful
+                                                        estimation matching....
+                                                    </p>
+                                                </li>
+
+
+                                                <li
+                                                    class="col-sm-12 d-flex align-center justify-content-between matchings-item">
+                                                    <div class="col-sm-12 d-flex align-center justify-content-between"
+                                                        style="padding: 0;">
+                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt=""
+                                                            class="cal-sm-3"
+                                                            style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
+                                                            <span>ZG</span>
+                                                            <span style="font-size: .7em;">Zillow Group Inc. Class
+                                                                A</span>
+                                                        </div>
+                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
+                                                        <span
+                                                            class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container"
+                                                            style="padding: 0; color: green">
+                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute"
+                                                                style="font-size: 7px; left: 0; top: 10px"></i>
+                                                            <i class="ft-trending-up d-flex justify-content-center"
+                                                                style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
+                                                            <i class="ft-circle position-absolute"
+                                                                style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
+                                                            <span style="margin-left: 10px;">96</span>
+                                                        </span>
+                                                    </div>
+                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default"
+                                                        *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                        We estimated exactly that NEU will beat his eps.. Therefore we
+                                                        knew the NEU investors earned towards our %92 successful
+                                                        estimation matching....
+                                                    </p>
+                                                </li>
+                                                <li
+                                                    class="col-sm-12 d-flex align-center justify-content-between matchings-item">
+                                                    <div class="col-sm-12 d-flex align-center justify-content-between"
+                                                        style="padding: 0;">
+                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt=""
+                                                            class="cal-sm-3"
+                                                            style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
+                                                            <span>ZG</span>
+                                                            <span style="font-size: .7em;">Zillow Group Inc. Class
+                                                                A</span>
+                                                        </div>
+                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
+                                                        <span
+                                                            class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container"
+                                                            style="padding: 0; color: green">
+                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute"
+                                                                style="font-size: 7px; left: 0; top: 10px"></i>
+                                                            <i class="ft-trending-up d-flex justify-content-center"
+                                                                style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
+                                                            <i class="ft-circle position-absolute"
+                                                                style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
+                                                            <span style="margin-left: 10px;">96</span>
+                                                        </span>
+                                                    </div>
+                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default"
+                                                        *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                        We estimated exactly that NEU will beat his eps.. Therefore we
+                                                        knew the NEU investors earned towards our %92 successful
+                                                        estimation matching....
+                                                    </p>
+                                                </li>
+                                                <li
+                                                    class="col-sm-12 d-flex align-center justify-content-between matchings-item">
+                                                    <div class="col-sm-12 d-flex align-center justify-content-between"
+                                                        style="padding: 0;">
+                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt=""
+                                                            class="cal-sm-3"
+                                                            style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
+                                                            <span>ZG</span>
+                                                            <span style="font-size: .7em;">Zillow Group Inc. Class
+                                                                A</span>
+                                                        </div>
+                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
+                                                        <span
+                                                            class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container"
+                                                            style="padding: 0; color: green">
+                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute"
+                                                                style="font-size: 7px; left: 0; top: 10px"></i>
+                                                            <i class="ft-trending-up d-flex justify-content-center"
+                                                                style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
+                                                            <i class="ft-circle position-absolute"
+                                                                style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
+                                                            <span style="margin-left: 10px;">96</span>
+                                                        </span>
+                                                    </div>
+                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default"
+                                                        *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                        We estimated exactly that NEU will beat his eps.. Therefore we
+                                                        knew the NEU investors earned towards our %92 successful
+                                                        estimation matching....
+                                                    </p>
+                                                </li>
+
+                                                <li
+                                                    class="col-sm-12 d-flex align-center justify-content-between matchings-item">
+                                                    <div class="col-sm-12 d-flex align-center justify-content-between"
+                                                        style="padding: 0;">
+                                                        <img src="https://s3.polygon.io/logos/zg/logo.png" alt=""
+                                                            class="cal-sm-3"
+                                                            style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb;">
+                                                        <div class="col-sm-7 d-flex flex-column" style="padding: 0;">
+                                                            <span>ZG</span>
+                                                            <span style="font-size: .7em;">Zillow Group Inc. Class
+                                                                A</span>
+                                                        </div>
+                                                        <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
+                                                        <span
+                                                            class="col-sm-2 d-flex justify-content-start align-items-center position-relative chart-news-container"
+                                                            style="padding: 0; color: green">
+                                                            <i class="ft-circle d-flex align-items-start justify-content-start position-absolute"
+                                                                style="font-size: 7px; left: 0; top: 10px"></i>
+                                                            <i class="ft-trending-up d-flex justify-content-center"
+                                                                style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
+                                                            <i class="ft-circle position-absolute"
+                                                                style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i>
+                                                            <span style="margin-left: 10px;">96</span>
+                                                        </span>
+                                                    </div>
+                                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default"
+                                                        *ngFor="let news of this.mainNews" title="{{news.newsTitle}}">
+                                                        We estimated exactly that NEU will beat his eps.. Therefore we
+                                                        knew the NEU investors earned towards our %92 successful
+                                                        estimation matching....
                                                     </p>
                                                 </li>
                                             </ol>
                                             <div class="matchings-more" style="width: 100%; background: blue;">
-                                                <span style="width: 100%; display: flex; justify-content: center; padding: 10px;">Read More</span>
+                                                <span
+                                                    style="width: 100%; display: flex; justify-content: center; padding: 10px;">Read
+                                                    More</span>
                                             </div>
                                         </div>
                                     </div>
@@ -183,16 +300,17 @@
                 </div>
             </div> -->
             <div class="col-sm-12" style="padding-top:0; padding-left:1%; padding-right:1%; margin-top: 212px;">
-                <app-homepage-news-panel style="width: 100%; height: 100%;"  [type]="'MainPanel'" [newsCount]="5"></app-homepage-news-panel>
+                <app-homepage-news-panel style="width: 100%; height: 100%;" [type]="'MainPanel'" [newsCount]="5" >
+                </app-homepage-news-panel>
             </div>
-        
+
         </div>
     </div>
 </div>
 <div class="row" style="margin-top: 90px;">
     <div class="col-sm-3" style="margin-top:10%; padding-right:1%; padding-left:1%;">
         <div class="row">
-            
+
             <div class="col-sm-12">
                 <app-upcoming-earnings></app-upcoming-earnings>
             </div>
@@ -203,13 +321,14 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-12">
-                        <app-earnings-opportunities-list [demo]="true" [dataCount]="'10'"></app-earnings-opportunities-list>
+                        <app-earnings-opportunities-list [demo]="true" [dataCount]="'10'">
+                        </app-earnings-opportunities-list>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12" style="text-align: center;">
                         <input type="button" class="btn btn-info" value="More"
-                            style="width:20%; margin-top:1%; margin-bottom:1%" (click)="getMore('earnings')"/>
+                            style="width:20%; margin-top:1%; margin-bottom:1%" (click)="getMore('earnings')" />
                     </div>
                 </div>
             </div>
@@ -247,7 +366,7 @@
         <div class="row">
             <div class="col-sm-12" style="text-align: center;">
                 <input type="button" class="btn btn-info" value="More"
-                    style="width:20%; margin-top:1%; margin-bottom:1%"  (click)="getMore('dividend')"/>
+                    style="width:20%; margin-top:1%; margin-bottom:1%" (click)="getMore('dividend')" />
             </div>
         </div>
     </div>
@@ -264,13 +383,14 @@
     <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-12">
-                <app-insider-trades-opportunities-list [demo]="true" [dataCount]="'10'"></app-insider-trades-opportunities-list>
+                <app-insider-trades-opportunities-list [demo]="true" [dataCount]="'10'">
+                </app-insider-trades-opportunities-list>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12" style="text-align: center;">
                 <input type="button" class="btn btn-info" value="More"
-                    style="width:20%; margin-top:1%; margin-bottom:1%"  (click)="getMore('insiderTrades')"/>
+                    style="width:20%; margin-top:1%; margin-bottom:1%" (click)="getMore('insiderTrades')" />
             </div>
         </div>
     </div>
@@ -285,13 +405,14 @@
     <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-12">
-                <app-analyst-ratings-opportunities-list [demo]="true" [dataCount]="'10'"></app-analyst-ratings-opportunities-list>
+                <app-analyst-ratings-opportunities-list [demo]="true" [dataCount]="'10'">
+                </app-analyst-ratings-opportunities-list>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12" style="text-align: center;">
                 <input type="button" class="btn btn-info" value="More"
-                    style="width:20%; margin-top:1%; margin-bottom:1%"  (click)="getMore('analystRatings')"/>
+                    style="width:20%; margin-top:1%; margin-bottom:1%" (click)="getMore('analystRatings')" />
             </div>
         </div>
     </div>

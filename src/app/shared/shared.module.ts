@@ -37,6 +37,8 @@ import { NotificationSidebarComponent } from './notification-sidebar/notificatio
 import { PipeModule } from './pipes/pipe.module';
 import { DynamicTableComponent } from './table/table.component';
 import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
 
 @NgModule({
     exports: [
@@ -62,6 +64,8 @@ import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
         NgxChartsModule,
         ChartsModule,
         ChartistModule,
+        SwiperModule,
+        NewsDetailComponent
     ],
     imports: [
         RouterModule,
@@ -81,6 +85,7 @@ import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
         NgxChartsModule,
         ChartsModule,
         ChartistModule,
+        SwiperModule
         ],
     declarations: [
         FooterComponent,
@@ -103,7 +108,8 @@ import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
         AdPanelComponent,
         NewsPanelComponent,
         UserBlockComponent,
-        HomepageNewsPanelComponent
+        HomepageNewsPanelComponent,
+        NewsDetailComponent
     ],
     providers: [DecimalPipe]
 })

@@ -1,0 +1,19 @@
+.news-detail-read{
+    position: fixed;
+    top: 15vh;
+    width: 80%;
+    left: 10%;
+    height: 70vh;
+    background: grey;
+    z-index: 99999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // filter: blur(2px);
+    // -webkit-filter: blur(2px);
+}
+.news-close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
