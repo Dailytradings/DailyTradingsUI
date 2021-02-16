@@ -8,7 +8,8 @@
     align-items: center;
     justify-content: center;
     background: rgba(1, 1, 1, 0.4);
-    border-radius: 10px;
+    border-radius: 50%;
+    z-index: 9;
 }
 .news-hover{
     i{
@@ -21,4 +22,26 @@
         .news-hover{
             display: flex;
         }
+}
+
+.swiper-story{
+    height: 110.7px;
+}
+.swiper-story-img{
+    position: relative;
+    right: 1.45px;
+}
+.news-subject{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #F1E25B;
+    padding: 6px 13px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    z-index: 99;
+    font-size: 16px;
+    span{
+        font-weight: 700;
+    }
 }
