@@ -81,16 +81,12 @@ export var barChartmulti = [
 
 export var pieChartSingle = [
   {
-    "name": "Germany",
-    "value": 894
+    "name": "Yanılma Payımız",
+    "value": 2
   },
   {
-    "name": "USA",
-    "value": 500
-  },
-  {
-    "name": "France",
-    "value": 720
+    "name": "Başardık",
+    "value": 98
   }
 ];
 

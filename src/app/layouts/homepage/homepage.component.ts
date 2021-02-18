@@ -5,7 +5,9 @@ import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
 import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from "ng-chartist";
-
+import { pieChartSingle } from '../../shared/data/ngxChart';
+import * as chartsData from '../../shared/configs/ngx-charts.config';
+import { SwiperDirective, SwiperConfigInterface} from 'ngx-swiper-wrapper';
 
 //Declarations
 declare var require: any;
@@ -19,8 +21,6 @@ export interface Chart {
   responsiveOptions?: any;
   events?: ChartEvent;
 }
-
-
 
 
 @Component({
@@ -55,7 +55,37 @@ export class HomepageComponent implements OnInit {
   mainNews;
 
 
-  
+  // Responsive Breakpoints
+  public swiperResponsiveBreakpointsConfig: SwiperConfigInterface = {
+    slidesPerView: 5,
+    spaceBetween: 50,
+    // init: false,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      }
+    }
+  };
+
+
+
 
   detailPanelShow;
   closeDetailPanel() {
@@ -63,14 +93,17 @@ export class HomepageComponent implements OnInit {
   }
 
   constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService) {
+    if (isPlatformBrowser(_platformId)) {
+      this.isBrowser = true;
+    }
+
     broadcastingService.selectedNewsId.subscribe(() => {
       this.detailPanelShow = true;
-    })
-   }
+    });
+  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this._platformId)) {
-      this.isBrowser = true;
       this.contentService.getBanner().subscribe(res => {
         if (res)
           this.bannerUrl = res;
@@ -101,6 +134,27 @@ export class HomepageComponent implements OnInit {
   }
 
 
+
+
+
+  pieChartSingle = pieChartSingle;
+  //Pie Charts
+
+  pieChartView: any[] = chartsData.pieChartView;
+
+  // options
+  pieChartShowLegend = chartsData.pieChartShowLegend;
+
+  pieChartColorScheme = chartsData.pieChartColorScheme;
+
+  // pie
+  pieChartShowLabels = chartsData.pieChartShowLabels;
+  pieChartExplodeSlices = chartsData.pieChartExplodeSlices;
+  pieChartDoughnut = chartsData.pieChartDoughnut;
+  pieChartGradient = chartsData.pieChartGradient;
+
+  pieChart1ExplodeSlices = chartsData.pieChart1ExplodeSlices;
+  pieChart1Doughnut = chartsData.pieChart1Doughnut;
 
 
 

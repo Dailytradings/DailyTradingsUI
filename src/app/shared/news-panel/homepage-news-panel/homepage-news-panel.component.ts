@@ -70,7 +70,7 @@ export class HomepageNewsPanelComponent implements OnInit {
     },
     breakpoints: {
       1024: {
-        slidesPerView: 10,
+        slidesPerView: 14,
         spaceBetween: 30,
       },
       768: {
