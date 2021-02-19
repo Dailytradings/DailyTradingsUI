@@ -3,6 +3,7 @@ import { AlertObject } from 'app/shared/data/alertData';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
 import { NotificationService } from 'app/shared/services/notification.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-alert',
@@ -92,5 +93,11 @@ export class AlertComponent implements OnInit {
         this.notifyOneDayAgoEnabled = true;
         break;
     }
+  }
+
+  
+  updateUrl(image) {
+    image.logoUrl = environment.notFoundLogoUrl;
+    return true;
   }
 }

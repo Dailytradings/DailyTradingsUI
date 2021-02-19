@@ -96,4 +96,10 @@ navigateToAlerts() {
   this.router.navigate(['/stock/alerts']);
 }
 
+
+updateUrl(image) {
+  image.logoUrl = environment.notFoundLogoUrl;
+  return true;
+}
+
 }

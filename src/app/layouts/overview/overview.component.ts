@@ -48,7 +48,7 @@ export class OverviewComponent implements OnInit {
     }, (error) => console.error(error));
   }
 
-  selectedEdit = 'opportunities';
+selectedEdit;
 selectEdit(edit) {
   this.selectedEdit = edit;
 }
@@ -65,6 +65,7 @@ selectEdit(edit) {
         setTimeout(() => {
           this.symbol = response;
           this.cdRef.detectChanges();
+          this.selectEdit('opportunities');
           this.broadcastingService.emitTicker({ ticker: ticker, logoUrl: response.logoUrl });
         }, 100);
       }, (error) => console.error(error));

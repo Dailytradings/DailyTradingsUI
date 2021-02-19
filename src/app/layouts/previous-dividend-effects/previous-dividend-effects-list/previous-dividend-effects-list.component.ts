@@ -52,8 +52,6 @@ export class PreviousDividendEffectsListComponent implements OnInit {
 
 
   
-
-  
   public contentHeader: object;
 
   // row data

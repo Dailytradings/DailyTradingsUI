@@ -53,10 +53,17 @@ export class PreviousDividendEffectsComponent implements OnInit {
 
         this.location.go(path + '/' + ticker);
      
+        setTimeout(() => {
           this.symbol = response;
           this.broadcastingService.emitTicker({ ticker: ticker, logoUrl: response.logoUrl });
+          this.cdRef.detectChanges();
+         }, 100);
       }, (error) => console.error(error));
     }
+  }
+
+  focusSearch() {
+    this.broadcastingService.emitSearch(true);
   }
 
   addToWatchList() {

@@ -63,11 +63,15 @@ export class EarningsAnalysisComponent implements OnInit {
         setTimeout(() => {
           this.symbol = response;
           this.broadcastingService.emitTicker({ ticker: ticker, logoUrl: response.logoUrl });
+          this.cdRef.detectChanges();
         }, 100);
       }, (error) => console.error(error));
     }
   }
 
+  focusSearch() {
+    this.broadcastingService.emitSearch(true);
+  }
 
   addToWatchList() {
     this.contentService.addToWatchList(this.symbol.id).subscribe(res => {

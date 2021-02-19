@@ -54,12 +54,19 @@ export class PreviousEarningsEffectsComponent implements OnInit {
           path = path.substr(0, path.lastIndexOf("\/"))
 
         this.location.go(path + '/' + ticker);
+        
+        setTimeout(() => {
           this.symbol = response;
           this.broadcastingService.emitTicker({ ticker: ticker, logoUrl: response.logoUrl });
+          this.cdRef.detectChanges();
+         }, 100);
       }, (error) => console.error(error));
     }
   }
 
+  focusSearch() {
+    this.broadcastingService.emitSearch(true);
+  }
  
   addToWatchList() {
     this.contentService.addToWatchList(this.symbol.id).subscribe(res => {

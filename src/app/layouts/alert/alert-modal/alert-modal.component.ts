@@ -46,7 +46,7 @@ export class AlertModalComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
       if (result === 'Save') {
         if (this.selectedSymbol && this.selectedAlertTypeId != "null" && (this.alertValue || (!this.numericValueEnabled && !this.textValueEnabled))) {
-          var data = { symbolId: this.selectedSymbol.symbolId, alertTypeId: this.selectedAlertTypeId, alertValue: this.alertValue, isNotifyOneDayAgo: this.isNotifyOneDayAgo, isRepeatable: this.isRepeatable };
+          var data = { symbolId: this.selectedSymbol.id, alertTypeId: this.selectedAlertTypeId, alertValue: this.alertValue, isNotifyOneDayAgo: this.isNotifyOneDayAgo, isRepeatable: this.isRepeatable };
           this.contentService.addAlert(data).subscribe(res => {
             if (res)
               this.broadcastingService.emitRefrehAlertList(true);

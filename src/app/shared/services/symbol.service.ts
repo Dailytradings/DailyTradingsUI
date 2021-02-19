@@ -87,11 +87,7 @@ export class SymbolService {
       map((response: any) => this.checkResponse(response))
     );
   }
-  getPeers(id) {
-    return this.http.get(environment.baseUrl + "/symbol/GetPeers/" + id).pipe(
-      map((response: any) => this.checkResponse(response))
-    );
-  }
+  
   getCompetitors(id) {
     return this.http.get(environment.baseUrl + "/symbol/GetCompetitors/" + id).pipe(
       map((response: any) => this.checkResponse(response))
