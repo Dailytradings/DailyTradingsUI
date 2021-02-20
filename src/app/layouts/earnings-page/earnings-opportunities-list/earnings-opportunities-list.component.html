@@ -4,8 +4,15 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Earnings Opportunities</h4>
+                    <div>
+                        <label for="ngx-filter-ref">
+                            <input id="ngx-filter-ref"
+                                class="form-control form-control-sm d-inline-block width-220 " type="text"
+                                placeholder="Search" (keyup)="filterUpdate($event)" style="border-radius:20px; padding: 17px" />
+                        </label>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -13,31 +20,24 @@
                         <!-- ngx-datatable-row-details -->
                         <!-- ngx-datatable-filter -->
                         <fieldset class="form-group">
-                            <div class="row">
-                                <div class="{{this.demo ? 'col-sm-3' : 'col-sm-2'}}">
-                                    <label for="ngx-filter-ref">Ara:
-                                        <input id="ngx-filter-ref"
-                                            class="form-control form-control-sm d-inline-block width-200" type="text"
-                                            placeholder="Symbol Koduna Göre Ara..." (keyup)="filterUpdate($event)" />
-                                    </label>
-                                </div>
+                            <div class="row ml-0 d-flex justify-content-between mr-0">
+                                
 
-                                <div class="switch-toggle switch-3 switch-candy col-sm-2" style="height: 25px;">
-                                    <input id="on" name="state-d" type="radio" checked="">
-                                    <label for="on" (click)="filterAnnounce('BMO')" onclick="">BMO</label>
+                                <div class="switch-toggle switch-3 switch-candy" style="box-shadow: none; border-radius: 0; width: 200px">
+                                    <input id="on" class="p-1" name="state-d" type="radio" checked="">
+                                    <label for="on" class="p-1" (click)="filterAnnounce('BMO')" onclick="">BMO</label>
 
-                                    <input id="na" name="state-d" type="radio" checked="checked">
-                                    <label for="na" (click)="filterAnnounce('ALL')" onclick="">All</label>
+                                    <input id="na" class="p-1"  name="state-d" type="radio" checked="checked">
+                                    <label for="na" class="p-1"  (click)="filterAnnounce('ALL')" onclick="">All</label>
 
-                                    <input id="off" name="state-d" type="radio">
-                                    <label for="off" (click)="filterAnnounce('AMC')" onclick="">AMC</label>
+                                    <input id="off" class="p-1"  name="state-d" type="radio">
+                                    <label for="off" class="p-1"  (click)="filterAnnounce('AMC')" onclick="">AMC</label>
 
                                     <a></a>
                                 </div>
 
-                                <div class="col-sm-1"></div>
 
-                                <div class="switch-toggle switch-3 switch-candy col-sm-2" style="height: 25px;"
+                                <div class="switch-toggle switch-3 switch-candy" style="height: 25px;"
                                     *ngIf="!this.demo">
                                     <input id="opportunity" name="state-e" type="radio" checked="">
                                     <label for="opportunity" (click)="filterDataSet('earnings opportunity')"
@@ -50,7 +50,7 @@
                                     <a></a>
                                 </div>
 
-                                <div class="col-sm-2" *ngIf="!this.demo">
+                                <div *ngIf="!this.demo">
                                     <div class="input-group">
                                         <input class="form-control" readonly placeholder="Choose a date"
                                             name="pickerKeyDateForOpportunities" [(ngModel)]="keyDateForOpportunities"
@@ -66,9 +66,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2" *ngIf="this.demo"></div>
-                                <div class="{{this.demo ? 'col-sm-4' : 'col-sm-3'}}">
+                                <div *ngIf="this.demo"></div>
+                                <div>
                                     <div class="btn-group" role="group" style="width:100%">
+                                        <!-- <select name="" id="" class="p-1">
+                                            <option value="">Today</option>
+                                            <option value="">Tomorrow</option>
+                                            <option value="">This
+                                                Week</option>
+                                            <option value="">Next
+                                                Week</option>
+                                        </select> -->
                                         <button type="button" (click)="changeTimeRange('Today')"
                                             [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'Today', 'btn-outline-secondary' : this.selectedTimeRange !== 'Today'}"
                                             style="padding: 0px; padding-left: 5px; padding-right: 5px;">Today</button>
@@ -88,7 +96,7 @@
                             </div>
                         </fieldset>
                         <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force"
-                            [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10" [rows]="rows"
+                            [headerHeight]="60" [footerHeight]="60" [rowHeight]="60" [limit]="10" [rows]="rows"
                             [sortType]="'multi'" [reorderable]="true" [sorts]="[{prop: 'dateText', dir: 'asc'}]" *ngIf="this.isBrowser">
                             <!-- Row Detail Template -->
                             <ngx-datatable-row-detail [rowHeight]="90">
@@ -189,10 +197,10 @@
                                     </div>
                                 </ng-template>
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Date" prop="dateText" [width]="25" headerClass="center-align" [cellClass]="center-align">
+                            <ngx-datatable-column name="Date" prop="dateText" [width]="25">
                                 <ng-template let-date="value" ngx-datatable-cell-template>
                                     <div class="row">
-                                        <div class="col-sm-12" style="text-align: center;">
+                                        <div class="col-sm-12">
                                             <span>
                                                 {{ date ? date : "-" }}
                                             </span>
@@ -200,10 +208,10 @@
                                     </div>
                                 </ng-template>
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Eps" prop="forecastEps" [width]="10" headerClass="center-align" [cellClass]="center-align">
+                            <ngx-datatable-column name="Eps" prop="forecastEps" [width]="10">
                                 <ng-template let-eps="value" ngx-datatable-cell-template>
                                     <div class="row">
-                                        <div class="col-sm-12" style="text-align: center;">
+                                        <div class="col-sm-12">
                                             <span>
                                                 {{ eps != null ? (eps | number) : '--' }}
                                             </span>
@@ -211,10 +219,10 @@
                                     </div>
                                 </ng-template>
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Revenue" prop="forecastRevenue" [width]="10" headerClass="center-align" [cellClass]="center-align">
+                            <ngx-datatable-column name="Revenue" prop="forecastRevenue" [width]="10">
                                 <ng-template let-revenue="value" ngx-datatable-cell-template>
                                     <div class="row">
-                                        <div class="col-sm-12" style="text-align: center;">
+                                        <div class="col-sm-12">
                                             <span>
                                                 {{ revenue != null ? (revenue | number) : '--' }}
                                             </span>
@@ -241,10 +249,10 @@
                                     </div>
                                 </ng-template>
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="A. N. C" title="Avarage Nightly Change" prop="avarageNightlyChange" [width]="10" headerClass="center-align" cellClass="center-align">
+                            <ngx-datatable-column name="A. N. C" title="Avarage Nightly Change" prop="avarageNightlyChange" [width]="10">
                                 <ng-template let-change="value" ngx-datatable-cell-template>
                                     <div class="row">
-                                        <div class="col-sm-12" style="text-align: center;">
+                                        <div class="col-sm-12">
                                             <span *ngIf="this.allowedToSee">
                                                 {{ change ? (change | number) : '--' }}
                                             </span>
