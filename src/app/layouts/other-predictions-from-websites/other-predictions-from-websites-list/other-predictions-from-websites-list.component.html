@@ -2,130 +2,134 @@
         
    <div class="col-sm-12" *ngIf="this.nextEarnings">
     <div class="row">
-      <div class="col-sm-3"></div>
-        <div class="col-sm-2">
-            <div class="card card-outline-success box-shadow-0" style="background-color: white;">
-                <div class="card-content">
-                    <div class="card-body" style="height:150px;">
-                        <div class="row d-flex">
-                            <div class="col-sm-12 align-self-center" style="text-align: center;">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <span>
-                                            Earnings Whisper
-                                        </span>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-5">
-                                        <div class="row">
-                                            <span>{{'eps' | translate}}</span>
-                                        </div>
-                                        <div class="row">
-                                            <span>{{'revenue' | translate}}</span>
+      <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card card-outline-success box-shadow-0" style="background-color: white;">
+                    <div class="card-content">
+                        <div class="card-body" style="height:150px;">
+                            <div class="row d-flex">
+                                <div class="col-sm-12 align-self-center" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <span>
+                                                Earnings Whisper
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <div class="row">
-                                            <span>{{nextEarnings.earningsWhisperEps ? (nextEarnings.earningsWhisperEps | number)  : '--'}}</span>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <span>{{'eps' | translate}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <span>{{'revenue' | translate}}</span>
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <span>{{nextEarnings.earningsWhisperRevenue ? (nextEarnings.earningsWhisperRevenue | number) + 'M' : '--'}}</span>
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <span>{{nextEarnings.earningsWhisperEps ? (nextEarnings.earningsWhisperEps | number)  : 'Not Announced'}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <span>{{nextEarnings.earningsWhisperRevenue ? (nextEarnings.earningsWhisperRevenue | number) + 'M' : 'Not Announced'}}</span>
+                                            </div>
                                         </div>
+                                        <div class="col-sm-1"></div>
                                     </div>
-                                    <div class="col-sm-1"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-2">
-            <div class="card card-outline-success box-shadow-0" style="background-color: white;">
-                <div class="card-content">
-                    <div class="card-body" style="height:150px;">
-                        <div class="row d-flex">
-                            <div class="col-sm-12 align-self-center" style="text-align: center;">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <span>
-                                            Seeking Alpha
-                                        </span>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-5">
-                                        <div class="row">
-                                            <span>{{'eps' | translate}}</span>
-                                        </div>
-                                        <div class="row">
-                                            <span>{{'revenue' | translate}}</span>
+    
+            <div class="col-sm-4">
+                <div class="card card-outline-success box-shadow-0" style="background-color: white;">
+                    <div class="card-content">
+                        <div class="card-body" style="height:150px;">
+                            <div class="row d-flex">
+                                <div class="col-sm-12 align-self-center" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <span>
+                                                Seeking Alpha
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <div class="row">
-                                            <span>{{nextEarnings.seekingAlphaEps ? (nextEarnings.seekingAlphaEps | number)  : '--'}}</span>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <span>{{'eps' | translate}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <span>{{'revenue' | translate}}</span>
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <span>{{nextEarnings.seekingAlphaRevenue ? (nextEarnings.seekingAlphaRevenue | number) + 'M' : '--'}}</span>
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <span>{{nextEarnings.seekingAlphaEps ? (nextEarnings.seekingAlphaEps | number)  : 'Not Announced'}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <span>{{nextEarnings.seekingAlphaRevenue ? (nextEarnings.seekingAlphaRevenue | number) + 'M' : 'Not Announced'}}</span>
+                                            </div>
                                         </div>
+                                        <div class="col-sm-1"></div>
                                     </div>
-                                    <div class="col-sm-1"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-2">
-            <div class="card card-outline-success box-shadow-0" style="background-color: white;">
-                <div class="card-content">
-                    <div class="card-body" style="height:150px;">
-                        <div class="row d-flex">
-                            <div class="col-sm-12 align-self-center" style="text-align: center;">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <span>
-                                            Whisper Number
-                                        </span>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-5">
-                                        <div class="row">
-                                            <span>{{'eps' | translate}}</span>
-                                        </div>
-                                        <div class="row">
-                                            <span>{{'revenue' | translate}}</span>
+    
+            <div class="col-sm-4">
+                <div class="card card-outline-success box-shadow-0" style="background-color: white;">
+                    <div class="card-content">
+                        <div class="card-body" style="height:150px;">
+                            <div class="row d-flex">
+                                <div class="col-sm-12 align-self-center" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <span>
+                                                Whisper Number
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <div class="row">
-                                            <span>{{nextEarnings.whisperNumberEps ? (nextEarnings.whisperNumberEps | number)  : '--'}}</span>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <span>{{'eps' | translate}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <span>{{'revenue' | translate}}</span>
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <span>{{nextEarnings.whisperNumberRevenue ? (nextEarnings.whisperNumberRevenue | number) + 'M' : '--'}}</span>
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <span>{{nextEarnings.whisperNumberEps ? (nextEarnings.whisperNumberEps | number)  : 'Not Announced'}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <span>{{nextEarnings.whisperNumberRevenue ? (nextEarnings.whisperNumberRevenue | number) + 'M' : 'Not Announced'}}</span>
+                                            </div>
                                         </div>
+                                        <div class="col-sm-1"></div>
                                     </div>
-                                    <div class="col-sm-1"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+    
         </div>
-
+    </div>
     </div>
    </div>
 
@@ -251,32 +255,6 @@
 
 
                                 
-                                <ngx-datatable-column name="Earnings Whisper Sub" [width]="25">
-                                    <ng-template let-value="row" ngx-datatable-cell-template>
-                                        <div class="row">
-                                            <div class="col-sm-2"></div>
-                                            <div class="col-sm-3">
-                                                <span
-                                                    [ngStyle]="{'color': value.eps ? value.eps > value.earningsWhisperSubEps ? 'red' : 'green' : 'black' }">
-                                                    {{ value.earningsWhisperSubEps ? (value.earningsWhisperSubEps | number) : '--' }}
-                                                </span>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                /
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <span
-                                                [ngStyle]="{'color': value.revenue ? value.revenue > value.earningsWhisperSubRevenue ? 'red' : 'green' : 'black' }">
-                                                {{ value.earningsWhisperSubRevenue ? (value.earningsWhisperSubRevenue | number) : '--' }}
-                                            </span>
-                                            </div>
-                                            <div class="col-sm-2"></div>
-                                        </div>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                                
-
                                 
                                 <ngx-datatable-column name="Seeking Alpha" [width]="25">
                                     <ng-template let-value="row" ngx-datatable-cell-template>
