@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SwiperDirective, SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { BroadcastingService } from '../services/broadcasting.service';
 
 @Component({
@@ -11,12 +11,12 @@ export class NewsDetailComponent implements OnInit {
 
   @Input() newsType;
   @Output() closeDetailPanel = new EventEmitter<boolean>();
-  
+
   newsList;
 
   swiperEnabled = false;
-
-  constructor(private broadcastingService: BroadcastingService) { 
+  firstEntrance = true;
+  constructor(private broadcastingService: BroadcastingService) {
     broadcastingService.selectedNewsId.subscribe(data => {
       this.swiperEnabled = false;
       // newslist içerisinden id'si data'ya eşit olanı bul selected hale getir.
@@ -24,7 +24,7 @@ export class NewsDetailComponent implements OnInit {
     })
   }
 
-  
+
 
   // Responsive Breakpoints
   public swiperResponsiveBreakpointsConfig: SwiperConfigInterface = {
@@ -35,22 +35,26 @@ export class NewsDetailComponent implements OnInit {
       el: '.swiper-pagination',
       clickable: true,
     },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
     breakpoints: {
       1024: {
-        slidesPerView: 3,
-        spaceBetween: 40,
+        slidesPerView: 1,
+        spaceBetween: 0,
       },
       768: {
-        slidesPerView: 3,
-        spaceBetween: 30,
+        slidesPerView: 1,
+        spaceBetween: 0,
       },
       640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
+        slidesPerView: 1,
+        spaceBetween: 0,
       },
       320: {
-        slidesPerView: 3,
-        spaceBetween: 10,
+        slidesPerView: 1,
+        spaceBetween: 0,
       }
     }
   };
@@ -60,8 +64,19 @@ export class NewsDetailComponent implements OnInit {
     // datayı newsType'a göre cek
   }
 
-  closePanel() {
-    this.closeDetailPanel.emit(true);
+  public publicOpenPanel() {
+    this.firstEntrance = true;
+    setTimeout(() => {
+      this.firstEntrance = false;
+    }, 250);
   }
+
+  closePanel() {
+    if (!this.firstEntrance) {
+      console.log(this.firstEntrance);
+      this.closeDetailPanel.emit(true);
+    }
+  }
+
 
 }

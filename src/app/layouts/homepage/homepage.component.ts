@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
@@ -8,6 +8,7 @@ import { ChartType, ChartEvent } from "ng-chartist";
 import { pieChartSingle } from '../../shared/data/ngxChart';
 import * as chartsData from '../../shared/configs/ngx-charts.config';
 import { SwiperDirective, SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import { NewsDetailComponent } from 'app/shared/news-detail/news-detail.component';
 
 //Declarations
 declare var require: any;
@@ -31,7 +32,7 @@ export interface Chart {
 export class HomepageComponent implements OnInit {
 
   isBrowser;
-
+  @ViewChild(NewsDetailComponent) newsDetail: NewsDetailComponent;
   // Donut Chart 2 Starts
   donutChart2: Chart = {
     type: 'Pie',
@@ -123,6 +124,7 @@ export class HomepageComponent implements OnInit {
 
     broadcastingService.selectedNewsId.subscribe(() => {
       this.detailPanelShow = true;
+      this.newsDetail.publicOpenPanel();
     });
   }
 

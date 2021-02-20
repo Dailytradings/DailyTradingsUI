@@ -39,3 +39,13 @@
 .matchings-item:last-child{
     border-bottom: 0 solid #111;
 }
+
+
+.news-pagination{
+    .swiper-pagination-bullet{
+        width: 25px;
+        height: 25px;
+        background-image: url(https://s3.polygon.io/logos/aee/logo.png);
+        background-size: cover;   
+    }
+}
