@@ -202,8 +202,16 @@ export class AuthService {
   }
 
   warning() {
-    let alertObject: AlertObject = { title: "Bu sayfaya giriş hakkınız bulunmamaktadır.", icon: 'error' };
-    this.notificationService.processNotification(alertObject);
+    let alertObject: AlertObject = { title: "Bu sayfaya giriş hakkınız bulunmamaktadır.", confirmButtonText: 'Login', cancelButtonText: 'Register', icon: 'error' };
+    this.notificationService.processNotificationWithButton(alertObject, (result) => {
+        if(result != null) {
+          if(result) {
+            this.router.navigate(['/pages/login']);
+          } else {
+            this.router.navigate(['/pages/register']);
+          }
+        }
+    });
     this.router.navigate(['/stock/home']);
   }
 

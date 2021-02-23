@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   userTypeList;
   selectedUser;
   selectedEdit;
+  isBrowser;
 
   today: Date = new Date();
   keyDateForExpireDate = { day: this.today.getDate(), month: this.today.getUTCMonth() + 1, year: this.today.getUTCFullYear() }
@@ -40,6 +41,7 @@ export class UserComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private formBuilder: FormBuilder) {
     if (isPlatformBrowser(this._platformId)) {
+      this.isBrowser = true;
       authService.isPageAuthorized("Management");
       this.authService.getAllUserTypes().subscribe(res => {
         if (res) {
@@ -54,6 +56,8 @@ export class UserComponent implements OnInit {
     this.authService.getAllUsers().subscribe(res => {
       if (res)
         this.rows = res;
+        this.tempData = this.rows;
+        console.log(res);
       this.cdRef.detectChanges();
     });
   }

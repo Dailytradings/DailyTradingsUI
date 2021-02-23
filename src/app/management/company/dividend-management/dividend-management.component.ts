@@ -123,6 +123,7 @@ export class DividendManagementComponent implements OnInit {
           this.symbol = response;
           this.getAllDividend();
           this.broadcastingService.emitTicker({ ticker: ticker, logoUrl: response.logoUrl });
+          this.cdRef.detectChanges();
         }, 100);
       }, (error) => console.error(error));
     }

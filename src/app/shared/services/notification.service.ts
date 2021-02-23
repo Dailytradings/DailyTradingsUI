@@ -17,6 +17,10 @@ export class NotificationService {
   processNotification(object) {
     this.functions.processNotification(object);
    }
+
+   processNotificationWithButton(object, func) {
+    this.functions.processNotificationWithButton(object, func);
+   }
 }
 
 
