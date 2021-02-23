@@ -19,7 +19,9 @@
           border-bottom: 0;
         }
       }
-
+      .datatable-body{
+        position: relative;
+      }
       .datatable-body-row {
         border-color: $border-color;
 
