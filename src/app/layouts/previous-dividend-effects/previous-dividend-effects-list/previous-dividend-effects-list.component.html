@@ -41,46 +41,46 @@
                                                     <thead>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"></th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.fourDayPreviousDate + ' 23:00'}}">-4d</th>
+                                                            title="{{row.historicalAnalysis.previousFourDayChangeFormula}}">-4d</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.threeDayPreviousDate + ' 23:00'}}">-3d</th>
+                                                            title="{{row.historicalAnalysis.previousThreeDayChangeFormula}}">-3d</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.twoDayPreviousDate + ' 23:00'}}">-2d</th>
+                                                            title="{{row.historicalAnalysis.previousTwoDayChangeFormula}}">-2d</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.oneDayPreviousDate + ' 23:00'}}">-1d</th>
+                                                            title="{{row.historicalAnalysis.previousOneDayChangeFormula}}">-1d</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.oneDayPreviousDate + ' 19:00'}}">-4h</th>
+                                                            title="{{row.historicalAnalysis.previousFourHourChangeFormula}}">-4h</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.oneDayPreviousDate + ' 22:00'}}">-1h</th>
+                                                            title="{{row.historicalAnalysis.previousOneHourChangeFormula}}">-1h</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.oneDayPreviousDate + ' 22:45'}}">-15m</th>
+                                                            title="{{row.historicalAnalysis.previousFifteenMinChangeFormula}}">-15m</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.oneDayPreviousDate + ' 22:55'}}">-5m</th>
+                                                            title="{{row.historicalAnalysis.previousFiveMinChangeFormula}}">-5m</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.oneDayPreviousDate + ' 22:59'}}">-1m</th>
+                                                            title="{{row.historicalAnalysis.previousOneMinChangeFormula}}">-1m</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default; background-color: yellowgreen;"
                                                             title="{{'Key Date : ' + row.historicalAnalysis.keyDate}}">
                                                             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.keyDate}}">Nightly Change</th>
+                                                            title="{{row.historicalAnalysis.keyChangeFormula}}">Nightly Change</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.keyDate + ' 16:31'}}">1m</th>
+                                                            title="{{row.historicalAnalysis.oneMinChangeFormula}}">1m</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.keyDate + ' 16:35'}}">5m</th>
+                                                            title="{{row.historicalAnalysis.fiveMinChangeFormula}}">5m</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.keyDate + ' 16:45'}}">15m</th>
+                                                            title="{{row.historicalAnalysis.fifteenMinChangeFormula}}">15m</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.keyDate + ' 17:30'}}">1h</th>
+                                                            title="{{row.historicalAnalysis.oneHourChangeFormula}}">1h</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.keyDate + ' 20:30'}}">4h</th>
+                                                            title="{{row.historicalAnalysis.fourHourChangeFormula}}">4h</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.oneDayFutureDate + ' 23:00'}}">1d</th>
+                                                            title="{{row.historicalAnalysis.oneDayChangeFormula}}">1d</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.twoDayFutureDate + ' 23:00'}}">2d</th>
+                                                            title="{{row.historicalAnalysis.twoDayChangeFormula}}">2d</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.threeDayFutureDate + ' 23:00'}}">3d</th>
+                                                            title="{{row.historicalAnalysis.threeDayChangeFormula}}">3d</th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
-                                                            title="{{row.historicalAnalysis.fourDayFutureDate + ' 23:00'}}">4d</th>
+                                                            title="{{row.historicalAnalysis.fourDayChangeFormula}}">4d</th>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
@@ -135,7 +135,7 @@
                                                                 title="{{'Key Date : ' + row.historicalAnalysis.keyDate}}"> </td>
                                                             <td style="border: black solid 1px; padding: 5px;">
                                                                 <span style="cursor:default;"
-                                                                    title="{{row.historicalAnalysis.comparedDateToKeyDate + ' 23:00  --- ' + row.historicalAnalysis.keyDate + ' 16:30' }}">
+                                                                    title="{{row.historicalAnalysis.keyChangeFormula}}">
                                                                     <span
                                                                         [ngStyle]="{'color': row.historicalAnalysis.keyChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.keyChange ? row.historicalAnalysis.keyChange  + '%' : 'N/A' }}
                                                                     </span>
@@ -191,70 +191,9 @@
                                                                 </span>
                                                             </td>
                                                         </tr>
-                                                        <!-- <tr>
-                                                            <th style="border: black solid 1px; padding: 5px;">Open</th>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousFourDayOpen ? row.historicalAnalysis.previousFourDayOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousThreeDayOpen ? row.historicalAnalysis.previousThreeDayOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousTwoDayOpen ? row.historicalAnalysis.previousTwoDayOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousOneDayOpen ? row.historicalAnalysis.previousOneDayOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousFourHourOpen ? row.historicalAnalysis.previousFourHourOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousOneHourOpen ? row.historicalAnalysis.previousOneHourOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousFifteenMinOpen ? row.historicalAnalysis.previousFifteenMinOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousFiveMinOpen ? row.historicalAnalysis.previousFiveMinOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.previousOneMinOpen ? row.historicalAnalysis.previousOneMinOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;"
-                                                                title="{{'Key Date : ' + row.historicalAnalysis.keyDate}}"> </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.keyOpen ? row.historicalAnalysis.keyOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.oneMinOpen ? row.historicalAnalysis.oneMinOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.fiveMinOpen ? row.historicalAnalysis.fiveMinOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.fifteenMinOpen ? row.historicalAnalysis.fifteenMinOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.oneHourOpen ? row.historicalAnalysis.oneHourOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.fourHourOpen ? row.historicalAnalysis.fourHourOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.oneDayOpen ? row.historicalAnalysis.oneDayOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.twoDayOpen ? row.historicalAnalysis.twoDayOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.threeDayOpen ? row.historicalAnalysis.threeDayOpen : 'N/A' }}
-                                                            </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                {{row.historicalAnalysis.fourDayOpen ? row.historicalAnalysis.fourDayOpen : 'N/A' }}
-                                                            </td>
-                                                        </tr> -->
                                                     </tbody>
                                                 </table>
+
 
 
                                             </div>

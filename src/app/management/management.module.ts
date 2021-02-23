@@ -26,6 +26,7 @@ import { ManagementRoutingModule } from './management-routing.module';
 import { UserComponent } from './user/user.component';
 import { GeneralComponent } from './general/general.component';
 import { HolidaysManagementComponent } from './general/holidays-management/holidays-management.component';
+import { DiagramMenuComponent } from './diagram-menu/diagram-menu.component';
 
 
 
@@ -62,7 +63,8 @@ import { HolidaysManagementComponent } from './general/holidays-management/holid
         CompetitorsManagementComponent,
         OldCompanyComponent,
         GeneralComponent,
-        HolidaysManagementComponent
+        HolidaysManagementComponent,
+        DiagramMenuComponent
     ],
     providers: [ ],
 })

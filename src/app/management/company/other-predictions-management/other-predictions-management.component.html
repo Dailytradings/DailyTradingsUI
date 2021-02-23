@@ -1,312 +1,319 @@
 <div class="row">
-    <!-- <app-datatables></app-datatables> -->
-
-    <!-- Row Details  Datatables -->
-    <div class="col-sm-8">
-        <section id="ngx-datatable-row-details" *ngIf="rows">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Other Predictions List</h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body">
-
-                                <!-- ngx-datatable-row-details -->
-                                <!-- ngx-datatable-filter -->
-                                <fieldset class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <label for="ngx-filter-rf">Ara:
-                                                <input id="ngx-filter-rf"
-                                                    class="form-control form-control-sm d-inline-block width-300"
-                                                    type="text" placeholder="Earnings Date Bilgisine Göre Ara..."
-                                                    (keyup)="filterUpdate($event)" />
-                                            </label>
-                                        </div>
-
-                                        <div class="col-sm-10"></div>
-                                    </div>
-                                </fieldset>
-                                <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
-                                    [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
-                                    [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
-                                    [reorderable]="true" [sorts]="[{prop: 'earningsDateText', dir: 'desc'}]"
-                                    style="text-align: center;">
-
-                                    <ngx-datatable-column name="Quarter-Year" [width]="25">
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div style="text-align: center;">
-                                                {{ 'Q' + value.quarter + ' - ' + value.year }}
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Earnings Date" prop="earningsDateText" [width]="25">
-                                        <ng-template let-value="value" ngx-datatable-cell-template>
-                                            <div class="row">
-                                                <div class="col-sm-12" style="text-align: center;">
-                                                    <span>
-                                                        {{ value ? value : "-" }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="25">
-                                        <ng-template ngx-datatable-header-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-12" style="text-align: center;"><img
-                                                        src="https://www.whispernumber.com/images/wn.gif"
-                                                        title="Whisper Number" style="margin-left:20px; width: 50px; height: 20px;">
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span style="float: right;">
-                                                        {{ value.whisperNumberEps ? (value.whisperNumberEps | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
-                                                    /
-                                                </div>
-
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span>
-                                                        {{ value.whisperNumberRevenue ? (value.whisperNumberRevenue | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                
-                                    <ngx-datatable-column [width]="25">
-                                        <ng-template ngx-datatable-header-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-12" style="padding:0px;"><img
-                                                        src="https://www.earningswhispers.com/images/newewlogo-dg.png"
-                                                        title="Earnings Whisper" style="margin-left:20px; width: 75px; height: 20px;">
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span style="float: right;">
-                                                        {{ value.earningsWhisperEps ? (value.earningsWhisperEps | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
-                                                    /
-                                                </div>
-
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span>
-                                                        {{ value.earningsWhisperRevenue ? (value.earningsWhisperRevenue | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="25">
-                                        <ng-template ngx-datatable-header-template>
-                                            <div class="row">
-                                                <div class="col-sm-12" style="padding:0px;"><img
-                                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Seeking_Alpha_Logo.svg/800px-Seeking_Alpha_Logo.svg.png"
-                                                        title="SeekingAlpha" style="margin-left:20px; width: 50px; height: 20px;">
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-2" style="padding: 0px;"></div>
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span style="float: right;">
-                                                        {{ value.seekingAlphaEps ? (value.seekingAlphaEps | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
-                                                    /
-                                                </div>
-
-                                                <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
-                                                    <span>
-                                                        {{ value.seekingAlphaRevenue ? (value.seekingAlphaRevenue | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2" style="padding: 0px;"></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-
-                                    <ngx-datatable-column name="" [width]="5">
-                                        <ng-template let-earnings="row" ngx-datatable-cell-template>
-                                            <div style="text-align: center;">
-                                                <div
-                                                    class="badge badge-pill {{ !this.selectedEarnings || earnings.id != this.selectedEarnings.id ? 'bg-light-success' : 'bg-light-warning' }}">
-                                                    <i class="ft-edit font-medium-3" (click)="SelectEarnings(earnings)">
-                                                    </i>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-
-                                </ngx-datatable>
-                                <!-- ngx-datatable-row-details -->
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="col-sm-2" style="padding: 15px 0px 0px 0px;">
+        <app-diagram-menu *ngIf="this.symbol" [category]="'company'" [content]="'otherPredictions'" [ticker]="this.symbol.ticker"></app-diagram-menu>
     </div>
-
-
-
-    <div class="col-sm-4" *ngIf="rows">
-
-        <section *ngIf="!this.selectedEarnings">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-sm-12">
-                                        <h5 style="margin-bottom:3%;">Select an Earnings To Show Edit Panel</h5>
-                                        <i class="ft-lock font-medium-3" style="font-weight: 900;"></i>
-                                    </div>
+    <div class="col-sm-10">
+        <div class="row">
+            <!-- <app-datatables></app-datatables> -->
+        
+            <!-- Row Details  Datatables -->
+            <div class="col-sm-8">
+                <section id="ngx-datatable-row-details" *ngIf="rows">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Other Predictions List</h4>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
-
-        <section *ngIf="this.selectedEarnings">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-sm-12">
-                                        <h4>Select a Prediction Site</h4>
-                                    </div>
-                                </div>
-                                <div class="row" style="border-radius:5px; border:solid 1px black; padding:1%">
-                                    <div class="col-sm-8">
-                                        <span *ngIf="this.selectedEarnings"> Selected Earnings =
-                                            <b>{{ '{ ' + 'Q' + selectedEarnings.quarter + ' - ' + selectedEarnings.year + ' }' }}</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-4" style="float: right;">
-                                        <i class="ft-delete font-medium-5 pull-right" style="color:red; cursor:pointer"
-                                            (click)="removeSelectedEarnings()"></i>
-                                    </div>
-
-                                </div>
-                                <br>
-
-                                <div class="row">
-
-                                    <div class="col-sm-6" *ngFor="let site of this.siteList">
-                                        <div class="card" (click)="selectEdit(site)"
-                                            [ngStyle]="{'background-color': selectedEdit && selectedEdit.id == site.id ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
+                                <div class="card-content">
+                                    <div class="card-body">
+        
+                                        <!-- ngx-datatable-row-details -->
+                                        <!-- ngx-datatable-filter -->
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label for="ngx-filter-rf">Ara:
+                                                        <input id="ngx-filter-rf"
+                                                            class="form-control form-control-sm d-inline-block width-300"
+                                                            type="text" placeholder="Earnings Date Bilgisine Göre Ara..."
+                                                            (keyup)="filterUpdate($event)" />
+                                                    </label>
+                                                </div>
+        
+                                                <div class="col-sm-10"></div>
+                                            </div>
+                                        </fieldset>
+                                        <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
+                                            [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
+                                            [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
+                                            [reorderable]="true" [sorts]="[{prop: 'earningsDateText', dir: 'desc'}]"
+                                            style="text-align: center;">
+        
+                                            <ngx-datatable-column name="Quarter-Year" [width]="25">
+                                                <ng-template let-value="row" ngx-datatable-cell-template>
+                                                    <div style="text-align: center;">
+                                                        {{ 'Q' + value.quarter + ' - ' + value.year }}
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="Earnings Date" prop="earningsDateText" [width]="25">
+                                                <ng-template let-value="value" ngx-datatable-cell-template>
                                                     <div class="row">
                                                         <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>{{site.siteName}}</b>
+                                                            <span>
+                                                                {{ value ? value : "-" }}
                                                             </span>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column [width]="25">
+                                                <ng-template ngx-datatable-header-template>
+                                                    <div class="row" style="text-align: center;">
+                                                        <div class="col-sm-12" style="text-align: center;"><img
+                                                                src="https://www.whispernumber.com/images/wn.gif"
+                                                                title="Whisper Number" style="margin-left:20px; width: 50px; height: 20px;">
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-value="row" ngx-datatable-cell-template>
+                                                    <div class="row" style="text-align: center;">
+                                                        <div class="col-sm-2"></div>
+                                                        <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
+                                                            <span style="float: right;">
+                                                                {{ value.whisperNumberEps ? (value.whisperNumberEps | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
+                                                            /
+                                                        </div>
+        
+                                                        <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
+                                                            <span>
+                                                                {{ value.whisperNumberRevenue ? (value.whisperNumberRevenue | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2"></div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                        
+                                            <ngx-datatable-column [width]="25">
+                                                <ng-template ngx-datatable-header-template>
+                                                    <div class="row" style="text-align: center;">
+                                                        <div class="col-sm-12" style="padding:0px;"><img
+                                                                src="https://www.earningswhispers.com/images/newewlogo-dg.png"
+                                                                title="Earnings Whisper" style="margin-left:20px; width: 75px; height: 20px;">
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-value="row" ngx-datatable-cell-template>
+                                                    <div class="row" style="text-align: center;">
+                                                        <div class="col-sm-2"></div>
+                                                        <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
+                                                            <span style="float: right;">
+                                                                {{ value.earningsWhisperEps ? (value.earningsWhisperEps | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
+                                                            /
+                                                        </div>
+        
+                                                        <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
+                                                            <span>
+                                                                {{ value.earningsWhisperRevenue ? (value.earningsWhisperRevenue | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2"></div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column [width]="25">
+                                                <ng-template ngx-datatable-header-template>
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="padding:0px;"><img
+                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Seeking_Alpha_Logo.svg/800px-Seeking_Alpha_Logo.svg.png"
+                                                                title="SeekingAlpha" style="margin-left:20px; width: 50px; height: 20px;">
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-value="row" ngx-datatable-cell-template>
+                                                    <div class="row" style="text-align: center;">
+                                                        <div class="col-sm-2" style="padding: 0px;"></div>
+                                                        <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
+                                                            <span style="float: right;">
+                                                                {{ value.seekingAlphaEps ? (value.seekingAlphaEps | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2" style="text-align: center;" style="padding: 0px;">
+                                                            /
+                                                        </div>
+        
+                                                        <div class="col-sm-3" style="text-align: center;" style="padding: 0px;">
+                                                            <span>
+                                                                {{ value.seekingAlphaRevenue ? (value.seekingAlphaRevenue | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2" style="padding: 0px;"></div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+        
+                                            <ngx-datatable-column name="" [width]="5">
+                                                <ng-template let-earnings="row" ngx-datatable-cell-template>
+                                                    <div style="text-align: center;">
+                                                        <div
+                                                            class="badge badge-pill {{ !this.selectedEarnings || earnings.id != this.selectedEarnings.id ? 'bg-light-success' : 'bg-light-warning' }}">
+                                                            <i class="ft-edit font-medium-3" (click)="SelectEarnings(earnings)">
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+        
+                                        </ngx-datatable>
+                                        <!-- ngx-datatable-row-details -->
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        
+        
+        
+            <div class="col-sm-4" *ngIf="rows">
+        
+                <section *ngIf="!this.selectedEarnings">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row" style="text-align: center;">
+                                            <div class="col-sm-12">
+                                                <h5 style="margin-bottom:3%;">Select an Earnings To Show Edit Panel</h5>
+                                                <i class="ft-lock font-medium-3" style="font-weight: 900;"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section *ngIf="this.selectedEarnings && this.selectedEdit">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <section id="predict">
-                                            <h4>{{this.selectedEdit.siteName}} Predictions : </h4>
-                                            <form>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input type="number" [(ngModel)]="this.eps" name="eps"
-                                                            class="form-control mb-2" placeholder="EPS" step="0.01"
-                                                            style="background:white" [disabled]="!this.epsEnabled">
-                                                        <div class="input-group-append">
-                                                            <a  title="{{this.epsEnabled ? 'Lock' : 'UnLock'}}"
-                                                            class="btn btn-outline-secondary lockButton form-control" style="background-color: white;" (click)="this.epsEnabled = !this.epsEnabled"
-                                                                type="button"><i *ngIf="!this.epsEnabled" class="ft-lock"></i><i *ngIf="this.epsEnabled" class="ft-unlock"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group">
-                                                        <input type="number" [(ngModel)]="this.revenue" name="revenue"
-                                                            class="form-control mb-2" placeholder="Revenue"
-                                                            style="background:white" [disabled]="!this.revenueEnabled">
-                                                        <div class="input-group-append">
-                                                            <a  title="{{this.revenueEnabled ? 'Lock' : 'UnLock'}}"
-                                                            class="btn btn-outline-secondary lockButton form-control" style="background-color: white;" (click)="this.revenueEnabled = !this.revenueEnabled"
-                                                                type="button"><i *ngIf="!this.revenueEnabled" class="ft-lock"></i><i *ngIf="this.revenueEnabled" class="ft-unlock"></i></a>
+                </section>
+        
+        
+        
+        
+                <section *ngIf="this.selectedEarnings">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row" style="text-align: center;">
+                                            <div class="col-sm-12">
+                                                <h4>Select a Prediction Site</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="border-radius:5px; border:solid 1px black; padding:1%">
+                                            <div class="col-sm-8">
+                                                <span *ngIf="this.selectedEarnings"> Selected Earnings =
+                                                    <b>{{ '{ ' + 'Q' + selectedEarnings.quarter + ' - ' + selectedEarnings.year + ' }' }}</b>
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-4" style="float: right;">
+                                                <i class="ft-delete font-medium-5 pull-right" style="color:red; cursor:pointer"
+                                                    (click)="removeSelectedEarnings()"></i>
+                                            </div>
+        
+                                        </div>
+                                        <br>
+        
+                                        <div class="row">
+        
+                                            <div class="col-sm-6" *ngFor="let site of this.siteList">
+                                                <div class="card" (click)="selectEdit(site)"
+                                                    [ngStyle]="{'background-color': selectedEdit && selectedEdit.id == site.id ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+        
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>{{site.siteName}}</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
+                                            </div>
+                                        </div>
+        
+        
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+        
+                <section *ngIf="this.selectedEarnings && this.selectedEdit">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <section id="predict">
+                                                    <h4>{{this.selectedEdit.siteName}} Predictions : </h4>
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="number" [(ngModel)]="this.eps" name="eps"
+                                                                    class="form-control mb-2" placeholder="EPS" step="0.01"
+                                                                    style="background:white" [disabled]="!this.epsEnabled">
+                                                                <div class="input-group-append">
+                                                                    <a  title="{{this.epsEnabled ? 'Lock' : 'UnLock'}}"
+                                                                    class="btn btn-outline-secondary lockButton form-control" style="background-color: white;" (click)="this.epsEnabled = !this.epsEnabled"
+                                                                        type="button"><i *ngIf="!this.epsEnabled" class="ft-lock"></i><i *ngIf="this.epsEnabled" class="ft-unlock"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <input type="number" [(ngModel)]="this.revenue" name="revenue"
+                                                                    class="form-control mb-2" placeholder="Revenue"
+                                                                    style="background:white" [disabled]="!this.revenueEnabled">
+                                                                <div class="input-group-append">
+                                                                    <a  title="{{this.revenueEnabled ? 'Lock' : 'UnLock'}}"
+                                                                    class="btn btn-outline-secondary lockButton form-control" style="background-color: white;" (click)="this.revenueEnabled = !this.revenueEnabled"
+                                                                        type="button"><i *ngIf="!this.revenueEnabled" class="ft-lock"></i><i *ngIf="this.revenueEnabled" class="ft-unlock"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+            <!-- Row Details  Datatables -->
+        
+        
+        </div>
     </div>
-    <!-- Row Details  Datatables -->
-
-
 </div>
