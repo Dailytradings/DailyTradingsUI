@@ -49,3 +49,23 @@
         background-size: cover;   
     }
 }
+
+
+.pride-content::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  .pride-content::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .pride-content::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  .pride-content::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

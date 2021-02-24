@@ -164,84 +164,488 @@
 
 
 
-  <!-- Responsive Breakpoints swiper start -->
-  <section id="swiper-responsive-breakpoints" class="news-detail-read" style="background: linear-gradient(90deg, #d9e4dd,#fbf7f0,#cdc9c3,#d9e4dd); border-radius:50px; margin-top: 20px;box-shadow: -8px 8px 14px 0 rgb(25 42 70 / 11%)">
+  <!-- Responsive Breakpoints swiper start
+  <section id="swiper-responsive-breakpoints" class="news-detail-read" style="background: #4A4A4A; margin-top: 20px;box-shadow: -8px 8px 14px 0 rgb(25 42 70 / 11%)">
     <div style="width: 100%;">
-        <div class="col-12">
+        <div class="col-12 p-0">
             <div class="card" style="background: none; box-shadow: none;">
                 <div class="card-content">
                     <div class="card-body">
-                        <div class="news-detail-title" style="margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
-                            <h1>News</h1>
-                            <p>Haberler arasında dolaşmak için ekranı kaydırabilirsiniz</p>
+                        <div class="news-detail-title" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #111">
+                            <h1 style="font-weight: bold; margin-right: 10px;">Pride Corner</h1>
+                            <img src="assets/img/icons/prade.png" style="position: relative; width: 50px; transform: rotate(-70deg);">
                         </div>
                         <div class="swiper-responsive-breakpoints swiper-container" [swiper]="swiperResponsiveBreakpointsConfig">
                             <div class="swiper-wrapper pb-5">
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 30px; background: #fff;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 250px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 5px 15px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px;">%98</span>
+                                                <i class="ft-trending-up"></i>
                                             </div>
                                         </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="height: 110px; overflow-y: scroll;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 70%; right: -3%; bottom: -27.5px; background: #fff; color: #333; height: 55px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span>ZG</span>
+                                                    <span class="pride-author-date">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 14px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
                                     </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
                                 </div>
 
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 30px; background: #fff;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 250px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 5px 15px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px;">%98</span>
+                                                <i class="ft-trending-up"></i>
                                             </div>
                                         </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="height: 110px; overflow-y: scroll;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 70%; right: -3%; bottom: -27.5px; background: #fff; color: #333; height: 55px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span>ZG</span>
+                                                    <span class="pride-author-date">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 14px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
                                     </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
                                 </div>
 
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 30px; background: #fff;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 250px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 5px 15px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px;">%98</span>
+                                                <i class="ft-trending-up"></i>
                                             </div>
                                         </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="height: 110px; overflow-y: scroll;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 70%; right: -3%; bottom: -27.5px; background: #fff; color: #333; height: 55px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span>ZG</span>
+                                                    <span class="pride-author-date">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 14px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
                                     </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
                                 </div>
+
+
+
+                                
+
+                                
+
+                                
+                            </div>
+                            
+                            <div class="swiper-pagination news-pagination"></div>
+
+                           
+                          <div class="swiper-button-next" style="background: red; right: 0;"></div>
+                          <div class="swiper-button-prev"></div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+   -->
+
+
+  <!-- Responsive Breakpoints swiper start -->
+  <section id="swiper-responsive-breakpoints" class="news-detail-read" style="background: #4A4A4A; margin-top: 20px;box-shadow: -8px 8px 14px 0 rgb(25 42 70 / 11%); margin-left: -2rem; margin-right: -2rem">
+    <div style="width: 100%;">
+        <div class="col-12 p-0">
+            <div class="card" style="background: none; box-shadow: none;">
+                <div class="card-content">
+                    <div class="card-body" style="padding: 1rem">
+                        <div class="news-detail-title" style=" display: flex; align-items: center; justify-content: center; color: #111">
+                            <h1 style="font-weight: bold; margin-right: 10px;">Pride Corner</h1>
+                            <img src="assets/img/icons/prade.png" style="position: relative; width: 50px; transform: rotate(-70deg);">
+                        </div>
+                        <div class="swiper-responsive-breakpoints swiper-container" [swiper]="swiperResponsiveBreakpointsConfig">
+                            <div class="swiper-wrapper pb-5 pt-3">
+
+
+
+
+                                <!-- <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 5px 15px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <i class="ft-trending-up"></i>
+                                                <span style="margin-left: 5px; font-size: 13px;">%98</span>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="height: 110px; overflow-y: scroll;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: calc(100% - 30px); left: 15px; bottom: -27.5px; background: #fff; color: #333; height: 55px; display: flex; align-items: center; padding: 10px; border-radius: 40px">
+                                            <div class="pride-author-logo" style="position: relative; width: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span>ZG</span>
+                                                    <span class="pride-author-date">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 14px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px; margin-top: 25px;">
+                                            <div class="pride-rate-item" style="margin-right: 10px; padding: 5px 15px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="font-size: 13px;">Earnings</span>
+                                            </div>
+                                            <div class="pride-rate-item" style="padding: 5px 15px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <i class="ft-trending-up"></i>
+                                                <span style="margin-left: 5px; font-size: 13px;">%98</span>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="height: 110px; overflow-y: scroll;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="border-radius: 40px; position: absolute; width: 80%; left: 15px; top: -27.5px; background: #fff; color: #333; height: 55px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span>ZG</span>
+                                                    <span class="pride-author-date">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 14px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div> -->
+
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 3px 11px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px; font-size: 12px;">%98</span>
+                                                <i class="ft-trending-up" style="font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px; font-size: 16px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="font-size: 13.5px;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 80%; right: -3%; bottom: -22.5px; background: #fff; color: #333; height: 45px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; justify-content: space-around; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span style="font-size: 14px;">ZG</span>
+                                                    <span class="pride-author-date" style="font-size: 14px;">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 12px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 3px 11px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px; font-size: 12px;">%98</span>
+                                                <i class="ft-trending-up" style="font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px; font-size: 16px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="font-size: 13.5px;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 80%; right: -3%; bottom: -22.5px; background: #fff; color: #333; height: 45px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; justify-content: space-around; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span style="font-size: 14px;">ZG</span>
+                                                    <span class="pride-author-date" style="font-size: 14px;">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 12px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 3px 11px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px; font-size: 12px;">%98</span>
+                                                <i class="ft-trending-up" style="font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px; font-size: 16px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="font-size: 13.5px;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 80%; right: -3%; bottom: -22.5px; background: #fff; color: #333; height: 45px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; justify-content: space-around; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span style="font-size: 14px;">ZG</span>
+                                                    <span class="pride-author-date" style="font-size: 14px;">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 12px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 3px 11px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px; font-size: 12px;">%98</span>
+                                                <i class="ft-trending-up" style="font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px; font-size: 16px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="font-size: 13.5px;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 80%; right: -3%; bottom: -22.5px; background: #fff; color: #333; height: 45px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; justify-content: space-around; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span style="font-size: 14px;">ZG</span>
+                                                    <span class="pride-author-date" style="font-size: 14px;">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 12px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 3px 11px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px; font-size: 12px;">%98</span>
+                                                <i class="ft-trending-up" style="font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px; font-size: 16px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="font-size: 13.5px;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 80%; right: -3%; bottom: -22.5px; background: #fff; color: #333; height: 45px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; justify-content: space-around; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span style="font-size: 14px;">ZG</span>
+                                                    <span class="pride-author-date" style="font-size: 14px;">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 12px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+
+                                <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 3px 11px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px; font-size: 12px;">%98</span>
+                                                <i class="ft-trending-up" style="font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px; font-size: 16px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="font-size: 13.5px;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 80%; right: -3%; bottom: -22.5px; background: #fff; color: #333; height: 45px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; justify-content: space-around; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span style="font-size: 14px;">ZG</span>
+                                                    <span class="pride-author-date" style="font-size: 14px;">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 12px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+                                <!-- <div class="swiper-slide matchings-item" style="padding: 0; background: #fff;">
+                                    <div class="pride-slider-item" style="width: 100%; height: 280px; background: #272727; color: #fff; display: flex; flex-direction: column; padding: 15px; position: relative;">
+
+                                        <div class="pride-rate" style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                            <div class="pride-rate-item" style="padding: 5px 15px; border-radius: 30px; display: flex; justify-content: flex-end; align-items: center; background: #55CF59;">
+                                                <span style="margin-right: 5px;">%98</span>
+                                                <i class="ft-trending-up"></i>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="pride-text" style="width: 100%; display: flex; flex-direction: column;">
+                                            <span class="pride-title" style="font-weight: bold; font-size: 20px; margin-bottom: 10px; font-size: 17px;">
+                                                We estimated exactly correct that ACA will be beat.
+                                            </span>
+                                            <p class="pride-content" style="height: 110px; overflow-y: scroll;">
+                                                Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                            </p>
+                                        </div>
+                        
+                                        <div class="pride-author" style="position: absolute; width: 80%; right: -3%; bottom: -27.5px; background: #fff; color: #333; height: 55px; display: flex; align-items: center; padding: 10px">
+                                            <div class="pride-author-logo" style="position: relative; width: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #514848; overflow: hidden;">
+                                                <img src="assets/img/icons/logo.png" style="position: relative; width: 100%;">
+                                            </div>
+                                            <div class="pride-author-text" style="display: flex; flex-direction: column; padding: 10px; width: 100%;">
+                                                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                    <span>ZG</span>
+                                                    <span class="pride-author-date">12 OCT</span>
+                                                </div>
+                                                <span style="font-size: 14px; color: #685E5E">American States Water Company</span>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div> -->
+                                
 
                                 
 
@@ -249,6 +653,12 @@
                             </div>
                             <!-- Add Pagination -->
                             <div class="swiper-pagination news-pagination"></div>
+
+                            <!-- Add Arrows
+                          <div class="swiper-button-next" style="background: red; right: 0;"></div>
+                          <div class="swiper-button-prev"></div>  -->
+
+
                         </div>
                     </div>
                 </div>
@@ -258,9 +668,6 @@
   </section>
   <!-- Responsive Breakpoints swiper ends -->
   
-
-
-
 
 
 
