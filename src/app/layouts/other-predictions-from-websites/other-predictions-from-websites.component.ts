@@ -1,17 +1,11 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { isPlatformBrowser, Location } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BroadcastingService } from '../../shared/services/broadcasting.service';
-import { SymbolService } from '../../shared/services/symbol.service';
-import { Location } from '@angular/common';
-import { AuthService } from '../../shared/auth/auth.service';
-import { environment } from 'environments/environment';
-import * as moment from 'moment';
-import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertObject } from 'app/shared/data/alertData';
-import { NotificationService } from 'app/shared/services/notification.service';
-import { AlertModalComponent } from '../alert/alert-modal/alert-modal.component';
 import { ContentService } from 'app/shared/services/content.service';
+import { NotificationService } from 'app/shared/services/notification.service';
+import { AuthService } from '../../shared/auth/auth.service';
+import { BroadcastingService } from '../../shared/services/broadcasting.service';
+import { AlertModalComponent } from '../alert/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-other-predictions-from-websites',
@@ -23,18 +17,28 @@ export class OtherPredictionsFromWebsitesComponent implements OnInit {
   symbol;
 
   @ViewChild('modal') modal: AlertModalComponent;
-  constructor(
+  allowedToSee;
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object,
     private router: Router,
     private route: ActivatedRoute,
     private broadcastingService: BroadcastingService,
     private cdRef: ChangeDetectorRef,
     private location: Location,
     private authService: AuthService,
-    private contentService: ContentService) {
-    // authService.isPageAuthorized("Management");
+    private contentService: ContentService,
+    private notificationService: NotificationService) {
   }
 
-  ngOnInit(): void {
+
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated("OtherPredictionsFromWebsites");
+    this.cdRef.detectChanges();
+  }
+
+  ngOnInit() {
+    if (isPlatformBrowser(this._platformId)) {
+      this.checkDataVisibilityPermission();
+    }
     this.route.params.subscribe(params => {
       if (params['id'] && params['id'].length > 0) {
         this.getSymbolFromTicker(params['id']);
@@ -46,7 +50,7 @@ export class OtherPredictionsFromWebsitesComponent implements OnInit {
     this.broadcastingService.symbolObservable.subscribe((x: any) => {
       this.getSymbolFromTicker(x.ticker);
     }, (error) => console.error(error));
-  
+
   }
 
 
@@ -60,12 +64,12 @@ export class OtherPredictionsFromWebsitesComponent implements OnInit {
           path = path.substr(0, path.lastIndexOf("\/"))
 
         this.location.go(path + '/' + ticker);
-     
-         setTimeout(() => {
+
+        setTimeout(() => {
           this.symbol = response;
           this.broadcastingService.emitTicker({ ticker: ticker, logoUrl: response.logoUrl });
           this.cdRef.detectChanges();
-         }, 100);
+        }, 100);
       }, (error) => console.error(error));
     }
   }
@@ -76,25 +80,38 @@ export class OtherPredictionsFromWebsitesComponent implements OnInit {
 
 
   addToWatchList() {
-    this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
-      if(res) {
-        this.symbol.isMonitoring = true;
-      }
+    if (this.allowedToSee) {
+      this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = true;
+        }
         this.cdRef.detectChanges();
-    });
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
 
   removeFromWatchList() {
-    this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
-      if(res) {
-        this.symbol.isMonitoring = false;
-      }
+    if (this.allowedToSee) {
+      this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = false;
+        }
         this.cdRef.detectChanges();
-    });
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
+
   }
 
   showAlertModal() {
-    this.modal.open();
+    if (this.allowedToSee) {
+      this.modal.open();
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
 
 }

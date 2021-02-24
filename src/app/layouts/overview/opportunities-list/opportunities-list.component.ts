@@ -16,6 +16,7 @@ import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-dat
 export class OpportunitiesListComponent implements OnInit {
 
   @Input() symbol: any;
+  @Input() allowedToSee;
 
   constructor(
     private router: Router,

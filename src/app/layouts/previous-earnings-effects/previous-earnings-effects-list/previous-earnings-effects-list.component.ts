@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ContentService } from 'app/shared/services/content.service';
+import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-previous-earnings-effects-list',
@@ -10,8 +11,11 @@ import { ContentService } from 'app/shared/services/content.service';
 export class PreviousEarningsEffectsListComponent implements OnInit {
 
   @Input() symbol;
+  @Input() allowedToSee;
+
   constructor(private contentService: ContentService,
-    private cdRef: ChangeDetectorRef) { }
+    private cdRef: ChangeDetectorRef,
+    private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.getAllEarnings();
@@ -53,6 +57,14 @@ export class PreviousEarningsEffectsListComponent implements OnInit {
 
 
   
+  toggle;
+  toggleDetail(event) {
+    if (!this.allowedToSee && !this.toggle) {
+      this.toggle = true;
+      this.notificationService.warnNotAllowed();
+    }
+  }
+
 
   
   public contentHeader: object;

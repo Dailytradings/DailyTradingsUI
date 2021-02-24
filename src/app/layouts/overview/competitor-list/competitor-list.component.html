@@ -54,24 +54,30 @@
                             </ngx-datatable-column>
                             <ngx-datatable-column name="Weight" prop="weight" [width]="25" headerClass="center-align" [cellClass]="center-align">
                                 <ng-template let-weight="value" ngx-datatable-cell-template>
-                                    <div class="row">
+                                    <div *ngIf="this.allowedToSee" class="row">
                                         <div class="col-sm-12" style="text-align: center;">
                                          <span>
                                             {{ weight ? (weight | number) : '--' }}
                                          </span>
                                         </div>
                                     </div>
+                                    <div *ngIf="!this.allowedToSee" class="row">
+                                        <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                    </div>
                                 </ng-template>
                             </ngx-datatable-column>
                             <ngx-datatable-column name="Reliability Score" prop="reliabilityScore" [width]="25" headerClass="center-align" [cellClass]="center-align">
                                 <ng-template let-score="value" ngx-datatable-cell-template>
-                                   <div class="row">
+                                   <div *ngIf="this.allowedToSee" class="row">
                                        <div class="col-sm-12" style="text-align: center;">
                                         <span>
                                             {{ score ? (score | number) : '--' }}
                                         </span>
                                        </div>
                                    </div>
+                                   <div *ngIf="!this.allowedToSee" class="row">
+                                    <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                </div>
                                 </ng-template>
                             </ngx-datatable-column>
                           

@@ -3,6 +3,7 @@ import { PieChartComponent } from '@swimlane/ngx-charts';
 import { AlertModalComponent } from 'app/layouts/alert/alert-modal/alert-modal.component';
 import { AuthService } from 'app/shared/auth/auth.service';
 import { ContentService } from 'app/shared/services/content.service';
+import { NotificationService } from 'app/shared/services/notification.service';
 import { environment } from 'environments/environment';
 import * as chartsData from '../../../shared/configs/ngx-charts.config';
 
@@ -15,6 +16,7 @@ import * as chartsData from '../../../shared/configs/ngx-charts.config';
 export class OverviewPanelComponent implements OnInit, AfterViewInit {
 
   @Input() symbol;
+  @Input() allowedToSee;
   pieChartSingle = [
     {
       "name": "Insider",
@@ -35,6 +37,7 @@ export class OverviewPanelComponent implements OnInit, AfterViewInit {
     private contentService: ContentService,
     private authService: AuthService,
     private cdRef: ChangeDetectorRef,
+    private notificationService: NotificationService
   ) {
   }
 
@@ -45,7 +48,9 @@ export class OverviewPanelComponent implements OnInit, AfterViewInit {
     }, 0);
 }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.allowedToSee = this.authService.isAuthenticated("Overview");
+
     let insider = this.symbol.insiderShare;
     console.log('symbol', this.symbol);
     console.log('insider', insider);
@@ -70,27 +75,42 @@ export class OverviewPanelComponent implements OnInit, AfterViewInit {
     return environment.baseFrontendUrl + '/stock/overview/' + ticker;
   }
 
+  
   addToWatchList() {
-    this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
-      if (res) {
-        this.symbol.isMonitoring = true;
-      }
-      this.cdRef.detectChanges();
-    });
+    if (this.allowedToSee) {
+      this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = true;
+        }
+        this.cdRef.detectChanges();
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
 
   removeFromWatchList() {
-    this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
-      if (res) {
-        this.symbol.isMonitoring = false;
-      }
-      this.cdRef.detectChanges();
-    });
+    if (this.allowedToSee) {
+      this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = false;
+        }
+        this.cdRef.detectChanges();
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
+
   }
 
   showAlertModal() {
-    this.modal.open();
+    if (this.allowedToSee) {
+      this.modal.open();
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
+
 
   updateUrl(image) {
     image.logoUrl = environment.notFoundLogoUrl;

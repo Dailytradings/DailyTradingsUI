@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ContentService } from 'app/shared/services/content.service';
+import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-previous-dividend-effects-list',
@@ -9,12 +10,14 @@ import { ContentService } from 'app/shared/services/content.service';
 })
 export class PreviousDividendEffectsListComponent implements OnInit {
   @Input() symbol;
+  @Input() allowedToSee;
   constructor(private contentService: ContentService,
-    private cdRef: ChangeDetectorRef) { }
+    private cdRef: ChangeDetectorRef,
+    private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.getAllDividend();
-    
+
     // content header
     this.contentHeader = {
       headerTitle: 'Datatables',
@@ -45,13 +48,21 @@ export class PreviousDividendEffectsListComponent implements OnInit {
     this.contentService.getPreviousDividendEffectList(this.symbol.id).subscribe(res => {
       if (res)
         this.rows = res;
-        this.tempData = this.rows;
+      this.tempData = this.rows;
+      this.toggle = false;
       this.cdRef.detectChanges();
     });
   }
 
+  toggle;
+  toggleDetail(event) {
+    if (!this.allowedToSee && !this.toggle) {
+      this.toggle = true;
+      this.notificationService.warnNotAllowed();
+    }
+  }
 
-  
+
   public contentHeader: object;
 
   // row data

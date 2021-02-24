@@ -1,11 +1,10 @@
-import { Location } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { isPlatformBrowser, Location } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'app/shared/services/content.service';
 import { NotificationService } from 'app/shared/services/notification.service';
 import { AuthService } from '../../shared/auth/auth.service';
 import { BroadcastingService } from '../../shared/services/broadcasting.service';
-import { SymbolService } from '../../shared/services/symbol.service';
 import { AlertModalComponent } from '../alert/alert-modal/alert-modal.component';
 
 @Component({
@@ -18,18 +17,27 @@ export class PreviousEarningsEffectsComponent implements OnInit {
   symbol;
 
   @ViewChild('modal') modal: AlertModalComponent;
-  constructor(
+  allowedToSee;
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, 
     private router: Router,
     private route: ActivatedRoute,
     private broadcastingService: BroadcastingService,
     private cdRef: ChangeDetectorRef,
     private location: Location,
     private authService: AuthService,
-    private contentService: ContentService) {
-    // authService.isPageAuthorized("Management");
+    private contentService: ContentService,
+    private notificationService: NotificationService) {
   }
 
-  ngOnInit(): void {
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated("OtherPredictionsFromWebsites");
+    this.cdRef.detectChanges();
+  }
+
+  ngOnInit() {
+    if (isPlatformBrowser(this._platformId)) {
+      this.checkDataVisibilityPermission();
+    }
     this.route.params.subscribe(params => {
       if (params['id'] && params['id'].length > 0) {
         this.getSymbolFromTicker(params['id']);
@@ -68,26 +76,41 @@ export class PreviousEarningsEffectsComponent implements OnInit {
     this.broadcastingService.emitSearch(true);
   }
  
+
+    
   addToWatchList() {
-    this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
-      if(res) {
-        this.symbol.isMonitoring = true;
-      }
+    if (this.allowedToSee) {
+      this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = true;
+        }
         this.cdRef.detectChanges();
-    });
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
 
   removeFromWatchList() {
-    this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
-      if(res) {
-        this.symbol.isMonitoring = false;
-      }
+    if (this.allowedToSee) {
+      this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = false;
+        }
         this.cdRef.detectChanges();
-    });
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
+
   }
 
   showAlertModal() {
-    this.modal.open();
+    if (this.allowedToSee) {
+      this.modal.open();
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
 
 }

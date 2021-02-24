@@ -30,8 +30,6 @@ import { MostReliableCompetitorsComponent } from './most-reliable-competitors/mo
 import { ObservableOpportunitieseComponent } from './observable-opportunities/observable-opportunities.component';
 import { OtherPredictionsFromWebsitesComponent } from './other-predictions-from-websites/other-predictions-from-websites.component';
 import { CompetitorListComponent } from './overview/competitor-list/competitor-list.component';
-import { DividendListComponent } from './overview/dividend-list/dividend-list.component';
-import { EarningsListComponent } from './overview/earnings-list/earnings-list.component';
 import { OpportunitiesListComponent } from './overview/opportunities-list/opportunities-list.component';
 import { OverviewComponent } from './overview/overview.component';
 import { PremarketAnalysisComponent } from './premarket-analysis/premarket-analysis.component';
@@ -76,8 +74,6 @@ import { OtherPredictionsFromWebsitesListComponent } from './other-predictions-f
     OtherPredictionsFromWebsitesComponent, 
     OverviewPanelComponent, 
     CompetitorListComponent, 
-    DividendListComponent, 
-    EarningsListComponent, 
     OpportunitiesListComponent, 
     WishlistOverviewComponent, 
     WishlistOverviewPanelComponent, 
