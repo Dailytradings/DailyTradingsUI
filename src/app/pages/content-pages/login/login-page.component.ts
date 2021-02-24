@@ -3,6 +3,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from 'app/shared/auth/auth.service';
+import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { SignalRService } from 'app/shared/services/signalr.service';
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -30,7 +31,8 @@ export class LoginPageComponent {
     private authService: AuthService,
     private signalRService: SignalRService,
     private spinner: NgxSpinnerService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private broadcastingService: BroadcastingService) {
     if (isPlatformBrowser(this._platformId)) {
       localStorage.removeItem("user");
     }
@@ -69,6 +71,7 @@ export class LoginPageComponent {
                       localStorage.setItem("user", JSON.stringify({ user: user, pagePermission: pageRes, propPermission: propRes }));
                       this.signalRService.Login(user.id);
                       this.router.navigate(['']);
+                      this.broadcastingService.emitLogIn();
                     }
                   });
               }

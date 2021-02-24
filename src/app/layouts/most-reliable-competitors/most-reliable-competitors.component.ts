@@ -1,15 +1,8 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BroadcastingService } from '../../shared/services/broadcasting.service';
-import { SymbolService } from '../../shared/services/symbol.service';
-import { Location } from '@angular/common';
-import { AuthService } from '../../shared/auth/auth.service';
-import { environment } from 'environments/environment';
-import * as moment from 'moment';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { ContentService } from 'app/shared/services/content.service';
+import { environment } from 'environments/environment';
+import { AuthService } from '../../shared/auth/auth.service';
 
 @Component({
   selector: 'app-most-reliable-competitors',
@@ -24,7 +17,6 @@ export class MostReliableCompetitorsComponent implements OnInit {
     private contentService: ContentService,
     private cdRef: ChangeDetectorRef,
     private authService: AuthService) {
-    authService.isPageAuthorized("Management");
   }
 
   ngOnInit(): void {

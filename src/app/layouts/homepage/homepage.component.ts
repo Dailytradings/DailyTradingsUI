@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
@@ -11,6 +11,7 @@ import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { NewsDetailComponent } from 'app/shared/news-detail/news-detail.component';
 import { Location } from '@angular/common';
 import { environment } from 'environments/environment';
+import { AuthService } from 'app/shared/auth/auth.service';
 
 //Declarations
 declare var require: any;
@@ -34,6 +35,7 @@ export interface Chart {
 export class HomepageComponent implements OnInit {
 
   isBrowser;
+  allowedToSee;
   @ViewChild(NewsDetailComponent) newsDetail: NewsDetailComponent;
   // Donut Chart 2 Starts
   donutChart2: Chart = {
@@ -119,11 +121,16 @@ export class HomepageComponent implements OnInit {
     this.detailPanelShow = false;
   }
 
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location) {
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private authService: AuthService, private location: Location, private cdRef: ChangeDetectorRef) {
     broadcastingService.selectedNewsId.subscribe(() => {
       this.detailPanelShow = true;
       this.newsDetail.publicOpenPanel();
     });
+  }
+
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated("EarningsOpportunities");
+    this.cdRef.detectChanges();
   }
 
   ngOnInit() {
@@ -132,6 +139,7 @@ export class HomepageComponent implements OnInit {
     }, 100);
     if (isPlatformBrowser(this._platformId)) {
       this.isBrowser = true;
+      this.checkDataVisibilityPermission();
       this.contentService.getBanner().subscribe(res => {
         if (res)
           this.bannerUrl = res;
