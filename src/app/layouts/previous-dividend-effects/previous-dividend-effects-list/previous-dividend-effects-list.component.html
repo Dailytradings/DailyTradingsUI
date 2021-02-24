@@ -85,106 +85,105 @@
                                                     <tbody>
                                                         <tr>
                                                             <th style="border: black solid 1px; padding: 5px;">Change</th>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFourDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFourDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFourDayChange ?  row.historicalAnalysis.previousFourDayChange  + '%': 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousThreeDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousThreeDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousThreeDayChange ?  row.historicalAnalysis.previousThreeDayChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousTwoDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousTwoDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousTwoDayChange ?  row.historicalAnalysis.previousTwoDayChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousOneDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousOneDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousOneDayChange ?  row.historicalAnalysis.previousOneDayChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFourHourChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFourHourChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFourHourChange ? row.historicalAnalysis.previousFourHourChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousOneHourChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousOneHourChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.previousOneHourChange ? row.historicalAnalysis.previousOneHourChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFifteenMinChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFifteenMinChange ? row.historicalAnalysis.previousFifteenMinChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFiveMinChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFiveMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFiveMinChange ? row.historicalAnalysis.previousFiveMinChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousOneMinChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousOneMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousOneMinChange ? row.historicalAnalysis.previousOneMinChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;"
                                                                 title="{{'Key Date : ' + row.historicalAnalysis.keyDate}}"> </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
-                                                                <span style="cursor:default;"
-                                                                    title="{{row.historicalAnalysis.keyChangeFormula}}">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.keyChangeValueFormula}}">
+                                                                <span style="cursor:default;">
                                                                     <span
                                                                         [ngStyle]="{'color': row.historicalAnalysis.keyChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.keyChange ? row.historicalAnalysis.keyChange  + '%' : 'N/A' }}
                                                                     </span>
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.oneMinChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.oneMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.oneMinChange ? row.historicalAnalysis.oneMinChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fiveMinChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fiveMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.fiveMinChange ? row.historicalAnalysis.fiveMinChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fifteenMinChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.fifteenMinChange ?  row.historicalAnalysis.fifteenMinChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.oneHourChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.oneHourChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.oneHourChange ?row.historicalAnalysis.oneHourChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fourHourChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fourHourChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.fourHourChange ? row.historicalAnalysis.fourHourChange  + '%': 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.oneDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.oneDayChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.oneDayChange ?  row.historicalAnalysis.oneDayChange  + '%'  : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.twoDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.twoDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.twoDayChange ?  row.historicalAnalysis.twoDayChange  + '%' : 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.threeDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.threeDayChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.threeDayChange ? row.historicalAnalysis.threeDayChange  + '%': 'N/A' }}
                                                                 </span>
                                                             </td>
-                                                            <td style="border: black solid 1px; padding: 5px;">
+                                                            <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fourDayChangeValueFormula}}">
                                                                 <span
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fourDayChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.fourDayChange ? row.historicalAnalysis.fourDayChange  + '%' : 'N/A' }}
@@ -231,6 +230,13 @@
                             <ng-template let-dividend="value" ngx-datatable-cell-template>
                                 <div style="text-align: center;">
                                     {{ dividend != null ? (dividend | number) : '--' }}
+                                </div>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Nightly Change" [width]="75">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <div style="text-align: center;">
+                                    {{ row.historicalAnalysis.keyChange  ? (row.historicalAnalysis.keyChange | number) + ' %' : '--' }}
                                 </div>
                             </ng-template>
                         </ngx-datatable-column>

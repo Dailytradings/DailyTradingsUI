@@ -126,21 +126,25 @@
                                                         *ngFor="let otherPrediction of row.otherPredictions">
                                                         <div class="row">
                                                             <div class="col-sm-7" style="padding-left:5px;">
-                                                                <div><strong> {{ otherPrediction.item1 }} </strong>
+                                                                <div><strong> {{ otherPrediction.siteName }} </strong>
                                                                 </div>
                                                                 <div>
-                                                                    {{ otherPrediction.item2 != null ?
-                                                                    (otherPrediction.item2 | number) : 'N/A' }}
+                                                                  <span title="{{ otherPrediction.consensusEps != null ?
+                                                                    (otherPrediction.consensusEps | number) : otherPrediction.notExist ? 'Not Exist' : 'Not Available' }}">  {{ otherPrediction.consensusEps != null ?
+                                                                    (otherPrediction.consensusEps | number) : otherPrediction.notExist ? 'N/E' : 'N/A' }}</span>
                                                                     -
-                                                                    {{ otherPrediction.item3 != null ?
-                                                                    (otherPrediction.item3 | number) : 'N/A' }}
+                                                                   <span title="{{ otherPrediction.consensusRevenue != null ?
+                                                                    (otherPrediction.consensusRevenue | number) : otherPrediction.notExist ? 'Not Exist' : 'Not Available' }}">
+                                                                    {{ otherPrediction.consensusRevenue != null ?
+                                                                        (otherPrediction.consensusRevenue | number) : otherPrediction.notExist ? 'N/E' : 'N/A' }}
+                                                                   </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-5"
                                                                 style="padding: 0px; padding-right: 5px;">
-                                                                <img src="{{otherPrediction.item4}}"
-                                                                    alt="{{otherPrediction.item1}}" width="100"
-                                                                    height="40">
+                                                                <img src="{{otherPrediction.logoUrl}}"
+                                                                    alt="{{otherPrediction.siteName}}" width="75"
+                                                                    height="20">
                                                             </div>
                                                         </div>
                                                     </div>

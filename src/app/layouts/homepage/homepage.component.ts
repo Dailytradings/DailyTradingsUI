@@ -7,8 +7,10 @@ import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from "ng-chartist";
 import { pieChartSingle } from '../../shared/data/ngxChart';
 import * as chartsData from '../../shared/configs/ngx-charts.config';
-import { SwiperDirective, SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { NewsDetailComponent } from 'app/shared/news-detail/news-detail.component';
+import { Location } from '@angular/common';
+import { environment } from 'environments/environment';
 
 //Declarations
 declare var require: any;
@@ -57,23 +59,23 @@ export class HomepageComponent implements OnInit {
 
 
 
- // autoplay
- public swiperAutoplayConfig: SwiperConfigInterface = {
-  spaceBetween: 30,
-  centeredSlides: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-};
+  // autoplay
+  public swiperAutoplayConfig: SwiperConfigInterface = {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  };
 
 
 
@@ -117,19 +119,19 @@ export class HomepageComponent implements OnInit {
     this.detailPanelShow = false;
   }
 
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService) {
-    if (isPlatformBrowser(_platformId)) {
-      this.isBrowser = true;
-    }
-
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location) {
     broadcastingService.selectedNewsId.subscribe(() => {
       this.detailPanelShow = true;
       this.newsDetail.publicOpenPanel();
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    setTimeout(() => {
+      this.location.go('');
+    }, 100);
     if (isPlatformBrowser(this._platformId)) {
+      this.isBrowser = true;
       this.contentService.getBanner().subscribe(res => {
         if (res)
           this.bannerUrl = res;

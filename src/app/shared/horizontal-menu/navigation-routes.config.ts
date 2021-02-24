@@ -12,7 +12,7 @@ export const HROUTES: RouteInfo[] = [
     ]
   },
   {
-    path: '', title: 'Dividends', icon: 'ft-bar-chart-2', class: 'dropdown nav-item has-sub', isExternalLink: false, submenu: [
+    path: '/stock/dividend-page', title: 'Dividends', icon: 'ft-bar-chart-2', class: 'dropdown nav-item has-sub', isExternalLink: false, submenu: [
       { path: '/stock/dividend-page', title: 'Dividend Opportunities', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/stock/dividend-tax-calculator', title: 'Dividend Tax Calculator', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/stock/previous-dividend-effects', title: 'Previous Dividend Effects of Stocks', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }

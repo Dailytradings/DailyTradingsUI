@@ -164,7 +164,7 @@ export class AuthService {
     localStorage.removeItem("user");
     let alertObject: AlertObject = { title: 'İşlem Başarılı.', icon: 'success' };
     this.notificationService.processNotification(alertObject);
-    this.router.navigate(['/stock/home']);
+    this.router.navigate(['']);
     this.broadcastingService.emitLogOut();
   }
 
@@ -212,7 +212,7 @@ export class AuthService {
           }
         }
     });
-    this.router.navigate(['/stock/home']);
+    this.router.navigate(['']);
   }
 
   isPageAuthorized(keyword) {

@@ -69,7 +69,7 @@ export function processNotification(object: AlertObject) {
 
 export function processNotificationWithButton(object: AlertObject, callback: Function): any {
     swal.fire({
-        position: 'bottom-end',
+        position: 'top-end',
         icon: object.icon,
         title: object.title,
         showCancelButton: true,

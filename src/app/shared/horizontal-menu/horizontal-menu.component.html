@@ -6,7 +6,7 @@
   <div class="navbar-container main-menu-content center-layout" data-menu="menu-container">
     <ul appTopMenuDropdown class="navigation-main nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
       <!-- First level menu -->
-      <li appTopMenulink *ngFor="let menuItem of menuItems" [parent]="menuItem.title" level="{{level + 1}}"
+      <li appTopMenulink *ngFor="let menuItem of menuItems" [parent]="menuItem.title" level="{{level + 1}}" 
         [attr.data-menu]="menuItem.class === 'dropdown nav-item' ? 'dropdown' : null" [ngClass]="[menuItem.class]"
         [routerLinkActive]="menuItem.submenu.length != 0 ? 'active' : 'active'" [routerLinkActiveOptions]="{exact: true}">
 
