@@ -17,16 +17,22 @@
 
 // Horizontal Menu
 //=========================
+
+app-horizontal-menu{
+  flex-grow: 1;
+  width: 100%; 
+  justify-content: center;
+}
+
+
 .horizontal-menu {
 
   &.navbar-sticky,
   & {
 
-    // .header-navbar {
-    //   position: fixed;
-    //   top: 0;
-    //   width: 100%;
-    // }
+    .header-navbar {
+      z-index: 999;
+    }
     &:not(.auth-page):not(.navbar-static) {
       .main-panel {
         margin-top: 7.49rem;
@@ -67,7 +73,7 @@
 
   &.page-scrolled:not(.layout-dark) {
     div.header-navbar {
-      @include card-shadow();
+      // @include card-shadow();
     }
   }
 
@@ -286,12 +292,12 @@
 
 // menu navbar
 .navbar.header-navbar {
-  padding: 0.5rem 1rem 0.5rem 1.5rem !important;
+  padding: 0 1rem 0.5rem 1.5rem !important;
 
   &.navbar-horizontal {
     position: fixed;
-    width: 100%;
-    background-color: $body-bg;
+    display: flex;
+    // background-color: $body-bg;
     top: 4rem;
   }
 }
@@ -321,7 +327,6 @@
 
   &.layout-transparent {
     .customizer {
-
       .ct-bg-color,
       .ct-bg-image {
         display: block !important;
@@ -466,6 +471,13 @@
     }
   }
 }
+
+
+
+
+
+
+
 
 // Import vertical-overlay-menu.scss for small screen support
 @import "vertical-overlay-menu.scss";

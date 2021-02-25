@@ -1,0 +1,40 @@
+<div class="backdrop-filter" style="backdrop-filter: blur(5px); border-radius: 20px;" [ngClass]="{
+    'earnings-lock': true, 
+'d-flex': true, 
+'flex-row' : true,
+'align-items-center': true,
+'justify-content-center': true}" [ngStyle]="{'width': 'calc(100% - 3rem)', 
+'height': this.dataSize <=5 ? 'calc(120px + 60px)' : this.dataSize <=7 ? 'calc(180px + 60px)': 'calc(300px + 60px)', 
+'background':'#11111180', 
+'position':'absolute',
+'bottom':'0',
+'left':'0',
+'z-index':'999',
+'margin-right':'1.5rem',
+'margin-left':'1.5rem',
+'margin-bottom':'1.5rem',
+'font-size':'26px'
+}">
+   <div style="margin-right: 20px; color: #111">
+       <i class="ft-lock" [ngStyle]="{
+           'font-size': '230px', 
+           'margin-right' : this.dataSize <= 5 ? '10px' : '0px'
+       }"></i>
+   </div>
+
+   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+       <span *ngIf="this.dataSize > 5" style="font-weight: bold; color: #fff; margin-bottom: 10px; text-align: left;">DAHA FAZLA İSTATİSTİK <br> İÇİN KAYIT OLMALISIN</span>
+       <a *ngIf="this.dataSize > 5" href=""
+       style="background: #FFD601; padding: 5px 30px; border-radius: 20px; color: #fff; font-size: 20px; width: 200px; text-align: center;">Register</a>
+   </div>
+
+   <div style="display: flex; flex-direction: column;">
+       <span *ngIf="this.dataSize <= 5">DAHA FAZLA İSTATİSTİK İÇİN   <a href=""
+       style=" color: yellow;  text-decoration: underline;">KAYIT</a> OLMALISIN</span>
+       <a *ngIf="this.dataSize <= 5" href=""
+        style="background: #FFD601; padding: 5px 30px; border-radius: 20px; color: #fff; font-size: 20px">Register</a>
+  </div>
+
+
+
+</div>

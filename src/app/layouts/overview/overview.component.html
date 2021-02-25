@@ -14,7 +14,7 @@
 
         <div class="col-sm-2">
             <div class="card" (click)="selectEdit('opportunities')"
-                [ngStyle]="{'background-color': selectedEdit == 'opportunities' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+                [ngStyle]="{'background-color': selectedEdit == 'opportunities' ? 'black' : '#fff', 'color': selectedEdit == 'opportunities' ? '#fff' : 'black', 'cursor': this.symbol ? 'pointer' : 'not-allowed', 'background': 'linear-gradient(45deg, rgba(255, 203, 145, .6) 0%, rgba(255, 239, 161, .7) 100%)'}">
                 <div class="card-content">
                     <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
                         <div class="row">
@@ -31,14 +31,33 @@
 
         <div class="col-sm-2">
             <div class="card" (click)="selectEdit('earnings')"
-                [ngStyle]="{'background-color': selectedEdit == 'earnings' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+                [ngStyle]="{'background-color': selectedEdit == 'earnings' ? 'black' : '#fff', 'color': selectedEdit == 'earnings' ? '#fff' : 'black', 'cursor': this.symbol ? 'pointer' : 'not-allowed', 'background': ' linear-gradient(45deg, rgb(50 125 36 / 60%) 0%, rgb(67 232 56 / 70%) 100%)'}">
                 <div class="card-content">
                     <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
 
                         <div class="row">
                             <div class="col-sm-12" style="text-align: center;">
                                 <span>
-                                    <b>Earnings</b>
+                                    <b>Previous Earnings Effects</b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-2">
+            <div class="card" (click)="selectEdit('whispers')"
+                [ngStyle]="{'background-color': selectedEdit == 'whispers' ? 'black' : '#fff', 'color': selectedEdit == 'whispers' ? '#fff' : 'black', 'cursor': this.symbol ? 'pointer' : 'not-allowed', 'background': ' linear-gradient(45deg, rgb(50 125 36 / 60%) 0%, rgb(67 232 56 / 70%) 100%)'}">
+                <div class="card-content">
+                    <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
+
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;">
+                                <span>
+                                    <b>Other Whispers from Websites</b>
                                 </span>
                             </div>
                         </div>
@@ -48,15 +67,32 @@
         </div>
 
         <div class="col-sm-2">
-            <div class="card" (click)="selectEdit('dividend')"
-                [ngStyle]="{'background-color': selectedEdit == 'dividend' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+            <div class="card" (click)="selectEdit('analysis')"
+                [ngStyle]="{'background-color': selectedEdit == 'analysis' ? 'black' : '#fff', 'color': selectedEdit == 'analysis' ? '#fff' : 'black', 'cursor': this.symbol ? 'pointer' : 'not-allowed', 'background': ' linear-gradient(45deg, rgb(50 125 36 / 60%) 0%, rgb(67 232 56 / 70%) 100%)'}">
                 <div class="card-content">
                     <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
 
                         <div class="row">
                             <div class="col-sm-12" style="text-align: center;">
                                 <span>
-                                    <b>Dividend</b>
+                                    <b>Earning Analysis per Peers</b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card" (click)="selectEdit('dividend')"
+                [ngStyle]="{'background-color': selectedEdit == 'dividend' ? 'black' : '#fff', 'color': selectedEdit == 'dividend' ? '#fff' : 'black', 'cursor': this.symbol ? 'pointer' : 'not-allowed', 'background': 'linear-gradient(45deg, rgba(0, 255, 231, 0.65) 0%, rgb(39, 187, 180) 100%)'}">
+                <div class="card-content">
+                    <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
+
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;">
+                                <span>
+                                    <b>Previous Dividend Effects</b>
                                 </span>
                             </div>
                         </div>
@@ -67,7 +103,7 @@
 
         <div class="col-sm-2">
             <div class="card" (click)="selectEdit('competitors')"
-                [ngStyle]="{'background-color': selectedEdit == 'competitors' ? 'darkgray' : '#fff', 'cursor': this.symbol ? 'pointer' : 'not-allowed'}">
+                [ngStyle]="{'background-color': selectedEdit == 'competitors' ? 'black' : '#fff', 'color': selectedEdit == 'competitors' ? '#fff' : 'black', 'cursor': this.symbol ? 'pointer' : 'not-allowed', 'background': 'linear-gradient(45deg, rgb(255 134 0 / 61%) 0%, rgb(251 0 0 / 70%) 100%)'}">
                 <div class="card-content">
                     <div class="card-body" style="border: 1px solid gray; border-radius:5px;">
                         <div class="row">
@@ -89,16 +125,24 @@
             <app-opportunities-list [symbol]="this.symbol"></app-opportunities-list>
         </div>
 
-        <div class="col-sm-12" *ngIf="this.selectedEdit == 'competitors'">
-            <app-competitor-list [symbol]="this.symbol"></app-competitor-list>
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'earnings'">
+            <app-previous-earnings-effects-list [symbol]="this.symbol"></app-previous-earnings-effects-list>
         </div>
 
-        <div class="col-sm-12" *ngIf="this.selectedEdit == 'earnings'">
-            <app-earnings-list [symbol]="this.symbol"></app-earnings-list>
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'whispers'">
+            <app-other-predictions-from-websites-list [symbol] = "this.symbol"></app-other-predictions-from-websites-list>
+        </div>
+
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'analysis'">
+            <app-earnings-analysis-list [symbol]="this.symbol"></app-earnings-analysis-list>
         </div>
 
         <div class="col-sm-12" *ngIf="this.selectedEdit == 'dividend'">
-            <app-dividend-list [symbol]="this.symbol"></app-dividend-list>
+            <app-previous-dividend-effects-list [symbol]="this.symbol"></app-previous-dividend-effects-list>
+        </div>
+
+        <div class="col-sm-12" *ngIf="this.selectedEdit == 'competitors'">
+            <app-competitor-list [symbol]="this.symbol"></app-competitor-list>
         </div>
     </div>
   </div>

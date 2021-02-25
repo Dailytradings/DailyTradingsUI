@@ -1,0 +1,20 @@
+.navbar-top-header{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-top-items{
+    position: relative;
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+.navbar-top-items li{
+    margin-left: 10px;
+}
+.navbar-top-items a{
+    color: #111;
+}

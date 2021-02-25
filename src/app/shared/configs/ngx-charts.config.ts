@@ -25,7 +25,7 @@ export var pieChartView: any[] = [550, 400];
 export var pieChartShowLegend = false;
 
 export var pieChartColorScheme = {
-    domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
+    domain: ['green', 'green', 'green', '#AAAAAA']
 };
 
 // pie

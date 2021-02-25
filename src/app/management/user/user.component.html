@@ -1,428 +1,456 @@
 <div class="row">
-    <!-- <app-datatables></app-datatables> -->
-
-    <!-- Row Details  Datatables -->
-    <div class="col-sm-8">
-        <section id="ngx-datatable-row-details" *ngIf="rows">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">User List</h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body">
-
-                                <!-- ngx-datatable-row-details -->
-                                <!-- ngx-datatable-filter -->
-                                <fieldset class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <label for="ngx-filter-ref">Ara:
-                                                <input id="ngx-filter-ref"
-                                                    class="form-control form-control-sm d-inline-block width-200"
-                                                    type="text" placeholder="Kullanıcı Adına Göre Ara..."
-                                                    (keyup)="filterUpdate($event)" />
-                                            </label>
-                                        </div>
-
-                                        <div class="col-sm-10"></div>
-                                    </div>
-                                </fieldset>
-                                <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
-                                    [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
-                                    [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
-                                    [reorderable]="true" [sorts]="[{prop: 'userTypeName', dir: 'asc'}]" *ngIf="isBrowser">
-
-                                    <ngx-datatable-column name="Username" prop="userName" [width]="25">
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Full Name" prop="fullName" [width]="25">
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="E-Mail" prop="email" [width]="200">
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Role" prop="userTypeName" [width]="25">
-                                        <ng-template let-type="value" ngx-datatable-cell-template>
-                                            <div>
-                                                <div class="badge badge-pill"
-                                                    [ngClass]="{'bg-light-success': type == 'Admin','bg-light-warning': type == 'Editor'}">
-                                                    {{ type }}
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Expire Date" prop="expireDateText" [width]="50" headerClass="center-align" [cellClass]="center-align">
-                                        <ng-template let-value="value" ngx-datatable-cell-template>
-                                            <div style="text-align: center;">
-                                               <span> {{ value ? value : '--'}}</span>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="" [width]="5">
-                                        <ng-template let-user="row" ngx-datatable-cell-template>
-                                            <div>
-                                                <div class="badge badge-pill {{ !this.selectedUser || user.id != this.selectedUser.id ? 'bg-light-success' : 'bg-light-warning' }}">
-                                                    <i class="ft-edit font-medium-3" (click)="selectUser(user)"> </i>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-
-                                </ngx-datatable>
-                                <!-- ngx-datatable-row-details -->
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="col-sm-2" style="padding: 15px 0px 0px 0px;">
+        <app-diagram-menu [category]="'user'" [content]="'user'"></app-diagram-menu>
     </div>
+    <div class="col-sm-10">
+        <div class="row">
+            <!-- <app-datatables></app-datatables> -->
 
+            <!-- Row Details  Datatables -->
+            <div class="col-sm-8">
+                <section id="ngx-datatable-row-details" *ngIf="rows">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">User List</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
 
+                                        <!-- ngx-datatable-row-details -->
+                                        <!-- ngx-datatable-filter -->
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label for="ngx-filter-ref">Ara:
+                                                        <input id="ngx-filter-ref"
+                                                            class="form-control form-control-sm d-inline-block width-200"
+                                                            type="text" placeholder="Kullanıcı Adına Göre Ara..."
+                                                            (keyup)="filterUpdate($event)" />
+                                                    </label>
+                                                </div>
 
-    <div class="col-sm-4" *ngIf="rows">
+                                                <div class="col-sm-10"></div>
+                                            </div>
+                                        </fieldset>
+                                        <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
+                                            [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
+                                            [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
+                                            [reorderable]="true" [sorts]="[{prop: 'userTypeName', dir: 'asc'}]"
+                                            *ngIf="isBrowser">
 
-        <section *ngIf="!this.selectedUser">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-sm-12">
-                                        <h5 style="margin-bottom:3%;">Select a User To Show Edit Panel</h5>
-                                        <i class="ft-lock font-medium-3" style="font-weight: 900;"></i>
+                                            <ngx-datatable-column name="Username" prop="userName" [width]="25">
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="Full Name" prop="fullName" [width]="25">
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="E-Mail" prop="email" [width]="200">
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="Role" prop="userTypeName" [width]="25">
+                                                <ng-template let-type="value" ngx-datatable-cell-template>
+                                                    <div>
+                                                        <div class="badge badge-pill"
+                                                            [ngClass]="{'bg-light-success': type == 'Admin','bg-light-warning': type == 'Editor'}">
+                                                            {{ type }}
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="Expire Date" prop="expireDateText" [width]="50"
+                                                headerClass="center-align" [cellClass]="center-align">
+                                                <ng-template let-value="value" ngx-datatable-cell-template>
+                                                    <div style="text-align: center;">
+                                                        <span> {{ value ? value : '--'}}</span>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="" [width]="5">
+                                                <ng-template let-user="row" ngx-datatable-cell-template>
+                                                    <div>
+                                                        <div
+                                                            class="badge badge-pill {{ !this.selectedUser || user.id != this.selectedUser.id ? 'bg-light-success' : 'bg-light-warning' }}">
+                                                            <i class="ft-edit font-medium-3" (click)="selectUser(user)">
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+
+                                        </ngx-datatable>
+                                        <!-- ngx-datatable-row-details -->
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
 
 
 
+            <div class="col-sm-4" *ngIf="rows">
 
-        <section *ngIf="this.selectedUser">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-sm-12">
-                                        <h4>Select a Field To Edit</h4>
-                                    </div>
+                <section *ngIf="!this.selectedUser">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
                                 </div>
-                                <div class="row" style="border-radius:5px; border:solid 1px black; padding:1%">
-                                    <div class="col-sm-8">
-                                        <span *ngIf="this.selectedUser"> Selected User =
-                                            <b>{{ '{ ' + this.selectedUser.userName + ' }' }}</b> </span>
-                                    </div>
-                                    <div class="col-sm-4" style="float: right;">
-                                        <i class="ft-delete font-medium-5 pull-right" style="color:red; cursor:pointer" (click) = "removeSelectedUser()"></i>
-                                    </div>
-
-                                </div>
-                                <br>
-
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('username')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'username' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Username</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row" style="text-align: center;">
+                                            <div class="col-sm-12">
+                                                <h5 style="margin-bottom:3%;">Select a User To Show Edit Panel</h5>
+                                                <i class="ft-lock font-medium-3" style="font-weight: 900;"></i>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('fullName')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'fullName' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Full Name</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('password')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'password' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Password</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('email')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'email' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Email</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('plan')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'plan' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>User Type</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('date')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'date' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Expire Date</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section *ngIf="this.selectedUser && this.selectedEdit">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row">
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'username' ">
-
-                                        <section id="reUsername">
-                                            <h4>Change Username : </h4>
-                                            <form [formGroup]="this.reUsernameForm">
-                                                <div class="form-group">
-                                                    <input type="username" formControlName="username"
-                                                        class="form-control mb-2" placeholder="Username"
-                                                        [ngClass]="{ 'is-invalid': this.reUsernameFormSubmitted && ruf.username.invalid, 'is-valid': this.reUsernameFormSubmitted && !ruf.username.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.reUsernameFormSubmitted && (ruf.username.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Username is
-                                                        required</div>
-                                                </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
-                                    </div>
-
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'fullName' ">
-
-                                        <section id="reFullName">
-                                            <h4>Change Full Name : </h4>
-                                            <form [formGroup]="this.reFullNameForm">
-                                                <div class="form-group">
-                                                    <input type="fullName" formControlName="fullName"
-                                                        class="form-control mb-2" placeholder="FullName"
-                                                        [ngClass]="{ 'is-invalid': this.reFullNameFormSubmitted && rfnf.fullName.invalid, 'is-valid': this.reFullNameFormSubmitted && !rfnf.fullName.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.reFullNameFormSubmitted && (rfnf.fullName.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> FullName is
-                                                        required</div>
-                                                </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
-                                    </div>
-
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'password' ">
-                                        <section id="repass">
-                                            <h4>Change Password : </h4>
-                                            <form [formGroup]="this.rePasswordForm">
-                                                <div class="form-group">
-                                                    <input type="password" formControlName="password"
-                                                        class="form-control mb-2" placeholder="Password"
-                                                        [ngClass]="{ 'is-invalid': this.rePasswordFormSubmitted && rpf.password.invalid, 'is-valid': this.rePasswordFormSubmitted && !rpf.password.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.rePasswordFormSubmitted && (rpf.password.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Password is
-                                                        required
-                                                    </div>
-                                                    <div *ngIf="this.rePasswordFormSubmitted && (!rpf.password.errors?.required && rpf.password.errors?.minlength)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Password must be
-                                                        at least 6 characters
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" formControlName="confirmPassword"
-                                                        class="form-control mb-2" placeholder="Confirm Password"
-                                                        [ngClass]="{ 'is-invalid': this.rePasswordFormSubmitted && rpf.confirmPassword.invalid, 'is-valid': this.rePasswordFormSubmitted && !rpf.confirmPassword.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.rePasswordFormSubmitted && (rpf.confirmPassword.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Confirm Password
-                                                        is
-                                                        required
-                                                    </div>
-                                                    <div *ngIf="this.rePasswordFormSubmitted && (rpf.confirmPassword.errors?.mustMatch)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Passwords must
-                                                        match
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column">
-                                                    <a class="btn btn-primary" (click)="onSubmit()">Save</a>
-                                                </div>
-                                            </form>
-                                        </section>
-                                    </div>
-
-
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'email' ">
-
-                                        <section id="reEmail">
-                                            <h4>Change Email : </h4>
-                                            <form [formGroup]="this.reEmailForm">
-                                                <div class="form-group">
-                                                    <input type="email" formControlName="email"
-                                                        class="form-control mb-2" placeholder="Email"
-                                                        [ngClass]="{ 'is-invalid': this.reEmailFormSubmitted && ref.email.invalid, 'is-valid': this.reEmailFormSubmitted && !ref.email.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.reEmailFormSubmitted && (ref.email.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Email is
-                                                        required</div>
-                                                    <div *ngIf="this.reEmailFormSubmitted &&  ref.email.errors?.email"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Email must be a
-                                                        valid email address</div>
-                                                </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
-                                    </div>
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'plan' ">
-                                        <h4>Change User Plan :</h4>
-                                        <div class="form-group">
-                                            <select #ddlSelectionAll class="form-control"
-                                                [(ngModel)]="this.selectedUser.userTypeId" name="selectionRole"
-                                                style="background: white;">
-                                                <option *ngFor=" let x of this.userTypeList" [value]="x.id">
-                                                    {{x.typeName}}</option>
-                                            </select>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
-                                    </div>
-                                    
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'date' ">
-                                        <h4>Change Plan Expire Date :</h4>
-                                        <div class="input-group">
-                                            <input class="form-control" readonly placeholder="Choose a date"
-                                                name="pickerDateForExpireDate" [(ngModel)]="this.keyDateForExpireDate"
-                                                ngbDatepicker #pickerDateForExpireDate="ngbDatepicker"
-                                                style="height:25px; cursor: pointer;"
-                                                (click)="pickerDateForExpireDate.toggle()">
-                                            <div class="input-group-append">
-                                                <div class="input-group-text"
-                                                    (click)="pickerDateForExpireDate.toggle()" style="height:25px;">
-                                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+
+
+
+
+                <section *ngIf="this.selectedUser">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row" style="text-align: center;">
+                                            <div class="col-sm-12">
+                                                <h4>Select a Field To Edit</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="border-radius:5px; border:solid 1px black; padding:1%">
+                                            <div class="col-sm-8">
+                                                <span *ngIf="this.selectedUser"> Selected User =
+                                                    <b>{{ '{ ' + this.selectedUser.userName + ' }' }}</b> </span>
+                                            </div>
+                                            <div class="col-sm-4" style="float: right;">
+                                                <i class="ft-delete font-medium-5 pull-right"
+                                                    style="color:red; cursor:pointer"
+                                                    (click)="removeSelectedUser()"></i>
+                                            </div>
+
+                                        </div>
+                                        <br>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('username')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'username' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Username</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('fullName')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'fullName' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Full Name</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('password')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'password' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Password</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('email')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'email' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Email</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('plan')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'plan' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>User Type</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('date')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'date' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Expire Date</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section *ngIf="this.selectedUser && this.selectedEdit">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row">
+
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'username' ">
+
+                                                <section id="reUsername">
+                                                    <h4>Change Username : </h4>
+                                                    <form [formGroup]="this.reUsernameForm">
+                                                        <div class="form-group">
+                                                            <input type="username" formControlName="username"
+                                                                class="form-control mb-2" placeholder="Username"
+                                                                [ngClass]="{ 'is-invalid': this.reUsernameFormSubmitted && ruf.username.invalid, 'is-valid': this.reUsernameFormSubmitted && !ruf.username.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.reUsernameFormSubmitted && (ruf.username.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Username
+                                                                is
+                                                                required</div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+
+
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'fullName' ">
+
+                                                <section id="reFullName">
+                                                    <h4>Change Full Name : </h4>
+                                                    <form [formGroup]="this.reFullNameForm">
+                                                        <div class="form-group">
+                                                            <input type="fullName" formControlName="fullName"
+                                                                class="form-control mb-2" placeholder="FullName"
+                                                                [ngClass]="{ 'is-invalid': this.reFullNameFormSubmitted && rfnf.fullName.invalid, 'is-valid': this.reFullNameFormSubmitted && !rfnf.fullName.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.reFullNameFormSubmitted && (rfnf.fullName.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> FullName
+                                                                is
+                                                                required</div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+
+
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'password' ">
+                                                <section id="repass">
+                                                    <h4>Change Password : </h4>
+                                                    <form [formGroup]="this.rePasswordForm">
+                                                        <div class="form-group">
+                                                            <input type="password" formControlName="password"
+                                                                class="form-control mb-2" placeholder="Password"
+                                                                [ngClass]="{ 'is-invalid': this.rePasswordFormSubmitted && rpf.password.invalid, 'is-valid': this.rePasswordFormSubmitted && !rpf.password.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.rePasswordFormSubmitted && (rpf.password.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Password
+                                                                is
+                                                                required
+                                                            </div>
+                                                            <div *ngIf="this.rePasswordFormSubmitted && (!rpf.password.errors?.required && rpf.password.errors?.minlength)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Password
+                                                                must be
+                                                                at least 6 characters
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="password" formControlName="confirmPassword"
+                                                                class="form-control mb-2" placeholder="Confirm Password"
+                                                                [ngClass]="{ 'is-invalid': this.rePasswordFormSubmitted && rpf.confirmPassword.invalid, 'is-valid': this.rePasswordFormSubmitted && !rpf.confirmPassword.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.rePasswordFormSubmitted && (rpf.confirmPassword.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Confirm
+                                                                Password
+                                                                is
+                                                                required
+                                                            </div>
+                                                            <div *ngIf="this.rePasswordFormSubmitted && (rpf.confirmPassword.errors?.mustMatch)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Passwords
+                                                                must
+                                                                match
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex justify-content-between flex-sm-row flex-column">
+                                                            <a class="btn btn-primary" (click)="onSubmit()">Save</a>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+
+
+
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'email' ">
+
+                                                <section id="reEmail">
+                                                    <h4>Change Email : </h4>
+                                                    <form [formGroup]="this.reEmailForm">
+                                                        <div class="form-group">
+                                                            <input type="email" formControlName="email"
+                                                                class="form-control mb-2" placeholder="Email"
+                                                                [ngClass]="{ 'is-invalid': this.reEmailFormSubmitted && ref.email.invalid, 'is-valid': this.reEmailFormSubmitted && !ref.email.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.reEmailFormSubmitted && (ref.email.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Email is
+                                                                required</div>
+                                                            <div *ngIf="this.reEmailFormSubmitted &&  ref.email.errors?.email"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Email must
+                                                                be a
+                                                                valid email address</div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'plan' ">
+                                                <h4>Change User Plan :</h4>
+                                                <div class="form-group">
+                                                    <select #ddlSelectionAll class="form-control"
+                                                        [(ngModel)]="this.selectedUser.userTypeId" name="selectionRole"
+                                                        style="background: white;">
+                                                        <option *ngFor=" let x of this.userTypeList" [value]="x.id">
+                                                            {{x.typeName}}</option>
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary"
+                                                    (click)="onSubmit()">Save</button>
+                                            </div>
+
+
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'date' ">
+                                                <h4>Change Plan Expire Date :</h4>
+                                                <div class="input-group">
+                                                    <input class="form-control" readonly placeholder="Choose a date"
+                                                        name="pickerDateForExpireDate"
+                                                        [(ngModel)]="this.keyDateForExpireDate" ngbDatepicker
+                                                        #pickerDateForExpireDate="ngbDatepicker"
+                                                        style="height:25px; cursor: pointer;"
+                                                        (click)="pickerDateForExpireDate.toggle()">
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text"
+                                                            (click)="pickerDateForExpireDate.toggle()"
+                                                            style="height:25px;">
+                                                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary"
+                                                    (click)="onSubmit()">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+            <!-- Row Details  Datatables -->
+
+
+        </div>
     </div>
-    <!-- Row Details  Datatables -->
-
-
 </div>

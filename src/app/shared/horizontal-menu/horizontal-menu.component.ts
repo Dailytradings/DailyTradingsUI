@@ -60,6 +60,10 @@ export class HorizontalMenuComponent implements OnInit, AfterViewInit, OnDestroy
 
   }
 
+  redirectToRoute(path) {
+    this.router.navigate([path]);
+  }
+
   ngOnDestroy() {
     if (this.layoutSub) {
       this.layoutSub.unsubscribe();

@@ -1,5 +1,4 @@
 import { isPlatformBrowser } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { AuthService } from 'app/shared/auth/auth.service';
@@ -118,11 +117,6 @@ export class EarningsOpportunitiesListComponent implements OnInit {
 
 
 
-  /**
-   * Constructor
-   *
-   * @param {HttpClient} http
-   */
   isBrowser = false;
   constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService, private broadcastingService: BroadcastingService) {
     if (isPlatformBrowser(_platformId)) {

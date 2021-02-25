@@ -10,6 +10,7 @@ export class BroadcastingService {
   public tickerObservable = new Subject<string>();
   public searchObservable = new Subject<boolean>();
   public logOutObservable = new Subject<boolean>();
+  public selectedNewsId = new Subject<Object>();
   public refreshAlertListObservable = new Subject<boolean>();
   public reportDateFromEarningsObservable = new Subject<Object>();
   public refreshWatchListOverviewObservable = new Subject<boolean>();
@@ -36,5 +37,8 @@ export class BroadcastingService {
   }
   emitRefrehWatchListOverview(val) {
     this.refreshWatchListOverviewObservable.next(val);
+  }
+  public emitNewsId(val) {
+    this.selectedNewsId.next(val);
   }
 }

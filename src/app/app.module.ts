@@ -12,6 +12,7 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { StoreModule } from "@ngrx/store";
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import {
   PerfectScrollbarModule,
@@ -69,6 +70,7 @@ export function createTranslateLoader(http: HttpClient) {
     ToastrModule.forRoot(),
     NgbModule,
     NgxSpinnerModule,
+    NgxChartsModule,
     DeviceDetectorModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

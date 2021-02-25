@@ -1,0 +1,29 @@
+<div class="w3-sidebar w3-bar-block w3-light-grey w3-card">
+    <button class="w3-button w3-block w3-left-align"  style="background-color: dimgray;
+    color: white;
+    font-weight: 900" (click)="openAccordion('general')">
+    General <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="general" class="w3-hide w3-white w3-card">
+      <a  [href]="redirect('general', '/management/holiday-management')"  class="w3-bar-item w3-button" [ngStyle]="{'background-color': this.content == 'holiday' ? 'bisque': ''}">Holiday</a>
+    </div>
+    <button class="w3-button w3-block w3-left-align"  style="background-color: dimgray;
+    color: white;
+    font-weight: 900" (click)="openAccordion('company')">
+    Company <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="company" class="w3-hide w3-white w3-card">
+      <a  [href]="redirect('company', '/management/earnings-management/')" class="w3-bar-item w3-button" [ngStyle]="{'background-color': this.content == 'earnings' ? 'bisque': ''}">Earnings Management</a>
+      <a   [href]="redirect('company', '/management/dividend-management/')" class="w3-bar-item w3-button" [ngStyle]="{'background-color': this.content == 'dividend' ? 'bisque': ''}">Dividend Management</a>
+      <a  [href]="redirect('company', '/management/other-predictions-management/')"  class="w3-bar-item w3-button" [ngStyle]="{'background-color': this.content == 'otherPredictions' ? 'bisque': ''}">Other Predictions Management</a>
+      <a  [href]="redirect('company', '/management/competitors-management/')" class="w3-bar-item w3-button" [ngStyle]="{'background-color': this.content == 'competitors' ? 'bisque': ''}">Competitors Management</a>
+    </div>
+    <button class="w3-button w3-block w3-left-align"  style="background-color: dimgray;
+    color: white;
+    font-weight: 900" (click)="openAccordion('user')">
+    User Management<i class="fa fa-caret-down"></i>
+    </button>
+    <div id="user" class="w3-hide w3-white w3-card">
+      <a  [href]="redirect('user', '/management/user')"  class="w3-bar-item w3-button" [ngStyle]="{'background-color': this.content == 'user' ? 'bisque': ''}">User</a>
+    </div>
+  </div>

@@ -68,7 +68,7 @@ export class LoginPageComponent {
                     if (propRes) {
                       localStorage.setItem("user", JSON.stringify({ user: user, pagePermission: pageRes, propPermission: propRes }));
                       this.signalRService.Login(user.id);
-                      this.router.navigate(['/stock/home']);
+                      this.router.navigate(['']);
                     }
                   });
               }

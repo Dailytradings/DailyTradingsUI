@@ -1,7 +1,10 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { NewsDetailComponent } from 'app/shared/news-detail/news-detail.component';
+import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
 import { environment } from 'environments/environment';
+import { SwiperDirective, SwiperConfigInterface} from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-homepage-news-panel',
@@ -14,7 +17,20 @@ export class HomepageNewsPanelComponent implements OnInit {
   @Input() type;
   newsList;
 
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService) { }
+  @ViewChild(NewsDetailComponent) newsDetail: NewsDetailComponent;
+
+  detailPanelShow;
+  closeDetailPanel() {
+    this.detailPanelShow = false;
+  }
+
+
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private broadcastingService: BroadcastingService) { 
+    broadcastingService.selectedNewsId.subscribe(() => {
+      this.detailPanelShow = true;
+      this.newsDetail.publicOpenPanel();
+    });
+  }
 
   ngOnInit(): void {
    if(isPlatformBrowser(this._platformId)) {
@@ -52,6 +68,46 @@ export class HomepageNewsPanelComponent implements OnInit {
         { newsContentSuffix: "AAPL reported that $5,000,000 stocks purchase..." }]
       }
 }
+
+  newsDetailOpen(id){
+    this.broadcastingService.emitNewsId(id);
+  }
+
+  // Responsive Breakpoints
+  public swiperResponsiveBreakpointsConfig: SwiperConfigInterface = {
+    slidesPerView: 5,
+    spaceBetween: 50,
+    // init: false,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 14,
+        spaceBetween: 30,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      }
+    }
+  };
+
+
+
+
+
+
+
 
   
   updateUrl(image) {

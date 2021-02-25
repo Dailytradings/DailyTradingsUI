@@ -31,15 +31,14 @@ import { HorizontalMenuComponent } from './horizontal-menu/horizontal-menu.compo
 import { NavbarComponent } from "./navbar/navbar.component";
 import { UserBlockComponent } from './navbar/user-block/user-block.component';
 import { HomepageNewsPanelComponent } from './news-panel/homepage-news-panel/homepage-news-panel.component';
+import { ChartistModule } from 'ng-chartist';
 import { NewsPanelComponent } from './news-panel/news-panel.component';
 import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 import { PipeModule } from './pipes/pipe.module';
 import { DynamicTableComponent } from './table/table.component';
 import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
-
-
-
-
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
 
 @NgModule({
     exports: [
@@ -64,6 +63,9 @@ import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
         HomepageNewsPanelComponent,
         NgxChartsModule,
         ChartsModule,
+        ChartistModule,
+        SwiperModule,
+        NewsDetailComponent
     ],
     imports: [
         RouterModule,
@@ -82,6 +84,8 @@ import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
         NgxDatatableModule,
         NgxChartsModule,
         ChartsModule,
+        ChartistModule,
+        SwiperModule
         ],
     declarations: [
         FooterComponent,
@@ -104,7 +108,8 @@ import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
         AdPanelComponent,
         NewsPanelComponent,
         UserBlockComponent,
-        HomepageNewsPanelComponent
+        HomepageNewsPanelComponent,
+        NewsDetailComponent
     ],
     providers: [DecimalPipe]
 })

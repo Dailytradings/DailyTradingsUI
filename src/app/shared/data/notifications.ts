@@ -55,14 +55,40 @@ export function confirmAlert(object: AlertObject, callback: Function): any {
 
 export function processNotification(object: AlertObject) {
     swal.fire({
-      position: 'bottom-end',
-      icon: object.icon,
-      title: object.title,
-      showConfirmButton: false,
-      timer: object.timer,
-      customClass: {
-        confirmButton: 'btn btn-primary'
-      },
-      buttonsStyling: false,
+        position: 'bottom-end',
+        icon: object.icon,
+        title: object.title,
+        showConfirmButton: false,
+        timer: object.timer,
+        customClass: {
+            confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false,
     });
-  }
+}
+
+export function processNotificationWithButton(object: AlertObject, callback: Function): any {
+    swal.fire({
+        position: 'top-end',
+        icon: object.icon,
+        title: object.title,
+        showCancelButton: true,
+        timer: object.timer,
+        confirmButtonColor: '#2F8BE6',
+        cancelButtonColor: '#F55252',
+        confirmButtonText: object.confirmButtonText,
+        cancelButtonText: object.cancelButtonText,
+        customClass: {
+            confirmButton: 'btn btn-info mr-5',
+            cancelButton: 'btn btn-success ml-5'
+        },
+        buttonsStyling: false,
+    }).then(function (res) {
+        if (!res.dismiss || res.dismiss.toString() !== "backdrop")
+            if (res.value) {
+                return callback(true);
+            } else {
+                return callback(false);
+            }
+    });
+}

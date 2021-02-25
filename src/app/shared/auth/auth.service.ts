@@ -164,7 +164,7 @@ export class AuthService {
     localStorage.removeItem("user");
     let alertObject: AlertObject = { title: 'İşlem Başarılı.', icon: 'success' };
     this.notificationService.processNotification(alertObject);
-    this.router.navigate(['/stock/home']);
+    this.router.navigate(['']);
     this.broadcastingService.emitLogOut();
   }
 
@@ -202,9 +202,17 @@ export class AuthService {
   }
 
   warning() {
-    let alertObject: AlertObject = { title: "Bu sayfaya giriş hakkınız bulunmamaktadır.", icon: 'error' };
-    this.notificationService.processNotification(alertObject);
-    this.router.navigate(['/stock/home']);
+    let alertObject: AlertObject = { title: "Bu sayfaya giriş hakkınız bulunmamaktadır.", confirmButtonText: 'Login', cancelButtonText: 'Register', icon: 'error' };
+    this.notificationService.processNotificationWithButton(alertObject, (result) => {
+        if(result != null) {
+          if(result) {
+            this.router.navigate(['/pages/login']);
+          } else {
+            this.router.navigate(['/pages/register']);
+          }
+        }
+    });
+    this.router.navigate(['']);
   }
 
   isPageAuthorized(keyword) {

@@ -1,533 +1,540 @@
 <div class="row">
-    <!-- <app-datatables></app-datatables> -->
-
-    <!-- Row Details  Datatables -->
-    <div class="col-sm-8">
-        <section id="ngx-datatable-row-details" *ngIf="rows">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Earnings List</h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body">
-
-                                <!-- ngx-datatable-row-details -->
-                                <!-- ngx-datatable-filter -->
-                                <fieldset class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <label for="ngx-filter-rf">Ara:
-                                                <input id="ngx-filter-rf"
-                                                    class="form-control form-control-sm d-inline-block width-300"
-                                                    type="text" placeholder="Earnings Date Bilgisine Göre Ara..."
-                                                    (keyup)="filterUpdate($event)" />
-                                            </label>
-                                        </div>
-
-                                        <div class="col-sm-8"></div>
-                                        <div class="col-sm-2"><a class="btn btn-success btn-sm"
-                                                (click)="selectEdit('new')">New Record</a></div>
-                                    </div>
-                                </fieldset>
-                                <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
-                                    [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
-                                    [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
-                                    [reorderable]="true" [sorts]="[{prop: 'earningsDateText', dir: 'desc'}]"
-                                    style="text-align: center;">
-
-                                    <ngx-datatable-column name="Quarter-Year" [width]="25">
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div style="text-align: center;">
-                                                {{ 'Q' + value.quarter + ' - ' + value.year }}
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Earnings Date" prop="earningsDateText" [width]="25">
-                                        <ng-template let-value="value" ngx-datatable-cell-template>
-                                            <div class="row">
-                                                <div class="col-sm-12" style="text-align: center;">
-                                                    <span>
-                                                        {{ value ? value : "-" }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Eps / Forecast" [width]="25">
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-3" style="text-align: center;">
-                                                    <span
-                                                        [ngStyle]="{'color': value.forecastEps && value.eps ? value.forecastEps > value.eps ? 'red' : 'green' : 'black' }">
-                                                        {{ value.eps ? (value.eps | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2" style="text-align: center;">
-                                                    /
-                                                </div>
-
-                                                <div class="col-sm-3" style="text-align: center;">
-                                                    <span>
-                                                        {{ value.forecastEps ? (value.forecastEps | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Revenue / Forecast" [width]="25">
-                                        <ng-template let-value="row" ngx-datatable-cell-template>
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-3">
-                                                    <span
-                                                        [ngStyle]="{'color': value.forecastRevenue ? value.forecastRevenue > value.revenue ? 'red' : 'green' : 'black' }">
-                                                        {{ value.revenue ? (value.revenue | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    /
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <span>
-                                                        {{ value.forecastRevenue ? (value.forecastRevenue | number) : '--' }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="" [width]="5">
-                                        <ng-template let-earnings="row" ngx-datatable-cell-template>
-                                            <div style="text-align: center;">
-                                                <div
-                                                    class="badge badge-pill {{ !this.selectedEarnings || earnings.id != this.selectedEarnings.id ? 'bg-light-success' : 'bg-light-warning' }}">
-                                                    <i class="ft-edit font-medium-3" (click)="SelectEarnings(earnings)">
-                                                    </i>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-
-                                </ngx-datatable>
-                                <!-- ngx-datatable-row-details -->
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="col-sm-2" style="padding: 15px 0px 0px 0px;">
+        <app-diagram-menu *ngIf="this.symbol" [category]="'company'" [content]="'earnings'" [ticker]="this.symbol.ticker"></app-diagram-menu>
     </div>
-
-
-
-    <div class="col-sm-4" *ngIf="rows">
-
-        <section *ngIf="!this.selectedEarnings">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-sm-12">
-                                        <h5 style="margin-bottom:3%;">Select an Earnings To Show Edit Panel</h5>
-                                        <i class="ft-lock font-medium-3" style="font-weight: 900;"></i>
+    <div class="col-sm-10">
+        <div class="row">
+            <!-- <app-datatables></app-datatables> -->
+        
+            <!-- Row Details  Datatables -->
+            <div class="col-sm-8">
+                <section id="ngx-datatable-row-details" *ngIf="rows">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Earnings List</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+        
+                                        <!-- ngx-datatable-row-details -->
+                                        <!-- ngx-datatable-filter -->
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label for="ngx-filter-rf">Ara:
+                                                        <input id="ngx-filter-rf"
+                                                            class="form-control form-control-sm d-inline-block width-300"
+                                                            type="text" placeholder="Earnings Date Bilgisine Göre Ara..."
+                                                            (keyup)="filterUpdate($event)" />
+                                                    </label>
+                                                </div>
+        
+                                                <div class="col-sm-8"></div>
+                                                <div class="col-sm-2"><a class="btn btn-success btn-sm"
+                                                        (click)="selectEdit('new')">New Record</a></div>
+                                            </div>
+                                        </fieldset>
+                                        <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap"
+                                            [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
+                                            [rowHeight]="50" [limit]="10" [rows]="rows" [sortType]="'multi'"
+                                            [reorderable]="true" [sorts]="[{prop: 'earningsDateText', dir: 'desc'}]"
+                                            style="text-align: center;">
+        
+                                            <ngx-datatable-column name="Quarter-Year" [width]="25">
+                                                <ng-template let-value="row" ngx-datatable-cell-template>
+                                                    <div style="text-align: center;">
+                                                        {{ 'Q' + value.quarter + ' - ' + value.year }}
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="Earnings Date" prop="earningsDateText" [width]="25">
+                                                <ng-template let-value="value" ngx-datatable-cell-template>
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="text-align: center;">
+                                                            <span>
+                                                                {{ value ? value : "-" }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="Eps / Forecast" [width]="25">
+                                                <ng-template let-value="row" ngx-datatable-cell-template>
+                                                    <div class="row" style="text-align: center;">
+                                                        <div class="col-sm-2"></div>
+                                                        <div class="col-sm-3" style="text-align: center;">
+                                                            <span
+                                                                [ngStyle]="{'color': value.forecastEps && value.eps ? value.forecastEps > value.eps ? 'red' : 'green' : 'black' }">
+                                                                {{ value.eps ? (value.eps | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2" style="text-align: center;">
+                                                            /
+                                                        </div>
+        
+                                                        <div class="col-sm-3" style="text-align: center;">
+                                                            <span>
+                                                                {{ value.forecastEps ? (value.forecastEps | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2"></div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="Revenue / Forecast" [width]="25">
+                                                <ng-template let-value="row" ngx-datatable-cell-template>
+                                                    <div class="row" style="text-align: center;">
+                                                        <div class="col-sm-2"></div>
+                                                        <div class="col-sm-3">
+                                                            <span
+                                                                [ngStyle]="{'color': value.forecastRevenue ? value.forecastRevenue > value.revenue ? 'red' : 'green' : 'black' }">
+                                                                {{ value.revenue ? (value.revenue | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            /
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <span>
+                                                                {{ value.forecastRevenue ? (value.forecastRevenue | number) : '--' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-2"></div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="" [width]="5">
+                                                <ng-template let-earnings="row" ngx-datatable-cell-template>
+                                                    <div style="text-align: center;">
+                                                        <div
+                                                            class="badge badge-pill {{ !this.selectedEarnings || earnings.id != this.selectedEarnings.id ? 'bg-light-success' : 'bg-light-warning' }}">
+                                                            <i class="ft-edit font-medium-3" (click)="SelectEarnings(earnings)">
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+        
+                                        </ngx-datatable>
+                                        <!-- ngx-datatable-row-details -->
+        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
-
-
-
-
-        <section *ngIf="this.selectedEarnings">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-sm-12">
-                                        <h4>Select a Field To Edit</h4>
+        
+        
+        
+            <div class="col-sm-4" *ngIf="rows">
+        
+                <section *ngIf="!this.selectedEarnings">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row" style="text-align: center;">
+                                            <div class="col-sm-12">
+                                                <h5 style="margin-bottom:3%;">Select an Earnings To Show Edit Panel</h5>
+                                                <i class="ft-lock font-medium-3" style="font-weight: 900;"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row" style="border-radius:5px; border:solid 1px black; padding:1%">
-                                    <div class="col-sm-8">
-                                        <span *ngIf="this.selectedEarnings"> Selected Earnings =
-                                            <b>{{ '{ ' + 'Q' + selectedEarnings.quarter + ' - ' + selectedEarnings.year + ' }' }}</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-4" style="float: right;">
-                                        <i class="ft-delete font-medium-5 pull-right" style="color:red; cursor:pointer"
-                                            (click)="removeSelectedEarnings()"></i>
-                                    </div>
-
-                                </div>
-                                <br>
-
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('eps')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'eps' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Eps</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('forecastEps')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'forecastEps' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Forecast Eps</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('revenue')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'revenue' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Revenue</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('forecastRevenue')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'forecastRevenue' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Forecast Revenue</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('earningsDate')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'date' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Earnings Date</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="card" (click)="selectEdit('setNext')"
-                                            [ngStyle]="{'background-color': selectedEdit == 'setNext' ? 'darkgray' : '#fff'}">
-                                            <div class="card-content">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-12" style="text-align: center;">
-                                                            <span style="cursor: default;">
-                                                                <b>Set Next Earnings Date</b>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section
-            *ngIf="(this.selectedEarnings && this.selectedEdit && this.selectedEdit != 'setNext') || this.selectedEdit == 'new' ">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: #efdeff;">
-                            <h4 class="card-title"></h4>
+                </section>
+        
+        
+        
+        
+                <section *ngIf="this.selectedEarnings">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row" style="text-align: center;">
+                                            <div class="col-sm-12">
+                                                <h4>Select a Field To Edit</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="border-radius:5px; border:solid 1px black; padding:1%">
+                                            <div class="col-sm-8">
+                                                <span *ngIf="this.selectedEarnings"> Selected Earnings =
+                                                    <b>{{ '{ ' + 'Q' + selectedEarnings.quarter + ' - ' + selectedEarnings.year + ' }' }}</b>
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-4" style="float: right;">
+                                                <i class="ft-delete font-medium-5 pull-right" style="color:red; cursor:pointer"
+                                                    (click)="removeSelectedEarnings()"></i>
+                                            </div>
+        
+                                        </div>
+                                        <br>
+        
+                                        <div class="row">
+        
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('eps')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'eps' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+        
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Eps</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('forecastEps')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'forecastEps' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+        
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Forecast Eps</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+        
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('revenue')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'revenue' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+        
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Revenue</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('forecastRevenue')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'forecastRevenue' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+        
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Forecast Revenue</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+        
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('earningsDate')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'date' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Earnings Date</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col-sm-6">
+                                                <div class="card" (click)="selectEdit('setNext')"
+                                                    [ngStyle]="{'background-color': selectedEdit == 'setNext' ? 'darkgray' : '#fff'}">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align: center;">
+                                                                    <span style="cursor: default;">
+                                                                        <b>Set Next Earnings Date</b>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                        </div>
+        
+        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-body" style="background-color: #efdeff;">
-                                <div class="row">
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'new' ">
-                                        <section id="newEarnings">
-                                            <h4>New Earnings : </h4>
-                                            <form [formGroup]="this.newForm">
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="eps" class="form-control mb-2"
-                                                        placeholder="EPS" step="0.01"
-                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.eps.invalid, 'is-valid': this.newFormSubmitted && !nf.eps.invalid }"
-                                                        required style="background:white">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="forecastEps"
-                                                        class="form-control mb-2" placeholder="Forecast EPS" step="0.01"
-                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.forecastEps.invalid, 'is-valid': this.newFormSubmitted && !nf.forecastEps.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.newFormSubmitted && (nf.forecastEps.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Forecast Eps is
-                                                        required</div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="revenue"
-                                                        class="form-control mb-2" placeholder="Revenue"
-                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.revenue.invalid, 'is-valid': this.newFormSubmitted && !nf.revenue.invalid }"
-                                                        required style="background:white">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="forecastRevenue"
-                                                        class="form-control mb-2" placeholder="Forecast Revenue"
-                                                        step="0.01"
-                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.forecastRevenue.invalid, 'is-valid': this.newFormSubmitted && !nf.forecastRevenue.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.newFormSubmitted && (nf.forecastRevenue.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Forecast Revenue is
-                                                        required
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="quarter"
-                                                        class="form-control mb-2" placeholder="Quarter"
-                                                        min="1"
-                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.quarter.invalid, 'is-valid': this.newFormSubmitted && !nf.quarter.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.newFormSubmitted && (nf.quarter.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Quarter is
-                                                        required
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="year"
-                                                    min="2000"
-                                                        class="form-control mb-2" placeholder="Year"
-                                                        [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.year.invalid, 'is-valid': this.newFormSubmitted && !nf.year.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.newFormSubmitted && (nf.year.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Year is
-                                                        required
-                                                    </div>
-                                                </div>  
-                                            </form>  
-                                            <div class="input-group">
-                                                    <input class="form-control" readonly placeholder="Choose an Earnings Date"
-                                                        name="pickerDateForNewDataEarningsDate"
-                                                        [(ngModel)]="this.keyDateForNewDataEarningsDate" ngbDatepicker
-                                                        #pickerDateForNewDataEarningsDate="ngbDatepicker"
+                    </div>
+                </section>
+        
+                <section
+                    *ngIf="(this.selectedEarnings && this.selectedEdit && this.selectedEdit != 'setNext') || this.selectedEdit == 'new' ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #efdeff;">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body" style="background-color: #efdeff;">
+                                        <div class="row">
+        
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'new' ">
+                                                <section id="newEarnings">
+                                                    <h4>New Earnings : </h4>
+                                                    <form [formGroup]="this.newForm">
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="eps" class="form-control mb-2"
+                                                                placeholder="EPS" step="0.01"
+                                                                [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.eps.invalid, 'is-valid': this.newFormSubmitted && !nf.eps.invalid }"
+                                                                required style="background:white">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="forecastEps"
+                                                                class="form-control mb-2" placeholder="Forecast EPS" step="0.01"
+                                                                [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.forecastEps.invalid, 'is-valid': this.newFormSubmitted && !nf.forecastEps.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.newFormSubmitted && (nf.forecastEps.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Forecast Eps is
+                                                                required</div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="revenue"
+                                                                class="form-control mb-2" placeholder="Revenue"
+                                                                [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.revenue.invalid, 'is-valid': this.newFormSubmitted && !nf.revenue.invalid }"
+                                                                required style="background:white">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="forecastRevenue"
+                                                                class="form-control mb-2" placeholder="Forecast Revenue"
+                                                                step="0.01"
+                                                                [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.forecastRevenue.invalid, 'is-valid': this.newFormSubmitted && !nf.forecastRevenue.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.newFormSubmitted && (nf.forecastRevenue.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Forecast Revenue is
+                                                                required
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="quarter"
+                                                                class="form-control mb-2" placeholder="Quarter"
+                                                                min="1"
+                                                                [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.quarter.invalid, 'is-valid': this.newFormSubmitted && !nf.quarter.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.newFormSubmitted && (nf.quarter.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Quarter is
+                                                                required
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="year"
+                                                            min="2000"
+                                                                class="form-control mb-2" placeholder="Year"
+                                                                [ngClass]="{ 'is-invalid': this.newFormSubmitted && nf.year.invalid, 'is-valid': this.newFormSubmitted && !nf.year.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.newFormSubmitted && (nf.year.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Year is
+                                                                required
+                                                            </div>
+                                                        </div>  
+                                                    </form>  
+                                                    <div class="input-group">
+                                                            <input class="form-control" readonly placeholder="Choose an Earnings Date"
+                                                                name="pickerDateForNewDataEarningsDate"
+                                                                [(ngModel)]="this.keyDateForNewDataEarningsDate" ngbDatepicker
+                                                                #pickerDateForNewDataEarningsDate="ngbDatepicker"
+                                                                style="height:25px; cursor: pointer;"
+                                                                (click)="pickerDateForNewDataEarningsDate.toggle()">
+                                                            <div class="input-group-append">
+                                                                <div class="input-group-text"
+                                                                    (click)="pickerDateForNewDataEarningsDate.toggle()" style="height:25px;">
+                                                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+        
+                                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                </section>
+                                            </div>
+        
+        
+        
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'eps' ">
+                                                <section id="reEps">
+                                                    <h4>Change EPS : </h4>
+                                                    <form [formGroup]="this.epsForm">
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="eps" class="form-control mb-2"
+                                                                placeholder="EPS" step="0.01"
+                                                                [ngClass]="{ 'is-invalid': this.epsFormSubmitted && ef.eps.invalid, 'is-valid': this.epsFormSubmitted && !ef.eps.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.epsFormSubmitted && (ef.eps.errors?.required)"
+                                                                class="help-block mt-1 text-danger">
+                                                                <i class="ft-alert-circle align-middle"></i> Eps is
+                                                                required
+                                                            </div>
+        
+                                                        </div>
+                                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+        
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'forecastEps' ">
+                                                <section id="reForecastEps">
+                                                    <h4>Change Forecast EPS : </h4>
+                                                    <form [formGroup]="this.forecastEpsForm">
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="forecastEps"
+                                                                class="form-control mb-2" placeholder="Forecast EPS" step="0.01"
+                                                                [ngClass]="{ 'is-invalid': this.epsFormSubmitted && fef.forecastEps.invalid, 'is-valid': this.forecastEpsFormSubmitted && !fef.forecastEps.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.forecastEpsFormSubmitted && (fef.forecastEps.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Forecast Eps
+                                                                is
+                                                                required</div>
+                                                        </div>
+                                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+        
+        
+        
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'revenue' ">
+        
+                                                <section id="reRevenue">
+                                                    <h4>Change Revenue : </h4>
+                                                    <form [formGroup]="this.revenueForm">
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="revenue"
+                                                                class="form-control mb-2" placeholder="Revenue"
+                                                                [ngClass]="{ 'is-invalid': this.revenueFormSubmitted && rf.revenue.invalid, 'is-valid': this.revenueFormSubmitted && !rf.revenue.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.revenueFormSubmitted && (rf.revenue.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Revenue is
+                                                                required</div>
+                                                        </div>
+                                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+        
+                                            </div>
+        
+        
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'forecastRevenue' ">
+                                                <section id="reForecastRevenue">
+                                                    <h4>Change Forecast Revenue : </h4>
+                                                    <form [formGroup]="this.forecastRevenueForm">
+                                                        <div class="form-group">
+                                                            <input type="number" formControlName="forecastRevenue"
+                                                                class="form-control mb-2" placeholder="Forecast Revenue"
+                                                                step="0.01"
+                                                                [ngClass]="{ 'is-invalid': this.RevenueFormSubmitted && frf.forecastRevenue.invalid, 'is-valid': this.forecastRevenueFormSubmitted && !frf.forecastRevenue.invalid }"
+                                                                required style="background:white">
+                                                            <div *ngIf="this.forecastRevenueFormSubmitted && (frf.forecastRevenue.errors?.required)"
+                                                                class="help-block mt-1 text-danger"> <i
+                                                                    class="ft-alert-circle align-middle"></i> Forecast
+                                                                Revenue is
+                                                                required</div>
+                                                        </div>
+                                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
+                                                            <button class="btn btn-primary ml-sm-1"
+                                                                (click)="onSubmit()">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+        
+        
+                                            <div class="col-sm-12" *ngIf="selectedEdit == 'earningsDate' ">
+                                                <h4>Change Earnings Date :</h4>
+                                                <div class="input-group">
+                                                    <input class="form-control" readonly placeholder="Choose a date"
+                                                        name="pickerDateForEarningsDate"
+                                                        [(ngModel)]="this.keyDateForEarningsDate" ngbDatepicker
+                                                        #pickerDateForEarningsDate="ngbDatepicker"
                                                         style="height:25px; cursor: pointer;"
-                                                        (click)="pickerDateForNewDataEarningsDate.toggle()">
+                                                        (click)="pickerDateForEarningsDate.toggle()">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text"
-                                                            (click)="pickerDateForNewDataEarningsDate.toggle()" style="height:25px;">
+                                                            (click)="pickerDateForEarningsDate.toggle()" style="height:25px;">
                                                             <i class="fa fa-calendar" style="cursor: pointer;"></i>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                        </section>
-                                    </div>
-
-
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'eps' ">
-                                        <section id="reEps">
-                                            <h4>Change EPS : </h4>
-                                            <form [formGroup]="this.epsForm">
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="eps" class="form-control mb-2"
-                                                        placeholder="EPS" step="0.01"
-                                                        [ngClass]="{ 'is-invalid': this.epsFormSubmitted && ef.eps.invalid, 'is-valid': this.epsFormSubmitted && !ef.eps.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.epsFormSubmitted && (ef.eps.errors?.required)"
-                                                        class="help-block mt-1 text-danger">
-                                                        <i class="ft-alert-circle align-middle"></i> Eps is
-                                                        required
-                                                    </div>
-
-                                                </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
-                                    </div>
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'forecastEps' ">
-                                        <section id="reForecastEps">
-                                            <h4>Change Forecast EPS : </h4>
-                                            <form [formGroup]="this.forecastEpsForm">
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="forecastEps"
-                                                        class="form-control mb-2" placeholder="Forecast EPS" step="0.01"
-                                                        [ngClass]="{ 'is-invalid': this.epsFormSubmitted && fef.forecastEps.invalid, 'is-valid': this.forecastEpsFormSubmitted && !fef.forecastEps.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.forecastEpsFormSubmitted && (fef.forecastEps.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Forecast Eps
-                                                        is
-                                                        required</div>
-                                                </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
-                                    </div>
-
-
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'revenue' ">
-
-                                        <section id="reRevenue">
-                                            <h4>Change Revenue : </h4>
-                                            <form [formGroup]="this.revenueForm">
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="revenue"
-                                                        class="form-control mb-2" placeholder="Revenue"
-                                                        [ngClass]="{ 'is-invalid': this.revenueFormSubmitted && rf.revenue.invalid, 'is-valid': this.revenueFormSubmitted && !rf.revenue.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.revenueFormSubmitted && (rf.revenue.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Revenue is
-                                                        required</div>
-                                                </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
-
-                                    </div>
-
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'forecastRevenue' ">
-                                        <section id="reForecastRevenue">
-                                            <h4>Change Forecast Revenue : </h4>
-                                            <form [formGroup]="this.forecastRevenueForm">
-                                                <div class="form-group">
-                                                    <input type="number" formControlName="forecastRevenue"
-                                                        class="form-control mb-2" placeholder="Forecast Revenue"
-                                                        step="0.01"
-                                                        [ngClass]="{ 'is-invalid': this.RevenueFormSubmitted && frf.forecastRevenue.invalid, 'is-valid': this.forecastRevenueFormSubmitted && !frf.forecastRevenue.invalid }"
-                                                        required style="background:white">
-                                                    <div *ngIf="this.forecastRevenueFormSubmitted && (frf.forecastRevenue.errors?.required)"
-                                                        class="help-block mt-1 text-danger"> <i
-                                                            class="ft-alert-circle align-middle"></i> Forecast
-                                                        Revenue is
-                                                        required</div>
-                                                </div>
-                                                <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                    <button class="btn btn-primary ml-sm-1"
-                                                        (click)="onSubmit()">Save</button>
-                                                </div>
-                                            </form>
-                                        </section>
-                                    </div>
-
-
-                                    <div class="col-sm-12" *ngIf="selectedEdit == 'earningsDate' ">
-                                        <h4>Change Earnings Date :</h4>
-                                        <div class="input-group">
-                                            <input class="form-control" readonly placeholder="Choose a date"
-                                                name="pickerDateForEarningsDate"
-                                                [(ngModel)]="this.keyDateForEarningsDate" ngbDatepicker
-                                                #pickerDateForEarningsDate="ngbDatepicker"
-                                                style="height:25px; cursor: pointer;"
-                                                (click)="pickerDateForEarningsDate.toggle()">
-                                            <div class="input-group-append">
-                                                <div class="input-group-text"
-                                                    (click)="pickerDateForEarningsDate.toggle()" style="height:25px;">
-                                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                    <button class="btn btn-primary ml-sm-1" (click)="onSubmit()">Save</button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                            <button class="btn btn-primary ml-sm-1" (click)="onSubmit()">Save</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
+            <!-- Row Details  Datatables -->
+        
+        
+        
+        </div>
     </div>
-    <!-- Row Details  Datatables -->
-
-
-
 </div>

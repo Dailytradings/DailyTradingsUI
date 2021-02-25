@@ -12,6 +12,8 @@
         height: 70vh !important;
       }
 
+
+
       .datatable-header {
         background-color: $body-bg;
 
@@ -19,7 +21,9 @@
           border-bottom: 0;
         }
       }
-
+      .datatable-body{
+        position: relative;
+      }
       .datatable-body-row {
         border-color: $border-color;
 
@@ -45,8 +49,31 @@
         .datatable-body-cell {
           display: flex;
           align-items: center;
+          
 
         }
+
+        .datatable-body-cell:before {
+          content : "";
+          border-right: 1px solid #11111130;
+          height: 40px;
+          margin-right: 15px;
+        }
+
+        .datatable-body-cell:first-child:before {
+          content : "";
+          border-right: 0;
+          height: 40px;
+        }
+        .datatable-body-cell:nth-child(2):before {
+          content : "";
+          border-right: 0;
+          height: 40px;
+        }
+      }
+
+      .datatable-header-cell {
+        padding-left: 27.5px;
       }
 
       .datatable-footer {

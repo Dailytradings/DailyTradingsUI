@@ -1,8 +1,10 @@
 <!-- <app-datatables></app-datatables> -->
 
 <div class="row">
-    <div class="col-sm-12">
-        <app-news-panel style="width: 100%; height: 100%;" [type]="'InsiderTrades'" [newsCount]="3"></app-news-panel>
+     <!-- [type]="'InsiderTrades'"  -->
+    <div class="col-sm-12" style="padding-top:0;">
+        <app-homepage-news-panel style="width: 100%; height: 100%;" [newsCount]="3" >
+        </app-homepage-news-panel>
     </div>
     <!-- <div class="col-sm-4">
         <app-ad-panel style="width: 100%; height: 100%;" [adType]="'BirNoluReklam'" [width]="100" [height]="100"

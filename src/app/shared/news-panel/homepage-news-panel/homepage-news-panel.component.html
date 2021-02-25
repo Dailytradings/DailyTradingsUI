@@ -1,19 +1,138 @@
 
-<div class="row">
-    <div class="col-sm-3" *ngFor="let news of newsList">
-      <div class="card card-inverse bg-success text-center" title="Expire Date : {{news.expireDate}}">
-        <div class="card-content">
-          <div class="card-img overlap">
-            <img
-              src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
-              (error)="updateUrl(news)" width="75" height="75">
-          </div>
-          <div class="card-body">
-            <h4 class="card-title" title="{{news.newsTitle}}">{{news.newsTitleSuffix}}</h4>
-            <p class="card-text" style="color: black; cursor:default" title="{{news.newsContent}}">
-              {{news.newsContentSuffix}}</p>
-          </div>
+<app-news-detail [hidden]="!this.detailPanelShow" [newsType]="type" (closeDetailPanel)= "closeDetailPanel()" ></app-news-detail>
+
+
+
+  <!-- Responsive Breakpoints swiper start -->
+<section id="swiper-responsive-breakpoints" *ngIf="newsList && newsList.length > 0">
+
+  <div class="row mt-2">
+      <div class="col-12">
+        <div class="news-title">
+          <span>Stock Stories <i class="ft-arrow-right"></i></span>
         </div>
+          <div class="card mb-0" style="background: none; box-shadow: inherit;">
+              <div class="card-content">
+                  <div class="card-body" style="padding: 0;">
+                      <div class="swiper-responsive-breakpoints swiper-container" [swiper]="swiperResponsiveBreakpointsConfig" style="padding-bottom: 30px;">
+                          <div class="swiper-wrapper d-flex">
+                              <div class="swiper-slide d-flex swiper-story position-relative text-align-center" *ngFor="let news of newsList" style="background: #fff; border-radius: 50%; align-items: stretch">
+                                <div class="news-circle">
+                                  <div class="news-subject" title="Earnings">
+                                    <span>E</span>
+                                  </div>    
+                                  <div class="news-hover" (click)="newsDetailOpen(news.id)">
+                                    <i class="ft-search"></i>
+                                  </div>
+                                  <div class="card-body position-relative d-flex align-items-center justify-content-center" style="overflow: hidden; border-radius: 50%; border: 3px solid #fff; height: 100%; padding: 0;">
+                                    <div class="overlap">
+                                      <img src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+                                        (error)="updateUrl(news)" class="swiper-story-img" style="background: #fff;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="news-name" style="width: 100%; text-align:center">{{news.ticker}}</div>
+                              </div>
+
+                              <div class="swiper-slide d-flex swiper-story position-relative text-align-center" *ngFor="let news of newsList" style="background: #fff; border-radius: 50%; align-items: stretch">
+                                <div class="news-circle">
+                                  <div class="news-subject" title="Earnings">
+                                    <span>E</span>
+                                  </div>    
+                                  <div class="news-hover" (click)="newsDetailOpen(news.id)">
+                                    <i class="ft-search"></i>
+                                  </div>
+                                  <div class="card-body position-relative d-flex align-items-center justify-content-center" style="overflow: hidden; border-radius: 50%; border: 3px solid #fff; height: 100%; padding: 0;">
+                                    <div class="overlap">
+                                      <img src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+                                        (error)="updateUrl(news)" class="swiper-story-img" style="background: #fff;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="news-name" style="width: 100%; text-align:center">{{news.ticker}}</div>
+                              </div>
+
+
+                              <div class="swiper-slide d-flex swiper-story position-relative text-align-center" *ngFor="let news of newsList" style="background: #fff; border-radius: 50%; align-items: stretch">
+                                <div class="news-circle">
+                                  <div class="news-subject" title="Earnings">
+                                    <span>E</span>
+                                  </div>    
+                                  <div class="news-hover" (click)="newsDetailOpen(news.id)">
+                                    <i class="ft-search"></i>
+                                  </div>
+                                  <div class="card-body position-relative d-flex align-items-center justify-content-center" style="overflow: hidden; border-radius: 50%; border: 3px solid #fff; height: 100%; padding: 0;">
+                                    <div class="overlap">
+                                      <img src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+                                        (error)="updateUrl(news)" class="swiper-story-img" style="background: #fff;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="news-name" style="width: 100%; text-align:center">{{news.ticker}}</div>
+                              </div>
+
+                              <div class="swiper-slide d-flex swiper-story position-relative text-align-center" *ngFor="let news of newsList" style="background: #fff; border-radius: 50%; align-items: stretch">
+                                <div class="news-circle">
+                                  <div class="news-subject" title="Earnings">
+                                    <span>E</span>
+                                  </div>    
+                                  <div class="news-hover" (click)="newsDetailOpen(news.id)">
+                                    <i class="ft-search"></i>
+                                  </div>
+                                  <div class="card-body position-relative d-flex align-items-center justify-content-center" style="overflow: hidden; border-radius: 50%; border: 3px solid #fff; height: 100%; padding: 0;">
+                                    <div class="overlap">
+                                      <img src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+                                        (error)="updateUrl(news)" class="swiper-story-img" style="background: #fff;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="news-name" style="width: 100%; text-align:center">{{news.ticker}}</div>
+                              </div>
+
+                              <div class="swiper-slide d-flex swiper-story position-relative text-align-center" *ngFor="let news of newsList" style="background: #fff; border-radius: 50%; align-items: stretch">
+                                <div class="news-circle">
+                                  <div class="news-subject" title="Earnings">
+                                    <span>E</span>
+                                  </div>    
+                                  <div class="news-hover" (click)="newsDetailOpen(news.id)">
+                                    <i class="ft-search"></i>
+                                  </div>
+                                  <div class="card-body position-relative d-flex align-items-center justify-content-center" style="overflow: hidden; border-radius: 50%; border: 3px solid #fff; height: 100%; padding: 0;">
+                                    <div class="overlap">
+                                      <img src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+                                        (error)="updateUrl(news)" class="swiper-story-img" style="background: #fff;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="news-name" style="width: 100%; text-align:center">{{news.ticker}}</div>
+                              </div>
+
+                              <div class="swiper-slide d-flex swiper-story position-relative text-align-center" *ngFor="let news of newsList" style="background: #fff; border-radius: 50%; align-items: stretch">
+                                <div class="news-circle">
+                                  <div class="news-subject" title="Earnings">
+                                    <span>E</span>
+                                  </div>    
+                                  <div class="news-hover" (click)="newsDetailOpen(news.id)">
+                                    <i class="ft-search"></i>
+                                  </div>
+                                  <div class="card-body position-relative d-flex align-items-center justify-content-center" style="overflow: hidden; border-radius: 50%; border: 3px solid #fff; height: 100%; padding: 0;">
+                                    <div class="overlap">
+                                      <img src="{{news.logoUrl ? news.logoUrl : 'https://seeklogo.com/images/A/abstract-company-shape-logo-D3087E8DB6-seeklogo.com.png'}}"
+                                        (error)="updateUrl(news)" class="swiper-story-img" style="background: #fff;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="news-name" style="width: 100%; text-align:center">{{news.ticker}}</div>
+                              </div>
+                          </div>
+                          <!-- Add Pagination -->
+                          <div class="swiper-pagination d-none"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
       </div>
-    </div>
   </div>
+</section>
+<!-- Responsive Breakpoints swiper ends -->
