@@ -34,7 +34,6 @@ export interface Chart {
 export class HomepageComponent implements OnInit {
 
   isBrowser;
-  @ViewChild(NewsDetailComponent) newsDetail: NewsDetailComponent;
   // Donut Chart 2 Starts
   donutChart2: Chart = {
     type: 'Pie',
@@ -79,9 +78,6 @@ export class HomepageComponent implements OnInit {
 
 
 
-
-
-
   // Responsive Breakpoints
   public swiperResponsiveBreakpointsConfig: SwiperConfigInterface = {
     slidesPerView: 5,
@@ -113,18 +109,7 @@ export class HomepageComponent implements OnInit {
 
 
 
-
-  detailPanelShow;
-  closeDetailPanel() {
-    this.detailPanelShow = false;
-  }
-
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location) {
-    broadcastingService.selectedNewsId.subscribe(() => {
-      this.detailPanelShow = true;
-      this.newsDetail.publicOpenPanel();
-    });
-  }
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location) {}
 
   ngOnInit() {
     setTimeout(() => {

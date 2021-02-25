@@ -48,6 +48,7 @@ import { PreviousEarningsEffectsListComponent } from './previous-earnings-effect
 import { PreviousDividendEffectsListComponent } from './previous-dividend-effects/previous-dividend-effects-list/previous-dividend-effects-list.component';
 import { EarningsAnalysisListComponent } from './earnings-analysis/earnings-analysis-list/earnings-analysis-list.component';
 import { OtherPredictionsFromWebsitesListComponent } from './other-predictions-from-websites/other-predictions-from-websites-list/other-predictions-from-websites-list.component';
+import { LockedPanelComponent } from './widgets/locked-panel/locked-panel.component';
 
 
 
@@ -94,6 +95,7 @@ import { OtherPredictionsFromWebsitesListComponent } from './other-predictions-f
     PreviousDividendEffectsListComponent,
     EarningsAnalysisListComponent,
     OtherPredictionsFromWebsitesListComponent,
+    LockedPanelComponent,
   ],
   imports: [
     CommonModule,

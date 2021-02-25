@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { NewsDetailComponent } from 'app/shared/news-detail/news-detail.component';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
 import { environment } from 'environments/environment';
@@ -16,7 +17,20 @@ export class HomepageNewsPanelComponent implements OnInit {
   @Input() type;
   newsList;
 
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private broadcastingService: BroadcastingService) { }
+  @ViewChild(NewsDetailComponent) newsDetail: NewsDetailComponent;
+
+  detailPanelShow;
+  closeDetailPanel() {
+    this.detailPanelShow = false;
+  }
+
+
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private broadcastingService: BroadcastingService) { 
+    broadcastingService.selectedNewsId.subscribe(() => {
+      this.detailPanelShow = true;
+      this.newsDetail.publicOpenPanel();
+    });
+  }
 
   ngOnInit(): void {
    if(isPlatformBrowser(this._platformId)) {

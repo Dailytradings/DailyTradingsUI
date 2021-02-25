@@ -10,7 +10,7 @@ import { ContentService } from './../../shared/services/content.service';
 export class EarningsPageComponent implements OnInit {
   constructor(private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService) {
     authService.isPageAuthorized("HotStockOpportunities");
-  }
+   }
 
   ngOnInit() {
   }
