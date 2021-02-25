@@ -47,6 +47,7 @@ export var lineChartShowYAxis = true;
 export var lineChartGradient = false;
 export var lineChartShowLegend = false;
 export var lineChartShowXAxisLabel = true;
+export var showGridLines = false;
 export var lineChartXAxisLabel = 'Country';
 export var lineChartShowYAxisLabel = true;
 export var lineChartYAxisLabel = 'Population';
