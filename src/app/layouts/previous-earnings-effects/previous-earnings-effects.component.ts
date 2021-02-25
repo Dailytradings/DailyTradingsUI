@@ -30,7 +30,7 @@ export class PreviousEarningsEffectsComponent implements OnInit {
   }
 
   checkDataVisibilityPermission() {
-    this.allowedToSee = this.authService.isAuthenticated("OtherPredictionsFromWebsites");
+    this.allowedToSee = this.authService.isAuthenticated("PreviousEarningsEffects");
     this.cdRef.detectChanges();
   }
 

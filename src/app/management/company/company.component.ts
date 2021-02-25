@@ -53,4 +53,9 @@ export class CompanyComponent implements OnInit {
       }
     }
   }
+
+  focusSearch() {
+    this.broadcastingService.emitSearch(true);
+  }
+  
 }

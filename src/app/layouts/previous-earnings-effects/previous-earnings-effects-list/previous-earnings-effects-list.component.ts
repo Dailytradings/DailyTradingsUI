@@ -50,6 +50,7 @@ export class PreviousEarningsEffectsListComponent implements OnInit {
   }
 
   lineChartMulti = lineChartMulti;
+
    // line, area
    areaChartAutoScale = chartsData.areaChartAutoScale;
    areaChartLineInterpolation = chartsData.areaChartLineInterpolation;

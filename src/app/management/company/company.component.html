@@ -5,7 +5,7 @@
                 <h4 class="card-title"></h4>
             </div>
             <div class="card-content">
-                <div class="card-body" style="background-color: #efdeff;">
+                <div class="card-body" style="background-color: #efdeff;" (click)="focusSearch()">
                     <div class="row" style="text-align: center;">
                         <div class="col-sm-12">
                             <h4  [ngStyle]="{'color': this.symbolTicker ? '#40C057' : 'black'}"><b>{{this.symbolTicker ? 'Now You Can Select a Category' : 'Select a Symbol'}} To Edit</b></h4>
