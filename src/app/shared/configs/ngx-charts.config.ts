@@ -43,14 +43,14 @@ export var lineChartView: any[] = [550, 400];
 
 // options
 export var lineChartShowXAxis = true;
-export var lineChartShowYAxis = true;
+export var lineChartShowYAxis = false;
 export var lineChartGradient = false;
 export var lineChartShowLegend = false;
 export var lineChartShowXAxisLabel = true;
 export var showGridLines = false;
-export var lineChartXAxisLabel = 'Country';
+export var lineChartXAxisLabel = false;
 export var lineChartShowYAxisLabel = true;
-export var lineChartYAxisLabel = 'Population';
+export var lineChartYAxisLabel = false;
 
 export var lineChartColorScheme = {
     domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']

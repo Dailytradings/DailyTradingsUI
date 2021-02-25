@@ -1,20 +1,20 @@
 <!-- Row Details  Datatables -->
 
 <section id="ngx-datatable-row-details" *ngIf="rows != undefined" style="position: relative;">
-    
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center pb-2"
                     style="border-bottom: 1px solid #11111140; padding-right: 0; padding-left: 0; margin-right: 1.5rem; margin-left: 1.5rem">
                     <h4 class="card-title">Earnings Opportunities</h4>
-                    <!-- <div>
+                    <div *ngIf="this.demo">
                         <label for="ngx-filter-ref">
                             <input id="ngx-filter-ref" class="form-control form-control-sm d-inline-block width-220 "
                                 type="text" placeholder="Search" (keyup)="filterUpdate($event)"
                                 style="border-radius:20px; padding: 17px" />
                         </label>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -24,13 +24,14 @@
                         <fieldset class="form-group mb-0">
                             <div class="row ml-0 d-flex justify-content-between mr-0 position-relative">
 
-                                
+
 
                                 <div>
                                     <div class="switch-toggle switch-3 switch-candy2" style="width: 220px;"
-                                    *ngIf="!this.demo">
+                                        *ngIf="!this.demo">
                                         <input id="opportunity" name="state-e" type="radio" checked="">
-                                        <label for="opportunity" class="p-1" (click)="filterDataSet('earnings opportunity')"
+                                        <label for="opportunity" class="p-1"
+                                            (click)="filterDataSet('earnings opportunity')"
                                             onclick="">Opportunities</label>
 
                                         <input id="earnings" name="state-e" type="radio" checked="checked">
@@ -42,22 +43,25 @@
                                     <div class="switch-toggle switch-3 switch-candy"
                                         style="box-shadow: none; width: 300px; background: none; margin-top: 20px;">
                                         <input id="on" class="p-1" name="state-d" type="radio" checked="">
-                                        <label for="on" class="p-1" (click)="filterAnnounce('BMO')" onclick=""
-                                            style="color: #111; text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">BMO</label>
+                                        <label for="on" class="p-1 table-title-item" (click)="filterAnnounce('BMO')"
+                                            onclick=""
+                                            style="text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">BMO</label>
 
-                                        <input id="na" class="p-1" name="state-d" type="radio" checked="checked" >
-                                        <label for="na" class="p-1" (click)="filterAnnounce('ALL')" onclick=""
-                                            style="color: #111; text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">All</label>
+                                        <input id="na" class="p-1" name="state-d" type="radio" checked="checked">
+                                        <label for="na" class="p-1 table-title-item" (click)="filterAnnounce('ALL')"
+                                            onclick=""
+                                            style="text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">All</label>
 
                                         <input id="off" name="state-d" type="radio">
-                                        <label for="off" class="p-1" (click)="filterAnnounce('AMC')" onclick=""
-                                            style="color: #111; text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">AMC</label>
+                                        <label for="off" class="p-1 table-title-item" (click)="filterAnnounce('AMC')"
+                                            onclick=""
+                                            style="text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">AMC</label>
 
                                         <a></a>
                                     </div>
                                 </div>
 
-                                
+
 
                                 <div *ngIf="!this.demo" style="position: absolute; right: 0; bottom: 0;">
                                     <div class="input-group">
@@ -81,7 +85,8 @@
 
 
 
-                                <div class="col-4" style="position: absolute; margin-top: 40px; right: 230px;">
+                                <div *ngIf="!this.demo" class="col-4"
+                                    style="position: absolute; margin-top: 40px; right: 230px;">
                                     <label for="ngx-filter-ref" style="width: 100%;">
                                         <input id="ngx-filter-ref" class="form-control form-control-sm d-inline-block"
                                             type="text" placeholder="Search" (keyup)="filterUpdate($event)"
@@ -89,7 +94,6 @@
                                     </label>
                                 </div>
 
-                                
 
 
 
@@ -97,21 +101,24 @@
 
 
 
-                                
+
+
 
 
 
 
                                 <div *ngIf="this.demo"></div>
                                 <div>
-                                    <div class="btn-group position-relative" role="group" style="width:100%; margin-top: -10px;">
-                                        <select name="" id="" class="p-1" style="border: 1px solid #11111110; color: #777" 
-                                        (change)="changeTimeRange($event)">
-                                        <option [value]="'Today'">Today</option>
-                                        <option [value]="'Tomorrow'">Tomorrow</option>
-                                        <option [value]="'ThisWeek'">This Week</option>
-                                        <option [value]="'NextWeek'">Next Week</option>
-                                        </select> 
+                                    <div class="btn-group position-relative" role="group"
+                                        style="width:100%; margin-top: -10px;">
+                                        <select name="" id="" class="p-1"
+                                            style="border: 1px solid #11111110; color: #777"
+                                            (change)="changeTimeRange($event)">
+                                            <option [value]="'Today'">Today</option>
+                                            <option [value]="'Tomorrow'">Tomorrow</option>
+                                            <option [value]="'ThisWeek'">This Week</option>
+                                            <option [value]="'NextWeek'">Next Week</option>
+                                        </select>
                                         <!-- <button type="button" (click)="changeTimeRange('Today')"
                                             [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'Today', 'btn-outline-secondary' : this.selectedTimeRange !== 'Today'}"
                                             style="padding: 0px; padding-left: 5px; padding-right: 5px;">Today</button>
@@ -131,53 +138,93 @@
                             </div>
                         </fieldset>
                         <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force"
-                            [headerHeight]="60" [footerHeight]="60" [rowHeight]="60"  [limit]="10" [rows]="rows"
+                            [headerHeight]="60" [footerHeight]="60" [rowHeight]="60" [limit]="10" [rows]="rows"
                             [sortType]="'multi'" [reorderable]="true" [sorts]="[{prop: 'dateText', dir: 'asc'}]"
                             *ngIf="this.isBrowser" style="display: flex; align-items: center; position: relative;">
                             <!-- Row Detail Template -->
 
                             <ngx-datatable-row-detail [rowHeight]="90" style="position: relative; padding-left: 65px;">
                                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                                    
+
                                     <div class="ml-5 my-1">
-                                        
-                                        <div class="row" style="position:fixed; width: calc(100% + 65px); padding-left: 65px;">
-                                            <i class="ft-corner-down-right" style="position: absolute; top: 0; left: -27.5px; font-size: 55px;"></i>
-                                            <div class="col-sm-7">
+
+                                        <div class="row"
+                                            style="position:fixed; width: calc(100% + 65px); padding-left: 65px;">
+                                            <i class="ft-corner-down-right"
+                                                style="position: absolute; top: 0; left: -27.5px; font-size: 55px;"></i>
+                                            <div class="{{this.demo ? 'col-sm-8' : 'col-sm-7'}}">
                                                 <div class="row"
                                                     style="padding-top: 5px; padding-bottom: 5px; display: block;">
                                                     <div class="col-sm-4"
                                                         style="background: #f3f3f3; margin-right: 1%; display: inline-block;"
                                                         *ngFor="let otherPrediction of row.otherPredictions">
-                                                        <div class="row p-1" style="display: flex; align-items: center;">
+                                                        <div class="row p-1"
+                                                            style="display: flex; align-items: center;">
 
-                                                            <div style="position: relative; padding: 0px; padding-right: 5px; height: 42px;">
-                                                                <img src="{{otherPrediction.logoUrl}}" alt="{{otherPrediction.siteName}}" style="position: relative; height: 42px;">
+                                                            <div
+                                                                style="position: relative; padding: 0px; padding-right: 5px; height: 42px;">
+                                                                <img src="{{otherPrediction.logoUrl}}"
+                                                                    alt="{{otherPrediction.siteName}}"
+                                                                    style="position: relative; height: 42px;">
                                                             </div>
 
 
-                                                            <div style="padding-left:5px;">
-                                                                <div><strong> {{ otherPrediction.siteName }} </strong>
+                                                            <div style="padding-left:5px; flex-grow: 1">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <span>{{ otherPrediction.siteName }}</span>
+                                                                    <!-- #007bff -->
+                                                                    <i *ngIf="otherPrediction.notExist"
+                                                                        title="Not Exist" class="ft-alert-triangle"
+                                                                        style="font-size: 22px; color: #dc3545;"></i>
+                                                                    <i *ngIf="!otherPrediction.notExist && !otherPrediction.consensusEps && !otherPrediction.consensusRevenue"
+                                                                        title="Not Announced" class="fa fa-calendar"
+                                                                        style="font-size: 22px; color: #e68b01;"></i>
                                                                 </div>
-                                                                <div>
-                                                                  <span title="{{ otherPrediction.consensusEps != null ?
-                                                                    (otherPrediction.consensusEps | number) : otherPrediction.notExist ? 'Not Exist' : 'Not Available' }}" style="font-weight: bold;">  {{ otherPrediction.consensusEps != null ?
-                                                                    (otherPrediction.consensusEps | number) : otherPrediction.notExist ? 'Not Existed' : 'Not Announced' }}</span>
+                                                                <div
+                                                                    *ngIf="otherPrediction.consensusEps || otherPrediction.consensusRevenue">
+                                                                    <span
+                                                                        title="{{ otherPrediction.consensusEps != null ?
+                                                                    (otherPrediction.consensusEps | number) : otherPrediction.notExist ? 'Not Exist' : 'Not Announced' }}"
+                                                                        style="font-weight: bold;"> {{
+                                                                        otherPrediction.consensusEps != null ?
+                                                                        (otherPrediction.consensusEps | number) :
+                                                                        otherPrediction.notExist ? 'Not Existed' : 'Not
+                                                                        Announced' }}</span>
                                                                     -
-                                                                   <span title="{{ otherPrediction.consensusRevenue != null ?
-                                                                    (otherPrediction.consensusRevenue | number) : otherPrediction.notExist ? 'Not Exist' : 'Not Available' }}"  style="font-weight: bold;">
-                                                                    {{ otherPrediction.consensusRevenue != null ?
-                                                                        (otherPrediction.consensusRevenue | number) : otherPrediction.notExist ? 'Not Existed' : 'Not Announced' }}
-                                                                   </span> <!-- green : #84BA83; red: #C91C1C -->
+                                                                    <span
+                                                                        title="{{ otherPrediction.consensusRevenue != null ?
+                                                                    (otherPrediction.consensusRevenue | number) : otherPrediction.notExist ? 'Not Exist' : 'Not Announced' }}"
+                                                                        style="font-weight: bold;">
+                                                                        {{ otherPrediction.consensusRevenue != null ?
+                                                                        (otherPrediction.consensusRevenue | number) :
+                                                                        otherPrediction.notExist ? 'Not Existed' : 'Not
+                                                                        Announced' }}
+                                                                    </span> <!-- green : #84BA83; red: #C91C1C -->
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="!otherPrediction.notExist && !otherPrediction.consensusEps && !otherPrediction.consensusRevenue">
+                                                                    <span title="Not Announced"
+                                                                        style="font-weight: bold;">
+                                                                        Not Announced
+                                                                    </span>
+                                                                </div>
+
+                                                                <div
+                                                                    *ngIf="otherPrediction.notExist && !otherPrediction.consensusEps && !otherPrediction.consensusRevenue">
+                                                                    <span title="Not Exist" style="font-weight: bold;">
+                                                                        Not Exist
+                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="pl-4 ml-4 d-flex align-items-center" style="width: 250px;">
-                                                <div class="row d-flex flex-column justify-content-center" style="border-left: 1px solid #11111140; padding: 5px 0; padding-left: 20px;">
+                                                <div class="row d-flex flex-column justify-content-center"
+                                                    style="border-left: 1px solid #11111140; padding: 5px 0; padding-left: 20px;">
                                                     <div style="padding-top:1.5%">
                                                         <strong>Peer Analysis</strong>
                                                     </div>
@@ -211,7 +258,8 @@
                                 </ng-template>
                             </ngx-datatable-row-detail>
                             <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false"
-                                [draggable]="false" [canAutoResize]="false" style="display: flex; align-items: center; margin: 20px">
+                                [draggable]="false" [canAutoResize]="false"
+                                style="display: flex; align-items: center; margin: 20px">
                                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template
                                     style="display: flex; align-items: center;">
                                     <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded"
@@ -333,8 +381,9 @@
                         </div> -->
 
                         <!-- 5 adet adet -->
-                       
-                        <app-locked-panel [dataSize]="rows.length" [allowedToSee]="this.allowedToSee"></app-locked-panel>
+
+                        <app-locked-panel [dataSize]="rows.length" [allowedToSee]="this.allowedToSee">
+                        </app-locked-panel>
                     </div>
                 </div>
             </div>

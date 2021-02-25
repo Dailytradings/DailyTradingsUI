@@ -1,12 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ContentService } from 'app/shared/services/content.service';
-<<<<<<< HEAD
 import { barChartSingle, barChartmulti, pieChartSingle, pieChartmulti, lineChartSingle, lineChartMulti, areaChartSingle, areaChartMulti } from '../../../shared/data/ngxChart';
 import * as chartsData from '../../../shared/configs/ngx-charts.config';
-=======
+
 import { NotificationService } from 'app/shared/services/notification.service';
->>>>>>> 659e38a60bd229f5f43dbe4e19f4db015da3d07e
 
 @Component({
   selector: 'app-previous-earnings-effects-list',
@@ -16,11 +14,7 @@ import { NotificationService } from 'app/shared/services/notification.service';
 export class PreviousEarningsEffectsListComponent implements OnInit {
 
   @Input() symbol;
-<<<<<<< HEAD
-
-=======
   @Input() allowedToSee;
->>>>>>> 659e38a60bd229f5f43dbe4e19f4db015da3d07e
 
   constructor(private contentService: ContentService,
     private cdRef: ChangeDetectorRef,

@@ -1,12 +1,12 @@
 
 
-<div>
+<!-- <div>
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
-                        <div id="line-chart2" class="height-400">
+                        <div id="line-chart2" class="height-150">
                             <ngx-charts-line-chart  [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient"
                                 [xAxis]="lineChartShowXAxis" [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
                                 [showYAxisLabel]="lineChartShowYAxisLabel" [xAxisLabel]="lineChartXAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
@@ -64,13 +64,37 @@
                         <ngx-datatable-row-detail [rowHeight]="120" (toggle)="toggleDetail($event)">
                     
                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                                <div class="ml-5 my-1">
-                                    <div class="row" style="position:fixed; width: 100%;">
+                                <div class="my-1">
+                                    <div class="row" style="position:fixed; width: 90%; margin-left: 2.7%;">
                                         <div class="col-sm-12">
-                                            <div class="row"
-                                                style="overflow-x: auto; display: block;">
+                                            <div class="row" style="overflow-x: auto; display: block;">
+
+
+                                                <div class="card">
+                                                    <div class="card-content">
+                                                        <div class="card-body p-0">
+                                                            <div id="line-chart2" class="height-100">
+                                                                <ngx-charts-line-chart  [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient"
+                                                                    [xAxis]="lineChartShowXAxis" [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
+                                                                    [showYAxisLabel]="lineChartShowYAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
+                                                                    [autoScale]="lineChartAutoScale" [showGridLines]="showGridLines">
+                                                                </ngx-charts-line-chart>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
                                                
-                                                <table class="table table-responsive text-center m-0" style="font-size: medium;">
+                                                <!-- <table class="table table-responsive text-center m-0" style="font-size: medium;">
                                                     <thead>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"></th>
                                                         <th style="border: black solid 1px; padding: 5px; cursor: default;"
@@ -279,7 +303,7 @@
                                                             </td>
                                                         </tr>
                                                     </tbody>
-                                                </table>
+                                                </table> -->
 
 
 
