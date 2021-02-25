@@ -7,11 +7,7 @@ import { AuthService } from 'app/shared/auth/auth.service';
   styleUrls: ['./insider-trades-page.component.scss']
 })
 export class InsiderTradesPageComponent implements OnInit {
-
- 
-
  constructor(private authService: AuthService) {
-   authService.isPageAuthorized("InsiderTradesOpportunities");
  }
 
  ngOnInit() {

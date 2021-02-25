@@ -17,13 +17,13 @@
                         </div>
                         <div class="swiper-responsive-breakpoints swiper-container" [swiper]="swiperResponsiveBreakpointsConfig">
                             <div class="swiper-wrapper pb-5">
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 10px;">
+                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 10px;" *ngFor="let news of newsList ">
                                     <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
                                         <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
+                                            <img src="{{news.logoUrl}}" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
                                             <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
+                                                <span>{{news.ticker}}</span>
+                                                <span style="font-size: .7em; color: #666">{{news.companyName}}</span>
                                             </div>
                                         </div>
                                             <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
@@ -35,125 +35,9 @@
                                         </span>
                                     </div>
                                     <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
+                                        {{news.newsContent}}
                                     </p>
                                 </div>
-
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 10px;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
-                                            </div>
-                                        </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
-                                    </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
-                                </div>
-
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 10px;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
-                                            </div>
-                                        </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
-                                    </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
-                                </div>
-
-
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 10px;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
-                                            </div>
-                                        </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
-                                    </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
-                                </div>
-
-
-
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 10px;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
-                                            </div>
-                                        </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
-                                    </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
-                                </div>
-
-
-
-                                <div class="swiper-slide matchings-item" style="padding: 2.5rem; border-radius: 10px;">
-                                    <div class="col-sm-12 d-flex align-center justify-content-between mb-3" style="padding: 0;">
-                                        <div class="d-flex">
-                                            <img src="https://s3.polygon.io/logos/zg/logo.png" alt="" style="width: 42px; height: 42px; border-radius: 50%; background:  #fbfbfb; margin-right:10px; border: 2px solid #36EEE0;">
-                                            <div class="d-flex flex-column" style="padding: 0;">
-                                                <span>ZG</span>
-                                                <span style="font-size: .7em; color: #666">Zillow Group Inc. Class A</span>
-                                            </div>
-                                        </div>
-                                            <!-- <p>Although NEU beats its EPS estimate, misses Revenue Forecast for Q4,2020. NewMarket Corporation (NEU) reported Q4,2020 EPS (Earnings per share) as 6.12</p> -->
-                                        <span class="d-flex justify-content-start align-items-center position-relative chart-news-container" style="padding: 0; color: green">
-                                            <!-- <i class="ft-circle d-flex align-items-start justify-content-start position-absolute" style="font-size: 7px; left: 0; top: 10px"></i> -->
-                                            <i class="ft-trending-up d-flex justify-content-center" style="transform: rotate(-20deg); color: green; font-size: 20px;"></i>
-                                            <!-- <i class="ft-circle position-absolute" style="font-size: 7px; bottom: 12px; left: 15px; color :green"></i> -->
-                                            <span style="margin-left: 5px;">96</span>
-                                        </span>
-                                    </div>
-                                    <p class="card-text mb-12 mt-1" style="color: #111; cursor:default; line-height: 25px; letter-spacing: 1.1px;">
-                                        Arcosa Inc (ACA) has just announced that Q4,2020 Earnings Results will be serviced at 24 Şub 2021 (AMC). Their aim for EPS is 0,41 and Revenue is 457,56M. Let’s see that, will ACA be able to meet their expectations for this quarter. Please keep in mind that Arcosa Inc could beat EPS estimates on previous quarter, Q3,2020 but unfortunately missed it Revenue estimates. FYI, Revenue of the same quarter a year ago(Q4,2019) was 446,90M.
-                                    </p>
-                                </div>
-
                                 
                             </div>
                             <!-- Add Pagination 

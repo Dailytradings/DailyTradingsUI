@@ -12,7 +12,7 @@ export class NewsDetailComponent implements OnInit {
   @Input() newsType;
   @Output() closeDetailPanel = new EventEmitter<boolean>();
 
-  newsList;
+  @Input() newsList;
 
   swiperEnabled = false;
   firstEntrance = true;

@@ -1,17 +1,14 @@
-import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { isPlatformBrowser, Location } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/shared/auth/auth.service';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 import { ContentService } from 'app/shared/services/content.service';
 import * as Chartist from 'chartist';
-import { ChartType, ChartEvent } from "ng-chartist";
-import { pieChartSingle } from '../../shared/data/ngxChart';
+import { ChartEvent, ChartType } from "ng-chartist";
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import * as chartsData from '../../shared/configs/ngx-charts.config';
-import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { NewsDetailComponent } from 'app/shared/news-detail/news-detail.component';
-import { Location } from '@angular/common';
-import { environment } from 'environments/environment';
-import { AuthService } from 'app/shared/auth/auth.service';
+import { pieChartSingle } from '../../shared/data/ngxChart';
 
 //Declarations
 declare var require: any;
@@ -35,9 +32,8 @@ export interface Chart {
 export class HomepageComponent implements OnInit {
 
   isBrowser;
-
   allowedToSee;
-  @ViewChild(NewsDetailComponent) newsDetail: NewsDetailComponent;
+
   // Donut Chart 2 Starts
   donutChart2: Chart = {
     type: 'Pie',
@@ -58,10 +54,6 @@ export class HomepageComponent implements OnInit {
 
   bannerUrl = "../../../assets/img/banner/banner-18.jpg";
 
-  mainNews;
-
-
-
   // autoplay
   public swiperAutoplayConfig: SwiperConfigInterface = {
     spaceBetween: 30,
@@ -81,39 +73,7 @@ export class HomepageComponent implements OnInit {
   };
 
 
-
-  // Responsive Breakpoints
-  public swiperResponsiveBreakpointsConfig: SwiperConfigInterface = {
-    slidesPerView: 5,
-    spaceBetween: 50,
-    // init: false,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    breakpoints: {
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 30,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      }
-    }
-  };
-
-
-
- constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location, private authService: AuthService, private cdRef: ChangeDetectorRef) {}
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location, private authService: AuthService, private cdRef: ChangeDetectorRef) { }
 
 
   checkDataVisibilityPermission() {
@@ -133,10 +93,6 @@ export class HomepageComponent implements OnInit {
           this.bannerUrl = res;
       });
     }
-    this.contentService.getOurEstimatesActivityNews(1).subscribe(res => {
-      if (res)
-        this.mainNews = res;
-    });
   }
 
 

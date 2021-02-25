@@ -39,6 +39,7 @@ import { DynamicTableComponent } from './table/table.component';
 import { VerticalMenuComponent } from "./vertical-menu/vertical-menu.component";
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { PrideCornerNewsPanelComponent } from './news-panel/pride-corner-news-panel/pride-corner-news-panel.component';
 
 @NgModule({
     exports: [
@@ -65,7 +66,8 @@ import { NewsDetailComponent } from './news-detail/news-detail.component';
         ChartsModule,
         ChartistModule,
         SwiperModule,
-        NewsDetailComponent
+        NewsDetailComponent,
+        PrideCornerNewsPanelComponent
     ],
     imports: [
         RouterModule,
@@ -109,7 +111,8 @@ import { NewsDetailComponent } from './news-detail/news-detail.component';
         NewsPanelComponent,
         UserBlockComponent,
         HomepageNewsPanelComponent,
-        NewsDetailComponent
+        NewsDetailComponent,
+        PrideCornerNewsPanelComponent
     ],
     providers: [DecimalPipe]
 })
