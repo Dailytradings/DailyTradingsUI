@@ -106,7 +106,219 @@ Last Open : {{this.historicalAnalysis.earningsLastOpen ? this.historicalAnalysis
     <hr *ngIf="this.historicalAnalysis != null">
     <div class="row" *ngIf="this.historicalAnalysis != null">
         <div style="margin: 0 auto; display: inline-block;">
+
             <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
+                <thead>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"></th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousFourDayChangeFormula}}">-4d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousThreeDayChangeFormula}}">-3d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousTwoDayChangeFormula}}">-2d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousOneDayChangeFormula}}">-1d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousFourHourChangeFormula}}">-4h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousOneHourChangeFormula}}">-1h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousFifteenMinChangeFormula}}">-15m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousFiveMinChangeFormula}}">-5m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.previousOneMinChangeFormula}}">-1m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default; background-color: yellowgreen;"
+                        title="{{'Key Date : ' + this.historicalAnalysis.keyDate}}">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.keyChangeFormula}}">Nightly Change</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneMinChangeFormula}}">1m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.fiveMinChangeFormula}}">5m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.fifteenMinChangeFormula}}">15m</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneHourChangeFormula}}">1h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.fourHourChangeFormula}}">4h</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.oneDayChangeFormula}}">1d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.twoDayChangeFormula}}">2d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.threeDayChangeFormula}}">3d</th>
+                    <th style="border: black solid 1px; padding: 5px; cursor: default;"
+                        title="{{this.historicalAnalysis.fourDayChangeFormula}}">4d</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="border: black solid 1px; padding: 5px;">Change</th>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousFourDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFourDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFourDayChange ?  this.historicalAnalysis.previousFourDayChange  + '%': 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousThreeDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousThreeDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousThreeDayChange ?  this.historicalAnalysis.previousThreeDayChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousTwoDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousTwoDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousTwoDayChange ?  this.historicalAnalysis.previousTwoDayChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousOneDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousOneDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousOneDayChange ?  this.historicalAnalysis.previousOneDayChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousFourHourChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFourHourChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFourHourChange ? this.historicalAnalysis.previousFourHourChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousOneHourChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousOneHourChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.previousOneHourChange ? this.historicalAnalysis.previousOneHourChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousFifteenMinChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFifteenMinChange ? this.historicalAnalysis.previousFifteenMinChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousFiveMinChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousFiveMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousFiveMinChange ? this.historicalAnalysis.previousFiveMinChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.previousOneMinChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.previousOneMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.previousOneMinChange ? this.historicalAnalysis.previousOneMinChange  + '%' : 'N/A' }}
+                            </span>  
+                              <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;"
+                            title="{{'Key Date : ' + this.historicalAnalysis.keyDate}}"> </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.keyChangeValueFormula}}">
+                                <span *ngIf="this.allowedToSee"
+                                    [ngStyle]="{'color': this.historicalAnalysis.keyChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.keyChange ? this.historicalAnalysis.keyChange  + '%' : 'N/A' }}
+                                </span>
+                                <span *ngIf="!this.allowedToSee">
+                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                                </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.oneMinChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.oneMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.oneMinChange ? this.historicalAnalysis.oneMinChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.fiveMinChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.fiveMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.fiveMinChange ? this.historicalAnalysis.fiveMinChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.fifteenMinChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.fifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.fifteenMinChange ?  this.historicalAnalysis.fifteenMinChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.oneHourChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.oneHourChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.oneHourChange ?this.historicalAnalysis.oneHourChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.fourHourChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.fourHourChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.fourHourChange ? this.historicalAnalysis.fourHourChange  + '%': 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.oneDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.oneDayChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.oneDayChange ?  this.historicalAnalysis.oneDayChange  + '%'  : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.twoDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.twoDayChange >= 0 ? '#40C057' :'tomato'}">{{this.historicalAnalysis.twoDayChange ?  this.historicalAnalysis.twoDayChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.threeDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.threeDayChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.threeDayChange ? this.historicalAnalysis.threeDayChange  + '%': 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                        <td style="border: black solid 1px; padding: 5px;" title="{{this.historicalAnalysis.fourDayChangeValueFormula}}">
+                            <span *ngIf="this.allowedToSee"
+                                [ngStyle]="{'color': this.historicalAnalysis.fourDayChange >= 0 ? '#40C057' :'tomato'}">
+                                {{this.historicalAnalysis.fourDayChange ? this.historicalAnalysis.fourDayChange  + '%' : 'N/A' }}
+                            </span>
+                            <span *ngIf="!this.allowedToSee">
+                                <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <table class="table table-responsive text-center m-0" style="text-align:center; font-size: medium;">
                 <thead>
                     <th style="border: black solid 1px; padding: 5px; cursor: default;"></th>
                     <th style="border: black solid 1px; padding: 5px; cursor: default;"
@@ -322,73 +534,8 @@ Last Open : {{this.historicalAnalysis.earningsLastOpen ? this.historicalAnalysis
                             {{this.historicalAnalysis.fourDayOpen ? this.historicalAnalysis.fourDayOpen : 'N/A' }}
                         </td>
                     </tr>
-                    <!--
-
-  <tr>
-                        <th style="border: black solid 1px; padding: 5px;">Close</th>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousFourDayClose ? this.historicalAnalysis.previousFourDayClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousThreeDayClose ? this.historicalAnalysis.previousThreeDayClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousTwoDayClose ? this.historicalAnalysis.previousTwoDayClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousOneDayClose ? this.historicalAnalysis.previousOneDayClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousFourHourClose ? this.historicalAnalysis.previousFourHourClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousOneHourClose ? this.historicalAnalysis.previousOneHourClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousFifteenMinClose ? this.historicalAnalysis.previousFifteenMinClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousFiveMinClose ? this.historicalAnalysis.previousFiveMinClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.previousOneMinClose ? this.historicalAnalysis.previousOneMinClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;" title="{{'Key Date : ' + this.historicalAnalysis.keyDate}}"> </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.keyClose ? this.historicalAnalysis.keyClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.oneMinClose ? this.historicalAnalysis.oneMinClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.fiveMinClose ? this.historicalAnalysis.fiveMinClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.fifteenMinClose ? this.historicalAnalysis.fifteenMinClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.oneHourClose ? this.historicalAnalysis.oneHourClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.fourHourClose ? this.historicalAnalysis.fourHourClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.oneDayClose ? this.historicalAnalysis.oneDayClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.twoDayClose ? this.historicalAnalysis.twoDayClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.threeDayClose ? this.historicalAnalysis.threeDayClose : 'N/A' }}
-                        </td>
-                        <td style="border: black solid 1px; padding: 5px;">
-                            {{this.historicalAnalysis.fourDayClose ? this.historicalAnalysis.fourDayClose : 'N/A' }}
-                        </td>
-                    </tr>
-
-                   -->
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
 </div>

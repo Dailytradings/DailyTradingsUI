@@ -12,7 +12,10 @@ export class HistoricalAnalysisComponent implements OnInit {
   @Input() keyDateForAnalysis;
   @Input() symbol: any;
   historicalAnalysis: any;
-  constructor(private symbolService: SymbolService, private broadcastingService: BroadcastingService) { }
+  allowedToSee;
+  constructor(private symbolService: SymbolService, private broadcastingService: BroadcastingService) {
+    this.allowedToSee = true;
+   }
 
   ngOnInit(): void {
     this.broadcastingService.reportDateFromEarningsObservable.subscribe((x: any) => {
