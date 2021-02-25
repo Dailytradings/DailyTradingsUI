@@ -154,103 +154,81 @@ export var lineChartSingle = [
 
 export var lineChartMulti = [
   {
-    "name": "Germany",
+    "name": "Change",
     "series": [
       {
-        "name": "2010",
+        "name": "-4d",
         "value": 700
       },
       {
-        "name": "2011",
+        "name": "-3d",
         "value": 750
       },
       {
-        "name": "2012",
+        "name": "-2d",
         "value": 775
       },
       {
-        "name": "2013",
+        "name": "-1d",
         "value": 725
       },
       {
-        "name": "2014",
+        "name": "-4h",
         "value": 750
       },
       {
-        "name": "2015",
+        "name": "-1h",
         "value": 800
       },
       {
-        "name": "2016",
+        "name": "-15m",
         "value": 860
-      }
-    ]
-  },
-
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "2010",
-        "value": 650
       },
       {
-        "name": "2011",
+        "name": "-5m",
+        "value": 750
+      },
+      {
+        "name": "-1m",
         "value": 800
       },
       {
-        "name": "2012",
-        "value": 705
+        "name": "0",
+        "value": 860
+      },{
+        "name": "1m",
+        "value": 860
       },
       {
-        "name": "2013",
+        "name": "5m",
         "value": 750
-      },      
-      {
-        "name": "2014",
-        "value": 850
       },
       {
-        "name": "2015",
-        "value": 875
-      },      
-      {
-        "name": "2016",
-        "value": 730
-      }
-    ]
-  },
-
-  {
-    "name": "France",
-    "series": [
-      {
-        "name": "2010",
-        "value": 660
+        "name": "15m",
+        "value": 800
       },
       {
-        "name": "2011",
-        "value": 720
+        "name": "1h",
+        "value": 860
+      },{
+        "name": "4h",
+        "value": 860
       },
       {
-        "name": "2012",
-        "value": 680
+        "name": "1d",
+        "value": 750
       },
       {
-        "name": "2013",
-        "value": 675
-      },      
-      {
-        "name": "2014",
-        "value": 700
+        "name": "2d",
+        "value": 800
       },
       {
-        "name": "2015",
-        "value": 680
-      },      
+        "name": "3d",
+        "value": 750
+      },
       {
-        "name": "2016",
-        "value": 690
+        "name": "4d",
+        "value": 800
       }
     ]
   }

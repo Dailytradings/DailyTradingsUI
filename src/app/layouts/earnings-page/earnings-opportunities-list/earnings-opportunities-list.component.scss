@@ -16,6 +16,22 @@
  */
 /* Hide by default
  */
+
+
+
+
+
+.table-detail-item{
+  margin-right: 50px; 
+}
+.table-detail-item:last-child{
+  margin-right: 0; 
+}
+
+
+
+
+
 .switch-toggle a,
 .switch-light span span {
   display: none; }
@@ -276,21 +292,25 @@ datatable-body-cell{
  */
   .switch-toggle.switch-candy,
   .switch-light.switch-candy > span {
-    background-color: #2d3035;
+    background-color: #343a40;
     border-radius: 3px;
+    color: #fff;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.2); }
   .switch-light.switch-candy span span,
   .switch-light.switch-candy input:checked ~ span span:first-child,
   .switch-toggle.switch-candy label {
-    color: #fff;
+    color: #111;
+    background: #f7f7f8;
     font-weight: bold;
     text-align: center;
     text-shadow: 1px 1px 1px #191b1e; }
   .switch-light.switch-candy input ~ span span:first-child,
   .switch-light.switch-candy input:checked ~ span span:nth-child(2),
   .switch-candy input:checked + label {
-    color: #333;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    outline: none;
+    background: #343a40; }
   .switch-candy a {
     border-radius: 10px 10px 0 0;
     background-color: #f7f7f8;
@@ -300,28 +320,31 @@ datatable-body-cell{
   .switch-candy-yellow a {
     background-color: #f5e560; }
 
-
+    .table-title-item{
+      color: #111;
+    }
 
     .switch-toggle.switch-candy2,
     .switch-light.switch-candy2 > span {
-      background-color: #2d3035;
+      background-color: #f7f7f8;
       border-radius: 12px;
-      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.2); }
+       }
     .switch-light.switch-candy2 span span,
     .switch-light.switch-candy2 input:checked ~ span span:first-child,
     .switch-toggle.switch-candy2 label {
-      color: #fff;
+      color: #333;
       font-weight: bold;
       text-align: center;
-      text-shadow: 1px 1px 1px #191b1e; }
+       }
     .switch-light.switch-candy2 input ~ span span:first-child,
     .switch-light.switch-candy2 input:checked ~ span span:nth-child(2),
     .switch-candy2 input:checked + label {
-      color: #333;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+      color: #fff;
+      outline: none;
+       }
     .switch-candy2 a {
       border-radius: 10px;
-      background-color: #f7f7f8;
+      background-color: #2d3035;
        }
     .switch-candy2-blue a {
       background-color: #38a3d4; }

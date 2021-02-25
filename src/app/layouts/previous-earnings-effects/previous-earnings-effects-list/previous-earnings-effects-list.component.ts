@@ -1,6 +1,9 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ContentService } from 'app/shared/services/content.service';
+import { barChartSingle, barChartmulti, pieChartSingle, pieChartmulti, lineChartSingle, lineChartMulti, areaChartSingle, areaChartMulti } from '../../../shared/data/ngxChart';
+import * as chartsData from '../../../shared/configs/ngx-charts.config';
+
 import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
@@ -45,6 +48,35 @@ export class PreviousEarningsEffectsListComponent implements OnInit {
       }
     };
   }
+
+  lineChartMulti = lineChartMulti;
+   // line, area
+   areaChartAutoScale = chartsData.areaChartAutoScale;
+   areaChartLineInterpolation = chartsData.areaChartLineInterpolation;
+
+   //Line Charts
+
+   lineChartView: any[] = chartsData.lineChartView;
+
+   // options
+   lineChartShowXAxis = chartsData.lineChartShowXAxis;
+   lineChartShowYAxis = chartsData.lineChartShowYAxis;
+   lineChartGradient = chartsData.lineChartGradient;
+   lineChartShowLegend = chartsData.lineChartShowLegend;
+   lineChartShowXAxisLabel = chartsData.lineChartShowXAxisLabel;
+   showGridLines = chartsData.showGridLines;
+   lineChartXAxisLabel = chartsData.lineChartXAxisLabel;
+   lineChartShowYAxisLabel = chartsData.lineChartShowYAxisLabel;
+   lineChartYAxisLabel = chartsData.lineChartYAxisLabel;
+
+   lineChartColorScheme = chartsData.lineChartColorScheme;
+
+   // line, area
+   lineChartAutoScale = chartsData.lineChartAutoScale;
+   lineChartLineInterpolation = chartsData.lineChartLineInterpolation;
+
+
+
 
   getAllEarnings() {
     this.contentService.getPreviousEarningsEffectList(this.symbol.id).subscribe(res => {
