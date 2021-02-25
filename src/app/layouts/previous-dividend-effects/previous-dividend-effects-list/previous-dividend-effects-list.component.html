@@ -28,7 +28,7 @@
                         [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10" [rows]="rows"
                         [sortType]="'multi'" [reorderable]="true"  [sorts]="[{prop: 'dividendDateText', dir: 'desc'}]" style="text-align: center;">
                         <!-- Row Detail Template -->
-                        <ngx-datatable-row-detail [rowHeight]="200" (toggle)="toggleDetail($event)">
+                        <ngx-datatable-row-detail [rowHeight]="this.allowedToSee ? 225 : 190" (toggle)="toggleDetail($event)">
                     
                           
                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
@@ -54,9 +54,7 @@
                                     </div>
                                 </div>
                                 
-                                <div *ngIf="!this.allowedToSee">
-                                    <img src="../../../../assets/img/ico/blur.png" style="height:40px; width:100%;">
-                                </div>
+                                <app-locked-panel *ngIf="!this.allowedToSee"  [dataSize]="3" [allowedToSee]="this.allowedToSee" [relative]="true"></app-locked-panel>
                             </ng-template>
                         </ngx-datatable-row-detail>
 

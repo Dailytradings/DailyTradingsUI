@@ -7,7 +7,7 @@
 'justify-content-center': true}" [ngStyle]="{'width': 'calc(100% - 3rem)', 
 'height': this.dataSize <=5 ? 'calc(120px + 60px)' : this.dataSize <=7 ? 'calc(180px + 60px)': 'calc(300px + 60px)', 
 'background':'#11111180', 
-'position':'absolute',
+'position': this.relative ? 'relative' : 'absolute',
 'bottom':'0',
 'left':'0',
 'z-index':'999',

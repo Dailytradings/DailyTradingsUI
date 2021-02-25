@@ -11,6 +11,7 @@ export class LockedPanelComponent implements OnInit {
 
   @Input() dataSize;
   @Input() allowedToSee;
+  @Input() relative;
   loggedUser;
 
   constructor(@Inject(PLATFORM_ID) private _platformId: Object, private authService: AuthService, private cdRef: ChangeDetectorRef) { }
