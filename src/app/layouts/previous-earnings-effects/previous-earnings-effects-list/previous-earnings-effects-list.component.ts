@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ContentService } from 'app/shared/services/content.service';
-import { barChartSingle, barChartmulti, pieChartSingle, pieChartmulti, lineChartSingle, lineChartMulti, areaChartSingle, areaChartMulti } from '../../../shared/data/ngxChart';
-import * as chartsData from '../../../shared/configs/ngx-charts.config';
-
 import { NotificationService } from 'app/shared/services/notification.service';
+import * as chartsData from '../../../shared/configs/ngx-charts.config';
+import { lineChartMulti } from '../../../shared/data/ngxChart';
+
 
 @Component({
   selector: 'app-previous-earnings-effects-list',

@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ContentService } from 'app/shared/services/content.service';
 import { NotificationService } from 'app/shared/services/notification.service';
+import * as chartsData from '../../../shared/configs/ngx-charts.config';
+import { lineChartMulti } from '../../../shared/data/ngxChart';
 
 @Component({
   selector: 'app-previous-dividend-effects-list',
@@ -43,6 +45,37 @@ export class PreviousDividendEffectsListComponent implements OnInit {
       }
     };
   }
+
+
+  
+  lineChartMulti = lineChartMulti;
+
+   // line, area
+   areaChartAutoScale = chartsData.areaChartAutoScale;
+   areaChartLineInterpolation = chartsData.areaChartLineInterpolation;
+
+   //Line Charts
+
+   lineChartView: any[] = chartsData.lineChartView;
+
+   // options
+   lineChartShowXAxis = chartsData.lineChartShowXAxis;
+   lineChartShowYAxis = chartsData.lineChartShowYAxis;
+   lineChartGradient = chartsData.lineChartGradient;
+   lineChartShowLegend = chartsData.lineChartShowLegend;
+   lineChartShowXAxisLabel = chartsData.lineChartShowXAxisLabel;
+   showGridLines = chartsData.showGridLines;
+   lineChartXAxisLabel = chartsData.lineChartXAxisLabel;
+   lineChartShowYAxisLabel = chartsData.lineChartShowYAxisLabel;
+   lineChartYAxisLabel = chartsData.lineChartYAxisLabel;
+
+   lineChartColorScheme = chartsData.lineChartColorScheme;
+
+   // line, area
+   lineChartAutoScale = chartsData.lineChartAutoScale;
+   lineChartLineInterpolation = chartsData.lineChartLineInterpolation;
+
+
 
   getAllDividend() {
     this.contentService.getPreviousDividendEffectList(this.symbol.id).subscribe(res => {
