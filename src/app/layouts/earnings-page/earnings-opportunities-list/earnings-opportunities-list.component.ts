@@ -128,7 +128,8 @@ export class EarningsOpportunitiesListComponent implements OnInit {
     }
   }
 
-  changeTimeRange(timeRange) {
+  changeTimeRange($event) {
+    let timeRange = $event.target.value;
     if (timeRange === 'Today' || this.allowedToSee) {
       this.selectedTimeRange = timeRange;
       this.getHotStockOpportunitiesWithDate(this.selectedTimeRange);

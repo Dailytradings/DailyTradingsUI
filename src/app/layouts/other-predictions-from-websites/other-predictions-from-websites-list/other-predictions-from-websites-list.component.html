@@ -358,7 +358,10 @@
                                     </ng-template>
                                 </ngx-datatable-column>
                             </ngx-datatable>
-                                <!-- ngx-datatable-row-details -->
+                     
+                            
+                            <app-locked-panel [dataSize]="rows.length" [allowedToSee]="this.allowedToSee"></app-locked-panel>
+
                             </div>
                         </div>
                     </div>

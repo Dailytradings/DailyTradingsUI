@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ContentService } from 'app/shared/services/content.service';
 import { environment } from 'environments/environment';
@@ -12,14 +13,24 @@ import { AuthService } from '../../shared/auth/auth.service';
 export class MostReliableCompetitorsComponent implements OnInit {
 
   sortingIncrease = false;
-
+  allowedToSee;
   constructor(
+    @Inject(PLATFORM_ID) private _platformId: Object,
     private contentService: ContentService,
     private cdRef: ChangeDetectorRef,
     private authService: AuthService) {
   }
 
-  ngOnInit(): void {
+  
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated("MostReliableCompetitors");
+    this.cdRef.detectChanges();
+  }
+
+  ngOnInit() {
+    if (isPlatformBrowser(this._platformId)) {
+      this.checkDataVisibilityPermission();
+    }
     this.getAllCompetitors();
     // content header
     this.contentHeader = {

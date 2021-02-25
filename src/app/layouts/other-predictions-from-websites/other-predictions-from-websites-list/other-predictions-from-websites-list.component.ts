@@ -58,7 +58,6 @@ export class OtherPredictionsFromWebsitesListComponent implements OnInit {
 
   getAllHistoricalEarnings() {
     this.symbolService.getNextEarnings(this.symbol.id).subscribe(nextEarnings => {
-      if (nextEarnings) {
         this.nextEarnings = nextEarnings;
         this.contentService.getPreviousEarningsWithOtherPredictions(this.symbol.id).subscribe(res => {
           if (res)
@@ -72,7 +71,6 @@ export class OtherPredictionsFromWebsitesListComponent implements OnInit {
             el.parentElement.parentElement.style.paddingBottom = '0px';
           });
         });
-      }
     });
   }
 

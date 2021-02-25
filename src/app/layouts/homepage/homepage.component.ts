@@ -35,11 +35,9 @@ export interface Chart {
 export class HomepageComponent implements OnInit {
 
   isBrowser;
-<<<<<<< HEAD
-=======
+
   allowedToSee;
   @ViewChild(NewsDetailComponent) newsDetail: NewsDetailComponent;
->>>>>>> master
   // Donut Chart 2 Starts
   donutChart2: Chart = {
     type: 'Pie',
@@ -115,22 +113,8 @@ export class HomepageComponent implements OnInit {
 
 
 
-<<<<<<< HEAD
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location) {}
-=======
+ constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private location: Location, private authService: AuthService, private cdRef: ChangeDetectorRef) {}
 
-  detailPanelShow;
-  closeDetailPanel() {
-    this.detailPanelShow = false;
-  }
-
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router, private contentService: ContentService, private broadcastingService: BroadcastingService, private authService: AuthService, private location: Location, private cdRef: ChangeDetectorRef) {
-    broadcastingService.selectedNewsId.subscribe(() => {
-      this.detailPanelShow = true;
-      this.newsDetail.publicOpenPanel();
-    });
-  }
->>>>>>> master
 
   checkDataVisibilityPermission() {
     this.allowedToSee = this.authService.isAuthenticated("EarningsOpportunities");
