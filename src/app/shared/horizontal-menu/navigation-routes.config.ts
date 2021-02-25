@@ -38,7 +38,7 @@ export const HROUTES: RouteInfo[] = [
     ]
   },
   {
-    path: '', title: 'Management', icon: 'ft-activity', class: 'dropdown nav-item has-sub hidden-menu', isExternalLink: false, submenu: [
+    path: '', title: 'Management', icon: 'ft-activity', class: 'dropdown nav-item has-sub', isExternalLink: false, submenu: [
       { path: '/management/oldcompany', title: 'Old Company', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/management/general', title: 'General', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/management/company', title: 'Company', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

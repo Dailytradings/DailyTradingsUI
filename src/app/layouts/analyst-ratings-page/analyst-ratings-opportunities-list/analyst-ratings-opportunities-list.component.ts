@@ -15,6 +15,7 @@ export class AnalystRatingsOpportunitiesListComponent implements OnInit {
 
   @Input() dataCount;
   @Input() demo;
+  @Input() allowedToSee;
 
     // public
     public contentHeader: object;

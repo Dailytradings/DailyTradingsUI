@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, Inject } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
+import { AuthService } from 'app/shared/auth/auth.service';
 import { ContentService } from 'app/shared/services/content.service';
 import { SymbolService } from 'app/shared/services/symbol.service';
 
@@ -11,15 +12,20 @@ import { SymbolService } from 'app/shared/services/symbol.service';
 })
 export class OtherPredictionsFromWebsitesListComponent implements OnInit {
 
+  loadingApproved;
 
   @Input() symbol;
+  @Input() allowedToSee;
   nextEarnings;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private symbolService: SymbolService,
     private cdRef: ChangeDetectorRef,
-    private contentService: ContentService) { }
+    private contentService: ContentService,
+    private authService: AuthService) { 
+
+    }
 
   ngOnInit(): void {
     this.getAllHistoricalEarnings();
@@ -52,7 +58,6 @@ export class OtherPredictionsFromWebsitesListComponent implements OnInit {
 
   getAllHistoricalEarnings() {
     this.symbolService.getNextEarnings(this.symbol.id).subscribe(nextEarnings => {
-      if (nextEarnings) {
         this.nextEarnings = nextEarnings;
         this.contentService.getPreviousEarningsWithOtherPredictions(this.symbol.id).subscribe(res => {
           if (res)
@@ -66,7 +71,6 @@ export class OtherPredictionsFromWebsitesListComponent implements OnInit {
             el.parentElement.parentElement.style.paddingBottom = '0px';
           });
         });
-      }
     });
   }
 

@@ -317,9 +317,15 @@ export class SymbolService {
       return null;
     }
   }
-  createRequest(data): any {
-    let requestObject = { data: data, user: this.authService.getUser().user };
+  
+  createRequest(data = null, user = null): any {
+    if (user == null) {
+      let userData = this.authService.getUser();
+      if (userData != null)
+        user = userData.user;
+    }
+    let requestObject = { data: data, user: user };
     return requestObject;
   }
-
+  
 }

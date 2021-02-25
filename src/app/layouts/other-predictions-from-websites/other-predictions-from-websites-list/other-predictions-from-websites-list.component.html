@@ -29,13 +29,16 @@
                                                 <span>{{'revenue' | translate}}</span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-5" *ngIf="this.allowedToSee">
                                             <div class="row">
                                                 <span>{{nextEarnings.earningsWhisperEps ? (nextEarnings.earningsWhisperEps | number)  : 'Not Announced'}}</span>
                                             </div>
                                             <div class="row">
                                                 <span>{{nextEarnings.earningsWhisperRevenue ? (nextEarnings.earningsWhisperRevenue | number) + 'M' : 'Not Announced'}}</span>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-5" *ngIf="!this.allowedToSee">
+                                            <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
                                         </div>
                                         <div class="col-sm-1"></div>
                                     </div>
@@ -70,13 +73,16 @@
                                                 <span>{{'revenue' | translate}}</span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-5" *ngIf="this.allowedToSee">
                                             <div class="row">
                                                 <span>{{nextEarnings.seekingAlphaEps ? (nextEarnings.seekingAlphaEps | number)  : 'Not Announced'}}</span>
                                             </div>
                                             <div class="row">
                                                 <span>{{nextEarnings.seekingAlphaRevenue ? (nextEarnings.seekingAlphaRevenue | number) + 'M' : 'Not Announced'}}</span>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-5" *ngIf="!this.allowedToSee">
+                                            <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
                                         </div>
                                         <div class="col-sm-1"></div>
                                     </div>
@@ -111,13 +117,16 @@
                                                 <span>{{'revenue' | translate}}</span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-5" *ngIf="this.allowedToSee">
                                             <div class="row">
                                                 <span>{{nextEarnings.whisperNumberEps ? (nextEarnings.whisperNumberEps | number)  : 'Not Announced'}}</span>
                                             </div>
                                             <div class="row">
                                                 <span>{{nextEarnings.whisperNumberRevenue ? (nextEarnings.whisperNumberRevenue | number) + 'M' : 'Not Announced'}}</span>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-5" *ngIf="!this.allowedToSee">
+                                            <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
                                         </div>
                                         <div class="col-sm-1"></div>
                                     </div>
@@ -242,7 +251,7 @@
                                         </div>
                                     </ng-template>
                                     <ng-template let-value="row" ngx-datatable-cell-template>
-                                        <div class="row">
+                                        <div *ngIf="this.allowedToSee" class="row">
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
                                                 <span
@@ -260,6 +269,9 @@
                                             </span>
                                             </div>
                                             <div class="col-sm-2"></div>
+                                        </div>
+                                        <div *ngIf="!this.allowedToSee" class="row">
+                                            <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
                                         </div>
                                     </ng-template>
                                 </ngx-datatable-column>
@@ -280,7 +292,7 @@
                                         </div>
                                     </ng-template>
                                     <ng-template let-value="row" ngx-datatable-cell-template>
-                                        <div class="row">
+                                        <div *ngIf="this.allowedToSee" class="row">
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
                                                 <span
@@ -298,6 +310,9 @@
                                             </span>
                                             </div>
                                             <div class="col-sm-2"></div>
+                                        </div>
+                                        <div *ngIf="!this.allowedToSee" class="row">
+                                            <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
                                         </div>
                                     </ng-template>
                                 </ngx-datatable-column>
@@ -318,7 +333,7 @@
                                         </div>
                                     </ng-template>
                                     <ng-template let-value="row" ngx-datatable-cell-template>
-                                        <div class="row">
+                                        <div *ngIf="this.allowedToSee" class="row">
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
                                                 <span
@@ -337,10 +352,16 @@
                                             </div>
                                             <div class="col-sm-2"></div>
                                         </div>
+                                        <div *ngIf="!this.allowedToSee" class="row">
+                                            <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                        </div>
                                     </ng-template>
                                 </ngx-datatable-column>
                             </ngx-datatable>
-                                <!-- ngx-datatable-row-details -->
+                     
+                            
+                            <app-locked-panel [dataSize]="rows.length" [allowedToSee]="this.allowedToSee"></app-locked-panel>
+
                             </div>
                         </div>
                     </div>

@@ -8,8 +8,7 @@ import { AuthService } from '../../shared/auth/auth.service';
 })
 export class DividendPageComponent implements OnInit {
 
-   constructor(private authService: AuthService) {
-     authService.isPageAuthorized("Dividends");
+   constructor() {
    }
    ngOnInit() {
    }

@@ -72,15 +72,15 @@ export function processNotificationWithButton(object: AlertObject, callback: Fun
         position: 'top-end',
         icon: object.icon,
         title: object.title,
-        showCancelButton: true,
+        showCancelButton: !object.cancelButtonDisable,
         timer: object.timer,
         confirmButtonColor: '#2F8BE6',
         cancelButtonColor: '#F55252',
         confirmButtonText: object.confirmButtonText,
         cancelButtonText: object.cancelButtonText,
         customClass: {
-            confirmButton: 'btn btn-info mr-5',
-            cancelButton: 'btn btn-success ml-5'
+            confirmButton: 'btn btn-info ' + object.confirmButton,
+            cancelButton: 'btn btn-success ' + object.cancelButton
         },
         buttonsStyling: false,
     }).then(function (res) {

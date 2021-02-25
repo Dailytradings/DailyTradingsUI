@@ -15,6 +15,7 @@ export class EarningsAnalysisListComponent implements OnInit {
   selectetionValue = 'null';
   selectedEarnings: any;
   earningsList: any;
+  @Input() allowedToSee;
 
   constructor(private cdRef: ChangeDetectorRef,
     private symbolService: SymbolService) { }

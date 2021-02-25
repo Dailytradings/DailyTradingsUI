@@ -16,21 +16,16 @@ import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-dat
 export class CompetitorListComponent implements OnInit {
 
   @Input() symbol: any;
+  @Input() allowedToSee;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private symbolService: SymbolService,
-    private contentService: ContentService,
-    private broadcastingService: BroadcastingService,
-    private location: Location,
-    private authService: AuthService,
     private cdRef: ChangeDetectorRef,
   ) {
   }
 
   ngOnInit(): void {
-    
+
     // content header
     this.contentHeader = {
       headerTitle: 'Datatables',
@@ -59,14 +54,28 @@ export class CompetitorListComponent implements OnInit {
     this.getAllCompetitors();
   }
 
-  
+
   getAllCompetitors() {
     this.symbolService.getCompetitors(this.symbol.id).subscribe(res => {
       if (res)
         this.rows = res;
-        this.tempData = this.rows;
+      this.tempData = this.rows;
       this.cdRef.detectChanges();
     });
+  }
+
+  generateTopCompetitorText() {
+    let text = "";
+    if (this.rows.length > 2) {
+      text = "Top 3 Competitors of " + this.symbol.companyName + " are " + this.rows[0].companyName + ', ' + this.rows[1].companyName + ' and '  + this.rows[2].companyName + ".";
+    } else if (this.rows.length > 1) {
+      text = "Top 2 Competitors of " + this.symbol.companyName + " are " + this.rows[0].companyName + ' and '  + this.rows[1].companyName + ".";
+    } else if (this.rows.length > 0) {
+      text = "The Only Competitor of " + this.symbol.companyName + " is " + this.rows[0].companyName + ".";
+    } else {
+      text = "There is no Competitor of " + this.symbol.companyName;
+    }
+    return text;
   }
 
   public contentHeader: object;

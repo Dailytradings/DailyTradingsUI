@@ -86,6 +86,11 @@ const routes: Routes = [
             },
             {
                 path: 'overview/:id',
+                redirectTo: 'overview/:id/opportunities',
+                pathMatch: 'full'
+            },
+            {
+                path: 'overview/:id/:id2',
                 component: OverviewComponent,
                 data: {
                     title: 'Overview'
@@ -189,7 +194,7 @@ const routes: Routes = [
                     title: 'Most Reliable Competitors'
                 }
             },
-        ], canActivate: [AuthGuard]
+        ]
     }
 ];
 

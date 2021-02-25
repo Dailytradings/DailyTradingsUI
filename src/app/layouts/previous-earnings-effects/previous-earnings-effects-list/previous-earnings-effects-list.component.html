@@ -61,11 +61,11 @@
                         [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10" [rows]="rows"
                         [sortType]="'multi'" [reorderable]="true"  [sorts]="[{prop: 'earningsDateText', dir: 'desc'}]">
                         <!-- Row Detail Template -->
-                        <ngx-datatable-row-detail [rowHeight]="100">
-
+                        <ngx-datatable-row-detail [rowHeight]="120" (toggle)="toggleDetail($event)">
+                    
                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                                 <div class="ml-5 my-1">
-                                    <div class="row" style="position:fixed; width: 100%; ">
+                                    <div class="row" style="position:fixed; width: 100%;">
                                         <div class="col-sm-12">
                                             <div class="row"
                                                 style="overflow-x: auto; display: block;">
@@ -119,112 +119,168 @@
                                                         <tr>
                                                             <th style="border: black solid 1px; padding: 5px;">Change</th>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFourDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFourDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFourDayChange ?  row.historicalAnalysis.previousFourDayChange  + '%': 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousThreeDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousThreeDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousThreeDayChange ?  row.historicalAnalysis.previousThreeDayChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousTwoDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousTwoDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousTwoDayChange ?  row.historicalAnalysis.previousTwoDayChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousOneDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousOneDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousOneDayChange ?  row.historicalAnalysis.previousOneDayChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFourHourChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFourHourChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFourHourChange ? row.historicalAnalysis.previousFourHourChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousOneHourChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousOneHourChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.previousOneHourChange ? row.historicalAnalysis.previousOneHourChange  + '%' : 'N/A' }}
                                                                 </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                                                                </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFifteenMinChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFifteenMinChange ? row.historicalAnalysis.previousFifteenMinChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousFiveMinChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousFiveMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousFiveMinChange ? row.historicalAnalysis.previousFiveMinChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.previousOneMinChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.previousOneMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.previousOneMinChange ? row.historicalAnalysis.previousOneMinChange  + '%' : 'N/A' }}
+                                                                </span>  
+                                                                  <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px; background-color: yellowgreen;"
                                                                 title="{{'Key Date : ' + row.historicalAnalysis.keyDate}}"> </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.keyChangeValueFormula}}">
-                                                                <span style="cursor:default;">
-                                                                    <span
+                                                                    <span *ngIf="this.allowedToSee"
                                                                         [ngStyle]="{'color': row.historicalAnalysis.keyChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.keyChange ? row.historicalAnalysis.keyChange  + '%' : 'N/A' }}
                                                                     </span>
-                                                                </span>
+                                                                    <span *ngIf="!this.allowedToSee">
+                                                                        <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                                                                    </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.oneMinChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.oneMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.oneMinChange ? row.historicalAnalysis.oneMinChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fiveMinChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fiveMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.fiveMinChange ? row.historicalAnalysis.fiveMinChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fifteenMinChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fifteenMinChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.fifteenMinChange ?  row.historicalAnalysis.fifteenMinChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.oneHourChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.oneHourChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.oneHourChange ?row.historicalAnalysis.oneHourChange  + '%' : 'N/A' }}
                                                                 </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                                                                </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fourHourChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fourHourChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.fourHourChange ? row.historicalAnalysis.fourHourChange  + '%': 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.oneDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.oneDayChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.oneDayChange ?  row.historicalAnalysis.oneDayChange  + '%'  : 'N/A' }}
                                                                 </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                                                                </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.twoDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.twoDayChange >= 0 ? '#40C057' :'tomato'}">{{row.historicalAnalysis.twoDayChange ?  row.historicalAnalysis.twoDayChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.threeDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.threeDayChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.threeDayChange ? row.historicalAnalysis.threeDayChange  + '%': 'N/A' }}
                                                                 </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
+                                                                </span>
                                                             </td>
                                                             <td style="border: black solid 1px; padding: 5px;" title="{{row.historicalAnalysis.fourDayChangeValueFormula}}">
-                                                                <span
+                                                                <span *ngIf="this.allowedToSee"
                                                                     [ngStyle]="{'color': row.historicalAnalysis.fourDayChange >= 0 ? '#40C057' :'tomato'}">
                                                                     {{row.historicalAnalysis.fourDayChange ? row.historicalAnalysis.fourDayChange  + '%' : 'N/A' }}
+                                                                </span>
+                                                                <span *ngIf="!this.allowedToSee">
+                                                                    <img src="../../../../assets/img/ico/blur.png" style="height:20px; width:50px;">
                                                                 </span>
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
+
 
 
                                             </div>
@@ -233,6 +289,8 @@
                                 </div>
                             </ng-template>
                         </ngx-datatable-row-detail>
+
+                        
                         <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false"
                             [draggable]="false" [canAutoResize]="false">
                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>

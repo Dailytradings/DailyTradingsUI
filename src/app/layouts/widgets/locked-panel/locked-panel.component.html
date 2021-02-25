@@ -1,4 +1,5 @@
-<div class="backdrop-filter" style="backdrop-filter: blur(5px); border-radius: 20px;" [ngClass]="{
+<div class="backdrop-filter" style="backdrop-filter: blur(5px); border-radius: 20px;" *ngIf="!allowedToSee"
+ [ngClass]="{
     'earnings-lock': true, 
 'd-flex': true, 
 'flex-row' : true,
@@ -17,22 +18,22 @@
 }">
    <div style="margin-right: 20px; color: #111">
        <i class="ft-lock" [ngStyle]="{
-           'font-size': '230px', 
+           'font-size': '150px', 
            'margin-right' : this.dataSize <= 5 ? '10px' : '0px'
        }"></i>
    </div>
 
-   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-       <span *ngIf="this.dataSize > 5" style="font-weight: bold; color: #fff; margin-bottom: 10px; text-align: left;">DAHA FAZLA İSTATİSTİK <br> İÇİN KAYIT OLMALISIN</span>
+   <div *ngIf="this.dataSize > 5" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+       <span style="font-weight: bold; color: #fff; margin-bottom: 10px; text-align: left;">{{this.loggedUser ? 'YOU MUST UPGRADE YOUR PLAN' : 'YOU MUST REGISTER'}} <br> FOR MORE STATISTICS</span>
        <a *ngIf="this.dataSize > 5" href=""
        style="background: #FFD601; padding: 5px 30px; border-radius: 20px; color: #fff; font-size: 20px; width: 200px; text-align: center;">Register</a>
    </div>
 
-   <div style="display: flex; flex-direction: column;">
-       <span *ngIf="this.dataSize <= 5">DAHA FAZLA İSTATİSTİK İÇİN   <a href=""
-       style=" color: yellow;  text-decoration: underline;">KAYIT</a> OLMALISIN</span>
-       <a *ngIf="this.dataSize <= 5" href=""
-        style="background: #FFD601; padding: 5px 30px; border-radius: 20px; color: #fff; font-size: 20px">Register</a>
+   <div *ngIf="this.dataSize <= 5" style="display: flex; flex-direction: column;">
+       <span >YOU MUST <a href=""
+       style=" color: yellow;  text-decoration: underline;">{{this.loggedUser ? 'UPGRADE YOUR PLAN' : 'REGISTER'}}</a> FOR MORE STATISTICS</span>
+       <a href=""
+        style="background: #FFD601; padding: 5px 30px; border-radius: 20px; color: #fff; font-size: 20px">{{this.loggedUser ? 'Upgrade Plan' : 'Register'}}</a>
   </div>
 
 

@@ -11,9 +11,11 @@ import { isPlatformBrowser } from '@angular/common';
 @Injectable()
 export class AuthService {
 
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object,public router: Router, public http: HttpClient, public notificationService: NotificationService, public broadcastingService: BroadcastingService) {
+  public constructor(@Inject(PLATFORM_ID) private _platformId: Object,public router: Router, public http: HttpClient, public notificationService: NotificationService, public broadcastingService: BroadcastingService) {
 
   }
+
+  
 
   getAllUsers() {
     return this.http.get(environment.baseUrl + "/users/GetAllUsers")
@@ -202,7 +204,7 @@ export class AuthService {
   }
 
   warning() {
-    let alertObject: AlertObject = { title: "Bu sayfaya giriş hakkınız bulunmamaktadır.", confirmButtonText: 'Login', cancelButtonText: 'Register', icon: 'error' };
+    let alertObject: AlertObject = { title: "You don't have a right to enter that page.", confirmButtonText: 'Login', cancelButtonText: 'Register', icon: 'error', confirmButton: 'mr-5', cancelButton: 'ml-5' };
     this.notificationService.processNotificationWithButton(alertObject, (result) => {
         if(result != null) {
           if(result) {

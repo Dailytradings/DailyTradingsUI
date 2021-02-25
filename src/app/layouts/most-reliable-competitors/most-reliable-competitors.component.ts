@@ -1,15 +1,9 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BroadcastingService } from '../../shared/services/broadcasting.service';
-import { SymbolService } from '../../shared/services/symbol.service';
-import { Location } from '@angular/common';
-import { AuthService } from '../../shared/auth/auth.service';
-import { environment } from 'environments/environment';
-import * as moment from 'moment';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { ContentService } from 'app/shared/services/content.service';
+import { environment } from 'environments/environment';
+import { AuthService } from '../../shared/auth/auth.service';
 
 @Component({
   selector: 'app-most-reliable-competitors',
@@ -19,15 +13,24 @@ import { ContentService } from 'app/shared/services/content.service';
 export class MostReliableCompetitorsComponent implements OnInit {
 
   sortingIncrease = false;
-
+  allowedToSee;
   constructor(
+    @Inject(PLATFORM_ID) private _platformId: Object,
     private contentService: ContentService,
     private cdRef: ChangeDetectorRef,
     private authService: AuthService) {
-    authService.isPageAuthorized("Management");
   }
 
-  ngOnInit(): void {
+  
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated("MostReliableCompetitors");
+    this.cdRef.detectChanges();
+  }
+
+  ngOnInit() {
+    if (isPlatformBrowser(this._platformId)) {
+      this.checkDataVisibilityPermission();
+    }
     this.getAllCompetitors();
     // content header
     this.contentHeader = {
