@@ -1,17 +1,11 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BroadcastingService } from '../../shared/services/broadcasting.service';
-import { SymbolService } from '../../shared/services/symbol.service';
 import { Location } from '@angular/common';
-import { AuthService } from '../../shared/auth/auth.service';
-import { environment } from 'environments/environment';
-import * as moment from 'moment';
-import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertObject } from 'app/shared/data/alertData';
-import { NotificationService } from 'app/shared/services/notification.service';
-import { AlertModalComponent } from '../alert/alert-modal/alert-modal.component';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'app/shared/services/content.service';
+import { NotificationService } from 'app/shared/services/notification.service';
+import { AuthService } from '../../shared/auth/auth.service';
+import { BroadcastingService } from '../../shared/services/broadcasting.service';
+import { AlertModalComponent } from '../alert/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-earnings-analysis',
@@ -21,6 +15,7 @@ import { ContentService } from 'app/shared/services/content.service';
 export class EarningsAnalysisComponent implements OnInit {
 
   symbol;
+  allowedToSee;
 
   @ViewChild('modal') modal: AlertModalComponent;
   constructor(
@@ -30,11 +25,19 @@ export class EarningsAnalysisComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private location: Location,
     private authService: AuthService,
-    private contentService: ContentService) {
-    // authService.isPageAuthorized("Management");
+    private contentService: ContentService,
+    private notificationService: NotificationService) {
   }
 
-  ngOnInit(): void {
+
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated("EarningsAnalysisViaStockPeers");
+    this.cdRef.detectChanges();
+  }
+
+  ngOnInit() {
+      this.checkDataVisibilityPermission();
+
     this.route.params.subscribe(params => {
       if (params['id'] && params['id'].length > 0) {
         this.getSymbolFromTicker(params['id']);
@@ -73,26 +76,41 @@ export class EarningsAnalysisComponent implements OnInit {
     this.broadcastingService.emitSearch(true);
   }
 
+    
   addToWatchList() {
-    this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
-      if (res) {
-        this.symbol.isMonitoring = true;
-      }
-      this.cdRef.detectChanges();
-    });
+    if (this.allowedToSee) {
+      this.contentService.addToWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = true;
+        }
+        this.cdRef.detectChanges();
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
 
   removeFromWatchList() {
-    this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
-      if (res) {
-        this.symbol.isMonitoring = false;
-      }
-      this.cdRef.detectChanges();
-    });
+    if (this.allowedToSee) {
+      this.contentService.removeFromWatchList(this.symbol.id).subscribe(res => {
+        if (res) {
+          this.symbol.isMonitoring = false;
+        }
+        this.cdRef.detectChanges();
+      });
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
+
   }
 
   showAlertModal() {
-    this.modal.open();
+    if (this.allowedToSee) {
+      this.modal.open();
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
+
 
 }

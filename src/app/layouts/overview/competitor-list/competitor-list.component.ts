@@ -16,15 +16,10 @@ import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-dat
 export class CompetitorListComponent implements OnInit {
 
   @Input() symbol: any;
+  @Input() allowedToSee;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private symbolService: SymbolService,
-    private contentService: ContentService,
-    private broadcastingService: BroadcastingService,
-    private location: Location,
-    private authService: AuthService,
     private cdRef: ChangeDetectorRef,
   ) {
   }

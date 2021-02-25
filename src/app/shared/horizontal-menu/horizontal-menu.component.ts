@@ -4,6 +4,8 @@ import { LayoutService } from '../services/layout.service';
 import { ConfigService } from '../services/config.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { BroadcastingService } from '../services/broadcasting.service';
 
 
 @Component({
@@ -12,6 +14,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./horizontal-menu.component.scss']
 })
 export class HorizontalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  allowedToSee;
 
   public menuItems: any[];
   public config: any = {};
@@ -24,12 +28,37 @@ export class HorizontalMenuComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(private layoutService: LayoutService,
     private configService: ConfigService,
     private cdr: ChangeDetectorRef,
-    private router: Router) {
+    private router: Router,
+    private authService: AuthService,
+    private broadcastingService: BroadcastingService) {
     this.config = this.configService.templateConf;
+    
+    
+    broadcastingService.logInObservable.subscribe(() => {
+      this.checkDataVisibilityPermission();
+    });
+    broadcastingService.logOutObservable.subscribe(() => {
+      this.checkDataVisibilityPermission();
+    });
   }
 
   ngOnInit() {
-    this.menuItems = HROUTES;
+    this.checkDataVisibilityPermission();
+
+  }
+
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated("Management");
+    let menu = HROUTES
+    menu.forEach(element => {
+      if(element.title === 'Management' && !this.allowedToSee) {
+        element.class += ' hidden-menu';
+      } else if(element.title === 'Management' && this.allowedToSee){
+        element.class = element.class.replace('hidden-menu', '');
+      }
+    });
+    this.menuItems = menu;
+    this.cdr.detectChanges();
   }
 
   ngAfterViewInit() {

@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID, ViewC
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { AuthService } from 'app/shared/auth/auth.service';
 import { BroadcastingService } from 'app/shared/services/broadcasting.service';
+import { NotificationService } from 'app/shared/services/notification.service';
 import { environment } from 'environments/environment';
 import { ContentService } from './../../../shared/services/content.service';
 
@@ -15,7 +16,7 @@ export class EarningsOpportunitiesListComponent implements OnInit {
 
   @Input() dataCount;
   @Input() demo;
-  allowedToSee;
+  @Input() allowedToSee;
 
   // public
   public contentHeader: object;
@@ -91,7 +92,10 @@ export class EarningsOpportunitiesListComponent implements OnInit {
     });
 
     // update the rows
-    this.rows = temp;
+    if (val === "earnings" || this.allowedToSee)
+      this.rows = temp;
+    else
+      this.notificationService.warnNotAllowed();
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
@@ -118,22 +122,22 @@ export class EarningsOpportunitiesListComponent implements OnInit {
 
 
   isBrowser = false;
-  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService, private broadcastingService: BroadcastingService) {
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private contentService: ContentService, private cdRef: ChangeDetectorRef, private authService: AuthService, private broadcastingService: BroadcastingService, private notificationService: NotificationService) {
     if (isPlatformBrowser(_platformId)) {
       this.isBrowser = true;
-      this.broadcastingService.logOutObservable.subscribe(() => this.checkDataVisibilityPermission());
     }
   }
 
-  checkDataVisibilityPermission() {
-    this.allowedToSee = this.authService.isAuthenticated();
-    this.cdRef.detectChanges();
+  changeTimeRange(timeRange) {
+    if (timeRange === 'Today' || this.allowedToSee) {
+      this.selectedTimeRange = timeRange;
+      this.getHotStockOpportunitiesWithDate(this.selectedTimeRange);
+    } else {
+      this.notificationService.warnNotAllowed();
+    }
   }
 
-  changeTimeRange(timeRange) {
-    this.selectedTimeRange = timeRange;
-    this.getHotStockOpportunitiesWithDate(this.selectedTimeRange);
-  }
+
 
   getHotStockOpportunitiesWithDate(timeRange = null) {
     if (!timeRange)
@@ -163,7 +167,6 @@ export class EarningsOpportunitiesListComponent implements OnInit {
    */
   ngOnInit() {
     if (isPlatformBrowser(this._platformId)) {
-      this.checkDataVisibilityPermission();
       this.contentService.getHotStockOpportunities("", this.selectedTimeRange, this.dataCount).subscribe(x => {
         this.rows = x;
         this.tempData = x;

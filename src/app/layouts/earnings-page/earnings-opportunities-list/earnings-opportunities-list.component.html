@@ -1,119 +1,88 @@
 <!-- Row Details  Datatables -->
 
-<section id="ngx-datatable-row-details" *ngIf="rows != undefined" style="position: relative; margin-top: 50px;">
-    
+<section id="ngx-datatable-row-details" *ngIf="rows != undefined" style="position: relative;">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center pb-2"
                     style="border-bottom: 1px solid #11111140; padding-right: 0; padding-left: 0; margin-right: 1.5rem; margin-left: 1.5rem">
                     <h4 class="card-title">Earnings Opportunities</h4>
-                    <!-- <div>
+                    <div>
                         <label for="ngx-filter-ref">
                             <input id="ngx-filter-ref" class="form-control form-control-sm d-inline-block width-220 "
                                 type="text" placeholder="Search" (keyup)="filterUpdate($event)"
                                 style="border-radius:20px; padding: 17px" />
                         </label>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
 
                         <!-- ngx-datatable-row-details -->
                         <!-- ngx-datatable-filter -->
-                        <fieldset class="form-group mb-0">
-                            <div class="row ml-0 d-flex justify-content-between mr-0 position-relative">
+                        <fieldset class="form-group">
+                            <div class="row ml-0 d-flex justify-content-between mr-0">
 
-                                
 
-                                <div>
-                                    <div class="switch-toggle switch-3 switch-candy2" style="width: 220px;"
-                                    *ngIf="!this.demo">
-                                        <input id="opportunity" name="state-e" type="radio" checked="">
-                                        <label for="opportunity" class="p-1" (click)="filterDataSet('earnings opportunity')"
-                                            onclick="">Opportunities</label>
+                                <div class="switch-toggle switch-3 switch-candy"
+                                    style="box-shadow: none; border-radius: 0; width: 200px; background: none; border: 1px solid #111;">
+                                    <input id="on" class="p-1" name="state-d" type="radio" checked="">
+                                    <label for="on" class="p-1" (click)="filterAnnounce('BMO')" onclick=""
+                                        style="color: #111; text-shadow: none; border-right: 1px solid #111">BMO</label>
 
-                                        <input id="earnings" name="state-e" type="radio" checked="checked">
-                                        <label for="earnings" class="p-1" (click)="filterDataSet('earnings')"
-                                            onclick="">Earnings</label>
+                                    <input id="na" class="p-1" name="state-d" type="radio" checked="checked">
+                                    <label for="na" class="p-1" (click)="filterAnnounce('ALL')" onclick=""
+                                        style="color: #111; text-shadow: none; border-right: 1px solid #111">All</label>
 
-                                        <a></a>
-                                    </div>
-                                    <div class="switch-toggle switch-3 switch-candy"
-                                        style="box-shadow: none; width: 300px; background: none; margin-top: 20px;">
-                                        <input id="on" class="p-1" name="state-d" type="radio" checked="">
-                                        <label for="on" class="p-1" (click)="filterAnnounce('BMO')" onclick=""
-                                            style="color: #111; text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">BMO</label>
+                                    <input id="off" class="p-1" name="state-d" type="radio">
+                                    <label for="off" class="p-1" (click)="filterAnnounce('AMC')" onclick=""
+                                        style="color: #111; text-shadow: none">AMC</label>
 
-                                        <input id="na" class="p-1" name="state-d" type="radio" checked="checked" >
-                                        <label for="na" class="p-1" (click)="filterAnnounce('ALL')" onclick=""
-                                            style="color: #111; text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">All</label>
-
-                                        <input id="off" name="state-d" type="radio">
-                                        <label for="off" class="p-1" (click)="filterAnnounce('AMC')" onclick=""
-                                            style="color: #111; text-shadow: none; border-radius: 10px 10px 0 0; border: 1px solid #f7f7f8; border-bottom: none;">AMC</label>
-
-                                        <a></a>
-                                    </div>
+                                    <a></a>
                                 </div>
 
-                                
 
-                                <div *ngIf="!this.demo" style="position: absolute; right: 0; bottom: 0;">
+                                <div class="switch-toggle switch-3 switch-candy" style="height: 25px;"
+                                    *ngIf="!this.demo">
+                                    <input id="opportunity" name="state-e" type="radio" checked="">
+                                    <label for="opportunity" (click)="filterDataSet('earnings opportunity')"
+                                        onclick="">Opportunities</label>
+
+                                    <input id="earnings" name="state-e" type="radio" checked="checked">
+                                    <label for="earnings" (click)="filterDataSet('earnings')"
+                                        onclick="">Earnings</label>
+
+                                    <a></a>
+                                </div>
+
+                                <div *ngIf="!this.demo">
                                     <div class="input-group">
                                         <input class="form-control" readonly placeholder="Choose a date"
                                             name="pickerKeyDateForOpportunities" [(ngModel)]="keyDateForOpportunities"
                                             ngbDatepicker #pickerKeyDateForOpportunities="ngbDatepicker"
-                                            style="padding: 5px; cursor: pointer;"
+                                            style="height:25px; cursor: pointer;"
                                             (click)="pickerKeyDateForOpportunities.toggle()"
                                             (ngModelChange)="getHotStockOpportunitiesWithDate()">
                                         <div class="input-group-append">
                                             <div class="input-group-text"
-                                                (click)="pickerKeyDateForOpportunities.toggle()" style="padding: 5px;">
+                                                (click)="pickerKeyDateForOpportunities.toggle()" style="height:25px;">
                                                 <i class="fa fa-calendar" style="cursor: pointer;"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-                                <div class="col-4" style="position: absolute; margin-top: 40px; right: 230px;">
-                                    <label for="ngx-filter-ref" style="width: 100%;">
-                                        <input id="ngx-filter-ref" class="form-control form-control-sm d-inline-block"
-                                            type="text" placeholder="Search" (keyup)="filterUpdate($event)"
-                                            style="border-radius:20px; padding: 19px; width: 100%;" />
-                                    </label>
-                                </div>
-
-                                
-
-
-
-
-
-
-
-                                
-
-
-
-
                                 <div *ngIf="this.demo"></div>
                                 <div>
-                                    <div class="btn-group position-relative" role="group" style="width:100%; margin-top: -10px;">
-                                        <select name="" id="" class="p-1" style="border: 1px solid #11111110; color: #777">
+                                    <div class="btn-group" role="group" style="width:100%">
+                                        <!-- <select name="" id="" class="p-1">
                                             <option value="">Today</option>
                                             <option value="">Tomorrow</option>
                                             <option value="">This
                                                 Week</option>
                                             <option value="">Next
                                                 Week</option>
-                                        </select> 
-                                        <!-- <button type="button" (click)="changeTimeRange('Today')"
+                                        </select> -->
+                                        <button type="button" (click)="changeTimeRange('Today')"
                                             [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'Today', 'btn-outline-secondary' : this.selectedTimeRange !== 'Today'}"
                                             style="padding: 0px; padding-left: 5px; padding-right: 5px;">Today</button>
                                         <button type="button" (click)="changeTimeRange('Tomorrow')"
@@ -126,15 +95,15 @@
                                         <button type="button" (click)="changeTimeRange('NextWeek')"
                                             [ngClass]="{'btn': true, 'btn-secondary' : this.selectedTimeRange === 'NextWeek', 'btn-outline-secondary' : this.selectedTimeRange !== 'NextWeek'}"
                                             style="padding: 0px; padding-left: 5px; padding-right: 5px;">Next
-                                            Week</button> -->
+                                            Week</button>
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
                         <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force"
-                            [headerHeight]="60" [footerHeight]="60" [rowHeight]="60"  [limit]="10" [rows]="rows"
+                            [headerHeight]="60" [footerHeight]="60" [rowHeight]="60" [limit]="10" [rows]="rows"
                             [sortType]="'multi'" [reorderable]="true" [sorts]="[{prop: 'dateText', dir: 'asc'}]"
-                            *ngIf="this.isBrowser" style="display: flex; align-items: center; position: relative;">
+                            *ngIf="this.isBrowser" style="display: flex; align-items: center; position: relative">
                             <!-- Row Detail Template -->
 
                             <ngx-datatable-row-detail [rowHeight]="90" style="position: relative; padding-left: 65px;">
@@ -167,6 +136,7 @@
                                                                     -
                                                                    <span title="{{ otherPrediction.consensusRevenue != null ?
                                                                     (otherPrediction.consensusRevenue | number) : otherPrediction.notExist ? 'Not Exist' : 'Not Available' }}"  style="font-weight: bold;">
+
                                                                     {{ otherPrediction.consensusRevenue != null ?
                                                                         (otherPrediction.consensusRevenue | number) : otherPrediction.notExist ? 'Not Existed' : 'Not Announced' }}
                                                                    </span> <!-- green : #84BA83; red: #C91C1C -->
@@ -211,8 +181,9 @@
                                     </div>
                                 </ng-template>
                             </ngx-datatable-row-detail>
+                            
                             <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false"
-                                [draggable]="false" [canAutoResize]="false" style="display: flex; align-items: center; margin: 20px">
+                                [draggable]="false" [canAutoResize]="false" style="display: flex; align-items: center;">
                                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template
                                     style="display: flex; align-items: center;">
                                     <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded"
@@ -318,24 +289,9 @@
                             </ngx-datatable-column>
 
                         </ngx-datatable>
-                        <!-- ngx-datatable-row-details -->
-
-                        <!-- 10 adet -->
-                        <!-- <a href="" style="background: yellow; padding: 5px 30px; border-radius: 20px; color: #fff;">Register</a> -->
-                        <!-- <div class="earnings-lock d-flex flex-column align-items-center justify-content-around" style="width: calc(100% - 3rem); height: 300px; background: #11111180; position: absolute; bottom: 0; left: 0; z-index: 999; margin-right: 1.5rem; margin-left: 1.5rem; margin-bottom: calc(60px + 1.5rem); font-size: 26px;">
-                            <i class="ft-lock" style="font-size: 90px;"></i>
-                            <span>Daha fazlası için <a href="" style=" color: yellow;  text-decoration: underline;">kayıt</a> olmalısın</span>
-                            
-                        </div> -->
-                        <!-- 7 adet adet -->
-                        <!-- <div class="earnings-lock d-flex flex-column align-items-center justify-content-around" style="width: calc(100% - 3rem); height: 180px; background: #11111180; position: absolute; bottom: 0; left: 0; z-index: 999; margin-right: 1.5rem; margin-left: 1.5rem; margin-bottom: calc(60px + 1.5rem); font-size: 26px;">
-                            <i class="ft-lock" style="font-size: 90px;"></i>
-                            <span>Daha fazlası için <a href="" style=" color: yellow;  text-decoration: underline;">kayıt</a> olmalısın</span>
-                        </div> -->
-
-                        <!-- 5 adet adet -->
-                       
+                      
                         <app-locked-panel [dataSize]="rows.length"></app-locked-panel>
+
                     </div>
                 </div>
             </div>

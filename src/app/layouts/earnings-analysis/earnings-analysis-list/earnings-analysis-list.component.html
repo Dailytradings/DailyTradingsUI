@@ -272,47 +272,59 @@
                                         </ngx-datatable-column>
                                         <ngx-datatable-column name="Calculated EPS" prop="calculatedEps" [width]="5">
                                             <ng-template let-eps="value" ngx-datatable-cell-template>
-                                                <div class="row">
+                                                <div *ngIf="this.allowedToSee" class="row">
                                                     <div class="col-sm-12" style="text-align: center;">
                                                         <span>
                                                             {{ eps ? (eps |number) : '--' }}
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <div *ngIf="!this.allowedToSee" class="row">
+                                                    <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                                </div>
                                             </ng-template>
                                         </ngx-datatable-column>
                                         <ngx-datatable-column name="Calculated Revenue" prop="calculatedRevenue"
                                             [width]="10">
                                             <ng-template let-revenue="value" ngx-datatable-cell-template>
-                                                <div class="row">
+                                                <div *ngIf="this.allowedToSee" class="row">
                                                     <div class="col-sm-12" style="text-align: center;">
                                                         <span>
                                                             {{ revenue ? (revenue |number) : '--' }}
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <div *ngIf="!this.allowedToSee" class="row">
+                                                    <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                                </div>
                                             </ng-template>
                                         </ngx-datatable-column>
                                         <ngx-datatable-column name="Reliability Score (Q)" prop="reliabilityScore" [width]="25">
                                             <ng-template let-score="value" ngx-datatable-cell-template>
-                                                <div class="row">
+                                                <div *ngIf="this.allowedToSee" class="row">
                                                     <div class="col-sm-12" style="text-align: center;">
                                                         <span>
                                                             {{ score ? (score | number) : '--' }}
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <div *ngIf="!this.allowedToSee" class="row">
+                                                    <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
+                                                </div>
                                             </ng-template>
                                         </ngx-datatable-column>
                                         <ngx-datatable-column name="Reliability Score (All Q's)"
                                             prop="overAllReliabilityScore" [width]="25">
                                             <ng-template let-score="value" ngx-datatable-cell-template>
-                                                <div class="row">
+                                                <div *ngIf="this.allowedToSee" class="row">
                                                     <div class="col-sm-12" style="text-align: center;">
                                                         <span>
                                                             {{ score ? (score | number) : '--' }}
                                                         </span>
                                                     </div>
+                                                </div>
+                                                <div *ngIf="!this.allowedToSee" class="row">
+                                                    <img src="../../../../assets/img/ico/blur.png" style="height:100%; width:100%">
                                                 </div>
                                             </ng-template>
                                         </ngx-datatable-column>
