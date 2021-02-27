@@ -13,6 +13,7 @@ import { environment } from 'environments/environment';
 export class AlertComponent implements OnInit {
 
   selectedSymbol: any = { id: null, companyName: '' };
+  reminderData;
 
   selectedAlertTypeId = "null";
   alertTypeList;
@@ -26,7 +27,7 @@ export class AlertComponent implements OnInit {
 
   descriptionEnable;
   descriptionText;
-  
+
   numericValueEnabled;
   textValueEnabled;
   isRepeatable = false;
@@ -37,6 +38,7 @@ export class AlertComponent implements OnInit {
     private broadcastingService: BroadcastingService,
     private notificationService: NotificationService) {
     this.getAlertTypeList();
+    this.getReminderData();
   }
 
   ngOnInit(): void {
@@ -47,6 +49,46 @@ export class AlertComponent implements OnInit {
 
   selectSymbol() {
     this.broadcastingService.emitSearch(true);
+  }
+
+  getReminderData() {
+    this.contentService.getReminderData().subscribe(res => {
+      if(res)
+      this.reminderData = res;
+    });
+  }
+
+  getRd(val) {
+    return this.reminderData.find(x=> x.alertType === val);
+  }
+  reminderDataContains(val) {
+    return this.reminderData.find(x=> x.alertType === val) != null;
+  }
+
+  updateReminder(data, val) {
+    switch (val) {
+      case 'earningsOn':
+      case 'earningsOff':
+      case 'dividendOn':
+      case 'dividendOff':
+        data.isActive = !data.isActive;
+        this.contentService.changeReminderActivity(data).subscribe(res => {
+          if(res) {
+            this.getReminderData();
+          }
+        });
+        break;
+      case 'dividendRemove':  
+      case 'earningsRemove':
+        this.contentService.RemoveAlert(data).subscribe(res => {
+          if(res) {
+            this.getReminderData();
+          }
+        });
+          break;
+
+    }
+
   }
 
   getAlertTypeList() {
@@ -95,7 +137,7 @@ export class AlertComponent implements OnInit {
           this.numericValueEnabled = false;
           this.textValueEnabled = false;
           this.notifyOneDayAgoEnabled = false;
-          this.broadcastingService.emitRefrehAlertList(true);
+          this.getReminderData();
         }
       });
     } else {
@@ -110,7 +152,7 @@ export class AlertComponent implements OnInit {
     if (data != undefined)
       data = data.typeName;
 
-      this.resetForm();
+    this.resetForm();
 
     switch (data) {
       case "Earnings":
@@ -128,7 +170,7 @@ export class AlertComponent implements OnInit {
     if (data != undefined)
       data = data.typeName;
 
-      this.resetForm();
+    this.resetForm();
 
     switch (data) {
       case "Dividend":
@@ -137,11 +179,13 @@ export class AlertComponent implements OnInit {
         this.descriptionEnable = true;
         this.descriptionText = "We will Inform you 1 Day Before";
         this.isNotifyOneDayAgo = true;
+        this.isRepeatable = true;
         break;
       case "Earnings Opportunities":
         this.descriptionEnable = true;
         this.descriptionText = "We will Inform you 1 Day Before";
         this.isNotifyOneDayAgo = true;
+        this.isRepeatable = true;
         this.reminderValue = null;
         break;
     }
