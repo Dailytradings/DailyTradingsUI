@@ -12,12 +12,21 @@ import { environment } from 'environments/environment';
 })
 export class AlertComponent implements OnInit {
 
-  selectedSymbol: any = { companyName: '' };
+  selectedSymbol: any = { id: null, companyName: '' };
 
   selectedAlertTypeId = "null";
   alertTypeList;
   alertValue;
+
+  selectedReminderTypeId = "null";
+  reminderTypeList;
+  reminderValue;
+
   valueText;
+
+  descriptionEnable;
+  descriptionText;
+  
   numericValueEnabled;
   textValueEnabled;
   isRepeatable = false;
@@ -27,7 +36,7 @@ export class AlertComponent implements OnInit {
   constructor(private contentService: ContentService,
     private broadcastingService: BroadcastingService,
     private notificationService: NotificationService) {
-    this.getAlertList();
+    this.getAlertTypeList();
   }
 
   ngOnInit(): void {
@@ -40,23 +49,48 @@ export class AlertComponent implements OnInit {
     this.broadcastingService.emitSearch(true);
   }
 
-  getAlertList() {
+  getAlertTypeList() {
     this.contentService.getAlertTypes().subscribe(x => {
       if (x)
         this.alertTypeList = x;
+    });
+
+    this.contentService.getReminderTypes().subscribe(x => {
+      if (x)
+        this.reminderTypeList = x;
     });
   }
 
 
   AddAlert() {
-    if (this.selectedSymbol && this.selectedAlertTypeId != "null" && (this.alertValue || (!this.numericValueEnabled && !this.textValueEnabled))) {
-
+    if (this.selectedAlertTypeId != "null" && (this.alertValue || (!this.numericValueEnabled && !this.textValueEnabled))) {
       var data = { symbolId: this.selectedSymbol.id, alertTypeId: this.selectedAlertTypeId, alertValue: this.alertValue, isNotifyOneDayAgo: this.isNotifyOneDayAgo, isRepeatable: this.isRepeatable };
       this.contentService.addAlert(data).subscribe(res => {
         if (res) {
-          this.selectedSymbol = { companyName: '' };
+          this.selectedSymbol = { id: null, companyName: '' };
           this.alertValue = '';
           this.selectedAlertTypeId = "null";
+          this.valueText = null;
+          this.numericValueEnabled = false;
+          this.textValueEnabled = false;
+          this.notifyOneDayAgoEnabled = false;
+          this.broadcastingService.emitRefrehAlertList(true);
+        }
+      });
+    } else {
+      let alertObject: AlertObject = { title: 'Lütfen Alanları Doldurun.', icon: 'error' };
+      this.notificationService.processNotification(alertObject);
+    }
+  }
+
+  AddReminder() {
+    if (this.selectedReminderTypeId != "null" && (this.reminderValue || (!this.numericValueEnabled && !this.textValueEnabled))) {
+      var data = { symbolId: this.selectedSymbol.id, alertTypeId: this.selectedReminderTypeId, alertValue: this.reminderValue, isNotifyOneDayAgo: this.isNotifyOneDayAgo, isRepeatable: this.isRepeatable };
+      this.contentService.addAlert(data).subscribe(res => {
+        if (res) {
+          this.selectedSymbol = { id: null, companyName: '' };
+          this.reminderValue = '';
+          this.selectedReminderTypeId = "null";
           this.valueText = null;
           this.numericValueEnabled = false;
           this.textValueEnabled = false;
@@ -76,18 +110,12 @@ export class AlertComponent implements OnInit {
     if (data != undefined)
       data = data.typeName;
 
-    this.numericValueEnabled = false;
-    this.textValueEnabled = false;
-    this.valueText = null;
-    this.notifyOneDayAgoEnabled = false;
+      this.resetForm();
 
     switch (data) {
-      case "RealTime":
-        this.numericValueEnabled = true;
-        this.valueText = 'RealTime Change';
-        break;
       case "Earnings":
         this.notifyOneDayAgoEnabled = true;
+        this.alertValue = null;
         break;
       case "Dividends":
         this.notifyOneDayAgoEnabled = true;
@@ -95,7 +123,47 @@ export class AlertComponent implements OnInit {
     }
   }
 
-  
+  onReminderTypeChange() {
+    let data = this.reminderTypeList.filter(x => x.id === this.selectedReminderTypeId)[0];
+    if (data != undefined)
+      data = data.typeName;
+
+      this.resetForm();
+
+    switch (data) {
+      case "Dividend":
+        this.numericValueEnabled = true;
+        this.valueText = 'Dividend Yield';
+        this.descriptionEnable = true;
+        this.descriptionText = "We will Inform you 1 Day Before";
+        this.isNotifyOneDayAgo = true;
+        break;
+      case "Earnings Opportunities":
+        this.descriptionEnable = true;
+        this.descriptionText = "We will Inform you 1 Day Before";
+        this.isNotifyOneDayAgo = true;
+        this.reminderValue = null;
+        break;
+    }
+  }
+
+
+  selectedEdit;
+  selectEdit(edit) {
+    this.resetForm();
+    this.selectedEdit = edit;
+  }
+
+  resetForm() {
+    this.numericValueEnabled = false;
+    this.textValueEnabled = false;
+    this.valueText = null;
+    this.notifyOneDayAgoEnabled = false;
+    this.descriptionEnable = false;
+    this.descriptionText = null;
+  }
+
+
   updateUrl(image) {
     image.logoUrl = environment.notFoundLogoUrl;
     return true;

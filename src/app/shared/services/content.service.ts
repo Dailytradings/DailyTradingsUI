@@ -131,6 +131,12 @@ export class ContentService {
     );
   }
 
+  getReminderTypes() {
+    return this.http.get(environment.baseUrl + "/content/GetReminderTypeList").pipe(
+      map((response: any) => this.checkResponse(response))
+    );
+  }
+
   getAllRegions() {
     return this.http.get(environment.baseUrl + "/content/GetRegionList").pipe(
       map((response: any) => this.checkResponse(response))

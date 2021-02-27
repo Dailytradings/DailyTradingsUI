@@ -1,0 +1,19 @@
+.box {
+    display: inline-block;
+    position: relative;
+}
+
+.hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 188, 212, 0);
+    transition: background-color 0.5s;
+}
+
+.hover:hover {
+    background-color: rgba(34, 39, 39, 0.8);
+    // You can tweak with other background properties too (ie: background-image)...
+}
