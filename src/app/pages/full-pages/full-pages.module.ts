@@ -21,6 +21,7 @@ import { UserProfilePageComponent } from "./user-profile/user-profile-page.compo
 import { UsersEditComponent } from "./users/users-edit/users-edit.component";
 import { UsersListComponent } from "./users/users-list/users-list.component";
 import { UsersViewComponent } from "./users/users-view/users-view.component";
+import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
 
 
 
@@ -51,6 +52,7 @@ import { UsersViewComponent } from "./users/users-view/users-view.component";
     UsersListComponent,
     UsersViewComponent,
     UsersEditComponent,
+    NewsDetailPageComponent,
   ]
 })
 export class FullPagesModule {}

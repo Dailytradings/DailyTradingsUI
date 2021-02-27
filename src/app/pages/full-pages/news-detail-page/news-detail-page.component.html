@@ -1,0 +1,62 @@
+<section class="news-detail-page">
+    <div class="news-detail-page-title">
+        <h1>News</h1>
+    </div>
+    <div class="news-detail-page-filter">
+        <div class="news-detail-page-filter-title">
+            <span style="font-weight: bold;">Filter</span>
+        </div>
+        <div class="news-detail-page-filter-items">
+            <div class="news-detail-page-filter-category">
+                <div class="news-detail-page-filter-type">
+                    <label>
+                        <input #EarningsFilter [checked]="this.earningsFilter" (change)="filterUpdate('E')"
+                            type="checkbox" id="EarningsFilter" name="EarningsFilter">Earnings
+                    </label>
+                    <label>
+                        <input #AnnouncementFilter [checked]="this.announcementFilter" (change)="filterUpdate('A')"
+                            type="checkbox" id="AnnouncementFilter" name="AnnouncementFilter">Announcement
+                    </label>
+                    <label>
+                        <input #DividendFilter [checked]="this.dividendFilter" (change)="filterUpdate('D')"
+                            type="checkbox" id="DividendFilter" name="DividendFilter">Dividend
+                    </label>
+                    <label>
+                        <input #InsiderFilter [checked]="this.insiderFilter" (change)="filterUpdate('I')"
+                            type="checkbox" id="InsiderFilter" name="InsiderFilter">Insider Trades
+                    </label>
+                    <label>
+                        <input #RatingsFilter [checked]="this.ratingsFilter" (change)="filterUpdate('R')"
+                            type="checkbox" id="RatingsFilter" name="RatingsFilter">Ratings
+                    </label>
+                </div>
+            </div>
+            <div class="news-detail-page-filter-sort">
+                <select (change)="sort($event)">
+                    <option [value]="'default'">Sorting</option>
+                    <option [value]="'Descending Date'">Date - Newest</option>
+                    <option [value]="'Ascending Date'">Date - Oldest</option>
+                    <option [value]="'Ascending Success'">Success - Ascending</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="news-detail-page-items">
+        <div class="news-detail-page-item" *ngFor="let news of newsList">
+            <ol>
+                <li>% 96</li>
+                <li>{{news.newsType}}</li>
+                <li>{{news.newsDate}}</li>
+            </ol>
+            <h5>
+                {{news.newsTitle}}
+            </h5>
+            <p>
+                {{news.newsContent}}
+            </p>
+        </div>
+    </div>
+
+</section>

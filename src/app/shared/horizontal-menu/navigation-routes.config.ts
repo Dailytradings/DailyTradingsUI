@@ -25,6 +25,9 @@ export const HROUTES: RouteInfo[] = [
     path: '/stock/analyst-ratings-page', title: 'Analyst Ratings', icon: 'ft-home', class: 'nav-item', isExternalLink: false, submenu: []
   },
   {
+    path: '/stock/all-news', title: 'News', icon: 'ft-home', class: 'nav-item', isExternalLink: false, submenu: []
+  },
+  {
     path: '', title: 'Opportunities', icon: 'ft-bar-chart-2', class: 'dropdown nav-item has-sub hidden-menu', isExternalLink: false, submenu: [
       { path: '/stock/earnings-opportunities', title: 'Earnings', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/stock/realtime-opportunities', title: 'Realtime', icon: 'ft-arrow-right submenu-icon', class: 'dropdown-item', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
