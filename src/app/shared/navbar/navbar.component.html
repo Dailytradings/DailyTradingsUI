@@ -117,7 +117,7 @@
             </div>
           </li>
           
-          <li class="dropdown nav-item" placement="bottom-left" display="static" ngbDropdown>
+          <li class="dropdown nav-item" placement="bottom-left" display="static" ngbDropdown *ngIf="this.allowedToSee">
             <a class="nav-link dropdown-toggle dropdown-notification p-0 mt-1 mr-2" id="drp-notification" href="javascript:;"
               data-toggle="dropdown" ngbDropdownToggle><i class="ft-bell font-medium-3"></i><span
                 class="notification badge badge-pill badge-danger" style="font-size: .8em;"></span></a>

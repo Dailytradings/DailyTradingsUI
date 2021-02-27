@@ -17,6 +17,7 @@ import { SymbolService } from '../services/symbol.service';
   styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
+  allowedToSee;
   currentLang = "tr";
   selectedLanguageText = "turkish";
   selectedLanguageFlag = "./assets/img/flags/tr.png";
@@ -33,7 +34,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   layoutSub: Subscription;
   configSub: Subscription;
   displayOverlayMenu = false; // Vertical Side menu for screenSize < 1200
-  
+
   languageList = [
     { key: 'tr', name: 'turkish', flagUrl: './assets/img/flags/tr.png' },
     { key: 'en', name: 'english', flagUrl: './assets/img/flags/us.png' },
@@ -62,7 +63,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   symbol = '+';
   public config: any = {};
 
-  
+
   @ViewChild('modalList') modalList: AlertListModalComponent;
 
   constructor(@Inject(PLATFORM_ID) private _platformId: Object,
@@ -73,30 +74,45 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     private symbolService: SymbolService,
     private broadcastingService: BroadcastingService,
     private authService: AuthService) {
-      this.config = this.configService.templateConf;
-      if (isPlatformBrowser(this._platformId)) {
-    const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|es|pt|de|tr/) ? browserLang : "en");
+    this.config = this.configService.templateConf;
+    if (isPlatformBrowser(this._platformId)) {
+      const browserLang: string = translate.getBrowserLang();
+      translate.use(browserLang.match(/en|es|pt|de|tr/) ? browserLang : "en");
 
-    this.innerWidth = window.innerWidth;
+      this.innerWidth = window.innerWidth;
 
-    this.layoutSub = layoutService.toggleSidebar$.subscribe(
-      isShow => {
-        this.hideSidebar = !isShow;
-      });
+      this.layoutSub = layoutService.toggleSidebar$.subscribe(
+        isShow => {
+          this.hideSidebar = !isShow;
+        });
 
       broadcastingService.searchObservable.subscribe(x => {
         setTimeout(() => {
-        this.toggleSearchOpenClass(x);
+          this.toggleSearchOpenClass(x);
         }, 100);
       });
+      
+      broadcastingService.logInObservable.subscribe(() => {
+       this.checkDataVisibilityPermission();
+      });
+      broadcastingService.logOutObservable.subscribe(() => {
+       this.checkDataVisibilityPermission();
+      });
     }
+
     if (isPlatformServer(this._platformId)) {
       translate.use("en");
     }
   }
 
+
+  checkDataVisibilityPermission() {
+    this.allowedToSee = this.authService.isAuthenticated();
+    this.cdr.detectChanges();
+  }
+
   ngOnInit() {
+    this.checkDataVisibilityPermission();
     if (this.innerWidth < 1200) {
       this.isSmallScreen = true;
     }
@@ -104,25 +120,25 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.isSmallScreen = false;
     }
     this.broadcastingService.symbolObservable.subscribe((x: any) => {
-      if(x) {
+      if (x) {
         this.symbol = x.ticker;
-      this.logoUrl = x.logoUrl;
+        this.logoUrl = x.logoUrl;
       } else {
         this.symbol = '+';
         this.logoUrl = 'assets/img/logo-dark.png';
       }
     });
     this.broadcastingService.tickerObservable.subscribe((x: any) => {
-      if(x) {
+      if (x) {
         this.symbol = x.ticker;
-      this.logoUrl = x.logoUrl;
+        this.logoUrl = x.logoUrl;
       } else {
         this.symbol = '+';
         this.logoUrl = 'assets/img/logo-dark.png';
       }
     });
 
-    
+
   }
 
   ngAfterViewInit() {
@@ -234,7 +250,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.searchOpenClass = '';
         let url = this.router.url;
         if (url.includes("management") || url.includes("alerts") || url.includes("previous-earnings-effects") || url.includes("previous-dividend-effects") || url.includes("earnings-analysis") || url.includes("other-predictions-from-websites"))
-        this.broadcastingService.emitSymbol(symbol);
+          this.broadcastingService.emitSymbol(symbol);
         else
           this.router.navigate(["stock/overview/" + symbol.ticker]);
         this.searchTextEmpty.emit(true);
