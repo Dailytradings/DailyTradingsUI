@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { BroadcastingService } from '../services/broadcasting.service';
 
@@ -16,11 +16,51 @@ export class NewsDetailComponent implements OnInit {
 
   swiperEnabled = false;
   firstEntrance = true;
-  constructor(private broadcastingService: BroadcastingService) {
+  constructor(private broadcastingService: BroadcastingService, private cdRef: ChangeDetectorRef) {
+
     broadcastingService.selectedNewsId.subscribe(data => {
       this.swiperEnabled = false;
-      // newslist içerisinden id'si data'ya eşit olanı bul selected hale getir.
+      cdRef.detectChanges();
+
+      let index = this.newsList.findIndex(x => x.id === data);
+
+      this.swiperResponsiveBreakpointsConfig = {
+        slidesPerView: 5,
+        spaceBetween: 50,
+        initialSlide: index,
+        // init: false,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          1024: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+          768: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          }
+        }
+      };
+
+     setTimeout(() => {
       this.swiperEnabled = true;
+      cdRef.detectChanges();
+     }, 250);
     })
   }
 
@@ -30,6 +70,7 @@ export class NewsDetailComponent implements OnInit {
   public swiperResponsiveBreakpointsConfig: SwiperConfigInterface = {
     slidesPerView: 5,
     spaceBetween: 50,
+    initialSlide: 0,
     // init: false,
     pagination: {
       el: '.swiper-pagination',

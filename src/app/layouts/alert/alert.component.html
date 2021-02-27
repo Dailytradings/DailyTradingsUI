@@ -1,75 +1,281 @@
-<app-alert-list></app-alert-list>
-<br>
-<hr>
-<br>
-<div class="center40">
-    <form >
-        <div class="row" style="text-align:center">
-            <div class="col-sm-12">
-                <h4>Create New Alert</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <input #Symbol [value]="this.selectedSymbol.companyName" type="text" class="form-control" name="Symbol"
-                    placeholder="Symbol Seç" (click)="selectSymbol()">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <label for="AlertType">Alert Type :</label>
-                    <select class="form-control" #AlertType name="AlertType" [(ngModel)]="selectedAlertTypeId" (change)="onAlertTypeChange()">
-                        <option value="null">Alarm Tipi Seçin</option>
-                        <option *ngFor="let types of alertTypeList" [value]="types.id">{{types.typeName}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row" *ngIf="numericValueEnabled">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <label for="AlertValue">Alert Value :</label>
-                    <input #AlertValue [(ngModel)]="this.alertValue" type="number" class="form-control" name="AlertValue"
-                        placeholder="Alert Value" step="0.01">
-                </div>
-            </div>
-        </div>
-        <div class="row" *ngIf="textValueEnabled">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <label for="AlertValue">Alert Value :</label>
-                    <input #AlertValue [(ngModel)]="this.alertValue" type="text" class="form-control" name="AlertValue"
-                        placeholder="Alert Value">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox" style="margin-top: 1.5%;">
-                        <input #RepeatAvailable [checked]="this.isRepeatable"
-                            (change)="this.isRepeatable = !this.isRepeatable" type="checkbox" id="RepeatAvailable"
-                            class="custom-control-input" name="ExtendedAvailable">
-                        <label style="font-size: medium;" class="custom-control-label"
-                            for="RepeatAvailable">Repeatable</label>
+<div class="row">
+    <div class="col-sm-8">
+        <app-alert-list></app-alert-list>
+    </div>
+    <div class="col-sm-4">
+
+
+        <section>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"></h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-sm-12">
+                                        <section id="newEarnings">
+                                            <h5>Alert Categories : </h5>
+                                            <hr>
+                                            <div class="row" style="padding-left:5%; padding-right:5%">
+                                                <div class="col-sm-3" style="padding:0px;">
+                                                    <div class="card" (click)="selectEdit('alert')"
+                                                        [ngStyle]="{'margin' : '0px', 'background-color': selectedEdit == 'alert' ? 'black' : '#fff', 'color': selectedEdit == 'alert' ? '#fff' : 'black', 'cursor': 'pointer' , 'background': ' linear-gradient(45deg, rgb(0 0 0 / 65%) 0%, rgb(255 227 31) 100%)'}">
+                                                        <div class="card-content">
+                                                            <div class="card-body"
+                                                                style="border: 1px solid gray; border-radius:5px;">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12" style="text-align: center;">
+                                                                        <img src="./../../../assets/img/icons/alert.png"
+                                                                            style="height: 75px; width: 75px;">
+                                                                    </div>
+                                                                    <div class="col-sm-12"
+                                                                        style="text-align: center; padding-top: 10%;">
+                                                                        <span style="font-weight: 900;">Alert</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3" style="padding:0px; margin-left:5%">
+                                                    <div class="card" (click)="selectEdit('reminder')"
+                                                        [ngStyle]="{'margin' : '0px', 'background-color': selectedEdit == 'reminder' ? 'black' : '#fff', 'color': selectedEdit == 'reminder' ? '#fff' : 'black', 'cursor': 'pointer' , 'background': ' linear-gradient(45deg, rgb(0 0 0 / 65%) 0%, rgb(255 227 31) 100%)'}">
+                                                        <div class="card-content">
+                                                            <div class="card-body"
+                                                                style="border: 1px solid gray; border-radius:5px;">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12" style="text-align: center;">
+                                                                        <img src="./../../../assets/img/icons/reminder.png"
+                                                                            style="height: 75px; width: 75px;">
+                                                                    </div>
+                                                                    <div class="col-sm-12"
+                                                                        style="text-align: center; padding-top: 10%;">
+                                                                        <span style="font-weight: 900;">Reminder</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                                <hr *ngIf="selectedEdit">
+                                            <div class="row">
+                                                <div class="col-sm-12" *ngIf="selectedEdit == 'alert'"
+                                                    style="padding-left: 5%; padding-right: 10%;">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <span style="font-weight:900">Create Alert For a Symbol
+                                                                    : </span>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <input #Symbol [value]="this.selectedSymbol.companyName"
+                                                                    type="text" class="form-control" name="Symbol"
+                                                                    placeholder="Symbol Seç" (click)="selectSymbol()">
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="AlertType"
+                                                                        style="font-weight: 900;">Alert Type :</label>
+                                                                    <select class="form-control" #AlertType
+                                                                        name="AlertType"
+                                                                        [(ngModel)]="selectedAlertTypeId"
+                                                                        (change)="onAlertTypeChange()">
+                                                                        <option value="null">Alarm Tipi Seçin</option>
+                                                                        <option *ngFor="let types of alertTypeList"
+                                                                            [value]="types.id">{{types.typeName}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" *ngIf="descriptionEnable" style="padding-left: 5%;">
+                                                            <p>*{{descriptionText}}</p>
+                                                        </div>
+                                                        <div class="row" *ngIf="numericValueEnabled">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="AlertValue">Alert Value :</label>
+                                                                    <input #AlertValue [(ngModel)]="this.alertValue"
+                                                                        type="number" class="form-control"
+                                                                        name="AlertValue" placeholder="{{valueText}}"
+                                                                        step="0.01">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" *ngIf="textValueEnabled">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="AlertValue">Alert Value :</label>
+                                                                    <input #AlertValue [(ngModel)]="this.alertValue"
+                                                                        type="text" class="form-control"
+                                                                        name="AlertValue" placeholder="{{valueText}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="custom-control custom-checkbox"
+                                                                        style="margin-top: 1.5%;">
+                                                                        <input #RepeatAvailable
+                                                                            [checked]="this.isRepeatable"
+                                                                            (change)="this.isRepeatable = !this.isRepeatable"
+                                                                            type="checkbox" id="RepeatAvailable"
+                                                                            class="custom-control-input"
+                                                                            name="ExtendedAvailable">
+                                                                        <label style="font-size: medium;"
+                                                                            class="custom-control-label"
+                                                                            for="RepeatAvailable">Repeatable</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" *ngIf="this.notifyOneDayAgoEnabled">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="custom-control custom-checkbox"
+                                                                        style="margin-top: 1.5%;">
+                                                                        <input #NotifyOneDayAgo
+                                                                            [checked]="this.isNotifyOneDayAgo"
+                                                                            (change)="this.isNotifyOneDayAgo = !this.isNotifyOneDayAgo"
+                                                                            type="checkbox" id="NotifyOneDayAgo"
+                                                                            class="custom-control-input"
+                                                                            name="NotifyOneDayAgo">
+                                                                        <label style="font-size: medium;"
+                                                                            class="custom-control-label"
+                                                                            for="NotifyOneDayAgo">Notify 1
+                                                                            Day Ago</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            (click)="AddAlert()">Save</button>
+                                                    </form>
+                                                </div>
+
+                                                <div class="col-sm-12" *ngIf="selectedEdit == 'reminder'"
+                                                style="padding-left: 5%; padding-right: 10%;">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <span style="font-weight:900">Create Reminder : </span>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label for="ReminderType"
+                                                                    style="font-weight: 900;">Reminder Type :</label>
+                                                                <select class="form-control" #ReminderType
+                                                                    name="ReminderType"
+                                                                    [(ngModel)]="selectedReminderTypeId"
+                                                                    (change)="onReminderTypeChange()">
+                                                                    <option value="null">Choose a Reminder Type</option>
+                                                                    <option *ngFor="let types of reminderTypeList"
+                                                                        [value]="types.id">{{types.typeName}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" *ngIf="descriptionEnable" style="padding-left: 5%;">
+                                                        <p>*{{descriptionText}}</p>
+                                                    </div>
+                                                    <div class="row" *ngIf="numericValueEnabled">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label for="ReminderValue">Reminder Value :</label>
+                                                                <input #ReminderValue [(ngModel)]="this.reminderValue"
+                                                                    type="number" class="form-control"
+                                                                    name="ReminderValue" placeholder="{{valueText}}"
+                                                                    step="0.01">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" *ngIf="textValueEnabled">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label for="ReminderValue">Reminder Value :</label>
+                                                                <input #ReminderValue [(ngModel)]="this.reminderValue"
+                                                                    type="text" class="form-control"
+                                                                    name="ReminderValue" placeholder="{{valueText}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-checkbox"
+                                                                    style="margin-top: 1.5%;">
+                                                                    <input #RepeatAvailable
+                                                                        [checked]="this.isRepeatable"
+                                                                        (change)="this.isRepeatable = !this.isRepeatable"
+                                                                        type="checkbox" id="RepeatAvailable"
+                                                                        class="custom-control-input"
+                                                                        name="ExtendedAvailable">
+                                                                    <label style="font-size: medium;"
+                                                                        class="custom-control-label"
+                                                                        for="RepeatAvailable">Repeatable</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" *ngIf="this.notifyOneDayAgoEnabled">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-checkbox"
+                                                                    style="margin-top: 1.5%;">
+                                                                    <input #NotifyOneDayAgo
+                                                                        [checked]="this.isNotifyOneDayAgo"
+                                                                        (change)="this.isNotifyOneDayAgo = !this.isNotifyOneDayAgo"
+                                                                        type="checkbox" id="NotifyOneDayAgo"
+                                                                        class="custom-control-input"
+                                                                        name="NotifyOneDayAgo">
+                                                                    <label style="font-size: medium;"
+                                                                        class="custom-control-label"
+                                                                        for="NotifyOneDayAgo">Notify 1
+                                                                        Day Ago</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        (click)="AddReminder()">Save</button>
+                                                </form>
+                                            </div>
+
+                                            </div>
+                                        </section>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row" *ngIf="this.notifyOneDayAgoEnabled">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox" style="margin-top: 1.5%;">
-                        <input #NotifyOneDayAgo [checked]="this.isNotifyOneDayAgo"
-                            (change)="this.isNotifyOneDayAgo = !this.isNotifyOneDayAgo" type="checkbox" id="NotifyOneDayAgo"
-                            class="custom-control-input" name="NotifyOneDayAgo">
-                        <label style="font-size: medium;" class="custom-control-label" for="NotifyOneDayAgo">Notify 1
-                            Day Ago</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="AddAlert()">Save</button>
-    </form>
+        </section>
+
+
+    </div>
 </div>
