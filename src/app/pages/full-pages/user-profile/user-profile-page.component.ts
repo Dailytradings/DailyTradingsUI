@@ -3,8 +3,12 @@ import { Subscription } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { ConfigService } from 'app/shared/services/config.service';
 import { LayoutService } from 'app/shared/services/layout.service';
-
-import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { SymbolService } from 'app/shared/services/symbol.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ContentService } from 'app/shared/services/content.service';
+import { BroadcastingService } from 'app/shared/services/broadcasting.service';
+import { AuthService } from 'app/shared/auth/auth.service';
 
 
 @Component({
@@ -17,30 +21,46 @@ export class UserProfilePageComponent implements OnInit, AfterViewInit, OnDestro
   public config: any = {};
   layoutSub: Subscription;
 
-  public swipeConfig: SwiperConfigInterface = {
-    slidesPerView: 'auto',
-    centeredSlides: false,
-    spaceBetween: 15
-  };
+ 
+  symbol: any;
 
-
-  @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
 
   constructor(private configService: ConfigService,
     private layoutService: LayoutService,
     @Inject(DOCUMENT) private document: Document,
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location,
+    private symbolService: SymbolService,
+    private contentService: ContentService,
+    private broadcastingService: BroadcastingService,
+    private authService: AuthService,
+    private cdRef: ChangeDetectorRef,
     private renderer: Renderer2, private cdr: ChangeDetectorRef
   ) {
     this.config = this.configService.templateConf;
   }
 
+    selectedEdit;
+   
+    selectEdit(edit) {
+      this.selectedEdit = edit;
+    }
+
+    selectedEditTitle;
+    selectEditTitle(editTitle){
+      this.selectedEditTitle = editTitle;
+    }
+   
+
     ngOnInit() {
+      this.selectedEdit = "profile-update";
+      this.selectedEditTitle = "side-observings";
       this.layoutSub = this.configService.templateConf$.subscribe((templateConf) => {
         if (templateConf) {
           this.config = templateConf;
         }
         this.cdr.markForCheck();
-
       })
     }
 
