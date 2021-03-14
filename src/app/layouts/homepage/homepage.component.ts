@@ -99,16 +99,16 @@ export class HomepageComponent implements OnInit {
   getMore(param) {
     switch (param) {
       case 'earnings':
-        this.router.navigate(['/stock/earnings-page']);
+        this.router.navigate(['/stock/earnings-opportunities']);
         break;
       case 'dividend':
-        this.router.navigate(['/stock/dividend-page']);
+        this.router.navigate(['/stock/dividend-opportunities']);
         break;
       case 'insiderTrades':
-        this.router.navigate(['/stock/insider-trades-page']);
+        this.router.navigate(['/stock/insider-trades']);
         break;
       case 'analystRatings':
-        this.router.navigate(['/stock/analyst-ratings-page']);
+        this.router.navigate(['/stock/analyst-ratings']);
         break;
     }
   }

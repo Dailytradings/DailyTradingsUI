@@ -212,10 +212,16 @@ export class ContentService {
   }
 
 
-  getSymbolOverview(id: number | string) {
+  getSymbolOverview(id: number | string, isBrowser = false) {
+    if(isBrowser) {
     return this.http.post(environment.baseUrl + "/content/GetSymbolOverview", this.createRequest(id)).pipe(
       map((response: any) => this.checkResponse(response))
     );
+  } else {
+    return this.http.post(environment.baseUrl + "/content/GetSymbolOverview", this.createRequest(id, null, true)).pipe(
+      map((response: any) => this.checkResponse(response))
+    );
+  }
   }
 
   getWatchListSymbols() {
@@ -272,11 +278,13 @@ export class ContentService {
   }
 
   
-  createRequest(data = null, user = null): any {
-    if (user == null) {
+  createRequest(data = null, user = null, non_user_request = false): any {
+    if (user == null && !non_user_request) {
       let userData = this.authService.getUser();
       if (userData != null)
         user = userData.user;
+    } else {
+      user = null;
     }
     let requestObject = { data: data, user: user };
     return requestObject;

@@ -57,7 +57,7 @@ export class PreviousDividendEffectsComponent implements OnInit {
       this.contentService.getSymbolOverview(ticker).subscribe(response => {
         let path = this.router.url;
         let lastPartOfPath = path.substr(path.lastIndexOf("\/"), path.length - path.lastIndexOf("\/"))
-        if (lastPartOfPath != "/previous-dividend-effects")
+        if (lastPartOfPath != "/previous-dividend-effects-of-stocks")
           path = path.substr(0, path.lastIndexOf("\/"))
 
         this.location.go(path + '/' + ticker);

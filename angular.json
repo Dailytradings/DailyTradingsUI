@@ -186,11 +186,8 @@
           "options": {
             "browserTarget": "matngular:build:production",
             "serverTarget": "matngular:server:production",
-            "routes": [
-              "/",
-              "home",
-              "stock/home"
-            ]
+            "guessRoutes": false,
+            "routesFile": "./routes.txt",
           },
           "configurations": {
             "production": {}

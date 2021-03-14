@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { PieChartComponent } from '@swimlane/ngx-charts';
 import { AlertModalComponent } from 'app/layouts/alert/alert-modal/alert-modal.component';
 import { AuthService } from 'app/shared/auth/auth.service';
@@ -33,7 +34,7 @@ export class OverviewPanelComponent implements OnInit, AfterViewInit {
   @ViewChild(PieChartComponent) pieChart: PieChartComponent;
   @ViewChild('modal') modal: AlertModalComponent;
 
-  constructor(
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object,
     private contentService: ContentService,
     private authService: AuthService,
     private cdRef: ChangeDetectorRef,
@@ -42,40 +43,44 @@ export class OverviewPanelComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
+    if (this.isBrowser) {
+      setTimeout(() => {
         this.pieChart.margins = [0, 0, 0, 75];
         this.pieChart.update();
-    }, 0);
-}
+      }, 0);
+    }
+  }
 
+  isBrowser;
   ngOnInit() {
-    this.allowedToSee = this.authService.isAuthenticated("Overview");
-
+    if (isPlatformBrowser(this._platformId)) {
+      this.isBrowser = true;
+    }
     let insider = this.symbol.insiderShare;
     console.log('symbol', this.symbol);
     console.log('insider', insider);
     this.pieChartSingle = [
-        {
-          "name": "Insider",
-          "value": this.symbol.insiderShare
-        },
-        {
-          "name": "Instutitutional",
-          "value": this.symbol.institutionalShare
-        },
-        {
-          "name": "Public",
-          "value": this.symbol.publicShare
-        }
-      ];
-      this.cdRef.detectChanges();
+      {
+        "name": "Insider",
+        "value": this.symbol.insiderShare
+      },
+      {
+        "name": "Instutitutional",
+        "value": this.symbol.institutionalShare
+      },
+      {
+        "name": "Public",
+        "value": this.symbol.publicShare
+      }
+    ];
+    this.cdRef.detectChanges();
   }
 
   getRedirectUrl(ticker) {
     return environment.baseFrontendUrl + '/stock/overview/' + ticker;
   }
 
-  
+
   addToWatchList() {
     if (this.allowedToSee) {
       this.contentService.addToWatchList(this.symbol.id).subscribe(res => {

@@ -184,7 +184,7 @@
                     <div class="col-sm-2" style="text-align:center; border:1px solid gray; border-radius:5px; padding-top:1%">
                         <h5 style="margin:0px;">Ownerships</h5>
                      <div class="row" style="width: 100%;">
-                        <div style="width: 200px; height: 200px;">
+                        <div style="width: 200px; height: 200px;" *ngIf="isBrowser">
                             <ngx-charts-pie-chart style="padding: 0px; margin: 0px;" [scheme]="pieChartColorScheme"
                                 [results]="pieChartSingle" [legend]="pieChartShowLegend"
                                 [explodeSlices]="pieChart1ExplodeSlices" [labels]="pieChartShowLabels"

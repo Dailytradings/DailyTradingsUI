@@ -44,17 +44,17 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'earnings-opportunities',
+                path: 'earnings-opportunities-old',
                 component: HotStockOpportunitiesComponent,
                 data: {
                     title: 'Earnings Opportunities'
                 }
             },
             {
-                path: 'earnings-page',
+                path: 'earnings-opportunities',
                 component: EarningsPageComponent,
                 data: {
-                    title: 'Earnings Page'
+                    title: 'Earnings Opportunities'
                 }
             },
             {
@@ -65,17 +65,17 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'insider-trades',
+                path: 'insider-trades-old',
                 component: InsiderTradesComponent,
                 data: {
                     title: 'Insider Trades'
                 }
             },
             {
-                path: 'insider-trades-page',
+                path: 'insider-trades',
                 component: InsiderTradesPageComponent,
                 data: {
-                    title: 'Insider Trades Page'
+                    title: 'Insider Trades'
                 }
             },
             {
@@ -112,10 +112,10 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'dividend-page',
+                path: 'dividend-opportunities',
                 component: DividendPageComponent,
                 data: {
-                    title: 'Dividend Page'
+                    title: 'Dividend Opportunities'
                 }
             },
             {
@@ -126,28 +126,28 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'analyst-ratings-page',
+                path: 'analyst-ratings',
                 component: AnalystRatingsPageComponent,
                 data: {
-                    title: 'Analyst Ratings Page'
+                    title: 'Analyst Ratings'
                 }
             },
             {
-                path: 'other-predictions-from-websites',
+                path: 'predictions-from-other-websites',
                 component: OtherPredictionsFromWebsitesComponent,
                 data: {
-                    title: 'Other Predictions From Websites'
+                    title: 'Predictions From Other Websites'
                 }
             },
             {
-                path: 'other-predictions-from-websites/:id',
+                path: 'predictions-from-other-websites/:id',
                 component: OtherPredictionsFromWebsitesComponent,
                 data: {
-                    title: 'Other Predictions From Websites'
+                    title: 'Predictions From Other Websites'
                 }
             },
             {
-                path: 'earnings-analysis',
+                path: 'earnings-analysis-via-stock-peers',
                 component: EarningsAnalysisComponent,
                 data: {
                     title: 'Earnings Analysis via Stocks\' Peers'
@@ -161,31 +161,31 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'previous-earnings-effects',
+                path: 'previous-earnings-effects-of-stocks',
                 component: PreviousEarningsEffectsComponent,
                 data: {
-                    title: 'Previous Earnings Effects'
+                    title: 'Previous Earnings Effects Of Stocks'
                 }
             },
             {
-                path: 'previous-earnings-effects/:id',
+                path: 'previous-earnings-effects-of-stocks/:id',
                 component: PreviousEarningsEffectsComponent,
                 data: {
-                    title: 'Previous Earnings Effects'
+                    title: 'Previous Earnings Effects Of Stocks'
                 }
             },
             {
-                path: 'previous-dividend-effects',
+                path: 'previous-dividend-effects-of-stocks',
                 component: PreviousDividendEffectsComponent,
                 data: {
-                    title: 'Previous Dividend Effects'
+                    title: 'Previous Dividend Effects Of Stocks'
                 }
             },
             {
-                path: 'previous-dividend-effects/:id',
+                path: 'previous-dividend-effects-of-stocks/:id',
                 component: PreviousDividendEffectsComponent,
                 data: {
-                    title: 'Previous Dividend Effects'
+                    title: 'Previous Dividend Effects Of Stocks'
                 }
             },
             {

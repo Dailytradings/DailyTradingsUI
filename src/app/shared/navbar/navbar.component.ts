@@ -91,12 +91,12 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
           this.toggleSearchOpenClass(x);
         }, 100);
       });
-      
+
       broadcastingService.logInObservable.subscribe(() => {
-       this.checkDataVisibilityPermission();
+        this.checkDataVisibilityPermission();
       });
       broadcastingService.logOutObservable.subscribe(() => {
-       this.checkDataVisibilityPermission();
+        this.checkDataVisibilityPermission();
       });
     }
 
@@ -112,7 +112,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.checkDataVisibilityPermission();
+    if (isPlatformBrowser(this._platformId)) {
+      this.checkDataVisibilityPermission();
+    }
     if (this.innerWidth < 1200) {
       this.isSmallScreen = true;
     }
@@ -249,7 +251,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.control.setValue("");
         this.searchOpenClass = '';
         let url = this.router.url;
-        if (url.includes("management") || url.includes("alerts") || url.includes("previous-earnings-effects") || url.includes("previous-dividend-effects") || url.includes("earnings-analysis") || url.includes("other-predictions-from-websites"))
+        if (url.includes("management") || url.includes("alerts") || url.includes("previous-earnings-effects-of-stocks") || url.includes("previous-dividend-effects-of-stocks") || url.includes("earnings-analysis-via-stock-peers") || url.includes("predictions-from-other-websites"))
           this.broadcastingService.emitSymbol(symbol);
         else
           this.router.navigate(["stock/overview/" + symbol.ticker]);
@@ -264,7 +266,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.control.setValue("");
       this.searchOpenClass = '';
       let url = this.router.url;
-      if (url.includes("management") || url.includes("alerts") || url.includes("previous-earnings-effects") || url.includes("previous-dividend-effects") || url.includes("earnings-analysis") || url.includes("other-predictions-from-websites"))
+      if (url.includes("management") || url.includes("alerts") || url.includes("previous-earnings-effects-of-stocks") || url.includes("previous-dividend-effects-of-stocks") || url.includes("earnings-analysis-via-stock-peers") || url.includes("predictions-from-other-websites"))
         this.broadcastingService.emitSymbol(symbol);
       else
         this.router.navigate(["stock/overview/" + symbol.ticker]);

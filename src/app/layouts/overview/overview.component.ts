@@ -18,6 +18,7 @@ export class OverviewComponent implements OnInit {
 
   symbol: any;
   selectedPanel = 'opportunities';
+  isBrowser;
   @ViewChild('modal') modal: AlertModalComponent;
 
   allowedToSee;
@@ -40,7 +41,10 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this._platformId)) {
+      this.isBrowser = true;
       this.checkDataVisibilityPermission();
+    } else {
+      this.isBrowser = false;
     }
     this.route.params.subscribe(params => {
       if (params['id'] && params['id'].length > 0) {
@@ -72,7 +76,7 @@ export class OverviewComponent implements OnInit {
   getSymbolFromTicker(ticker) {
     if (ticker) {
       this.symbol = undefined;
-      this.contentService.getSymbolOverview(ticker).subscribe(response => {
+      this.contentService.getSymbolOverview(ticker, this.isBrowser).subscribe(response => {
         let path = this.router.url;
         let lastPartOfPath = path.substr(path.lastIndexOf("\/"), path.length - path.lastIndexOf("\/"))
         let firstPartOfPath = path.substr(0, path.lastIndexOf("\/"))
