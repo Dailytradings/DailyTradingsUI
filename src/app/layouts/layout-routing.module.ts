@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewsDetailPageComponent } from 'app/pages/full-pages/news-detail-page/news-detail-page.component';
+import { NewsDetailPageComponent } from 'app/shared/news-detail-page/news-detail-page.component';
 import { AuthGuard } from 'app/shared/auth/auth-guard.service';
 import { AlertComponent } from './alert/alert.component';
 import { AnalystRatingsPageComponent } from './analyst-ratings-page/analyst-ratings-page.component';

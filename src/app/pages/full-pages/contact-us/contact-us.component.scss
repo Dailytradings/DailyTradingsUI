@@ -1,0 +1,149 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	text-decoration: none;
+	list-style: none;
+}
+.static-container {
+	width: 1200px;
+	position: relative;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	margin-top: 100px;
+}
+.static-title {
+	border-bottom: 1px solid #11111130;
+	margin-bottom: 20px;
+	h1 {
+		position: relative;
+		margin-bottom: -25px;
+		padding: 10px;
+		background: #fff;
+		margin-left: 10px;
+		width: 140px;
+		text-align: center;
+	}
+}
+.contact-children {
+	width: 100%;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+.contact-child {
+	width: 45%;
+	margin: 30px 0;
+	&:nth-child(1) {
+		border-right: 1px solid #11111130;
+	}
+	input {
+		padding: 10px;
+		width: 100%;
+		border: 1px solid #11111140;
+		&:focus {
+			~ {
+				label {
+					margin-top: -10px;
+					background: #fff;
+					padding: 0 5px;
+					left: 5px;
+					transition: .3s;
+				}
+			}
+		}
+		&:valid {
+			~ {
+				label {
+					margin-top: -10px;
+					background: #fff;
+					padding: 0 5px;
+					left: 5px;
+					transition: .3s;
+				}
+			}
+		}
+	}
+	div {
+		margin-bottom: 30px;
+		position: relative;
+		width: 350px;
+	}
+	label {
+		position: absolute;
+		left: 10px;
+		margin-top: 10px;
+		pointer-events: none;
+		color: #111111;
+	}
+	textarea {
+		&:focus {
+			~ {
+				label {
+					margin-top: -10px;
+					background: #fff;
+					padding: 0 5px;
+					left: 5px;
+					transition: .3s;
+				}
+			}
+		}
+		&:valid {
+			~ {
+				label {
+					margin-top: -10px;
+					background: #fff;
+					padding: 0 5px;
+					left: 5px;
+					transition: .3s;
+				}
+			}
+		}
+	}
+	button {
+		padding: 10px 30px;
+		background: #F2DF95;
+		color: #fff;
+		border: none;
+		float: right;
+		cursor: pointer;
+	}
+	&:nth-child(2) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		p {
+			width: 100%;
+			font-size: 28px;
+			margin-bottom: 30px;
+		}
+		ol {
+			display: flex;
+			justify-content: space-between;
+			width: 350px;
+			margin: 0 auto;
+			li {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background: #F2DF95;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+}
+textarea {
+	padding: 10px;
+	width: 100%;
+	border: 1px solid #11111140;
+}
+#contact-social {
+	width: 100%;
+}

@@ -1,0 +1,30 @@
+<div class="row" *ngIf="this.loadPanels">
+    <div class="col-sm-8">
+        <app-watchlist-opportunities-list></app-watchlist-opportunities-list>
+    </div>
+    <div class="col-sm-4">
+        <div class="row" *ngIf="this.watchlistSymbolList">
+            <div class="card" style="width: 100%;">
+                <div class="card-content">
+                    <div class="card-body" style="background-color: white; padding-top: 2%; padding-bottom: 2%; max-height: 765px; min-height: 280px; overflow-y: auto;">
+                        <div class="col-sm-12" *ngFor="let symbol of this.watchlistSymbolList"
+                            style="margin-bottom: 5px;">
+                            <app-wishlist-overview-panel [symbol]="symbol"></app-wishlist-overview-panel>
+                        </div>
+                          <div class="col-sm-12" *ngIf="this.watchlistSymbolList.length == 0"  style="text-align: center; padding-top:18%">
+                                    <h4><b>There is no Symbol added to Watchlist</b></h4>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="this.loadPanels">
+    <div class="col-sm-6">
+        <app-watchlist ></app-watchlist>
+    </div>
+    <div class="col-sm-6">
+        <app-alert-list></app-alert-list>
+    </div>
+</div>

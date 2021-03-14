@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CopyrightComponent } from './copyright/copyright.component';
 import { FaqComponent } from './faq/faq.component';
 import { GalleryPageComponent } from "./gallery/gallery-page.component";
 import { InvoicePageComponent } from "./invoice/invoice-page.component";
@@ -13,6 +16,7 @@ import { UserProfilePageComponent } from "./user-profile/user-profile-page.compo
 import { UsersEditComponent } from './users/users-edit/users-edit.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersViewComponent } from './users/users-view/users-view.component';
+import { WhyUsComponent } from './why-us/why-us.component';
 
 
 const routes: Routes = [
@@ -113,6 +117,34 @@ const routes: Routes = [
         component: UsersEditComponent,
         data: {
           title: 'Edit'
+        }
+      },
+      {
+        path: 'why-us',
+        component: WhyUsComponent,
+        data: {
+          title: 'Why Us'
+        }
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent,
+        data: {
+          title: 'About Us'
+        }
+      },
+      {
+        path: 'contact-us',
+        component: ContactUsComponent,
+        data: {
+          title: 'Contact Us'
+        }
+      },
+      {
+        path: 'copyright',
+        component: CopyrightComponent,
+        data: {
+          title: 'Copyright'
         }
       }
     ]

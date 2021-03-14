@@ -21,8 +21,14 @@ import { UserProfilePageComponent } from "./user-profile/user-profile-page.compo
 import { UsersEditComponent } from "./users/users-edit/users-edit.component";
 import { UsersListComponent } from "./users/users-list/users-list.component";
 import { UsersViewComponent } from "./users/users-view/users-view.component";
-import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
-
+import { CreditCardAddComponent } from './user-profile/credit-card-add/credit-card-add.component';
+import { ProfileUpdateComponent } from './user-profile/profile-update/profile-update.component';
+import { CreditCardUpdateComponent } from './user-profile/credit-card-update/credit-card-update.component';
+import { LayoutModule } from "app/layouts/layout.module";
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CopyrightComponent } from './copyright/copyright.component';
+import { WhyUsComponent } from './why-us/why-us.component';
 
 
 @NgModule({
@@ -38,6 +44,7 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     SwiperModule,
     PipeModule,
     NgxDatatableModule,
+    LayoutModule
   ],
   declarations: [
     GalleryPageComponent,
@@ -52,7 +59,13 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     UsersListComponent,
     UsersViewComponent,
     UsersEditComponent,
-    NewsDetailPageComponent,
+    CreditCardAddComponent,
+    ProfileUpdateComponent,
+    CreditCardUpdateComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    CopyrightComponent,
+    WhyUsComponent
   ]
 })
 export class FullPagesModule {}

@@ -40,17 +40,21 @@ import { OverviewPanelComponent } from './widgets/overview-panel/overview-panel.
 import { WishlistOverviewPanelComponent } from './widgets/wishlist-overview-panel/wishlist-overview-panel.component';
 import { AlertListComponent } from './wishlist-overview/alert-list/alert-list.component';
 import { WatchlistComponent } from './wishlist-overview/watchlist/watchlist.component';
-import { WishlistOpportunitiesListComponent } from './wishlist-overview/wishlist-opportunities-list/wishlist-opportunities-list.component';
-import { WishlistOverviewComponent } from './wishlist-overview/wishlist-overview.component';
 import { PreviousEarningsEffectsListComponent } from './previous-earnings-effects/previous-earnings-effects-list/previous-earnings-effects-list.component';
 import { PreviousDividendEffectsListComponent } from './previous-dividend-effects/previous-dividend-effects-list/previous-dividend-effects-list.component';
 import { EarningsAnalysisListComponent } from './earnings-analysis/earnings-analysis-list/earnings-analysis-list.component';
 import { OtherPredictionsFromWebsitesListComponent } from './other-predictions-from-websites/other-predictions-from-websites-list/other-predictions-from-websites-list.component';
 import { LockedPanelComponent } from './widgets/locked-panel/locked-panel.component';
+import { WatchlistOverviewComponent } from './watchlist-overview/watchlist-overview.component';
+import { WatchlistOpportunitiesListComponent } from './watchlist-overview/watchlist-opportunities-list/watchlist-opportunities-list.component';
 
 
 
 @NgModule({
+  exports: [
+    WatchlistOpportunitiesListComponent,
+    AlertListComponent
+  ],
   declarations: [
     HotStockOpportunitiesComponent, 
     RealtimeTableComponent, 
@@ -76,10 +80,8 @@ import { LockedPanelComponent } from './widgets/locked-panel/locked-panel.compon
     OverviewPanelComponent, 
     CompetitorListComponent, 
     OpportunitiesListComponent, 
-    WishlistOverviewComponent, 
     WishlistOverviewPanelComponent, 
     AlertListComponent,
-    WishlistOpportunitiesListComponent,
     EarningsOpportunitiesListComponent,
     UpcomingEarningsComponent,
     DividendOpportunitiesListComponent,
@@ -92,6 +94,8 @@ import { LockedPanelComponent } from './widgets/locked-panel/locked-panel.compon
     EarningsAnalysisListComponent,
     OtherPredictionsFromWebsitesListComponent,
     LockedPanelComponent,
+    WatchlistOverviewComponent,
+    WatchlistOpportunitiesListComponent,
   ],
   imports: [
     CommonModule,
