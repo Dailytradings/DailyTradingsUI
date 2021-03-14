@@ -7,6 +7,65 @@
 
         <section>
             <div class="row">
+
+                <div class="col-12" *ngIf="reminderData && reminderData.length > 0">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5>Reminder Options </h5>
+                                    <hr>
+                                </div>
+                                <div class="row" *ngIf="reminderDataContains('Earnings Opportunities')">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-4"
+                                        style="padding: 0px; display: table-cell; vertical-align: middle;">
+                                        <h6 style="margin-top:10px;">Earnings Opportunities :</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="switch-toggle switch-3 switch-candy2" style="width: 100px;">
+                                            <input id="earningsOn" name="state-e" type="radio" checked="{{getRd('Earnings Opportunities').isActive ? 'checked' : ''}}">
+                                            <label for="earningsOn" class="p-1"
+                                            (click)="updateReminder(getRd('Earnings Opportunities'),'earningsOn')">On</label>
+
+                                            <input id="earningsOff" name="state-e" type="radio" checked="{{!getRd('Earnings Opportunities').isActive ? 'checked' : ''}}">
+                                            <label for="earningsOff" class="p-1"
+                                            (click)="updateReminder(getRd('Earnings Opportunities'),'earningsOff')">Off</label>
+
+                                            <a></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right;">
+                                        <input type="submit" class="btn btn-danger" value="Remove" (click)="updateReminder(getRd('Earnings Opportunities').id,'earningsRemove')">
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="reminderDataContains('Dividend')">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-4"
+                                        style="padding: 0px; display: table-cell; vertical-align: middle;">
+                                        <h6 style="margin-top:10px;">Dividend :</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="switch-toggle switch-3 switch-candy2" style="width: 100px;">
+                                            <input id="dividendOn" name="state-d" type="radio" checked="{{getRd('Dividend').isActive ? 'checked' : ''}}">
+                                            <label for="dividendOn" class="p-1" 
+                                            (click)="updateReminder(getRd('Dividend'), 'dividendOn')">On</label>
+
+                                            <input id="dividendOff" name="state-d" type="radio" checked="{{!getRd('Dividend').isActive ? 'checked' : ''}}">
+                                            <label for="dividendOff" class="p-1" 
+                                            (click)="updateReminder(getRd('Dividend'),'dividendOff')">Off</label>
+                                            <a></a>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right;">
+                                        <input type="submit" class="btn btn-danger" value="Remove" (click)="updateReminder(getRd('Dividend').id,'dividendRemove')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -67,14 +126,15 @@
 
 
                                             </div>
-                                                <hr *ngIf="selectedEdit">
+                                            <hr *ngIf="selectedEdit">
                                             <div class="row">
                                                 <div class="col-sm-12" *ngIf="selectedEdit == 'alert'"
                                                     style="padding-left: 5%; padding-right: 10%;">
                                                     <form>
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <span style="font-weight:900">Create Alert For a Symbol
+                                                                <span style="font-weight:900">Create Alert For a
+                                                                    Symbol
                                                                     : </span>
                                                             </div>
                                                         </div>
@@ -91,26 +151,31 @@
                                                             <div class="col-sm-12">
                                                                 <div class="form-group">
                                                                     <label for="AlertType"
-                                                                        style="font-weight: 900;">Alert Type :</label>
+                                                                        style="font-weight: 900;">Alert Type
+                                                                        :</label>
                                                                     <select class="form-control" #AlertType
                                                                         name="AlertType"
                                                                         [(ngModel)]="selectedAlertTypeId"
                                                                         (change)="onAlertTypeChange()">
-                                                                        <option value="null">Alarm Tipi Seçin</option>
+                                                                        <option value="null">Alarm Tipi Seçin
+                                                                        </option>
                                                                         <option *ngFor="let types of alertTypeList"
-                                                                            [value]="types.id">{{types.typeName}}
+                                                                            [value]="types.id">
+                                                                            {{types.typeName}}
                                                                         </option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row" *ngIf="descriptionEnable" style="padding-left: 5%;">
+                                                        <div class="row" *ngIf="descriptionEnable"
+                                                            style="padding-left: 5%;">
                                                             <p>*{{descriptionText}}</p>
                                                         </div>
                                                         <div class="row" *ngIf="numericValueEnabled">
                                                             <div class="col-sm-12">
                                                                 <div class="form-group">
-                                                                    <label for="AlertValue">Alert Value :</label>
+                                                                    <label for="AlertValue">Alert Value
+                                                                        :</label>
                                                                     <input #AlertValue [(ngModel)]="this.alertValue"
                                                                         type="number" class="form-control"
                                                                         name="AlertValue" placeholder="{{valueText}}"
@@ -121,7 +186,8 @@
                                                         <div class="row" *ngIf="textValueEnabled">
                                                             <div class="col-sm-12">
                                                                 <div class="form-group">
-                                                                    <label for="AlertValue">Alert Value :</label>
+                                                                    <label for="AlertValue">Alert Value
+                                                                        :</label>
                                                                     <input #AlertValue [(ngModel)]="this.alertValue"
                                                                         type="text" class="form-control"
                                                                         name="AlertValue" placeholder="{{valueText}}">
@@ -171,96 +237,105 @@
                                                 </div>
 
                                                 <div class="col-sm-12" *ngIf="selectedEdit == 'reminder'"
-                                                style="padding-left: 5%; padding-right: 10%;">
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <span style="font-weight:900">Create Reminder : </span>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label for="ReminderType"
-                                                                    style="font-weight: 900;">Reminder Type :</label>
-                                                                <select class="form-control" #ReminderType
-                                                                    name="ReminderType"
-                                                                    [(ngModel)]="selectedReminderTypeId"
-                                                                    (change)="onReminderTypeChange()">
-                                                                    <option value="null">Choose a Reminder Type</option>
-                                                                    <option *ngFor="let types of reminderTypeList"
-                                                                        [value]="types.id">{{types.typeName}}
-                                                                    </option>
-                                                                </select>
+                                                    style="padding-left: 5%; padding-right: 10%;">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <span style="font-weight:900">Create Reminder :
+                                                                </span>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row" *ngIf="descriptionEnable" style="padding-left: 5%;">
-                                                        <p>*{{descriptionText}}</p>
-                                                    </div>
-                                                    <div class="row" *ngIf="numericValueEnabled">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label for="ReminderValue">Reminder Value :</label>
-                                                                <input #ReminderValue [(ngModel)]="this.reminderValue"
-                                                                    type="number" class="form-control"
-                                                                    name="ReminderValue" placeholder="{{valueText}}"
-                                                                    step="0.01">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" *ngIf="textValueEnabled">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label for="ReminderValue">Reminder Value :</label>
-                                                                <input #ReminderValue [(ngModel)]="this.reminderValue"
-                                                                    type="text" class="form-control"
-                                                                    name="ReminderValue" placeholder="{{valueText}}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <div class="custom-control custom-checkbox"
-                                                                    style="margin-top: 1.5%;">
-                                                                    <input #RepeatAvailable
-                                                                        [checked]="this.isRepeatable"
-                                                                        (change)="this.isRepeatable = !this.isRepeatable"
-                                                                        type="checkbox" id="RepeatAvailable"
-                                                                        class="custom-control-input"
-                                                                        name="ExtendedAvailable">
-                                                                    <label style="font-size: medium;"
-                                                                        class="custom-control-label"
-                                                                        for="RepeatAvailable">Repeatable</label>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="ReminderType"
+                                                                        style="font-weight: 900;">Reminder Type
+                                                                        :</label>
+                                                                    <select class="form-control" #ReminderType
+                                                                        name="ReminderType"
+                                                                        [(ngModel)]="selectedReminderTypeId"
+                                                                        (change)="onReminderTypeChange()">
+                                                                        <option value="null">Choose a Reminder
+                                                                            Type
+                                                                        </option>
+                                                                        <option *ngFor="let types of reminderTypeList"
+                                                                            [value]="types.id">
+                                                                            {{types.typeName}}
+                                                                        </option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row" *ngIf="this.notifyOneDayAgoEnabled">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <div class="custom-control custom-checkbox"
-                                                                    style="margin-top: 1.5%;">
-                                                                    <input #NotifyOneDayAgo
-                                                                        [checked]="this.isNotifyOneDayAgo"
-                                                                        (change)="this.isNotifyOneDayAgo = !this.isNotifyOneDayAgo"
-                                                                        type="checkbox" id="NotifyOneDayAgo"
-                                                                        class="custom-control-input"
-                                                                        name="NotifyOneDayAgo">
-                                                                    <label style="font-size: medium;"
-                                                                        class="custom-control-label"
-                                                                        for="NotifyOneDayAgo">Notify 1
-                                                                        Day Ago</label>
+                                                        <div class="row" *ngIf="descriptionEnable"
+                                                            style="padding-left: 5%;">
+                                                            <p>*{{descriptionText}}</p>
+                                                        </div>
+                                                        <div class="row" *ngIf="numericValueEnabled">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="ReminderValue">Reminder Value
+                                                                        :</label>
+                                                                    <input #ReminderValue
+                                                                        [(ngModel)]="this.reminderValue" type="number"
+                                                                        class="form-control" name="ReminderValue"
+                                                                        placeholder="{{valueText}}" step="0.01">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary"
-                                                        (click)="AddReminder()">Save</button>
-                                                </form>
-                                            </div>
+                                                        <div class="row" *ngIf="textValueEnabled">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="ReminderValue">Reminder Value
+                                                                        :</label>
+                                                                    <input #ReminderValue
+                                                                        [(ngModel)]="this.reminderValue" type="text"
+                                                                        class="form-control" name="ReminderValue"
+                                                                        placeholder="{{valueText}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="custom-control custom-checkbox"
+                                                                        style="margin-top: 1.5%;">
+                                                                        <input #RepeatAvailable
+                                                                            [checked]="this.isRepeatable"
+                                                                            (change)="this.isRepeatable = !this.isRepeatable"
+                                                                            type="checkbox" id="RepeatAvailable"
+                                                                            class="custom-control-input"
+                                                                            name="ExtendedAvailable">
+                                                                        <label style="font-size: medium;"
+                                                                            class="custom-control-label"
+                                                                            for="RepeatAvailable">Repeatable</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" *ngIf="this.notifyOneDayAgoEnabled">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="custom-control custom-checkbox"
+                                                                        style="margin-top: 1.5%;">
+                                                                        <input #NotifyOneDayAgo
+                                                                            [checked]="this.isNotifyOneDayAgo"
+                                                                            (change)="this.isNotifyOneDayAgo = !this.isNotifyOneDayAgo"
+                                                                            type="checkbox" id="NotifyOneDayAgo"
+                                                                            class="custom-control-input"
+                                                                            name="NotifyOneDayAgo">
+                                                                        <label style="font-size: medium;"
+                                                                            class="custom-control-label"
+                                                                            for="NotifyOneDayAgo">Notify 1
+                                                                            Day Ago</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <button type="submit" class="btn btn-primary"
+                                                            (click)="AddReminder()">Save</button>
+                                                    </form>
+                                                </div>
 
                                             </div>
                                         </section>

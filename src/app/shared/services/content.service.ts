@@ -199,6 +199,12 @@ export class ContentService {
     );
   }
 
+  changeReminderActivity(data) {
+    return this.http.post(environment.baseUrl + "/content/ChangeReminderActivity", this.createRequest(data)).pipe(
+      map((response: any) => this.checkResponse(response, true))
+    );
+  }
+
   RemoveAlert(data) {
     return this.http.post(environment.baseUrl + "/content/RemoveAlert", this.createRequest(data), httpOptions).pipe(
       map((response: any) => this.checkResponse(response, true))
@@ -226,6 +232,11 @@ export class ContentService {
 
   getAlertList() {
     return this.http.post(environment.baseUrl + "/content/GetAlertList", this.createRequest(null)).pipe(
+      map((response: any) => this.checkResponse(response))
+    );
+  }
+  getReminderData() {
+    return this.http.post(environment.baseUrl + "/content/GetReminderData", this.createRequest()).pipe(
       map((response: any) => this.checkResponse(response))
     );
   }
