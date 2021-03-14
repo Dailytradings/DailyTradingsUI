@@ -21,7 +21,6 @@ import { UserProfilePageComponent } from "./user-profile/user-profile-page.compo
 import { UsersEditComponent } from "./users/users-edit/users-edit.component";
 import { UsersListComponent } from "./users/users-list/users-list.component";
 import { UsersViewComponent } from "./users/users-view/users-view.component";
-import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
 import { CreditCardAddComponent } from './user-profile/credit-card-add/credit-card-add.component';
 import { ProfileUpdateComponent } from './user-profile/profile-update/profile-update.component';
 import { CreditCardUpdateComponent } from './user-profile/credit-card-update/credit-card-update.component';
@@ -60,7 +59,6 @@ import { WhyUsComponent } from './why-us/why-us.component';
     UsersListComponent,
     UsersViewComponent,
     UsersEditComponent,
-    NewsDetailPageComponent,
     CreditCardAddComponent,
     ProfileUpdateComponent,
     CreditCardUpdateComponent,
