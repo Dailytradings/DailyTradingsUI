@@ -1,11 +1,12 @@
   <div class="profile-container">
     <div class="profile-child">
       <div class="profile-side-category">
-        <span [ngStyle]= "{'background': selectedEditTitle == 'side-observings' ? '#111' : 'none'}" (click)="selectEditTitle('side-observings')">Observings</span>
-        <span [ngStyle]= "{'background': selectedEditTitle == 'side-settings' ? '#111' : 'none'}" (click)="selectEditTitle('side-settings')">Settings</span>
+        <span [ngStyle]= "{'background': selectedEditTitle == 'side-observings' ? '#111' : 'none', 'color': selectedEditTitle == 'side-observings' ? '#fff' : '#111'}" (click)="selectEditTitle('side-observings')">Observings</span>
+        <span [ngStyle]= "{'background': selectedEditTitle == 'side-settings' ? '#111' : 'none', 'color': selectedEditTitle == 'side-settings' ? '#fff' : '#111'}" (click)="selectEditTitle('side-settings'); selectEdit('opportunity-list')">Settings</span>
       </div>
       <span class="profile-side-header">
-        <i class="ft-settings"></i>
+        <i class="ft-settings" *ngIf="this.selectedEditTitle == 'side-settings'"></i>
+        <i class="ft-user" *ngIf="this.selectedEditTitle == 'side-observings'"></i>
       </span>
       
       

@@ -83,20 +83,28 @@ export class HomepageNewsPanelComponent implements OnInit {
       clickable: true,
     },
     breakpoints: {
-      1024: {
+      1150: {
         slidesPerView: 14,
         spaceBetween: 30,
       },
+      1024: {
+        slidesPerView: 9,
+        spaceBetween: 30,
+      },
+      991: {
+        slidesPerView: 9,
+        spaceBetween: 30,
+      },
       768: {
-        slidesPerView: 3,
+        slidesPerView: 7,
         spaceBetween: 30,
       },
       640: {
-        slidesPerView: 2,
+        slidesPerView: 7,
         spaceBetween: 20,
       },
       320: {
-        slidesPerView: 1,
+        slidesPerView: 5,
         spaceBetween: 10,
       }
     }

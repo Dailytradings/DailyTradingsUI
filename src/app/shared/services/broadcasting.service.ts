@@ -15,6 +15,8 @@ export class BroadcastingService {
   public refreshAlertListObservable = new Subject<boolean>();
   public reportDateFromEarningsObservable = new Subject<Object>();
   public refreshWatchListOverviewObservable = new Subject<boolean>();
+  public creditCard = new Subject<string>();
+  
   constructor() { }
 
   public emitLogIn() {
@@ -44,5 +46,9 @@ export class BroadcastingService {
   }
   public emitNewsId(val) {
     this.selectedNewsId.next(val);
+  }
+
+  public emitCreditCard(val) {
+    this.creditCard.next(val);
   }
 }

@@ -22,9 +22,10 @@
 		position: relative;
 		margin-bottom: -25px;
 		padding: 10px;
-		background: #fff;
+        font-size: 25px;
+		background: #F7F7F8;
 		margin-left: 10px;
-		width: 140px;
+		width: 150px;
 		text-align: center;
 	}
 }
@@ -44,11 +45,12 @@
 		padding: 10px;
 		width: 100%;
 		border: 1px solid #11111140;
+        background: none;
 		&:focus {
 			~ {
 				label {
 					margin-top: -10px;
-					background: #fff;
+					background: #F7F7F8;
 					padding: 0 5px;
 					left: 5px;
 					transition: .3s;
@@ -59,7 +61,7 @@
 			~ {
 				label {
 					margin-top: -10px;
-					background: #fff;
+					background: #F7F7F8;
 					padding: 0 5px;
 					left: 5px;
 					transition: .3s;
@@ -80,11 +82,12 @@
 		color: #111111;
 	}
 	textarea {
+        background: none;
 		&:focus {
 			~ {
 				label {
 					margin-top: -10px;
-					background: #fff;
+					background: #F7F7F8;
 					padding: 0 5px;
 					left: 5px;
 					transition: .3s;
@@ -95,7 +98,7 @@
 			~ {
 				label {
 					margin-top: -10px;
-					background: #fff;
+					background: #F7F7F8;
 					padding: 0 5px;
 					left: 5px;
 					transition: .3s;
@@ -146,4 +149,7 @@ textarea {
 }
 #contact-social {
 	width: 100%;
+    a{
+        color: #fff;
+    }
 }

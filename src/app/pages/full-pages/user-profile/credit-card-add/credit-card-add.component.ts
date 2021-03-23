@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BroadcastingService } from 'app/shared/services/broadcasting.service';
 
 @Component({
   selector: 'app-credit-card-add',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreditCardAddComponent implements OnInit {
 
-  constructor() { }
+  constructor(private broadcastingService: BroadcastingService) { }
 
   ngOnInit(): void {
   }
 
+  listCards() {
+    this.broadcastingService.emitCreditCard('credit-card-update');
+  }
 }

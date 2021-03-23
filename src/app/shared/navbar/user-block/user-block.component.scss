@@ -1,0 +1,15 @@
+.user-profile-img{
+    background: #fff;
+}
+.user-profile-name{
+    display: flex;
+}
+@media (max-width: 991px){
+    .user-profile-img{
+        background: none;
+    }
+    .user-profile-name{
+        display: none;
+    }
+}
+

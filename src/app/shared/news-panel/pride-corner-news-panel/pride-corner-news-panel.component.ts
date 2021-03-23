@@ -63,8 +63,12 @@ export class PrideCornerNewsPanelComponent implements OnInit {
       clickable: true,
     },
     breakpoints: {
-      1024: {
+      1200: {
         slidesPerView: 4,
+        spaceBetween: 30,
+      },
+      1024: {
+        slidesPerView: 3,
         spaceBetween: 30,
       },
       768: {

@@ -51,9 +51,11 @@ export class UserProfilePageComponent implements OnInit, AfterViewInit, OnDestro
     selectEditTitle(editTitle){
       this.selectedEditTitle = editTitle;
     }
-   
-
-    ngOnInit() {
+    ngOnInit(): void {
+      this.broadcastingService.creditCard.subscribe((val) => {
+        this.selectEdit(val);
+      });
+  
       this.selectedEdit = "profile-update";
       this.selectedEditTitle = "side-observings";
       this.layoutSub = this.configService.templateConf$.subscribe((templateConf) => {
