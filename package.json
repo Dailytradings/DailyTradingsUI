@@ -15,6 +15,11 @@
     "build:ssr": "ng build --prod && ng run matngular:server:production",
     "prerender": "ng run matngular:prerender"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "private": true,
   "dependencies": {
     "@agm/core": "1.1.0",

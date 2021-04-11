@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { SignalRService } from './shared/services/signalr.service';
+import { SeoService } from './shared/services/seo.service'
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     subscription: Subscription;
 
-    constructor(@Inject(PLATFORM_ID) private _platformId: Object,private router: Router, private signalRService: SignalRService) {
+    constructor(@Inject(PLATFORM_ID) private _platformId: Object,
+    private seoService: SeoService,
+    private router: Router, 
+    private signalRService: SignalRService) {
         if (isPlatformBrowser(this._platformId)) {
             setTimeout(() => {
                 this.signalRService.startBaseHubConnection();
@@ -26,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.seoService.setTitle("DailyTradings");
      if(isPlatformBrowser(this._platformId)) {
         this.subscription = this.router.events
         .pipe(

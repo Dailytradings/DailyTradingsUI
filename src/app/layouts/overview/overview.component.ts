@@ -8,6 +8,7 @@ import { ContentService } from 'app/shared/services/content.service';
 import { AlertModalComponent } from '../alert/alert-modal/alert-modal.component';
 import { environment } from 'environments/environment';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
+import { SeoService } from 'app/shared/services/seo.service';
 
 @Component({
   selector: 'app-overview',
@@ -23,6 +24,7 @@ export class OverviewComponent implements OnInit {
 
   allowedToSee;
   constructor(@Inject(PLATFORM_ID) private _platformId: Object,
+  private seoService: SeoService,
     private router: Router,
     private route: ActivatedRoute,
     private symbolService: SymbolService,
@@ -46,12 +48,13 @@ export class OverviewComponent implements OnInit {
     } else {
       this.isBrowser = false;
     }
+
     this.route.params.subscribe(params => {
       if (params['id'] && params['id'].length > 0) {
         if (params['id2'] && params['id2'].length > 0) {
           this.selectedPanel = params['id2'];
         }
-        this.getSymbolFromTicker(params['id']);
+        this.getSymbolFromTicker(params['id']);      
       } else {
         this.broadcastingService.emitTicker(undefined);
       }
@@ -59,8 +62,7 @@ export class OverviewComponent implements OnInit {
       this.broadcastingService.symbolObservable.subscribe((x: any) => {
         this.getSymbolFromTicker(x.ticker);
       });
-    }, (error) => console.error(error));
-
+    }, (error) => console.error(error));  
   }
 
   selectedEdit;
@@ -86,6 +88,9 @@ export class OverviewComponent implements OnInit {
           path = path.substr(0, firstPartOfPath.lastIndexOf("\/"))
 
         this.location.go(path + '/' + ticker + lastPartOfPath);
+        
+        this.seoService.createMeta("description", "A high-level overview of "+ response.companyName + "("+ response.ticker +") stock. Stay up to date on the latest stock price, chart, news, analysis, fundamentals, trading and investment tools.");
+
         setTimeout(() => {
           this.symbol = response;
           this.cdRef.detectChanges();
