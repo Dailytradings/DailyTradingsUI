@@ -24,6 +24,7 @@ export class ContentService {
       map((response: any) => this.checkResponse(response))
     );
   }
+  //Earnings Opportunities Tablosunu Doldurur.
   getHotStockOpportunities(date = "", timeRange = "Date", dataCount = 250) {
     let url = environment.baseUrl + "/content/GetHotStockOpportunities/" + timeRange + "/" + dataCount + "/" + date ;
     console.log(url);
@@ -31,6 +32,7 @@ export class ContentService {
       map((response: any) => this.checkResponse(response))
     );
   }
+  
   getUpcomingEarningsList(dataCount = 5) {
     return this.http.get(environment.baseUrl + "/content/GetUpcomingEarningsList" + "/" + dataCount).pipe(
       map((response: any) => this.checkResponse(response))
